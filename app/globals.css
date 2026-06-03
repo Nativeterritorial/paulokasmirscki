@@ -507,7 +507,7 @@ section {
 
 /* Ecossistema — gold flip */
 .flip {
-  background: var(--gold-grad);
+  background: linear-gradient(135deg, #5cc8d4 0%, #34a6b2 55%, #2c97a3 100%);
   color: var(--on-accent);
 }
 
@@ -567,7 +567,7 @@ section {
 }
 
 .eco-card p {
-  color: rgba(3, 22, 24, 0.72);
+  color: rgba(3, 22, 24, 0.82);
   font-size: 1rem;
   font-weight: 300;
 }

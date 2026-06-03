@@ -1192,3 +1192,52 @@ section {
     font-size: 0.72rem;
   }
 }
+
+/* ===== Faça parte (join) ===== */
+.join-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.join-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 40px 32px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+}
+.join-card:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+  transform: translateY(-5px);
+}
+.join-card .join-num {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--gold-2);
+}
+.join-card h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+}
+.join-card p {
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 300;
+  flex: 1;
+}
+.join-card .btn {
+  margin-top: 10px;
+  justify-content: center;
+}
+@media (max-width: 920px) {
+  .join-grid {
+    grid-template-columns: 1fr;
+  }
+}

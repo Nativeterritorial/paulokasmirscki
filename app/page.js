@@ -3,6 +3,17 @@ import Effects from "./effects";
 const WHATSAPP = "https://wa.me/5554996505799";
 const INSTAGRAM = "https://instagram.com/paulokasmirscki";
 
+const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+const WA_RECEBER = wa(
+  "Olá Paulo! Tenho um negócio e quero fazer parte da sua rede para receber indicações de clientes."
+);
+const WA_INDICAR = wa(
+  "Olá Paulo! Quero entrar no ecossistema para indicar e ser indicado dentro da rede."
+);
+const WA_SOLUCAO = wa(
+  "Olá Paulo! Estou procurando uma solução/fornecedor de confiança. Pode me conectar com alguém da rede?"
+);
+
 const SEGMENTOS = [
   "Imóveis & Construção",
   "Serviços",
@@ -453,6 +464,79 @@ export default function Home() {
               Depoimentos de exemplo — substituídos pelos reais assim que o
               Paulo os enviar.
             </p>
+          </div>
+        </section>
+
+        {/* 06 — Faça parte */}
+        <section id="faca-parte">
+          <GhostMarquee word="Junte-se" />
+          <div className="container">
+            <div className="section-head center">
+              <div className="section-num">
+                06 <span>/ Para a sua marca</span>
+              </div>
+              <h2>
+                Faça parte da <em>rede</em>
+              </h2>
+              <p>
+                Se você tem um negócio, entrar no ecossistema do Paulo abre
+                portas que sozinho levariam anos — clientes, parceiros e
+                indicações de quem já confia nele.
+              </p>
+            </div>
+
+            <div className="join-grid fade-up">
+              <article className="join-card">
+                <div className="join-num">01</div>
+                <h3>Quero receber indicações</h3>
+                <p>
+                  Seja apresentado a clientes e parceiros que precisam
+                  exatamente do que a sua empresa faz.
+                </p>
+                <a
+                  className="btn btn-primary"
+                  href={WA_RECEBER}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Quero receber indicações
+                </a>
+              </article>
+
+              <article className="join-card">
+                <div className="join-num">02</div>
+                <h3>Quero indicar e ser indicado</h3>
+                <p>
+                  Troque oportunidades com uma rede ativa de profissionais e
+                  empresas de vários segmentos.
+                </p>
+                <a
+                  className="btn btn-primary"
+                  href={WA_INDICAR}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Entrar na rede
+                </a>
+              </article>
+
+              <article className="join-card">
+                <div className="join-num">03</div>
+                <h3>Preciso de uma solução</h3>
+                <p>
+                  Procurando um fornecedor ou serviço de confiança? O Paulo te
+                  conecta com a pessoa certa da rede.
+                </p>
+                <a
+                  className="btn btn-primary"
+                  href={WA_SOLUCAO}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Buscar na rede
+                </a>
+              </article>
+            </div>
           </div>
         </section>
 

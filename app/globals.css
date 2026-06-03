@@ -1241,3 +1241,13 @@ section {
     grid-template-columns: 1fr;
   }
 }
+
+/* join cards on flip background -> dark cards for contrast */
+.flip .join-card {
+  background: #06100f;
+  border-color: rgba(4, 24, 27, 0.25);
+}
+.flip .join-card:hover {
+  background: #081715;
+  border-color: rgba(4, 24, 27, 0.5);
+}

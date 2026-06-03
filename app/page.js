@@ -468,7 +468,7 @@ export default function Home() {
         </section>
 
         {/* 06 — Faça parte */}
-        <section id="faca-parte">
+        <section id="faca-parte" className="flip">
           <GhostMarquee word="Junte-se" />
           <div className="container">
             <div className="section-head center">

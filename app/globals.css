@@ -1251,3 +1251,20 @@ section {
   background: #081715;
   border-color: rgba(4, 24, 27, 0.5);
 }
+
+/* fix: titulos claros e alinhados nos cards do flip */
+.flip .join-card h3,
+.join-card h3 {
+  color: var(--text);
+  min-height: 3.4rem;
+  display: flex;
+  align-items: flex-start;
+}
+.flip .join-card .join-num {
+  color: var(--gold-2);
+}
+@media (max-width: 920px) {
+  .join-card h3 {
+    min-height: 0;
+  }
+}

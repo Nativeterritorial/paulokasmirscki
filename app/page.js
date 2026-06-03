@@ -312,7 +312,7 @@ export default function Home() {
                 </div>
                 <div className="b-role">Inteligência Territorial</div>
                 <p className="b-desc">
-                  Soluções em georreferenciamento, regularização e inteligência
+                  Topografia e georreferenciamento — inteligência territorial e
                   ambiental.
                 </p>
                 <span className="b-link">nativeterritorial.com.br →</span>
@@ -332,8 +332,8 @@ export default function Home() {
                 </div>
                 <div className="b-role">Agência Digital</div>
                 <p className="b-desc">
-                  Presença digital, sites e performance para marcas que querem
-                  crescer online.
+                  Sites e Agentes de IA para negócios locais crescerem na
+                  internet.
                 </p>
                 <span className="b-link">visaradigital.com.br →</span>
               </a>

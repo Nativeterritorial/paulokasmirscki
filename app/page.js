@@ -25,6 +25,18 @@ const SEGMENTOS = [
   "Agro & Indústria",
 ];
 
+// posições dos nós em volta do centro (50,50), raio 40 — começando no topo, horário
+const HUB_NODES = [
+  { label: "Imóveis & Construção", x: 50, y: 10 },
+  { label: "Serviços", x: 78.28, y: 21.72 },
+  { label: "Comércio & Varejo", x: 90, y: 50 },
+  { label: "Negócios & Empresas", x: 78.28, y: 78.28 },
+  { label: "Finanças & Seguros", x: 50, y: 90 },
+  { label: "Saúde & Bem-estar", x: 21.72, y: 78.28 },
+  { label: "Tecnologia", x: 10, y: 50 },
+  { label: "Agro & Indústria", x: 21.72, y: 21.72 },
+];
+
 function GhostMarquee({ word }) {
   return (
     <div className="ghost-marquee" aria-hidden="true">
@@ -388,21 +400,55 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="edlist fade-up">
+            {/* Hub interativo (desktop) */}
+            <div className="hub fade-up" aria-hidden="true">
+              <svg className="hub-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+                <circle className="hub-ring" cx="50" cy="50" r="40" />
+                <circle className="hub-ring hub-ring-2" cx="50" cy="50" r="40" />
+                {HUB_NODES.map((n) => (
+                  <line
+                    key={n.label}
+                    className="hub-line"
+                    x1="50"
+                    y1="50"
+                    x2={n.x}
+                    y2={n.y}
+                  />
+                ))}
+              </svg>
+
+              <div className="hub-core">
+                <div className="core">
+                  <img src="/logo-mark.svg" alt="" />
+                </div>
+                <div className="core-label">Paulo Kasmirscki</div>
+              </div>
+
+              {HUB_NODES.map((n) => (
+                <div
+                  className="hub-node"
+                  key={n.label}
+                  style={{ left: `${n.x}%`, top: `${n.y}%` }}
+                >
+                  <span className="dot" />
+                  <span className="label">{n.label}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Lista (mobile) */}
+            <div className="edlist hub-fallback">
               {SEGMENTOS.map((seg, i) => (
                 <div className="row" key={seg}>
                   <span className="name">{seg}</span>
                   <span className="idx">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="arrow" aria-hidden="true">
-                    →
-                  </span>
                 </div>
               ))}
             </div>
 
-            <p className="brands-note" style={{ textAlign: "left" }}>
+            <p className="brands-note" style={{ textAlign: "center" }}>
               Lista ilustrativa — ajustável para os segmentos exatos da rede.
             </p>
           </div>

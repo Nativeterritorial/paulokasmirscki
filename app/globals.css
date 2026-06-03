@@ -7,8 +7,8 @@
   --border-strong: rgba(140, 200, 205, 0.24);
 
   /* petrol (var names kept as gold-* for compatibility) */
-  --gold-1: #0e6b75;
-  --gold-2: #48c6d2;
+  --gold-1: #12808c;
+  --gold-2: #54e0ee;
   --gold-deep: #0a4a52;
 
   --text: #eaf2f2;
@@ -17,7 +17,7 @@
 
   --radius: 4px;
   --maxw: 1200px;
-  --gold-grad: linear-gradient(100deg, #48c6d2 0%, #0e6b75 60%, #0a4a52 100%);
+  --gold-grad: linear-gradient(100deg, #5fe6f2 0%, #1fb4c2 55%, #0e8b97 100%);
   --serif: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --sans: "Inter", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
   --on-accent: #04181b;
@@ -213,10 +213,10 @@ a {
   inset: 0;
   background: radial-gradient(
       700px 500px at 78% 20%,
-      rgba(72, 198, 210, 0.12),
+      rgba(84, 224, 238, 0.18),
       transparent 60%
     ),
-    radial-gradient(600px 500px at 10% 90%, rgba(14, 107, 117, 0.12), transparent 60%);
+    radial-gradient(600px 500px at 10% 90%, rgba(31, 180, 194, 0.16), transparent 60%);
   pointer-events: none;
 }
 
@@ -507,7 +507,7 @@ section {
 
 /* Ecossistema — gold flip */
 .flip {
-  background: linear-gradient(135deg, #5cc8d4 0%, #34a6b2 55%, #2c97a3 100%);
+  background: linear-gradient(135deg, #5fe0ec 0%, #2bbecb 55%, #18a3b0 100%);
   color: var(--on-accent);
 }
 

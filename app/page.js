@@ -448,9 +448,6 @@ export default function Home() {
               ))}
             </div>
 
-            <p className="brands-note" style={{ textAlign: "center" }}>
-              Lista ilustrativa — ajustável para os segmentos exatos da rede.
-            </p>
           </div>
         </section>
 

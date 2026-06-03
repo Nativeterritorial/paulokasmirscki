@@ -1,0 +1,32 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Paulo Kasmirscki">
+  <defs>
+    <linearGradient id="petrol" x1="20" y1="25" x2="100" y2="95" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#48c6d2"/>
+      <stop offset="1" stop-color="#0e6b75"/>
+    </linearGradient>
+  </defs>
+
+  <!-- links -->
+  <g stroke="url(#petrol)" stroke-width="2.4" opacity="0.65">
+    <line x1="60" y1="60" x2="100" y2="60"/>
+    <line x1="60" y1="60" x2="80" y2="94.6"/>
+    <line x1="60" y1="60" x2="40" y2="94.6"/>
+    <line x1="60" y1="60" x2="20" y2="60"/>
+    <line x1="60" y1="60" x2="40" y2="25.4"/>
+    <line x1="60" y1="60" x2="80" y2="25.4"/>
+  </g>
+
+  <!-- outer nodes -->
+  <g fill="#06100f" stroke="url(#petrol)" stroke-width="2.6">
+    <circle cx="100" cy="60" r="5.4"/>
+    <circle cx="80" cy="94.6" r="5.4"/>
+    <circle cx="40" cy="94.6" r="5.4"/>
+    <circle cx="20" cy="60" r="5.4"/>
+    <circle cx="40" cy="25.4" r="5.4"/>
+    <circle cx="80" cy="25.4" r="5.4"/>
+  </g>
+
+  <!-- central hub -->
+  <circle cx="60" cy="60" r="11" fill="url(#petrol)"/>
+  <circle cx="60" cy="60" r="11" fill="none" stroke="#9be7ee" stroke-width="1.2" opacity="0.5"/>
+</svg>

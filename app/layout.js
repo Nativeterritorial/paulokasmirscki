@@ -1,6 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
+  metadataBase: new URL("https://www.paulokasmirscki.com.br"),
+  alternates: { canonical: "/" },
   title: "Paulo Kasmirscki — Conectando pessoas e gerando negócios",
   description:
     "Paulo Kasmirscki conecta pessoas e gera negócios. Networking estratégico, parcerias e oportunidades que transformam relações em resultados.",

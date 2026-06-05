@@ -1,8 +1,8 @@
 <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Paulo Kasmirscki">
   <defs>
     <linearGradient id="petrol" x1="20" y1="25" x2="100" y2="95" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#5fe6f2"/>
-      <stop offset="1" stop-color="#12808c"/>
+      <stop offset="0" stop-color="#b39dff"/>
+      <stop offset="1" stop-color="#6d5cf0"/>
     </linearGradient>
   </defs>
 

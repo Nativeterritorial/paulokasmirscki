@@ -1588,3 +1588,19 @@ body {
 /* cargo na foto */
 .hero-photo-cap .role { color: #bcd6ff; }
 .hero-photo-cap .role::before { background: #bcd6ff; }
+
+/* ===== ajustes azul puro: cards da rede em vidro + whats azul ===== */
+:root {
+  --gold-grad: linear-gradient(120deg, #5b9bff 0%, #2f6cf0 100%);
+}
+.brand-card {
+  background: rgba(255, 255, 255, 0.055);
+}
+.brand-card:hover {
+  background: rgba(255, 255, 255, 0.10);
+}
+.wa-float {
+  background: linear-gradient(135deg, #7cb3ff, #3f8ef5);
+  color: #0a285f;
+  box-shadow: 0 14px 34px rgba(63, 142, 245, 0.45);
+}

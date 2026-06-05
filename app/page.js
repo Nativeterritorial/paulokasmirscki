@@ -16,13 +16,22 @@ const WA_SOLUCAO = wa(
 
 const SEGMENTOS = [
   "Imóveis & Construção",
-  "Serviços",
-  "Comércio & Varejo",
-  "Negócios & Empresas",
-  "Finanças & Seguros",
+  "Arquitetura",
+  "Finanças & Investimentos",
+  "Contabilidade",
+  "Jurídico",
+  "Tecnologia & IA",
+  "Marketing & Digital",
   "Saúde & Bem-estar",
-  "Tecnologia",
+  "Estética & Beleza",
+  "Gastronomia",
+  "Turismo & Hotelaria",
+  "Esporte & Lazer",
+  "Comércio & Varejo",
+  "Serviços",
   "Agro & Indústria",
+  "Sustentabilidade & Meio Ambiente",
+  "Negócios & Empresas",
 ];
 
 // posições dos nós em volta do centro (50,50), raio 40 — começando no topo, horário
@@ -400,8 +409,8 @@ export default function Home() {
               </h2>
             </div>
 
-            {/* Hub interativo (desktop) */}
-            <div className="hub fade-up" aria-hidden="true">
+            {/* Hub emblema (visual) */}
+            <div className="hub hub-emblem fade-up" aria-hidden="true">
               <svg className="hub-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
                 <circle className="hub-ring" cx="50" cy="50" r="40" />
                 <circle className="hub-ring hub-ring-2" cx="50" cy="50" r="40" />
@@ -429,25 +438,21 @@ export default function Home() {
 
               {HUB_NODES.map((n) => (
                 <div
-                  className="hub-node"
+                  className="hub-node hub-node-plain"
                   key={n.label}
                   style={{ left: `${n.x}%`, top: `${n.y}%` }}
                 >
                   <span className="dot" />
-                  <span className="label">{n.label}</span>
                 </div>
               ))}
             </div>
 
-            {/* Lista (mobile) */}
-            <div className="edlist hub-fallback">
-              {SEGMENTOS.map((seg, i) => (
-                <div className="row" key={seg}>
-                  <span className="name">{seg}</span>
-                  <span className="idx">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
+            {/* Grade com todos os segmentos */}
+            <div className="seg-grid fade-up">
+              {SEGMENTOS.map((seg) => (
+                <span className="seg-tag" key={seg}>
+                  {seg}
+                </span>
               ))}
             </div>
 

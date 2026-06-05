@@ -340,17 +340,31 @@ a {
 }
 
 .hero-photo-cap .name {
-  font-family: var(--serif);
-  font-size: 1.5rem;
-  letter-spacing: 0.04em;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: 0.005em;
+  line-height: 1.05;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
 }
 
 .hero-photo-cap .role {
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--gold-2);
-  margin-top: 4px;
+  margin-top: 10px;
+}
+
+.hero-photo-cap .role::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--gold-2);
+  flex: none;
 }
 
 .hero-photo-corner {

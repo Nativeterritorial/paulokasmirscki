@@ -1,26 +1,26 @@
 :root {
-  --bg: #0b0a11;
-  --bg-2: #131120;
+  --bg: #08110d;
+  --bg-2: #0e1a15;
   --surface: rgba(255, 255, 255, 0.03);
   --surface-2: rgba(255, 255, 255, 0.06);
-  --border: rgba(170, 160, 220, 0.14);
-  --border-strong: rgba(170, 160, 220, 0.26);
+  --border: rgba(150, 210, 185, 0.14);
+  --border-strong: rgba(150, 210, 185, 0.26);
 
-  /* violeta + grafite (var names kept as gold-* for compatibility) */
-  --gold-1: #6d5cf0;
-  --gold-2: #a78bfa;
-  --gold-deep: #5b46d6;
+  /* verde esmeralda (var names kept as gold-* for compatibility) */
+  --gold-1: #12a376;
+  --gold-2: #34e3a3;
+  --gold-deep: #0a7a55;
 
-  --text: #efedf6;
-  --muted: #a39db8;
-  --muted-2: #6b6485;
+  --text: #e9f4ee;
+  --muted: #94b3a6;
+  --muted-2: #5f7a6f;
 
   --radius: 4px;
   --maxw: 1200px;
-  --gold-grad: linear-gradient(100deg, #b39dff 0%, #7c5cff 55%, #5b46d6 100%);
+  --gold-grad: linear-gradient(100deg, #5ff0b8 0%, #20c585 55%, #0f9d6e 100%);
   --serif: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --sans: "Inter", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
-  --on-accent: #16121f;
+  --on-accent: #052016;
 }
 
 * {
@@ -213,10 +213,10 @@ a {
   inset: 0;
   background: radial-gradient(
       700px 500px at 78% 20%,
-      rgba(167, 139, 250, 0.18),
+      rgba(52, 227, 163, 0.18),
       transparent 60%
     ),
-    radial-gradient(600px 500px at 10% 90%, rgba(124, 92, 255, 0.16), transparent 60%);
+    radial-gradient(600px 500px at 10% 90%, rgba(32, 197, 133, 0.16), transparent 60%);
   pointer-events: none;
 }
 
@@ -507,19 +507,19 @@ section {
 
 /* Ecossistema — gold flip */
 .flip {
-  background: linear-gradient(135deg, #b39dff 0%, #8b76f0 55%, #6f5ae6 100%);
+  background: linear-gradient(135deg, #5ff0b8 0%, #20c585 55%, #16a877 100%);
   color: var(--on-accent);
 }
 
 .flip .ghost {
-  color: rgba(18, 14, 26, 0.06);
+  color: rgba(5, 24, 17, 0.06);
 }
 
 .flip .section-num {
   color: #4a3c18;
 }
 .flip .section-num span {
-  color: rgba(18, 14, 26, 0.45);
+  color: rgba(5, 24, 17, 0.45);
 }
 
 .flip .section-head h2 em {
@@ -527,7 +527,7 @@ section {
 }
 
 .flip .section-head p {
-  color: rgba(18, 14, 26, 0.7);
+  color: rgba(5, 24, 17, 0.7);
 }
 
 .eco-grid {
@@ -539,13 +539,13 @@ section {
 .eco-card {
   padding: 40px 32px;
   border-radius: var(--radius);
-  background: rgba(18, 14, 26, 0.06);
-  border: 1px solid rgba(18, 14, 26, 0.14);
+  background: rgba(5, 24, 17, 0.06);
+  border: 1px solid rgba(5, 24, 17, 0.14);
   transition: background 0.25s ease, transform 0.25s ease;
 }
 
 .eco-card:hover {
-  background: rgba(18, 14, 26, 0.1);
+  background: rgba(5, 24, 17, 0.1);
   transform: translateY(-5px);
 }
 
@@ -567,7 +567,7 @@ section {
 }
 
 .eco-card p {
-  color: rgba(18, 14, 26, 0.82);
+  color: rgba(5, 24, 17, 0.82);
   font-size: 1rem;
   font-weight: 300;
 }
@@ -922,12 +922,12 @@ section {
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(170, 160, 220, 0.07);
+  -webkit-text-stroke: 1px rgba(150, 210, 185, 0.07);
   padding: 0 40px;
   white-space: nowrap;
 }
 .flip .ghost-marquee .gm-track span {
-  -webkit-text-stroke: 1px rgba(20, 16, 30, 0.16);
+  -webkit-text-stroke: 1px rgba(5, 24, 17, 0.16);
 }
 
 /* ===== Editorial hover list (Segmentos / Weecom style) ===== */
@@ -950,7 +950,7 @@ section {
   padding-left: 30px;
   background: linear-gradient(
     90deg,
-    rgba(150, 120, 250, 0.06),
+    rgba(60, 210, 150, 0.06),
     transparent 60%
   );
 }
@@ -1080,7 +1080,7 @@ section {
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  background: rgba(11, 10, 17, 0.82);
+  background: rgba(8, 17, 13, 0.82);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border-strong);
   display: grid;
@@ -1175,7 +1175,7 @@ section {
     gap: 32px;
   }
   .ghost-marquee .gm-track span {
-    -webkit-text-stroke: 1px rgba(170, 160, 220, 0.05);
+    -webkit-text-stroke: 1px rgba(150, 210, 185, 0.05);
   }
 }
 
@@ -1244,12 +1244,12 @@ section {
 
 /* join cards on flip background -> dark cards for contrast */
 .flip .join-card {
-  background: #0b0a11;
-  border-color: rgba(20, 16, 30, 0.25);
+  background: #08110d;
+  border-color: rgba(5, 24, 17, 0.25);
 }
 .flip .join-card:hover {
-  background: #131120;
-  border-color: rgba(20, 16, 30, 0.5);
+  background: #0e1a15;
+  border-color: rgba(5, 24, 17, 0.5);
 }
 
 /* fix: titulos claros e alinhados nos cards do flip */
@@ -1285,14 +1285,14 @@ section {
 }
 .hub-ring {
   fill: none;
-  stroke: rgba(167, 139, 250, 0.16);
+  stroke: rgba(52, 227, 163, 0.16);
   stroke-width: 0.3;
   stroke-dasharray: 1 3;
   transform-origin: 50% 50%;
   animation: hubspin 60s linear infinite;
 }
 .hub-ring-2 {
-  stroke: rgba(167, 139, 250, 0.08);
+  stroke: rgba(52, 227, 163, 0.08);
   stroke-dasharray: 0.6 6;
   animation: hubspin 90s linear infinite reverse;
 }
@@ -1336,8 +1336,8 @@ section {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: radial-gradient(circle at 50% 40%, rgba(167, 139, 250, 0.22), rgba(11, 10, 17, 0.9));
-  border: 1px solid rgba(167, 139, 250, 0.4);
+  background: radial-gradient(circle at 50% 40%, rgba(52, 227, 163, 0.22), rgba(8, 17, 13, 0.9));
+  border: 1px solid rgba(52, 227, 163, 0.4);
   animation: corepulse 2.8s ease-in-out infinite;
 }
 .hub-core .core img {
@@ -1346,10 +1346,10 @@ section {
 }
 @keyframes corepulse {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.3), 0 0 26px rgba(167, 139, 250, 0.25);
+    box-shadow: 0 0 0 0 rgba(52, 227, 163, 0.3), 0 0 26px rgba(52, 227, 163, 0.25);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(167, 139, 250, 0), 0 0 46px rgba(167, 139, 250, 0.5);
+    box-shadow: 0 0 0 10px rgba(52, 227, 163, 0), 0 0 46px rgba(52, 227, 163, 0.5);
   }
 }
 .hub-core .core-label {
@@ -1377,7 +1377,7 @@ section {
   border-radius: 50%;
   background: var(--bg);
   border: 2px solid var(--gold-2);
-  box-shadow: 0 0 12px rgba(167, 139, 250, 0.35);
+  box-shadow: 0 0 12px rgba(52, 227, 163, 0.35);
   transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 .hub-node .label {
@@ -1391,7 +1391,7 @@ section {
 .hub-node:hover .dot {
   background: var(--gold-2);
   transform: scale(1.4);
-  box-shadow: 0 0 22px rgba(167, 139, 250, 0.8);
+  box-shadow: 0 0 22px rgba(52, 227, 163, 0.8);
 }
 .hub-node:hover .label {
   color: var(--gold-2);
@@ -1434,7 +1434,7 @@ section {
   letter-spacing: -0.05em;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1.6px rgba(167, 139, 250, 0.24);
+  -webkit-text-stroke: 1.6px rgba(52, 227, 163, 0.24);
   margin-top: -2%;
   transform-origin: center;
   animation: hubspin 75s linear infinite;

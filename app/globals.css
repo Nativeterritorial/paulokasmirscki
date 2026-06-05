@@ -1511,7 +1511,7 @@ section {
    TEMA GRADIENTE AZUL → ROXO (fundo das páginas, igual referência)
    ============================================================ */
 body {
-  background: linear-gradient(125deg, #1b2c8f 0%, #2740c4 38%, #5a37c7 72%, #7d2fc6 100%) fixed;
+  background: linear-gradient(125deg, #0a205f 0%, #133aa8 42%, #1e54d6 78%, #2f6cf0 100%) fixed;
 }
 :root {
   --text: #ffffff;
@@ -1542,7 +1542,7 @@ body {
 .section-head h2 { font-weight: 700; }
 .hero h1 em,
 .section-head h2 em,
-.cta h2 em { color: #d9d4ff; }
+.cta h2 em { color: #bcd6ff; }
 
 /* destaque/gradiente de texto vira branco */
 .gold-text {
@@ -1554,7 +1554,7 @@ body {
 /* botão primário: pílula branca com texto roxo (como a referência) */
 .btn-primary {
   background: #ffffff;
-  color: #3a2a9e;
+  color: #15388f;
 }
 .btn-primary:hover { background: #efebff; }
 
@@ -1586,5 +1586,5 @@ body {
 .ghost { color: rgba(255, 255, 255, 0.05); }
 
 /* cargo na foto */
-.hero-photo-cap .role { color: #d9d4ff; }
-.hero-photo-cap .role::before { background: #d9d4ff; }
+.hero-photo-cap .role { color: #bcd6ff; }
+.hero-photo-cap .role::before { background: #bcd6ff; }

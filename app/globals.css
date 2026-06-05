@@ -1585,6 +1585,6 @@ body {
 /* ghost word de fundo */
 .ghost { color: rgba(255, 255, 255, 0.05); }
 
-/* avatar/seal pequenos */
-.hero-photo-cap .role,
-.hero-photo-cap .role::before { color: #d9d4ff; background-color: #d9d4ff; }
+/* cargo na foto */
+.hero-photo-cap .role { color: #d9d4ff; }
+.hero-photo-cap .role::before { background: #d9d4ff; }

@@ -506,10 +506,6 @@ export default function Home() {
               ))}
             </div>
 
-            <p className="brands-note">
-              Depoimentos de exemplo — substituídos pelos reais assim que o
-              Paulo os enviar.
-            </p>
           </div>
         </section>
 

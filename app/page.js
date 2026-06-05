@@ -417,11 +417,14 @@ export default function Home() {
                 ))}
               </svg>
 
+              <div className="hub-watermark" aria-hidden="true">
+                PK
+              </div>
+
               <div className="hub-core">
                 <div className="core">
                   <img src="/logo-mark.svg" alt="" />
                 </div>
-                <div className="core-label">Paulo Kasmirscki</div>
               </div>
 
               {HUB_NODES.map((n) => (

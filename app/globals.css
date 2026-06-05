@@ -1416,3 +1416,21 @@ section {
     animation: none;
   }
 }
+
+/* PK watermark no centro do hub */
+.hub-watermark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -52%);
+  z-index: 0;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(150px, 23vw, 250px);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(84, 224, 238, 0.12);
+  user-select: none;
+  pointer-events: none;
+}

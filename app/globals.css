@@ -1506,3 +1506,85 @@ section {
     animation: none;
   }
 }
+
+/* ============================================================
+   TEMA GRADIENTE AZUL → ROXO (fundo das páginas, igual referência)
+   ============================================================ */
+body {
+  background: linear-gradient(125deg, #1b2c8f 0%, #2740c4 38%, #5a37c7 72%, #7d2fc6 100%) fixed;
+}
+:root {
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.82);
+  --muted-2: rgba(255, 255, 255, 0.58);
+  --surface: rgba(255, 255, 255, 0.08);
+  --surface-2: rgba(255, 255, 255, 0.14);
+  --border: rgba(255, 255, 255, 0.20);
+  --border-strong: rgba(255, 255, 255, 0.38);
+  --gold-1: rgba(255, 255, 255, 0.6);
+  --gold-2: #ffffff;
+}
+
+/* header translúcido */
+.site-header {
+  background: rgba(13, 10, 42, 0.42);
+}
+
+/* glow do hero some (o fundo já é vibrante) */
+.hero::before { display: none; }
+
+/* títulos grandes e fortes (igual referência) */
+.hero h1 {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.section-head h2 { font-weight: 700; }
+.hero h1 em,
+.section-head h2 em,
+.cta h2 em { color: #d9d4ff; }
+
+/* destaque/gradiente de texto vira branco */
+.gold-text {
+  background: none;
+  -webkit-text-fill-color: #fff;
+  color: #fff;
+}
+
+/* botão primário: pílula branca com texto roxo (como a referência) */
+.btn-primary {
+  background: #ffffff;
+  color: #3a2a9e;
+}
+.btn-primary:hover { background: #efebff; }
+
+/* seções flip se fundem ao degradê global, texto branco */
+.flip { background: transparent; color: #fff; }
+.flip .section-num { color: #fff; }
+.flip .section-num span { color: rgba(255, 255, 255, 0.6); }
+.flip .section-head p { color: rgba(255, 255, 255, 0.85); }
+.flip .ghost-marquee .gm-track span {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
+}
+
+/* cards do ecossistema viram vidro claro */
+.eco-card {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+.eco-card .num { color: rgba(255, 255, 255, 0.5); }
+.eco-card h3 { color: #fff; }
+.eco-card p { color: rgba(255, 255, 255, 0.82); }
+
+/* cards "faça parte" viram vidro escuro translúcido */
+.flip .join-card {
+  background: rgba(8, 8, 26, 0.5);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* ghost word de fundo */
+.ghost { color: rgba(255, 255, 255, 0.05); }
+
+/* avatar/seal pequenos */
+.hero-photo-cap .role,
+.hero-photo-cap .role::before { color: #d9d4ff; background-color: #d9d4ff; }

@@ -1602,3 +1602,62 @@ body {
   color: #0a285f;
   box-shadow: 0 14px 34px rgba(63, 142, 245, 0.45);
 }
+
+/* ===== Cookie banner ===== */
+.cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 70;
+  width: min(calc(100vw - 48px), 400px);
+  background: rgba(8, 14, 40, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+.cookie-banner p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.cookie-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+.cookie-banner .btn-primary {
+  padding: 11px 24px;
+}
+.cookie-dismiss {
+  background: none;
+  border: none;
+  color: var(--muted-2);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.cookie-dismiss:hover {
+  color: var(--text);
+}
+
+/* crédito Visara no rodapé */
+.footer-base a {
+  color: var(--gold-2);
+  transition: opacity 0.2s ease;
+}
+.footer-base a:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 520px) {
+  .cookie-banner {
+    bottom: 16px;
+    left: 16px;
+    width: calc(100vw - 86px);
+  }
+}

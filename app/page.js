@@ -1,4 +1,5 @@
 import Effects from "./effects";
+import CookieBanner from "./cookie";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const INSTAGRAM = "https://instagram.com/paulokasmirscki";
@@ -63,6 +64,7 @@ export default function Home() {
   return (
     <>
       <Effects />
+      <CookieBanner />
 
       {/* Header */}
       <header className="site-header">
@@ -688,6 +690,16 @@ export default function Home() {
           <div className="footer-base">
             <span>© {new Date().getFullYear()} Paulo Kasmirscki</span>
             <span>Conectando pessoas e gerando negócios.</span>
+            <span>
+              Feito por{" "}
+              <a
+                href="https://visaradigital.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visara Digital
+              </a>
+            </span>
           </div>
         </div>
       </footer>

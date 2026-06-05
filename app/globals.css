@@ -144,10 +144,10 @@ a {
 }
 
 .brand .brand-name {
-  font-family: var(--serif);
-  font-size: 1.25rem;
-  letter-spacing: 0.18em;
-  font-weight: 500;
+  font-family: "Michroma", var(--serif);
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -340,11 +340,12 @@ a {
 }
 
 .hero-photo-cap .name {
-  font-family: "Playfair Display", Georgia, serif;
-  font-weight: 500;
-  font-size: 2rem;
-  letter-spacing: 0.005em;
-  line-height: 1.05;
+  font-family: "Michroma", "Space Grotesk", sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  text-transform: uppercase;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
 }
 

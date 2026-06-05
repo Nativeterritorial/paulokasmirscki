@@ -418,7 +418,7 @@ export default function Home() {
               </svg>
 
               <div className="hub-watermark" aria-hidden="true">
-                PK
+                <span>PK</span>
               </div>
 
               <div className="hub-core">

@@ -34,16 +34,17 @@ const SEGMENTOS = [
   "Negócios & Empresas",
 ];
 
-// posições dos nós em volta do centro (50,50), raio 40 — começando no topo, horário
+// posições dos nós em volta do centro (50,50), raio 40 — 8 segmentos em destaque
+// (nomes curtos nas pontas esquerda/direita pra não cortar)
 const HUB_NODES = [
   { label: "Imóveis & Construção", x: 50, y: 10 },
-  { label: "Serviços", x: 78.28, y: 21.72 },
-  { label: "Comércio & Varejo", x: 90, y: 50 },
-  { label: "Negócios & Empresas", x: 78.28, y: 78.28 },
-  { label: "Finanças & Seguros", x: 50, y: 90 },
-  { label: "Saúde & Bem-estar", x: 21.72, y: 78.28 },
-  { label: "Tecnologia", x: 10, y: 50 },
-  { label: "Agro & Indústria", x: 21.72, y: 21.72 },
+  { label: "Finanças & Investimentos", x: 78.28, y: 21.72 },
+  { label: "Jurídico", x: 90, y: 50 },
+  { label: "Marketing & Digital", x: 78.28, y: 78.28 },
+  { label: "Saúde & Bem-estar", x: 50, y: 90 },
+  { label: "Negócios & Empresas", x: 21.72, y: 78.28 },
+  { label: "Gastronomia", x: 10, y: 50 },
+  { label: "Tecnologia & IA", x: 21.72, y: 21.72 },
 ];
 
 function GhostMarquee({ word }) {
@@ -438,11 +439,12 @@ export default function Home() {
 
               {HUB_NODES.map((n) => (
                 <div
-                  className="hub-node hub-node-plain"
+                  className="hub-node"
                   key={n.label}
                   style={{ left: `${n.x}%`, top: `${n.y}%` }}
                 >
                   <span className="dot" />
+                  <span className="label">{n.label}</span>
                 </div>
               ))}
             </div>

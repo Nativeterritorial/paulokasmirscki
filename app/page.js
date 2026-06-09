@@ -388,11 +388,12 @@ export default function Home() {
                 rel="noopener noreferrer"
               >
                 <div className="logo-slot">
-                  <span className="pk-mark serif">
-                    PK<span>.</span> Corretor
+                  <span className="pk-wordmark">
+                    <span className="pk-name">PAULO KASMIRSCKI</span>
+                    <span className="pk-sub">Corretor de Imóveis</span>
                   </span>
                 </div>
-                <div className="b-role">Imóveis · CRECI 77988</div>
+                <div className="b-role">Imóveis · CRECI-RS 77988</div>
                 <p className="b-desc">
                   A atuação do próprio Paulo no mercado imobiliário, dentro do
                   ecossistema.

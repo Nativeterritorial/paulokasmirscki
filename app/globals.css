@@ -1073,6 +1073,27 @@ section {
 .brand-card .pk-mark span {
   color: var(--gold-2);
 }
+.brand-card .pk-wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.brand-card .pk-name {
+  font-family: "Michroma", sans-serif;
+  font-size: clamp(0.78rem, 2.1vw, 1rem);
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  color: #ffffff;
+}
+.brand-card .pk-sub {
+  font-family: "Michroma", sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
 .brand-card .b-role {
   font-size: 0.72rem;
   letter-spacing: 0.18em;

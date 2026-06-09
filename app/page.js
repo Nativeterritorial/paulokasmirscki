@@ -407,7 +407,7 @@ export default function Home() {
                 rel="noopener noreferrer"
               >
                 <div className="logo-slot">
-                  <img src="/brand-pulse.png" alt="Pulse Jiu-Jitsu" />
+                  <img className="pulse-logo" src="/brand-pulse.png" alt="Pulse Jiu-Jitsu" />
                 </div>
                 <div className="b-role">Esporte &amp; Lazer</div>
                 <p className="b-desc">

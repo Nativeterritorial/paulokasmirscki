@@ -1004,6 +1004,13 @@ section {
 }
 
 /* ===== Brands wall (rede do ecossistema) ===== */
+.pulse-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
 .brands-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

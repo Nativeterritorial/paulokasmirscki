@@ -599,6 +599,93 @@ export default function Home() {
           </div>
         </section>
 
+        {/* 07 — A Plataforma */}
+        <section id="plataforma">
+          <GhostMarquee word="Plataforma" />
+          <div className="container">
+            <div className="plat-grid">
+              <div className="plat-text">
+                <div className="section-num">
+                  07 <span>/ A Plataforma</span>
+                </div>
+                <h2 style={{ marginTop: "16px" }}>
+                  Uma plataforma <em>exclusiva</em> para a rede
+                </h2>
+                <p className="plat-lead">
+                  Quem faz parte ganha acesso à área de membros — onde um
+                  assistente de IA conecta você às empresas certas do
+                  ecossistema, em segundos.
+                </p>
+
+                <div className="plat-benefits">
+                  <div className="plat-b">
+                    <div className="plat-ic" aria-hidden="true">🤖</div>
+                    <div>
+                      <h4>Concierge com IA</h4>
+                      <p>
+                        Diga o que precisa em linguagem natural — a IA encontra a
+                        empresa certa da rede.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="plat-b">
+                    <div className="plat-ic" aria-hidden="true">🔗</div>
+                    <div>
+                      <h4>Diretório do ecossistema</h4>
+                      <p>
+                        Todas as empresas num só lugar, com conexão em um clique.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="plat-b">
+                    <div className="plat-ic" aria-hidden="true">🤝</div>
+                    <div>
+                      <h4>Paulo como ponte</h4>
+                      <p>
+                        Toda conexão é acompanhada por ele, com a confiança da
+                        rede.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="hero-actions" style={{ marginTop: "34px" }}>
+                  <a className="btn btn-primary" href="#contato">
+                    Quero fazer parte
+                  </a>
+                  <a className="btn btn-outline" href="/area">
+                    Entrar na plataforma
+                  </a>
+                </div>
+              </div>
+
+              {/* Prévia do painel */}
+              <div className="plat-preview fade-up" aria-hidden="true">
+                <div className="pp-bar">
+                  <span className="pp-dot" /> Concierge do Ecossistema · IA
+                </div>
+                <div className="pp-chat">
+                  <div className="pp-bubble pp-me">
+                    preciso de um site e marketing pra minha loja
+                  </div>
+                  <div className="pp-bubble pp-bot">
+                    A <b>Visara Digital</b> é ideal pro seu caso! 👗 Faz sites e
+                    marketing pra negócios locais. Quer que eu te conecte? O
+                    Paulo faz a ponte. 🤝
+                  </div>
+                </div>
+                <div className="pp-firm">
+                  <div>
+                    <div className="pp-firm-nm">Visara Digital</div>
+                    <div className="pp-firm-sg">Marketing &amp; Digital</div>
+                  </div>
+                  <span className="pp-conn">Conectar</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Instagram */}
         <section style={{ paddingTop: 0 }}>
           <div className="container">

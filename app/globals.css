@@ -1932,3 +1932,146 @@ body {
     display: none;
   }
 }
+
+/* ============ Seção A Plataforma ============ */
+.plat-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+.plat-lead {
+  color: var(--muted);
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin-top: 16px;
+  max-width: 460px;
+}
+.plat-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 30px;
+}
+.plat-b {
+  display: flex;
+  gap: 16px;
+}
+.plat-b .plat-ic {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+}
+.plat-b h4 {
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+.plat-b p {
+  color: var(--muted);
+  font-size: 0.96rem;
+  font-weight: 300;
+}
+
+/* prévia do painel */
+.plat-preview {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+}
+.pp-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.pp-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #46e3a3;
+  box-shadow: 0 0 0 4px rgba(70, 227, 163, 0.2);
+}
+.pp-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 0;
+}
+.pp-bubble {
+  max-width: 88%;
+  padding: 12px 15px;
+  border-radius: 14px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.pp-me {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #5b9bff, #2f6cf0);
+  color: #fff;
+  border-top-right-radius: 4px;
+}
+.pp-bot {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid var(--border);
+  border-top-left-radius: 4px;
+  color: var(--text);
+}
+.pp-bot b {
+  color: #fff;
+}
+.pp-firm {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+}
+.pp-firm-nm {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1rem;
+}
+.pp-firm-sg {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  margin-top: 2px;
+}
+.pp-conn {
+  flex: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #15388f;
+  background: #fff;
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .plat-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}

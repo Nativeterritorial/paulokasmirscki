@@ -148,7 +148,7 @@ export default function Area() {
       <header className="area-top">
         <a className="brand" href="/" aria-label="Paulo Kasmirscki">
           <img src="/logo-mark.svg" alt="" style={{ height: 30 }} />
-          <span className="brand-name">Kasmirscki</span>
+          <span className="brand-name">Paulo Kasmirscki</span>
           <span className="area-badge">Área de Membros</span>
         </a>
         <button className="area-logout" onClick={logout}>

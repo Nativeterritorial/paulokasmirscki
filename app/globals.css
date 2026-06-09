@@ -153,12 +153,15 @@ a {
 
 .nav-links {
   display: flex;
-  gap: 36px;
+  gap: 28px;
   font-size: 0.78rem;
   font-weight: 400;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
+}
+.nav-links a {
+  white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -1902,7 +1905,8 @@ body {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
+  flex: none;
 }
 .nav-login {
   display: inline-flex;

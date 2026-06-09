@@ -6,6 +6,33 @@ import { COMPANIES } from "./companies";
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
+// Renderiza a resposta da IA: escapa HTML, aplica negrito e links, quebra linhas.
+function formatMsg(text) {
+  let s = String(text || "");
+  // escapa HTML
+  s = s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+  // links markdown [texto](url)
+  s = s.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+  );
+  // negrito **texto**
+  s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  // remove quaisquer asteriscos restantes
+  s = s.replace(/\*/g, "");
+  // URLs soltas que ainda não viraram link
+  s = s.replace(
+    /(^|[^"'>])(https?:\/\/[^\s<)]+)/g,
+    '$1<a href="$2" target="_blank" rel="noopener noreferrer">$2</a>'
+  );
+  // quebras de linha
+  s = s.replace(/\n/g, "<br/>");
+  return s;
+}
+
 export default function Area() {
   const [authed, setAuthed] = useState(false);
   const [code, setCode] = useState("");
@@ -183,11 +210,19 @@ export default function Area() {
             <h2 style={{ fontSize: "1.35rem" }}>Como posso te conectar hoje?</h2>
           </div>
           <div className="area-chat" ref={chatRef}>
-            {messages.map((m, i) => (
-              <div key={i} className={`bubble ${m.role}`}>
-                {m.content}
-              </div>
-            ))}
+            {messages.map((m, i) =>
+              m.role === "assistant" ? (
+                <div
+                  key={i}
+                  className="bubble assistant"
+                  dangerouslySetInnerHTML={{ __html: formatMsg(m.content) }}
+                />
+              ) : (
+                <div key={i} className="bubble user">
+                  {m.content}
+                </div>
+              )
+            )}
             {sending && <div className="bubble assistant typing">digitando…</div>}
           </div>
           <form

@@ -25,7 +25,8 @@ REGRAS:
 - Se nenhuma empresa do diretório atender, seja honesto: diga que ainda não há uma empresa para isso na rede e que o Paulo vai buscar um parceiro.
 - Pode recomendar mais de uma se fizer sentido.
 - Seja breve (até ~4 linhas). Não invente preços, telefones ou dados que não estão no diretório.
-- O Paulo é sempre a ponte entre o cliente e a empresa.`;
+- O Paulo é sempre a ponte entre o cliente e a empresa.
+- IMPORTANTE: escreva em TEXTO SIMPLES. NÃO use markdown — nada de asteriscos (**) nem links em colchetes [texto](url). Cite o nome da empresa normalmente e, se mencionar um site, escreva o endereço direto (ex.: visaradigital.com.br).`;
 }
 
 export async function POST(req) {

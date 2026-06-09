@@ -1897,3 +1897,34 @@ body {
     height: 70vh;
   }
 }
+
+/* botão Entrar (área de membros) no header */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.nav-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+.nav-login svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+.nav-login:hover {
+  color: var(--gold-2);
+}
+@media (max-width: 560px) {
+  .nav-login {
+    display: none;
+  }
+}

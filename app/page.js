@@ -80,9 +80,17 @@ export default function Home() {
             <a href="#segmentos">Segmentos</a>
             <a href="#contato">Contato</a>
           </nav>
-          <a className="btn btn-primary" href="#contato">
-            Vamos conversar
-          </a>
+          <div className="nav-actions">
+            <a className="nav-login" href="/area">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 5v1h14v-1c0-3-3-5-7-5z" />
+              </svg>
+              Entrar
+            </a>
+            <a className="btn btn-primary" href="#contato">
+              Vamos conversar
+            </a>
+          </div>
         </div>
       </header>
 

@@ -70,4 +70,14 @@ export const COMPANIES = [
     link: "https://www.bigwolfloja.com",
     linkLabel: "bigwolfloja.com",
   },
+  {
+    id: "agetra",
+    nome: "Agetra Gráfica",
+    segmento: "Gráfica & Impressão",
+    descricao:
+      "Gráfica completa — impressos, materiais de comunicação visual, papelaria e soluções gráficas para empresas.",
+    atende: ["Gráfica & Impressão", "Comércio & Varejo", "Marketing & Digital", "Serviços"],
+    link: "http://agetra.com.br",
+    linkLabel: "agetra.com.br",
+  },
 ];

@@ -450,6 +450,23 @@ export default function Home() {
                 </p>
                 <span className="b-link">bigwolfloja.com →</span>
               </a>
+
+              <a
+                className="brand-card"
+                href="http://agetra.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="logo-slot">
+                  <img className="tile-logo" src="/brand-agetra.png" alt="Agetra Gráfica" />
+                </div>
+                <div className="b-role">Gráfica &amp; Impressão</div>
+                <p className="b-desc">
+                  Gráfica completa — impressos, comunicação visual, papelaria e
+                  soluções gráficas para empresas.
+                </p>
+                <span className="b-link">agetra.com.br →</span>
+              </a>
             </div>
 
             <p className="brands-note">

@@ -1011,6 +1011,11 @@ section {
   object-fit: cover;
 }
 
+.tile-logo {
+  max-width: 200px;
+  max-height: 120px;
+}
+
 .brands-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

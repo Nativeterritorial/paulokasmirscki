@@ -85,11 +85,28 @@ export default function Area() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: next, code }),
       });
-      const d = await r.json();
-      setMessages((m) => [
-        ...m,
-        { role: "assistant", content: d.reply || "..." },
-      ]);
+      const d = await r.json().catch(() => ({}));
+
+      if (r.status === 401) {
+        // código de acesso vencido/incorreto — força novo login
+        setMessages((m) => [
+          ...m,
+          {
+            role: "assistant",
+            content:
+              "🔒 Sua sessão expirou ou o código mudou. Vou te levar para entrar de novo…",
+          },
+        ]);
+        setSending(false);
+        setTimeout(() => logout(), 1500);
+        return;
+      }
+
+      const reply =
+        d.reply ||
+        d.error ||
+        "⚠️ Não consegui responder agora. Tente de novo em instantes.";
+      setMessages((m) => [...m, { role: "assistant", content: reply }]);
     } catch (e) {
       setMessages((m) => [
         ...m,

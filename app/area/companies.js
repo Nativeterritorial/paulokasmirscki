@@ -50,4 +50,14 @@ export const COMPANIES = [
     link: "https://pulsejiujitsu.com.br",
     linkLabel: "pulsejiujitsu.com.br",
   },
+  {
+    id: "exatus",
+    nome: "Exatus Gene",
+    segmento: "Saúde & Genética",
+    descricao:
+      "Testes genéticos avançados, logística internacional de material biológico, projetos de pesquisa clínica e soluções para clínicas de fertilidade.",
+    atende: ["Saúde & Bem-estar", "Ciência & Pesquisa", "Tecnologia & IA"],
+    link: "https://exatusgene.com",
+    linkLabel: "exatusgene.com",
+  },
 ];

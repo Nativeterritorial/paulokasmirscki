@@ -416,6 +416,23 @@ export default function Home() {
                 </p>
                 <span className="b-link">pulsejiujitsu.com.br →</span>
               </a>
+
+              <a
+                className="brand-card"
+                href="https://exatusgene.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="logo-slot">
+                  <img src="/brand-exatus.png" alt="Exatus Gene" />
+                </div>
+                <div className="b-role">Saúde &amp; Genética</div>
+                <p className="b-desc">
+                  Testes genéticos avançados, pesquisa clínica e soluções para
+                  clínicas de fertilidade.
+                </p>
+                <span className="b-link">exatusgene.com →</span>
+              </a>
             </div>
 
             <p className="brands-note">

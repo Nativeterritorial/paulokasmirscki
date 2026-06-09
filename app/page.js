@@ -468,6 +468,23 @@ export default function Home() {
                 </p>
                 <span className="b-link">agetra.com.br →</span>
               </a>
+
+              <a
+                className="brand-card"
+                href="https://www.instagram.com/giliolicontabilidade/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="logo-slot">
+                  <img className="pulse-logo" src="/brand-gilioli.png" alt="Gilioli Organizações Contábeis" />
+                </div>
+                <div className="b-role">Contabilidade</div>
+                <p className="b-desc">
+                  Contábil, fiscal, folha de pagamento, abertura de empresas e
+                  consultoria para negócios.
+                </p>
+                <span className="b-link">@giliolicontabilidade →</span>
+              </a>
             </div>
 
             <p className="brands-note">

@@ -80,4 +80,14 @@ export const COMPANIES = [
     link: "http://agetra.com.br",
     linkLabel: "agetra.com.br",
   },
+  {
+    id: "gilioli",
+    nome: "Gilioli Organizações Contábeis",
+    segmento: "Contabilidade",
+    descricao:
+      "Escritório de contabilidade — contábil, fiscal, folha de pagamento, abertura de empresas e consultoria para negócios.",
+    atende: ["Contabilidade & Finanças", "Jurídico", "Serviços", "Comércio & Varejo"],
+    link: "https://www.instagram.com/giliolicontabilidade/",
+    linkLabel: "@giliolicontabilidade",
+  },
 ];

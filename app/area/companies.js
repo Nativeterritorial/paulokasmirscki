@@ -100,4 +100,14 @@ export const COMPANIES = [
     link: "https://wa.me/5554996505799",
     linkLabel: "Falar com o Paulo",
   },
+  {
+    id: "alsus",
+    nome: "Grupo ALSUS",
+    segmento: "Construção & Infraestrutura",
+    descricao:
+      "Urbanização, infraestrutura e construção — loteamentos, terraplenagem, drenagem e obras industriais e residenciais.",
+    atende: ["Imóveis & Construção", "Agro & Indústria", "Sustentabilidade & Meio Ambiente", "Serviços"],
+    link: "https://www.alsus.com.br",
+    linkLabel: "alsus.com.br",
+  },
 ];

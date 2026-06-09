@@ -502,6 +502,23 @@ export default function Home() {
                 </p>
                 <span className="b-link">Falar no WhatsApp →</span>
               </a>
+
+              <a
+                className="brand-card"
+                href="https://www.alsus.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="logo-slot">
+                  <img className="tile-logo" src="/brand-alsus.png" alt="Grupo ALSUS" />
+                </div>
+                <div className="b-role">Construção &amp; Infraestrutura</div>
+                <p className="b-desc">
+                  Urbanização, infraestrutura e construção — loteamentos,
+                  terraplenagem, drenagem e obras.
+                </p>
+                <span className="b-link">alsus.com.br →</span>
+              </a>
             </div>
 
             <p className="brands-note">

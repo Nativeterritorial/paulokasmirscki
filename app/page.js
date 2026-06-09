@@ -1,5 +1,6 @@
 import Effects from "./effects";
 import CookieBanner from "./cookie";
+import HeroAI from "./hero-ai";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const INSTAGRAM = "https://instagram.com/paulokasmirscki";
@@ -123,6 +124,8 @@ export default function Home() {
                   Conhecer a rede
                 </a>
               </div>
+
+              <HeroAI />
 
               <div className="hero-stats">
                 <div className="stat">

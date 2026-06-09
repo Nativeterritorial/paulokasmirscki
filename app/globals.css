@@ -1863,6 +1863,126 @@ body {
   word-break: break-word;
 }
 
+/* ---------- HERO · CONCIERGE DE IA ---------- */
+.hero-ai {
+  margin-top: 26px;
+  max-width: 460px;
+}
+.hero-ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #eaf0ff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 7px 14px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+.hai-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6fffbf;
+  box-shadow: 0 0 0 0 rgba(111, 255, 191, 0.7);
+  animation: haiPulse 1.8s infinite;
+}
+@keyframes haiPulse {
+  0% { box-shadow: 0 0 0 0 rgba(111, 255, 191, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(111, 255, 191, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(111, 255, 191, 0); }
+}
+.hai-new {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  background: #fff;
+  color: #15388f;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.hero-ai-demo {
+  margin-top: 14px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  padding: 16px 18px;
+  backdrop-filter: blur(6px);
+  min-height: 96px;
+}
+.hai-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.96rem;
+  line-height: 1.4;
+}
+.hai-row + .hai-row {
+  margin-top: 10px;
+}
+.hai-tag {
+  flex: none;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #eaf0ff;
+}
+.hai-tag.ia {
+  background: linear-gradient(120deg, #6fffbf, #46d6ff);
+  color: #06304a;
+  font-weight: 700;
+}
+.hai-q {
+  color: #ffffff;
+}
+.hai-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: #cfe0ff;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: haiBlink 1s steps(1) infinite;
+}
+@keyframes haiBlink {
+  50% { opacity: 0; }
+}
+.hai-ans {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.hai-ans.on {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hai-a {
+  color: #dfe8ff;
+}
+.hai-a strong {
+  color: #ffffff;
+}
+.hero-ai-cta {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #eaf0ff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  padding-bottom: 2px;
+  transition: opacity 0.2s ease;
+}
+.hero-ai-cta:hover {
+  opacity: 0.7;
+}
+
 /* ---------- PAINEL DO PAULO ---------- */
 .admin-wrap {
   max-width: 1100px;

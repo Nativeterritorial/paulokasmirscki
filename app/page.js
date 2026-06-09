@@ -684,6 +684,7 @@ export default function Home() {
               <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer">
                 Instagram
               </a>
+              <a href="/area">Área de Membros</a>
               <span className="fc-item">Veranópolis · RS</span>
             </div>
           </div>

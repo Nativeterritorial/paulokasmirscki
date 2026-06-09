@@ -1,8 +1,17 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 import { COMPANIES } from "../../area/companies";
+import { logQuery } from "../../../lib/store";
 
 export const runtime = "nodejs";
+
+// Detecta quais empresas do diretório foram citadas na resposta da IA
+function detectRecommended(reply) {
+  const low = String(reply || "").toLowerCase();
+  return COMPANIES.filter((c) => low.includes(c.nome.toLowerCase())).map(
+    (c) => c.id
+  );
+}
 
 function buildSystem() {
   const dir = COMPANIES.map(
@@ -80,6 +89,11 @@ export async function POST(req) {
       .map((b) => b.text)
       .join("")
       .trim();
+
+    // registra a pergunta + empresas recomendadas (não bloqueia a resposta)
+    const lastUser = [...clean].reverse().find((m) => m.role === "user");
+    logQuery(lastUser?.content || "", detectRecommended(reply)).catch(() => {});
+
     return NextResponse.json({ reply: reply || "..." });
   } catch (err) {
     const msg =

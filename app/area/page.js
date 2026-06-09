@@ -91,6 +91,17 @@ export default function Area() {
     setLoadingLogin(false);
   };
 
+  const trackConnect = (companyId) => {
+    try {
+      fetch("/api/track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "connect", company: companyId, code }),
+        keepalive: true,
+      }).catch(() => {});
+    } catch (e) {}
+  };
+
   const logout = () => {
     try {
       localStorage.removeItem("area_code");
@@ -264,6 +275,7 @@ export default function Area() {
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackConnect(c.id)}
                 >
                   Conectar
                 </a>

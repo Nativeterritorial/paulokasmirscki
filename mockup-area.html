@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Michroma&display=block" rel="stylesheet" />
+<style>
+  :root{
+    --line:rgba(255,255,255,.18); --glass:rgba(255,255,255,.07); --glass2:rgba(255,255,255,.12);
+    --text:#ffffff; --muted:rgba(255,255,255,.78); --muted2:rgba(255,255,255,.5); --acc:#bcd6ff;
+    --serif:"Space Grotesk",sans-serif; --sans:"Inter",sans-serif; --mono:"Michroma",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:var(--sans); color:var(--text); font-weight:300; width:1320px; height:880px;
+        background:linear-gradient(125deg, #0a205f 0%, #133aa8 42%, #1e54d6 78%, #2f6cf0 100%); overflow:hidden; }
+
+  /* topbar */
+  .top{ display:flex; align-items:center; justify-content:space-between; padding:20px 34px;
+        border-bottom:1px solid var(--line); background:rgba(8,14,40,.35); }
+  .brand{ display:flex; align-items:center; gap:13px; }
+  .brand svg{ width:34px; height:34px; }
+  .brand .nm{ font-family:var(--mono); font-size:14px; letter-spacing:.06em; }
+  .badge{ font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--acc);
+          border:1px solid var(--line); border-radius:999px; padding:6px 14px; margin-left:12px; }
+  .user{ display:flex; align-items:center; gap:12px; font-size:13px; }
+  .avatar{ width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,#7cb3ff,#3f8ef5);
+           display:grid; place-items:center; font-family:var(--serif); font-weight:600; color:#0a285f; }
+
+  .wrap{ display:grid; grid-template-columns:1.25fr .9fr; gap:22px; padding:26px 34px; height:calc(880px - 75px); }
+
+  .panel{ background:var(--glass); border:1px solid var(--line); border-radius:18px; backdrop-filter:blur(8px);
+          display:flex; flex-direction:column; overflow:hidden; }
+  .panel-head{ padding:20px 24px; border-bottom:1px solid var(--line); }
+  .panel-head .k{ font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--acc); margin-bottom:7px; display:flex; align-items:center; gap:8px;}
+  .dot{ width:8px;height:8px;border-radius:50%; background:#46e3a3; box-shadow:0 0 0 4px rgba(70,227,163,.2);}
+  .panel-head h2{ font-family:var(--serif); font-weight:700; font-size:20px; }
+  .panel-head p{ font-size:12px; color:var(--muted2); margin-top:3px; }
+
+  /* chat */
+  .chat{ flex:1; padding:22px 24px; display:flex; flex-direction:column; gap:14px; overflow:hidden; }
+  .msg{ max-width:80%; padding:13px 16px; border-radius:14px; font-size:13.5px; line-height:1.5; }
+  .msg.bot{ background:rgba(255,255,255,.10); border:1px solid var(--line); align-self:flex-start; border-top-left-radius:4px; }
+  .msg.me{ background:linear-gradient(135deg,#5b9bff,#2f6cf0); align-self:flex-end; border-top-right-radius:4px; color:#fff; }
+  .msg .who{ font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--acc); margin-bottom:6px; }
+  .msg.me .who{ color:rgba(255,255,255,.7); }
+  .msg b{ color:#fff; font-weight:600; }
+  .firm{ display:inline-flex; align-items:center; gap:8px; margin-top:9px; padding:8px 12px; border-radius:10px;
+         background:rgba(255,255,255,.1); border:1px solid var(--line); font-size:12.5px; }
+  .firm .ic{ font-size:14px; }
+  .chat-input{ margin:0 24px 22px; display:flex; gap:10px; align-items:center;
+               background:rgba(255,255,255,.10); border:1px solid var(--line); border-radius:999px; padding:8px 8px 8px 20px; }
+  .chat-input span{ flex:1; color:var(--muted2); font-size:13.5px; }
+  .send{ width:42px;height:42px;border-radius:50%; background:#fff; color:#15388f; display:grid; place-items:center; font-size:18px; font-weight:700; }
+
+  /* right column */
+  .right{ display:flex; flex-direction:column; gap:22px; min-height:0; }
+  .filters{ display:flex; flex-wrap:wrap; gap:7px; padding:16px 20px 4px; }
+  .chip{ font-size:11px; color:var(--text); border:1px solid var(--line); border-radius:999px; padding:7px 13px; }
+  .chip.on{ background:#fff; color:#15388f; font-weight:600; border-color:#fff; }
+  .firms{ padding:8px 20px 20px; display:flex; flex-direction:column; gap:11px; overflow:hidden; }
+  .fcard{ display:flex; align-items:center; gap:14px; padding:14px 16px; border-radius:12px;
+          background:rgba(255,255,255,.06); border:1px solid var(--line); }
+  .fcard .logo{ width:46px;height:46px;border-radius:11px; background:rgba(255,255,255,.1); display:grid; place-items:center; font-family:var(--serif); font-weight:700; font-size:15px; flex:none;}
+  .fcard .info{ flex:1; }
+  .fcard .info .nm{ font-family:var(--serif); font-weight:600; font-size:14.5px; }
+  .fcard .info .sg{ font-size:11px; color:var(--muted2); letter-spacing:.04em; }
+  .fcard .conn{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#15388f; background:#fff; border-radius:999px; padding:8px 14px; font-weight:600; white-space:nowrap; }
+
+  .req{ font-size:12px; color:var(--muted); display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px solid var(--line); }
+  .req:last-child{ border-bottom:none; }
+  .req .st{ color:var(--acc); font-size:11px; }
+</style>
+</head>
+<body>
+
+  <div class="top">
+    <div style="display:flex;align-items:center;">
+      <div class="brand">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="g" x1="20" y1="25" x2="100" y2="95" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#bcd6ff"/><stop offset="1" stop-color="#5b9bff"/></linearGradient></defs>
+          <g stroke="url(#g)" stroke-width="2.4" opacity=".7"><line x1="60" y1="60" x2="100" y2="60"/><line x1="60" y1="60" x2="80" y2="94.6"/><line x1="60" y1="60" x2="40" y2="94.6"/><line x1="60" y1="60" x2="20" y2="60"/><line x1="60" y1="60" x2="40" y2="25.4"/><line x1="60" y1="60" x2="80" y2="25.4"/></g>
+          <g fill="#0c2480" stroke="url(#g)" stroke-width="2.6"><circle cx="100" cy="60" r="5.4"/><circle cx="80" cy="94.6" r="5.4"/><circle cx="40" cy="94.6" r="5.4"/><circle cx="20" cy="60" r="5.4"/><circle cx="40" cy="25.4" r="5.4"/><circle cx="80" cy="25.4" r="5.4"/></g>
+          <circle cx="60" cy="60" r="11" fill="url(#g)"/>
+        </svg>
+        <div class="nm">KASMIRSCKI</div>
+      </div>
+      <span class="badge">Área de Membros</span>
+    </div>
+    <div class="user">Olá, João <div class="avatar">J</div></div>
+  </div>
+
+  <div class="wrap">
+    <!-- CHAT IA -->
+    <div class="panel">
+      <div class="panel-head">
+        <div class="k"><span class="dot"></span> Concierge do Ecossistema · IA</div>
+        <h2>Como posso te conectar hoje?</h2>
+        <p>Descreva o que você precisa em linguagem natural — eu encontro a empresa certa na rede.</p>
+      </div>
+      <div class="chat">
+        <div class="msg me"><div class="who">Você</div>Preciso de alguém pra cuidar do imposto de renda e da contabilidade da minha loja.</div>
+        <div class="msg bot"><div class="who">Concierge</div>Perfeito, João! Dentro da rede temos profissionais de <b>Contabilidade</b> que atendem exatamente isso. O mais indicado pro seu caso:
+          <div class="firm"><span class="ic">📊</span> <b>Conta Certa</b> — comércio, Simples e IR</div>
+          <br>Quer que eu te conecte agora? Já aviso o Paulo pra fazer a ponte.</div>
+        <div class="msg me"><div class="who">Você</div>Quero sim 👍</div>
+        <div class="msg bot"><div class="who">Concierge</div>Feito! ✅ Conexão registrada e o Paulo já foi avisado. Você recebe o contato no WhatsApp em instantes. Precisa de mais algo? (jurídico, marketing, um site…)</div>
+      </div>
+      <div class="chat-input">
+        <span>Digite o que você precisa…</span>
+        <div class="send">↑</div>
+      </div>
+    </div>
+
+    <!-- DIRETÓRIO -->
+    <div class="right">
+      <div class="panel" style="flex:1;">
+        <div class="panel-head"><div class="k">Empresas da rede</div><h2 style="font-size:18px">Explorar o ecossistema</h2></div>
+        <div class="filters">
+          <span class="chip on">Todos</span><span class="chip">Contabilidade</span><span class="chip">Jurídico</span><span class="chip">Marketing</span><span class="chip">Imóveis</span><span class="chip">Tecnologia</span>
+        </div>
+        <div class="firms">
+          <div class="fcard"><div class="logo">N</div><div class="info"><div class="nm">NATIVE</div><div class="sg">Inteligência Territorial</div></div><div class="conn">Conectar</div></div>
+          <div class="fcard"><div class="logo" style="color:#d4ff00">V</div><div class="info"><div class="nm">Visara Digital</div><div class="sg">Marketing &amp; IA</div></div><div class="conn">Conectar</div></div>
+          <div class="fcard"><div class="logo">CC</div><div class="info"><div class="nm">Conta Certa</div><div class="sg">Contabilidade</div></div><div class="conn">Conectar</div></div>
+          <div class="fcard"><div class="logo">PK</div><div class="info"><div class="nm">PK Corretor</div><div class="sg">Imóveis · CRECI 77988</div></div><div class="conn">Conectar</div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head" style="padding-bottom:6px"><div class="k">Meus pedidos</div></div>
+        <div style="padding:6px 22px 16px;">
+          <div class="req"><span>Contabilidade — Conta Certa</span><span class="st">● Conectado</span></div>
+          <div class="req"><span>Site — Visara Digital</span><span class="st">● Em conversa</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

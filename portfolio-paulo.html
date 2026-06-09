@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Michroma&display=block" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#1b2c8f; --bg2:rgba(255,255,255,.08); --line:rgba(255,255,255,.22);
+    --c1:rgba(255,255,255,.6); --c2:#bcd6ff; --text:#ffffff; --muted:rgba(255,255,255,.80); --on:#15388f;
+    --grad:linear-gradient(100deg,#ffffff 0%,#f0eeff 100%);
+    --serif:"Space Grotesk",sans-serif; --sans:"Inter",sans-serif; --mono:"Michroma",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  @page{ size:A4 landscape; margin:0; }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:var(--sans); color:var(--text); background:var(--bg); font-weight:300; }
+  .page{
+    position:relative; width:297mm; height:210mm; padding:15mm 20mm; overflow:hidden;
+    page-break-after:always; display:flex; flex-direction:column;
+    background:
+      radial-gradient(560px 420px at 88% 8%, rgba(255,255,255,.16), transparent 60%),
+      linear-gradient(125deg, #0a205f 0%, #133aa8 42%, #1e54d6 78%, #2f6cf0 100%);
+  }
+  .page:last-child{ page-break-after:auto; }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand svg{ width:40px; height:40px; }
+  .brand .nm{ font-family:var(--mono); font-size:13px; letter-spacing:.05em; text-transform:uppercase; }
+  .brand .tg{ font-size:8px; letter-spacing:.2em; text-transform:uppercase; color:var(--c2); margin-top:3px; }
+  .kick{ font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:var(--c2); display:flex; align-items:center; gap:10px; }
+  .kick::before{ content:""; width:24px; height:1px; background:var(--c1); }
+  h1{ font-family:var(--serif); font-weight:700; font-size:38px; line-height:1.06; letter-spacing:-.02em; text-transform:uppercase; }
+  h1 em, h2 em{ font-style:normal; color:var(--c2); }
+  h2{ font-family:var(--serif); font-weight:700; font-size:29px; line-height:1.12; letter-spacing:-.01em; text-transform:uppercase; }
+  .lead{ color:var(--muted); font-size:13px; line-height:1.65; max-width:150mm; }
+  .muted{ color:var(--muted); }
+  .pagenum{ position:absolute; bottom:14mm; right:18mm; font-size:9px; letter-spacing:.2em; color:rgba(255,255,255,.5); }
+  .footbar{ position:absolute; bottom:14mm; left:18mm; font-size:9px; letter-spacing:.06em; color:rgba(255,255,255,.5); }
+
+  /* COVER */
+  .cover{ flex-direction:row; padding:0; }
+  .cover-left{ flex:1.08; padding:22mm 6mm 50mm 20mm; display:flex; flex-direction:column; justify-content:center; z-index:2; }
+  .cover-main{ margin:auto 0; }
+  .cover .logoBig{ width:88px; height:88px; margin-bottom:28px; }
+  .cover .name{ font-family:var(--mono); font-size:28px; letter-spacing:.01em; text-transform:uppercase; margin-bottom:15px; line-height:1.18; }
+  .cover .tagline{ font-family:var(--serif); font-weight:700; font-size:27px; line-height:1.18; max-width:130mm; text-transform:uppercase; letter-spacing:-.01em; }
+  .cover .tagline em{ color:var(--c2); font-style:normal; }
+  .cover .meta{ margin-top:30px; display:flex; gap:9px; flex-wrap:wrap; }
+  .chip{ font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--text);
+         border:1px solid var(--line); border-radius:999px; padding:8px 14px; }
+  .cover .url{ margin-top:26px; font-family:var(--mono); font-size:18px; color:var(--c2); letter-spacing:.02em; }
+  .cover-photo{ flex:.92; position:relative; }
+  .cover-photo img{ width:100%; height:100%; object-fit:cover; object-position:center 16%; filter:grayscale(.12); }
+  .cover-photo::after{ content:""; position:absolute; inset:0;
+    background:linear-gradient(90deg, var(--bg) 0%, rgba(20,28,90,.5) 22%, transparent 48%),
+               linear-gradient(0deg, rgba(20,28,90,.55), transparent 40%); }
+
+  .spacer{ flex:1; }
+  .mt-auto{ margin-top:auto; }
+
+  /* generic blocks */
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:26px; }
+  .grid3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:24px; }
+  .card{ background:var(--bg2); border:1px solid var(--line); border-radius:10px; padding:20px; }
+  .card .n{ font-family:var(--serif); font-weight:600; font-size:20px; color:var(--c2); margin-bottom:10px; }
+  .card .t{ font-family:var(--serif); font-weight:600; font-size:15px; margin-bottom:7px; }
+  .card .d{ font-size:11.5px; color:var(--muted); line-height:1.55; }
+
+  .rows{ border-top:1px solid var(--line); margin-top:22px; }
+  .row{ display:flex; gap:14px; padding:13px 2px; border-bottom:1px solid var(--line); align-items:baseline; }
+  .row .ic{ color:var(--c2); font-family:var(--serif); font-weight:600; font-size:14px; min-width:22px; }
+  .row .tx{ font-size:12.5px; color:var(--muted); line-height:1.5; }
+  .row .tx b{ color:var(--text); font-weight:600; }
+
+  /* split layout (landscape) */
+  .split{ display:flex; gap:28px; margin-top:22px; flex:1; align-items:stretch; }
+  .split .col-text{ flex:1.15; display:flex; flex-direction:column; }
+  .split .col-photo{ flex:1; }
+  .photo-land{ width:100%; height:100%; object-fit:cover; object-position:center 14%;
+               border-radius:12px; border:1px solid var(--line); filter:grayscale(.1); }
+  .grid4{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:24px; }
+
+  /* brands */
+  .brands{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:24px; }
+  .bcard{ background:var(--bg2); border:1px solid var(--line); border-radius:10px; padding:20px; min-height:155px; display:flex; flex-direction:column; gap:9px; }
+  .bcard .logoslot{ height:38px; display:flex; align-items:center; }
+  .bcard .logoslot img{ max-height:38px; max-width:150px; }
+  .bcard .vmark{ font-family:var(--serif); font-weight:700; font-size:24px; letter-spacing:-.04em; color:#f5f5f0; display:flex; align-items:center; gap:10px; }
+  .bcard .vmark .dot{ width:18px; height:18px; border-radius:50%; background:#d4ff00; }
+  .bcard .pkmark{ font-family:var(--mono); font-size:17px; text-transform:uppercase; }
+  .bcard .role{ font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--c2); }
+  .bcard .d{ font-size:11px; color:var(--muted); line-height:1.5; margin-top:auto; }
+  .bcard.empty{ border-style:dashed; align-items:center; justify-content:center; text-align:center; }
+  .bcard.empty .plus{ font-family:var(--serif); font-size:30px; color:var(--c2); }
+  .bcard.empty .lbl{ font-size:11px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; }
+
+  /* segments strip */
+  .segs{ display:flex; flex-wrap:wrap; gap:9px; margin-top:24px; }
+  .seg{ font-size:11px; color:var(--text); border:1px solid var(--line); border-radius:999px; padding:9px 15px; }
+  .seg::before{ content:"●"; color:var(--c2); font-size:7px; margin-right:8px; vertical-align:middle; }
+
+  /* CTA */
+  . cta{}
+  .ctaBox{ margin-top:auto; border:1px solid var(--line); border-radius:14px; padding:30px;
+           background:linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.05)); }
+  .pill{ display:inline-block; background:var(--grad); color:var(--on); font-family:var(--serif); font-weight:600;
+         font-size:13px; padding:12px 22px; border-radius:999px; letter-spacing:.02em; }
+  .contacts{ display:flex; gap:26px; margin-top:18px; font-size:12px; }
+  .contacts b{ color:var(--c2); font-weight:600; }
+  .photo{ width:100%; height:74mm; object-fit:cover; object-position:center 16%; border-radius:12px; border:1px solid var(--line); filter:grayscale(.1); margin-top:24px; }
+
+  /* offer / investimento */
+  .offer{ margin-top:auto; margin-bottom:9mm; border:1px solid rgba(255,255,255,.45); border-radius:14px; padding:28px 32px;
+          background:linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.04));
+          display:flex; align-items:center; justify-content:space-between; gap:30px; }
+  .offer .left .lbl{ font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--c2); }
+  .offer .left .price{ font-family:var(--serif); font-weight:600; font-size:46px; line-height:1; margin-top:8px; }
+  .offer .left .price small{ font-size:18px; color:var(--muted); font-weight:500; letter-spacing:.02em; }
+  .offer .left .eq{ font-size:11px; color:var(--muted); margin-top:6px; }
+  .offer .incl{ display:flex; flex-direction:column; gap:10px; min-width:62mm; }
+  .offer .incl .it{ display:flex; align-items:flex-start; gap:10px; font-size:12px; color:var(--text); }
+  .offer .incl .it .ck{ color:var(--c2); font-weight:700; }
+  .offer .incl .it span.d{ color:var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- defs: gradient + hub symbol (shared, must come before usage) -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="g" x1="20" y1="25" x2="100" y2="95" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#bcd6ff"/>
+    </linearGradient>
+  </defs>
+  <g id="hub">
+    <g stroke="url(#g)" stroke-width="2.4" opacity=".65">
+      <line x1="60" y1="60" x2="100" y2="60"/><line x1="60" y1="60" x2="80" y2="94.6"/>
+      <line x1="60" y1="60" x2="40" y2="94.6"/><line x1="60" y1="60" x2="20" y2="60"/>
+      <line x1="60" y1="60" x2="40" y2="25.4"/><line x1="60" y1="60" x2="80" y2="25.4"/></g>
+    <g fill="#26309a" stroke="url(#g)" stroke-width="2.6">
+      <circle cx="100" cy="60" r="5.4"/><circle cx="80" cy="94.6" r="5.4"/><circle cx="40" cy="94.6" r="5.4"/>
+      <circle cx="20" cy="60" r="5.4"/><circle cx="40" cy="25.4" r="5.4"/><circle cx="80" cy="25.4" r="5.4"/></g>
+    <circle cx="60" cy="60" r="11" fill="url(#g)"/>
+  </g>
+</svg>
+
+<!-- ============ PAGE 1 — COVER ============ -->
+<section class="page cover">
+  <div class="cover-left">
+    <div class="cover-main">
+      <svg class="logoBig" viewBox="0 0 120 120"><use href="#hub"/></svg>
+      <div class="kick" style="margin-bottom:18px">Portfólio · Ecossistema de Negócios</div>
+      <div class="name">Paulo Kasmirscki</div>
+      <div class="tagline">Conectando <em>pessoas</em> e gerando <em>negócios</em>.</div>
+      <div class="meta">
+        <span class="chip">Networking</span>
+        <span class="chip">Parcerias</span>
+        <span class="chip">Indicações</span>
+        <span class="chip">Veranópolis · RS</span>
+      </div>
+      <div class="url">www.paulokasmirscki.com.br</div>
+    </div>
+  </div>
+
+  <div class="cover-photo">
+    <img src="public/paulo-premium.jpg" alt="Paulo Kasmirscki" />
+  </div>
+</section>
+
+<!-- ============ PAGE 2 — QUEM É ============ -->
+<section class="page">
+  <div class="brand"><svg viewBox="0 0 120 120"><use href="#hub"/></svg>
+    <div><div class="nm">Paulo Kasmirscki</div></div></div>
+  <div style="margin-top:22px">
+    <div class="kick">01 · O Conector</div>
+    <h1 style="margin-top:14px; max-width:175mm">Aproximo as pessoas certas e <em>faço o negócio acontecer</em>.</h1>
+  </div>
+  <p class="lead" style="margin-top:18px; font-size:15px; max-width:200mm">
+    Sou uma pessoa extremamente comunicativa, com facilidade de aproximar as pessoas e uma
+    rede de contatos ampla, que percorre os mais variados setores. Com experiência em vendas e
+    prospecção, transformo relacionamento em oportunidade — conectando quem precisa de quem resolve.
+  </p>
+  <div class="grid3" style="margin-top:auto; margin-bottom:8mm">
+    <div class="card"><div class="n">01</div><div class="t">Comunicação</div><div class="d">Abro portas e crio confiança desde a primeira conversa. As pessoas se sentem à vontade para conversar — e para fechar negócio.</div></div>
+    <div class="card"><div class="n">02</div><div class="t">Rede diversa</div><div class="d">Contatos sólidos espalhados por múltiplos setores e segmentos do mercado, construídos com confiança ao longo dos anos.</div></div>
+    <div class="card"><div class="n">03</div><div class="t">Visão comercial</div><div class="d">Experiência em vendas e prospecção que transforma boas conexões em negócios concretos e duradouros.</div></div>
+  </div>
+  <div class="footbar">Paulo Kasmirscki — Conector de negócios</div>
+  <div class="pagenum">02</div>
+</section>
+
+<!-- ============ PAGE 3 — O ECOSSISTEMA ============ -->
+<section class="page">
+  <div class="brand"><svg viewBox="0 0 120 120"><use href="#hub"/></svg>
+    <div><div class="nm">Paulo Kasmirscki</div></div></div>
+  <div style="margin-top:30px">
+    <div class="kick">02 · O Ecossistema</div>
+    <h2 style="margin-top:16px">Uma só rede que cruza <em>vários mercados</em></h2>
+    <p class="lead" style="margin-top:14px">
+      O ecossistema reúne pessoas e marcas de segmentos diferentes, integradas numa rede onde todos
+      geram oportunidade uns para os outros. Eu sou a ponte entre elas.
+    </p>
+  </div>
+
+  <div class="segs">
+    <span class="seg">Imóveis &amp; Construção</span>
+    <span class="seg">Arquitetura</span>
+    <span class="seg">Finanças &amp; Investimentos</span>
+    <span class="seg">Contabilidade</span>
+    <span class="seg">Jurídico</span>
+    <span class="seg">Tecnologia &amp; IA</span>
+    <span class="seg">Marketing &amp; Digital</span>
+    <span class="seg">Saúde &amp; Bem-estar</span>
+    <span class="seg">Estética &amp; Beleza</span>
+    <span class="seg">Gastronomia</span>
+    <span class="seg">Turismo &amp; Hotelaria</span>
+    <span class="seg">Esporte &amp; Lazer</span>
+    <span class="seg">Comércio &amp; Varejo</span>
+    <span class="seg">Serviços</span>
+    <span class="seg">Agro &amp; Indústria</span>
+    <span class="seg">Sustentabilidade &amp; Meio Ambiente</span>
+    <span class="seg">Negócios &amp; Empresas</span>
+  </div>
+
+  <div class="grid3" style="margin-top:auto">
+    <div class="card"><div class="n">01</div><div class="t">Conexões estratégicas</div><div class="d">As pessoas certas, no momento certo, com interesses complementares.</div></div>
+    <div class="card"><div class="n">02</div><div class="t">Soluções sob medida</div><div class="d">Encontro na rede exatamente quem resolve o que o outro precisa.</div></div>
+    <div class="card"><div class="n">03</div><div class="t">Negócios que crescem</div><div class="d">Cada conexão gera indicações e parcerias que se multiplicam.</div></div>
+  </div>
+  <div class="footbar">Conectando pessoas e gerando negócios</div>
+  <div class="pagenum">03</div>
+</section>
+
+<!-- ============ PAGE 4 — A REDE (MARCAS) ============ -->
+<section class="page">
+  <div class="brand"><svg viewBox="0 0 120 120"><use href="#hub"/></svg>
+    <div><div class="nm">Paulo Kasmirscki</div></div></div>
+  <div style="margin-top:30px">
+    <div class="kick">03 · A Rede</div>
+    <h2 style="margin-top:16px">Marcas que já fazem parte do <em>ecossistema</em></h2>
+    <p class="lead" style="margin-top:14px">Empresas de pessoas da rede — conectadas para crescer juntas.</p>
+  </div>
+
+  <div class="brands">
+    <div class="bcard">
+      <div class="logoslot"><img src="public/brand-native.png" alt="NATIVE" /></div>
+      <div class="role">Inteligência Territorial</div>
+      <div class="d">Topografia e georreferenciamento — inteligência territorial e ambiental.</div>
+    </div>
+    <div class="bcard">
+      <div class="logoslot"><span class="vmark"><span class="dot"></span>VISARA</span></div>
+      <div class="role">Agência Digital</div>
+      <div class="d">Sites e Agentes de IA para negócios locais crescerem na internet.</div>
+    </div>
+    <div class="bcard">
+      <div class="logoslot"><span class="pkmark">PK · Corretor</span></div>
+      <div class="role">Imóveis · CRECI 77988</div>
+      <div class="d">A atuação do próprio Paulo no mercado imobiliário, dentro do ecossistema.</div>
+    </div>
+    <div class="bcard empty">
+      <div class="plus">+</div>
+      <div class="lbl">Sua marca aqui</div>
+    </div>
+  </div>
+  <div class="footbar">A sua marca pode ser a próxima</div>
+  <div class="pagenum">04</div>
+</section>
+
+<!-- ============ PAGE 5 — POR QUE ENTRAR ============ -->
+<section class="page">
+  <div class="brand"><svg viewBox="0 0 120 120"><use href="#hub"/></svg>
+    <div><div class="nm">Paulo Kasmirscki</div></div></div>
+  <div style="margin-top:30px">
+    <div class="kick">04 · Por que fazer parte</div>
+    <h2 style="margin-top:16px">O que a sua empresa <em>ganha</em> na rede</h2>
+  </div>
+  <div class="grid4">
+    <div class="card"><div class="n">→</div><div class="t">Indicações qualificadas</div><div class="d">Seja apresentado a clientes que precisam exatamente do que você faz.</div></div>
+    <div class="card"><div class="n">→</div><div class="t">Parcerias estratégicas</div><div class="d">Conecte-se a empresas de segmentos complementares e crie novos negócios.</div></div>
+    <div class="card"><div class="n">→</div><div class="t">Visibilidade na rede</div><div class="d">Sua marca no ecossistema, no site e nos canais — vista por quem importa.</div></div>
+    <div class="card"><div class="n">→</div><div class="t">Indique e seja indicado</div><div class="d">Via de mão dupla: você recomenda e é recomendado numa rede ativa.</div></div>
+  </div>
+  <div class="offer">
+    <div class="left">
+      <div class="lbl">Investimento anual</div>
+      <div class="price">R$ 1.200<small> /ano</small></div>
+      <div class="eq">Equivale a R$ 100 por mês</div>
+    </div>
+    <div class="incl">
+      <div class="it"><span class="ck">✓</span> <div>Acesso completo ao <b>ecossistema</b> <span class="d">— rede, indicações e parcerias</span></div></div>
+      <div class="it"><span class="ck">✓</span> <div><b>Encontros para networking</b> <span class="d">— conexões presenciais</span></div></div>
+      <div class="it"><span class="ck">✓</span> <div>Sua marca <b>presente na rede</b> <span class="d">— site e canais</span></div></div>
+    </div>
+  </div>
+  <div class="footbar">Investimento &amp; participação</div>
+  <div class="pagenum">05</div>
+</section>
+
+<!-- ============ PAGE 6 — COMO ENTRAR / CONTATO ============ -->
+<section class="page">
+  <div class="brand"><svg viewBox="0 0 120 120"><use href="#hub"/></svg>
+    <div><div class="nm">Paulo Kasmirscki</div></div></div>
+  <div style="margin-top:30px">
+    <div class="kick">05 · Como entrar</div>
+    <h2 style="margin-top:16px">Da conversa ao <em>negócio fechado</em></h2>
+  </div>
+  <div class="grid3">
+    <div class="card"><div class="n">i</div><div class="t">Conversamos</div><div class="d">Você me conta seu segmento, seus objetivos e o que procura — ou tem a oferecer.</div></div>
+    <div class="card"><div class="n">ii</div><div class="t">Conecto na rede</div><div class="d">Identifico as pessoas e empresas certas para gerar a sinergia que você precisa.</div></div>
+    <div class="card"><div class="n">iii</div><div class="t">Geramos negócio</div><div class="d">Faço a ponte, acompanho e ajudo a transformar a conexão em resultado.</div></div>
+  </div>
+
+  <div class="ctaBox">
+    <div class="kick" style="margin-bottom:14px">Vamos conversar</div>
+    <h2 style="font-size:24px">Pronto para entrar na rede?</h2>
+    <p class="lead" style="margin:12px 0 20px">Me chame no WhatsApp e conte o que você busca. A próxima boa conexão pode estar a uma conversa de distância.</p>
+    <span class="pill">WhatsApp (54) 99650-5799</span>
+    <div class="contacts">
+      <div><b>Site</b><br/>www.paulokasmirscki.com.br</div>
+      <div><b>Instagram</b><br/>@paulokasmirscki</div>
+      <div><b>Local</b><br/>Veranópolis · RS</div>
+    </div>
+  </div>
+  <div class="pagenum">06</div>
+</section>
+
+</body>
+</html>

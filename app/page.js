@@ -399,6 +399,23 @@ export default function Home() {
                 </p>
                 <span className="b-link">Falar no WhatsApp →</span>
               </a>
+
+              <a
+                className="brand-card"
+                href="https://pulsejiujitsu.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="logo-slot">
+                  <img src="/brand-pulse.png" alt="Pulse Jiu-Jitsu" />
+                </div>
+                <div className="b-role">Esporte &amp; Lazer</div>
+                <p className="b-desc">
+                  Academia de Jiu-Jitsu — treinos para todas as idades, foco em
+                  saúde, disciplina e bem-estar.
+                </p>
+                <span className="b-link">pulsejiujitsu.com.br →</span>
+              </a>
             </div>
 
             <p className="brands-note">

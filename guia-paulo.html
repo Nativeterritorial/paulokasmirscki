@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#08110d; --bg2:#0e1a15; --line:rgba(150,210,185,.16);
+    --c1:#12a376; --c2:#34e3a3; --text:#eaf2f2; --muted:#9fb3b5; --on:#052016;
+    --grad:linear-gradient(100deg,#5ff0b8 0%,#20c585 55%,#0f9d6e 100%);
+    --serif:"Space Grotesk",sans-serif; --sans:"Inter",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  @page{ size:A4; margin:0; }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:var(--sans); color:var(--text); background:var(--bg); font-weight:300; }
+  .page{
+    width:210mm; min-height:297mm; padding:13mm 18mm; position:relative; overflow:hidden;
+    background:
+      radial-gradient(420px 320px at 88% 6%, rgba(52,227,163,.14), transparent 60%),
+      radial-gradient(380px 300px at 4% 96%, rgba(32,197,133,.12), transparent 60%),
+      var(--bg);
+  }
+  .brand{ display:flex; align-items:center; gap:14px; margin-bottom:20px; }
+  .brand svg{ width:46px; height:46px; }
+  .brand .nm{ font-family:var(--serif); font-weight:600; font-size:17px; letter-spacing:.16em; text-transform:uppercase; }
+  .brand .tg{ font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:var(--c2); margin-top:2px; }
+  .eyebrow{ font-size:10px; letter-spacing:.26em; text-transform:uppercase; color:var(--c2); margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+  .eyebrow::before{ content:""; width:26px; height:1px; background:var(--c1); display:inline-block; }
+  h1{ font-family:var(--serif); font-weight:600; font-size:29px; line-height:1.08; letter-spacing:-.01em; margin-bottom:10px; }
+  h1 em{ font-style:normal; color:var(--c2); }
+  .sub{ color:var(--muted); font-size:12px; max-width:150mm; margin-bottom:16px; }
+  .url{ display:inline-block; font-family:var(--serif); font-weight:600; color:var(--c2); font-size:13px; letter-spacing:.04em;
+        border:1px solid var(--line); padding:7px 14px; border-radius:6px; margin-bottom:18px; }
+  h2{ font-family:var(--serif); font-weight:600; font-size:18px; margin:16px 0 9px; display:flex; align-items:center; gap:10px; }
+  h2 .n{ color:var(--c2); font-size:13px; }
+  p.lead{ color:var(--muted); font-size:12px; margin-bottom:10px; max-width:158mm; }
+  .cards{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin:6px 0 6px; }
+  .card{ background:var(--bg2); border:1px solid var(--line); border-radius:8px; padding:14px; }
+  .card .t{ font-family:var(--serif); font-weight:600; font-size:13px; margin-bottom:6px; color:var(--text); }
+  .card .who{ font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--c2); margin-bottom:8px; }
+  .card .msg{ font-size:10.5px; color:var(--muted); font-style:italic; line-height:1.45; }
+  .rows{ border-top:1px solid var(--line); margin-top:6px; }
+  .row{ display:flex; gap:12px; padding:8.5px 2px; border-bottom:1px solid var(--line); }
+  .row .ic{ color:var(--c2); font-family:var(--serif); font-weight:600; font-size:13px; min-width:20px; }
+  .row .tx b{ color:var(--text); font-weight:600; }
+  .row .tx{ font-size:12px; color:var(--muted); }
+  .foot{ position:absolute; left:18mm; right:18mm; bottom:12mm; display:flex; justify-content:space-between;
+         font-size:9px; letter-spacing:.06em; color:#5f7274; border-top:1px solid var(--line); padding-top:10px; }
+  .pill{ display:inline-block; background:var(--grad); color:var(--on); font-family:var(--serif); font-weight:600;
+         font-size:11px; padding:9px 16px; border-radius:999px; letter-spacing:.04em; }
+  .hub-strip{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:8px; }
+  .tag{ font-size:10px; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:5px 11px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brand">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="g" x1="20" y1="25" x2="100" y2="95" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#5ff0b8"/><stop offset="1" stop-color="#12a376"/></linearGradient></defs>
+      <g stroke="url(#g)" stroke-width="2.4" opacity=".65">
+        <line x1="60" y1="60" x2="100" y2="60"/><line x1="60" y1="60" x2="80" y2="94.6"/>
+        <line x1="60" y1="60" x2="40" y2="94.6"/><line x1="60" y1="60" x2="20" y2="60"/>
+        <line x1="60" y1="60" x2="40" y2="25.4"/><line x1="60" y1="60" x2="80" y2="25.4"/></g>
+      <g fill="#06100f" stroke="url(#g)" stroke-width="2.6">
+        <circle cx="100" cy="60" r="5.4"/><circle cx="80" cy="94.6" r="5.4"/><circle cx="40" cy="94.6" r="5.4"/>
+        <circle cx="20" cy="60" r="5.4"/><circle cx="40" cy="25.4" r="5.4"/><circle cx="80" cy="25.4" r="5.4"/></g>
+      <circle cx="60" cy="60" r="11" fill="url(#g)"/>
+    </svg>
+    <div><div class="nm">Paulo Kasmirscki</div><div class="tg">Conectando pessoas · Gerando negócios</div></div>
+  </div>
+
+  <div class="eyebrow">Guia rápido</div>
+  <h1>Como o seu <em>site</em> funciona</h1>
+  <p class="sub">Em poucas palavras: o site é a sua vitrine na internet, trabalhando por você 24 horas. Ele mostra quem você é, a sua rede, e transforma quem visita em conversa no seu WhatsApp.</p>
+  <span class="url">www.paulokasmirscki.com.br</span>
+
+  <h2><span class="n">1</span> Como os clientes chegam até você</h2>
+  <p class="lead">O site inteiro tem botões que abrem direto o seu WhatsApp — e já vêm com a mensagem escrita. Você lê e na hora entende o que a pessoa quer. A seção "Faça parte da rede" tem 3 caminhos:</p>
+  <div class="cards">
+    <div class="card"><div class="t">Quero receber indicações</div><div class="who">É um fornecedor</div>
+      <div class="msg">"Tenho um negócio e quero fazer parte da sua rede para receber indicações de clientes."</div></div>
+    <div class="card"><div class="t">Quero indicar e ser indicado</div><div class="who">É um parceiro</div>
+      <div class="msg">"Quero entrar no ecossistema para indicar e ser indicado dentro da rede."</div></div>
+    <div class="card"><div class="t">Preciso de uma solução</div><div class="who">É um cliente</div>
+      <div class="msg">"Estou procurando uma solução de confiança. Pode me conectar com alguém da rede?"</div></div>
+  </div>
+  <p class="lead">Resultado: você abre o WhatsApp já sabendo se é <b style="color:var(--text)">fornecedor</b>, <b style="color:var(--text)">parceiro</b> ou <b style="color:var(--text)">cliente</b> — e conduz a conversa daí.</p>
+
+  <h2><span class="n">2</span> Como você ganha com isso</h2>
+  <div class="rows">
+    <div class="row"><div class="ic">↗</div><div class="tx"><b>Indicou e fechou? Você ganha.</b> Quando conecta duas pontas e o negócio acontece, combina uma comissão (ex.: 10–20%) com quem recebeu o cliente.</div></div>
+    <div class="row"><div class="ic">↗</div><div class="tx"><b>A rede te alimenta de volta.</b> Ajudando todo mundo, você vira referência — e o pessoal lembra de você para os negócios de imóveis (a sua corretagem).</div></div>
+    <div class="row"><div class="ic">↗</div><div class="tx"><b>No futuro: mensalidade.</b> Quando tiver muita gente querendo entrar, você pode cobrar um valor mensal para fazer parte da rede.</div></div>
+  </div>
+
+  <h2><span class="n">3</span> O que você precisa fazer</h2>
+  <div class="rows">
+    <div class="row"><div class="ic">1</div><div class="tx"><b>Responder rápido</b> quem chama no WhatsApp — lead parado esfria.</div></div>
+    <div class="row"><div class="ic">2</div><div class="tx"><b>Pedir depoimentos</b> para quem você já ajudou — a gente coloca no site e fortalece muito a sua imagem.</div></div>
+    <div class="row"><div class="ic">3</div><div class="tx"><b>Espalhar o seu link</b> — bio do Instagram, assinatura de e-mail, cartão, status do WhatsApp.</div></div>
+  </div>
+
+  <div style="margin-top:16px"><span class="pill">É só conectar. O resto o site faz por você.</span></div>
+
+  <div class="foot"><span>Paulo Kasmirscki — Conector de negócios</span><span>Veranópolis · RS</span></div>
+</div>
+</body>
+</html>

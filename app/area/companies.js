@@ -40,4 +40,14 @@ export const COMPANIES = [
     link: "https://wa.me/5554996505799",
     linkLabel: "Falar no WhatsApp",
   },
+  {
+    id: "pulse",
+    nome: "Pulse Jiu-Jitsu",
+    segmento: "Esporte & Lazer",
+    descricao:
+      "Academia de Jiu-Jitsu — aulas e treinos para todas as idades, foco em saúde, disciplina e bem-estar.",
+    atende: ["Esporte & Lazer", "Saúde & Bem-estar"],
+    link: "https://pulsejiujitsu.com.br",
+    linkLabel: "pulsejiujitsu.com.br",
+  },
 ];

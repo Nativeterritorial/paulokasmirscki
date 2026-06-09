@@ -90,4 +90,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/giliolicontabilidade/",
     linkLabel: "@giliolicontabilidade",
   },
+  {
+    id: "mutalys",
+    nome: "Mutalys",
+    segmento: "Gestão & Consultoria",
+    descricao:
+      "Inteligência que transforma — consultoria em otimização de processos, transformação de negócios, treinamento de equipes e desenvolvimento profissional.",
+    atende: ["Gestão & Consultoria", "Tecnologia & IA", "Serviços", "Educação & Capacitação"],
+    link: "https://wa.me/5554996505799",
+    linkLabel: "Falar com o Paulo",
+  },
 ];

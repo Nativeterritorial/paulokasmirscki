@@ -485,6 +485,23 @@ export default function Home() {
                 </p>
                 <span className="b-link">@giliolicontabilidade →</span>
               </a>
+
+              <a
+                className="brand-card"
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="logo-slot">
+                  <img className="tile-logo" src="/brand-mutalys.png" alt="Mutalys" />
+                </div>
+                <div className="b-role">Gestão &amp; Consultoria</div>
+                <p className="b-desc">
+                  Inteligência que transforma — otimização de processos,
+                  transformação de negócios e capacitação de equipes.
+                </p>
+                <span className="b-link">Falar no WhatsApp →</span>
+              </a>
             </div>
 
             <p className="brands-note">

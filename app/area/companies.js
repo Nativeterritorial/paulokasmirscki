@@ -60,4 +60,14 @@ export const COMPANIES = [
     link: "https://exatusgene.com",
     linkLabel: "exatusgene.com",
   },
+  {
+    id: "bigwolf",
+    nome: "Big Wolf",
+    segmento: "Moda & Vestuário",
+    descricao:
+      "Loja de roupas e moda casual para homens e mulheres — camisetas, moletons, jaquetas, shorts e acessórios.",
+    atende: ["Comércio & Varejo", "Moda & Vestuário"],
+    link: "https://www.bigwolfloja.com",
+    linkLabel: "bigwolfloja.com",
+  },
 ];

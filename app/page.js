@@ -433,6 +433,23 @@ export default function Home() {
                 </p>
                 <span className="b-link">exatusgene.com →</span>
               </a>
+
+              <a
+                className="brand-card"
+                href="https://www.bigwolfloja.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="logo-slot">
+                  <img src="/brand-bigwolf.png" alt="Big Wolf" />
+                </div>
+                <div className="b-role">Moda &amp; Vestuário</div>
+                <p className="b-desc">
+                  Loja de roupas e moda casual masculina e feminina — camisetas,
+                  moletons, jaquetas e acessórios.
+                </p>
+                <span className="b-link">bigwolfloja.com →</span>
+              </a>
             </div>
 
             <p className="brands-note">

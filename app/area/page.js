@@ -123,8 +123,6 @@ export default function Area() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: next, code }),
       });
-      const d = await r.json().catch(() => ({}));
-
       if (r.status === 401) {
         // código de acesso vencido/incorreto — força novo login
         setMessages((m) => [
@@ -140,11 +138,48 @@ export default function Area() {
         return;
       }
 
-      const reply =
-        d.reply ||
-        d.error ||
-        "⚠️ Não consegui responder agora. Tente de novo em instantes.";
-      setMessages((m) => [...m, { role: "assistant", content: reply }]);
+      // lê a resposta em streaming, atualizando a bolha em tempo real
+      if (r.body && r.ok) {
+        setMessages((m) => [...m, { role: "assistant", content: "" }]);
+        const reader = r.body.getReader();
+        const decoder = new TextDecoder();
+        let buf = "";
+        const flush = () => {
+          // separa o marcador final @@REC:ids@@ do texto visível
+          const recMatch = buf.match(/@@REC:([^@]*)@@/);
+          const recs = recMatch
+            ? recMatch[1].split(",").filter(Boolean)
+            : undefined;
+          // esconde marcador completo ou parcial (começando em @@) no fim do buffer
+          const visible = buf
+            .replace(/@@REC:[^@]*@@/g, "")
+            .replace(/@@(?:R(?:E(?:C(?::[^@]*)?)?)?)?$/, "");
+          setMessages((m) => {
+            const next = [...m];
+            next[next.length - 1] = {
+              role: "assistant",
+              content: visible,
+              recs,
+            };
+            return next;
+          });
+        };
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buf += decoder.decode(value, { stream: true });
+          flush();
+        }
+        buf += decoder.decode();
+        flush();
+      } else {
+        const d = await r.json().catch(() => ({}));
+        const reply =
+          d.reply ||
+          d.error ||
+          "⚠️ Não consegui responder agora. Tente de novo em instantes.";
+        setMessages((m) => [...m, { role: "assistant", content: reply }]);
+      }
     } catch (e) {
       setMessages((m) => [
         ...m,
@@ -223,18 +258,47 @@ export default function Area() {
           <div className="area-chat" ref={chatRef}>
             {messages.map((m, i) =>
               m.role === "assistant" ? (
-                <div
-                  key={i}
-                  className="bubble assistant"
-                  dangerouslySetInnerHTML={{ __html: formatMsg(m.content) }}
-                />
+                <div key={i} className="msg-block">
+                  <div
+                    className="bubble assistant"
+                    dangerouslySetInnerHTML={{ __html: formatMsg(m.content) }}
+                  />
+                  {m.recs?.length > 0 && (
+                    <div className="bubble-recs">
+                      {m.recs
+                        .map((id) => COMPANIES.find((c) => c.id === id))
+                        .filter(Boolean)
+                        .map((c) => (
+                          <div className="rec-card" key={c.id}>
+                            <div className="rec-info">
+                              <div className="rec-nm">{c.nome}</div>
+                              <div className="rec-sg">{c.segmento}</div>
+                            </div>
+                            <a
+                              className="firm-conn"
+                              href={wa(
+                                `Olá Paulo! Quero me conectar com a ${c.nome} do ecossistema.`
+                              )}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => trackConnect(c.id)}
+                            >
+                              Conectar
+                            </a>
+                          </div>
+                        ))}
+                    </div>
+                  )}
+                </div>
               ) : (
                 <div key={i} className="bubble user">
                   {m.content}
                 </div>
               )
             )}
-            {sending && <div className="bubble assistant typing">digitando…</div>}
+            {sending && messages[messages.length - 1]?.role === "user" && (
+              <div className="bubble assistant typing">digitando…</div>
+            )}
           </div>
           <form
             className="area-chat-input"

@@ -54,10 +54,10 @@ export async function POST(req) {
   }
 
   if (!process.env.ANTHROPIC_API_KEY) {
-    return NextResponse.json({
-      reply:
-        "⚙️ A IA ainda não foi ativada. Para ligar o concierge, adicione a sua chave ANTHROPIC_API_KEY (no .env.local em teste, ou nas variáveis de ambiente da Vercel em produção). Enquanto isso, o diretório ao lado já funciona — é só clicar em \"Conectar\".",
-    });
+    return new Response(
+      "⚙️ A IA ainda não foi ativada. Para ligar o concierge, adicione a sua chave ANTHROPIC_API_KEY (no .env.local em teste, ou nas variáveis de ambiente da Vercel em produção). Enquanto isso, o diretório ao lado já funciona — é só clicar em \"Conectar\".",
+      { headers: { "Content-Type": "text/plain; charset=utf-8" } }
+    );
   }
 
   // só as últimas 12 mensagens, e garante começar com 'user'
@@ -67,39 +67,65 @@ export async function POST(req) {
     .map((m) => ({ role: m.role, content: String(m.content) }));
   while (clean.length && clean[0].role !== "user") clean.shift();
   if (!clean.length) {
-    return NextResponse.json({ reply: "Olá! Me conte o que você precisa." });
-  }
-
-  try {
-    const client = new Anthropic();
-    const resp = await client.messages.create({
-      model: "claude-sonnet-4-6",
-      max_tokens: 1024,
-      system: [
-        {
-          type: "text",
-          text: buildSystem(),
-          cache_control: { type: "ephemeral" },
-        },
-      ],
-      messages: clean,
+    return new Response("Olá! Me conte o que você precisa.", {
+      headers: { "Content-Type": "text/plain; charset=utf-8" },
     });
-    const reply = resp.content
-      .filter((b) => b.type === "text")
-      .map((b) => b.text)
-      .join("")
-      .trim();
-
-    // registra a pergunta + empresas recomendadas (não bloqueia a resposta)
-    const lastUser = [...clean].reverse().find((m) => m.role === "user");
-    logQuery(lastUser?.content || "", detectRecommended(reply)).catch(() => {});
-
-    return NextResponse.json({ reply: reply || "..." });
-  } catch (err) {
-    const msg =
-      err instanceof Anthropic.APIError
-        ? `Erro da IA (${err.status}). Verifique a chave/ável de ambiente.`
-        : "Não consegui responder agora. Tente novamente.";
-    return NextResponse.json({ reply: `⚠️ ${msg}` }, { status: 200 });
   }
+
+  const client = new Anthropic();
+  const encoder = new TextEncoder();
+
+  // resposta em streaming: texto puro + marcador final @@REC:id1,id2@@
+  // com as empresas recomendadas (o front transforma em cards "Conectar")
+  const body = new ReadableStream({
+    async start(controller) {
+      let full = "";
+      try {
+        const stream = client.messages.stream({
+          model: "claude-sonnet-4-6",
+          max_tokens: 1024,
+          system: [
+            {
+              type: "text",
+              text: buildSystem(),
+              cache_control: { type: "ephemeral" },
+            },
+          ],
+          messages: clean,
+        });
+        for await (const ev of stream) {
+          if (
+            ev.type === "content_block_delta" &&
+            ev.delta?.type === "text_delta"
+          ) {
+            full += ev.delta.text;
+            controller.enqueue(encoder.encode(ev.delta.text));
+          }
+        }
+        const recs = detectRecommended(full);
+        if (recs.length) {
+          controller.enqueue(encoder.encode(`@@REC:${recs.join(",")}@@`));
+        }
+        // registra a pergunta + empresas recomendadas (não bloqueia a resposta)
+        const lastUser = [...clean].reverse().find((m) => m.role === "user");
+        logQuery(lastUser?.content || "", recs).catch(() => {});
+      } catch (err) {
+        const msg =
+          err instanceof Anthropic.APIError
+            ? `Erro da IA (${err.status}). Verifique a chave/variável de ambiente.`
+            : "Não consegui responder agora. Tente novamente.";
+        controller.enqueue(
+          encoder.encode(full ? `\n\n⚠️ ${msg}` : `⚠️ ${msg}`)
+        );
+      }
+      controller.close();
+    },
+  });
+
+  return new Response(body, {
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "no-cache",
+    },
+  });
 }

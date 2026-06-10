@@ -105,7 +105,7 @@ export const COMPANIES = [
     nome: "Ordeclean",
     segmento: "Agro & Pecuária",
     descricao:
-      "Soluções para ordenha — higiene, produtos e equipamentos para a pecuária leiteira produzir com qualidade.",
+      "Ordenhadeiras, peças e assistência técnica 24h — resfriadores, climatização, energia solar e químicos para higiene de ordenha (pré e pós-dipping). Revendedor autorizado GMZ.",
     atende: ["Agro & Indústria", "Comércio & Varejo"],
     link: "https://www.instagram.com/ordeclean/",
     linkLabel: "@ordeclean",

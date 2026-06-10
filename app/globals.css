@@ -1103,24 +1103,6 @@ section {
   letter-spacing: -0.04em;
   color: #f5f5f0;
 }
-.brand-card .ordeclean-mark {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--serif);
-  font-weight: 700;
-  font-size: 1.6rem;
-  letter-spacing: 0.02em;
-  color: #f5f5f0;
-}
-.brand-card .ordeclean-mark .drop {
-  width: 26px;
-  height: 26px;
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
-  background: #3ab5a4;
-  flex: none;
-}
 .brand-card .visara-mark .dot {
   width: 26px;
   height: 26px;

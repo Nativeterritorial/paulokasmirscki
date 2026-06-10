@@ -142,14 +142,9 @@ const BRANDS = [
   {
     id: "ordeclean",
     href: "https://www.instagram.com/ordeclean/",
-    logo: (
-      <span className="ordeclean-mark">
-        <span className="drop" aria-hidden="true" />
-        ORDECLEAN
-      </span>
-    ),
+    logo: <img src="/brand-ordeclean.svg" alt="Ordeclean" />,
     role: "Agro & Pecuária",
-    desc: "Soluções para ordenha — higiene, produtos e equipamentos para a pecuária leiteira.",
+    desc: "Ordenhadeiras, peças, resfriadores e assistência técnica 24h — revendedor autorizado GMZ.",
     link: "@ordeclean →",
   },
   {

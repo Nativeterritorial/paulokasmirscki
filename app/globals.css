@@ -1855,6 +1855,7 @@ body {
 .area-panel {
   display: flex;
   flex-direction: column;
+  padding: 0; /* anula o padding global de section */
   height: calc(100vh - 75px - 52px);
   min-height: 460px;
 }
@@ -2337,9 +2338,49 @@ body {
 @media (max-width: 900px) {
   .area-wrap {
     grid-template-columns: 1fr;
+    padding: 12px;
+    gap: 14px;
   }
+  /* chat ocupa quase a tela toda (100dvh acompanha o teclado no celular) */
   .area-panel {
-    height: 70vh;
+    height: calc(100vh - 95px);
+    height: calc(100dvh - 95px);
+    min-height: 420px;
+  }
+  .area-panel-head {
+    padding: 12px 16px;
+  }
+  .area-panel-head h2 {
+    font-size: 1.02rem !important;
+  }
+  .area-panel-head .kick {
+    margin-bottom: 4px !important;
+  }
+  .area-chat {
+    padding: 14px 14px;
+  }
+  .bubble {
+    max-width: 92%;
+  }
+  .msg-block {
+    max-width: 92%;
+  }
+  /* chips em linha única com rolagem horizontal */
+  .chat-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0 14px 8px;
+    scrollbar-width: none;
+  }
+  .chat-chips::-webkit-scrollbar {
+    display: none;
+  }
+  .chip {
+    flex: none;
+    white-space: nowrap;
+  }
+  .area-chat-input {
+    padding: 10px 12px;
   }
 }
 

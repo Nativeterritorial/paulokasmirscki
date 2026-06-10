@@ -49,6 +49,105 @@ const HUB_NODES = [
   { label: "Tecnologia & IA", x: 21.72, y: 21.72 },
 ];
 
+const BRANDS = [
+  {
+    id: "native",
+    href: "https://nativeterritorial.com.br",
+    logo: <img src="/brand-native.png" alt="NATIVE" />,
+    role: "Inteligência Territorial",
+    desc: "Topografia e georreferenciamento — inteligência territorial e ambiental.",
+    link: "nativeterritorial.com.br →",
+  },
+  {
+    id: "visara",
+    href: "https://visaradigital.com.br",
+    logo: (
+      <span className="visara-mark">
+        <span className="dot" aria-hidden="true" />
+        VISARA
+      </span>
+    ),
+    role: "Agência Digital",
+    desc: "Sites e Agentes de IA para negócios locais crescerem na internet.",
+    link: "visaradigital.com.br →",
+  },
+  {
+    id: "pk",
+    href: WHATSAPP,
+    logo: (
+      <span className="pk-wordmark">
+        <span className="pk-name">PAULO KASMIRSCKI</span>
+        <span className="pk-sub">Corretor de Imóveis</span>
+      </span>
+    ),
+    role: "Imóveis · CRECI-RS 77988",
+    desc: "A atuação do próprio Paulo no mercado imobiliário, dentro do ecossistema.",
+    link: "Falar no WhatsApp →",
+  },
+  {
+    id: "pulse",
+    href: "https://pulsejiujitsu.com.br",
+    logo: <img className="pulse-logo" src="/brand-pulse.png" alt="Pulse Jiu-Jitsu" />,
+    role: "Esporte & Lazer",
+    desc: "Academia de Jiu-Jitsu — treinos para todas as idades, foco em saúde, disciplina e bem-estar.",
+    link: "pulsejiujitsu.com.br →",
+  },
+  {
+    id: "exatus",
+    href: "https://exatusgene.com",
+    logo: <img src="/brand-exatus.png" alt="Exatus Gene" />,
+    role: "Saúde & Genética",
+    desc: "Testes genéticos avançados, pesquisa clínica e soluções para clínicas de fertilidade.",
+    link: "exatusgene.com →",
+  },
+  {
+    id: "bigwolf",
+    href: "https://www.bigwolfloja.com",
+    logo: <img src="/brand-bigwolf.png" alt="Big Wolf" />,
+    role: "Moda & Vestuário",
+    desc: "Loja de roupas e moda casual masculina e feminina — camisetas, moletons, jaquetas e acessórios.",
+    link: "bigwolfloja.com →",
+  },
+  {
+    id: "agetra",
+    href: "http://agetra.com.br",
+    logo: <img className="tile-logo" src="/brand-agetra.png" alt="Agetra Gráfica" />,
+    role: "Gráfica & Impressão",
+    desc: "Gráfica completa — impressos, comunicação visual, papelaria e soluções gráficas para empresas.",
+    link: "agetra.com.br →",
+  },
+  {
+    id: "gilioli",
+    href: "https://www.instagram.com/giliolicontabilidade/",
+    logo: (
+      <img
+        className="pulse-logo"
+        src="/brand-gilioli.png"
+        alt="Gilioli Organizações Contábeis"
+      />
+    ),
+    role: "Contabilidade",
+    desc: "Contábil, fiscal, folha de pagamento, abertura de empresas e consultoria para negócios.",
+    link: "@giliolicontabilidade →",
+  },
+  {
+    id: "mutalys",
+    href: WHATSAPP,
+    logo: <img className="tile-logo" src="/brand-mutalys.png" alt="Mutalys" />,
+    role: "Gestão & Consultoria",
+    desc: "Inteligência que transforma — otimização de processos, transformação de negócios e capacitação de equipes.",
+    link: "Falar no WhatsApp →",
+  },
+  {
+    id: "alsus",
+    href: "https://www.alsus.com.br",
+    logo: <img className="tile-logo" src="/brand-alsus.png" alt="Grupo ALSUS" />,
+    role: "Construção & Infraestrutura",
+    desc: "Urbanização, infraestrutura e construção — loteamentos, terraplenagem, drenagem e obras.",
+    link: "alsus.com.br →",
+  },
+];
+
 function GhostMarquee({ word }) {
   return (
     <div className="ghost-marquee" aria-hidden="true">
@@ -346,182 +445,27 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="brands-grid fade-up">
-              <a
-                className="brand-card"
-                href="https://nativeterritorial.com.br"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="logo-slot">
-                  <img src="/brand-native.png" alt="NATIVE" />
-                </div>
-                <div className="b-role">Inteligência Territorial</div>
-                <p className="b-desc">
-                  Topografia e georreferenciamento — inteligência territorial e
-                  ambiental.
-                </p>
-                <span className="b-link">nativeterritorial.com.br →</span>
-              </a>
-
-              <a
-                className="brand-card"
-                href="https://visaradigital.com.br"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="logo-slot">
-                  <span className="visara-mark">
-                    <span className="dot" aria-hidden="true" />
-                    VISARA
-                  </span>
-                </div>
-                <div className="b-role">Agência Digital</div>
-                <p className="b-desc">
-                  Sites e Agentes de IA para negócios locais crescerem na
-                  internet.
-                </p>
-                <span className="b-link">visaradigital.com.br →</span>
-              </a>
-
-              <a
-                className="brand-card"
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="logo-slot">
-                  <span className="pk-wordmark">
-                    <span className="pk-name">PAULO KASMIRSCKI</span>
-                    <span className="pk-sub">Corretor de Imóveis</span>
-                  </span>
-                </div>
-                <div className="b-role">Imóveis · CRECI-RS 77988</div>
-                <p className="b-desc">
-                  A atuação do próprio Paulo no mercado imobiliário, dentro do
-                  ecossistema.
-                </p>
-                <span className="b-link">Falar no WhatsApp →</span>
-              </a>
-
-              <a
-                className="brand-card"
-                href="https://pulsejiujitsu.com.br"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="logo-slot">
-                  <img className="pulse-logo" src="/brand-pulse.png" alt="Pulse Jiu-Jitsu" />
-                </div>
-                <div className="b-role">Esporte &amp; Lazer</div>
-                <p className="b-desc">
-                  Academia de Jiu-Jitsu — treinos para todas as idades, foco em
-                  saúde, disciplina e bem-estar.
-                </p>
-                <span className="b-link">pulsejiujitsu.com.br →</span>
-              </a>
-
-              <a
-                className="brand-card"
-                href="https://exatusgene.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="logo-slot">
-                  <img src="/brand-exatus.png" alt="Exatus Gene" />
-                </div>
-                <div className="b-role">Saúde &amp; Genética</div>
-                <p className="b-desc">
-                  Testes genéticos avançados, pesquisa clínica e soluções para
-                  clínicas de fertilidade.
-                </p>
-                <span className="b-link">exatusgene.com →</span>
-              </a>
-
-              <a
-                className="brand-card"
-                href="https://www.bigwolfloja.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="logo-slot">
-                  <img src="/brand-bigwolf.png" alt="Big Wolf" />
-                </div>
-                <div className="b-role">Moda &amp; Vestuário</div>
-                <p className="b-desc">
-                  Loja de roupas e moda casual masculina e feminina — camisetas,
-                  moletons, jaquetas e acessórios.
-                </p>
-                <span className="b-link">bigwolfloja.com →</span>
-              </a>
-
-              <a
-                className="brand-card"
-                href="http://agetra.com.br"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="logo-slot">
-                  <img className="tile-logo" src="/brand-agetra.png" alt="Agetra Gráfica" />
-                </div>
-                <div className="b-role">Gráfica &amp; Impressão</div>
-                <p className="b-desc">
-                  Gráfica completa — impressos, comunicação visual, papelaria e
-                  soluções gráficas para empresas.
-                </p>
-                <span className="b-link">agetra.com.br →</span>
-              </a>
-
-              <a
-                className="brand-card"
-                href="https://www.instagram.com/giliolicontabilidade/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="logo-slot">
-                  <img className="pulse-logo" src="/brand-gilioli.png" alt="Gilioli Organizações Contábeis" />
-                </div>
-                <div className="b-role">Contabilidade</div>
-                <p className="b-desc">
-                  Contábil, fiscal, folha de pagamento, abertura de empresas e
-                  consultoria para negócios.
-                </p>
-                <span className="b-link">@giliolicontabilidade →</span>
-              </a>
-
-              <a
-                className="brand-card"
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="logo-slot">
-                  <img className="tile-logo" src="/brand-mutalys.png" alt="Mutalys" />
-                </div>
-                <div className="b-role">Gestão &amp; Consultoria</div>
-                <p className="b-desc">
-                  Inteligência que transforma — otimização de processos,
-                  transformação de negócios e capacitação de equipes.
-                </p>
-                <span className="b-link">Falar no WhatsApp →</span>
-              </a>
-
-              <a
-                className="brand-card"
-                href="https://www.alsus.com.br"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="logo-slot">
-                  <img className="tile-logo" src="/brand-alsus.png" alt="Grupo ALSUS" />
-                </div>
-                <div className="b-role">Construção &amp; Infraestrutura</div>
-                <p className="b-desc">
-                  Urbanização, infraestrutura e construção — loteamentos,
-                  terraplenagem, drenagem e obras.
-                </p>
-                <span className="b-link">alsus.com.br →</span>
-              </a>
+            <div className="brands-carousel fade-up">
+              <div className="bc-track">
+                {[0, 1].map((dup) =>
+                  BRANDS.map((b) => (
+                    <a
+                      className="brand-card"
+                      key={`${dup}-${b.id}`}
+                      href={b.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-hidden={dup === 1 ? "true" : undefined}
+                      tabIndex={dup === 1 ? -1 : undefined}
+                    >
+                      <div className="logo-slot">{b.logo}</div>
+                      <div className="b-role">{b.role}</div>
+                      <p className="b-desc">{b.desc}</p>
+                      <span className="b-link">{b.link}</span>
+                    </a>
+                  ))
+                )}
+              </div>
             </div>
 
             <p className="brands-note">

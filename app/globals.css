@@ -1016,12 +1016,41 @@ section {
   max-height: 120px;
 }
 
-.brands-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
+.brands-carousel {
+  overflow: hidden;
   border: 1px solid var(--border);
+  border-radius: 16px;
+  /* esmaece as bordas laterais */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+}
+.bc-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 60s linear infinite;
+}
+.brands-carousel:hover .bc-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bc-track {
+    animation: none;
+  }
+  .brands-carousel {
+    overflow-x: auto;
+  }
 }
 .brand-card {
   display: flex;
@@ -1030,7 +1059,10 @@ section {
   gap: 22px;
   padding: 44px 38px;
   background: var(--bg);
+  width: 360px;
+  flex: none;
   min-height: 240px;
+  border-right: 1px solid var(--border);
   transition: background 0.3s ease;
 }
 .brand-card:hover {
@@ -1218,8 +1250,9 @@ section {
 }
 
 @media (max-width: 920px) {
-  .brands-grid {
-    grid-template-columns: 1fr;
+  .brand-card {
+    width: 290px;
+    padding: 34px 28px;
   }
   .footer-cols {
     grid-template-columns: 1fr 1fr;

@@ -10,6 +10,12 @@ export default function sitemap() {
       priority: 1,
     },
     {
+      url: `${base}/ecossistema`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${base}/rede`,
       lastModified: new Date(),
       changeFrequency: "weekly",

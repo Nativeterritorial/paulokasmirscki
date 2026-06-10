@@ -259,9 +259,9 @@ export default function Area() {
           </form>
           {err && <div className="login-err">{err}</div>}
           <div className="login-hint">
-            Ainda não tem acesso?{" "}
-            <a href={wa("Olá Paulo! Quero acesso à área de membros do ecossistema.")} target="_blank" rel="noopener noreferrer">
-              Fale com o Paulo
+            Ainda não tem acesso?
+            <a className="btn btn-outline login-signup" href="/ecossistema">
+              Cadastre-se
             </a>
           </div>
         </div>

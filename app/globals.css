@@ -2191,17 +2191,51 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-.firm-group + .firm-group {
-  margin-top: 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
 }
 .firm-group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
   font-size: 0.68rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  text-align: left;
   color: var(--gold-2);
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 13px 14px;
+  font-family: inherit;
+}
+.firm-group-title:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.firm-group-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0;
+}
+.firm-group-meta .chev {
+  transition: transform 0.25s ease;
+  font-size: 0.8rem;
+}
+.firm-group.open .firm-group-meta .chev {
+  transform: rotate(180deg);
+}
+.firm-group .firm {
+  margin: 0 8px;
+}
+.firm-group .firm:last-child {
+  margin-bottom: 8px;
 }
 .firm {
   display: flex;

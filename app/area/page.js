@@ -49,6 +49,7 @@ export default function Area() {
   ]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
+  const [openSeg, setOpenSeg] = useState(null);
   const chatRef = useRef(null);
 
   useEffect(() => {
@@ -333,9 +334,28 @@ export default function Area() {
             )
               .sort(([a], [b]) => a.localeCompare(b, "pt-BR"))
               .map(([segmento, firms]) => (
-                <div className="firm-group" key={segmento}>
-                  <div className="firm-group-title">{segmento}</div>
-                  {firms.map((c) => (
+                <div
+                  className={`firm-group${openSeg === segmento ? " open" : ""}`}
+                  key={segmento}
+                >
+                  <button
+                    type="button"
+                    className="firm-group-title"
+                    onClick={() =>
+                      setOpenSeg((s) => (s === segmento ? null : segmento))
+                    }
+                    aria-expanded={openSeg === segmento}
+                  >
+                    <span>{segmento}</span>
+                    <span className="firm-group-meta">
+                      {firms.length}
+                      <span className="chev" aria-hidden="true">
+                        ▾
+                      </span>
+                    </span>
+                  </button>
+                  {openSeg === segmento &&
+                    firms.map((c) => (
                     <div className="firm" key={c.id}>
                       <div className="firm-info">
                         <div className="firm-nm">{c.nome}</div>

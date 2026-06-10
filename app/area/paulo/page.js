@@ -125,6 +125,38 @@ export default function PauloAdmin() {
 
   const notReady = stats && stats.ready === false;
 
+  // botão de resposta do lead: WhatsApp se for telefone, e-mail se tiver @
+  const leadAction = (l) => {
+    const digits = String(l.contato || "").replace(/\D/g, "");
+    if (l.contato?.includes("@"))
+      return {
+        href: `mailto:${l.contato}?subject=${encodeURIComponent(
+          "Seu pedido no ecossistema"
+        )}`,
+        label: "E-mail",
+      };
+    if (digits.length >= 10) {
+      const full = digits.length <= 11 ? `55${digits}` : digits;
+      return {
+        href: `https://wa.me/${full}?text=${encodeURIComponent(
+          `Olá ${l.nome}! Aqui é o Paulo Kasmirscki. Vi seu pedido no site: "${l.msg}". Vamos conversar?`
+        )}`,
+        label: "Responder",
+      };
+    }
+    return null;
+  };
+
+  // pedidos à IA sem empresa correspondente = oportunidade de recrutamento
+  const gaps = (stats?.recentQueries || []).filter(
+    (q) => Array.isArray(q.r) && q.r.length === 0
+  );
+  const hoje = new Date().toLocaleDateString("pt-BR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  });
+
   // ---------- PAINEL ----------
   return (
     <div className="area">
@@ -156,40 +188,108 @@ export default function PauloAdmin() {
 
         {stats && stats.ready && (
           <>
+            {/* SAUDAÇÃO */}
+            <div className="admin-hero">
+              <div>
+                <div className="kick">{hoje}</div>
+                <h1>
+                  Olá, <em>Paulo</em> 👋
+                </h1>
+                <p>
+                  Sua rede gerou <strong>{stats.totals.queries}</strong>{" "}
+                  {stats.totals.queries === 1 ? "conversa" : "conversas"} com a
+                  IA, <strong>{stats.totals.connects}</strong>{" "}
+                  {stats.totals.connects === 1 ? "pedido" : "pedidos"} de
+                  conexão e <strong>{stats.totals.leads || 0}</strong>{" "}
+                  {(stats.totals.leads || 0) === 1 ? "lead" : "leads"} até
+                  agora.
+                </p>
+              </div>
+            </div>
+
             {/* CARTÕES DE TOTAIS */}
             <div className="admin-cards">
               <div className="admin-card">
+                <div className="admin-ic" aria-hidden="true">
+                  💬
+                </div>
                 <div className="admin-num">{stats.totals.queries}</div>
                 <div className="admin-lbl">Conversas com a IA</div>
               </div>
               <div className="admin-card">
+                <div className="admin-ic" aria-hidden="true">
+                  🤝
+                </div>
                 <div className="admin-num">{stats.totals.connects}</div>
                 <div className="admin-lbl">Pedidos de conexão</div>
               </div>
               <div className="admin-card">
+                <div className="admin-ic" aria-hidden="true">
+                  📥
+                </div>
                 <div className="admin-num">{stats.totals.leads || 0}</div>
                 <div className="admin-lbl">Leads do site</div>
               </div>
             </div>
 
-            {/* LEADS DO FORMULÁRIO */}
-            {stats.leads?.length > 0 && (
-              <section className="admin-panel" style={{ marginBottom: 22 }}>
-                <h3>📥 Leads do site (formulário da home)</h3>
+            {/* RADAR: DEMANDA SEM EMPRESA NA REDE */}
+            {gaps.length > 0 && (
+              <section className="admin-panel admin-radar">
+                <h3>🎯 Radar — pedidos sem empresa na rede</h3>
+                <p className="admin-hint">
+                  Pessoas pediram isso à IA e ainda não há quem atenda. É aqui
+                  que vale recrutar empresa nova pro ecossistema.
+                </p>
                 <ul className="admin-log">
-                  {stats.leads.map((l, i) => (
-                    <li key={i} className="lead-item">
-                      <span className="lg-time">{fmtDate(l.t)}</span>
-                      <span className="lg-text">
-                        <strong>{l.nome}</strong> · {l.contato}
-                        <br />
-                        {l.msg}
-                      </span>
+                  {gaps.slice(0, 8).map((q, i) => (
+                    <li key={i}>
+                      <span className="lg-time">{fmtDate(q.t)}</span>
+                      <span className="lg-text">{q.q}</span>
                     </li>
                   ))}
                 </ul>
               </section>
             )}
+
+            {/* LEADS DO FORMULÁRIO */}
+            <section className="admin-panel admin-leads">
+              <h3>📥 Leads do site</h3>
+              {!stats.leads?.length ? (
+                <p className="admin-empty">
+                  Nenhum lead ainda. Eles chegam pelo formulário no final da
+                  página inicial.
+                </p>
+              ) : (
+                <div className="lead-cards">
+                  {stats.leads.map((l, i) => {
+                    const action = leadAction(l);
+                    return (
+                      <div className="lead-card" key={i}>
+                        <div className="lead-card-top">
+                          <div>
+                            <div className="lead-nm">{l.nome}</div>
+                            <div className="lead-ct">
+                              {l.contato} · {fmtDate(l.t)}
+                            </div>
+                          </div>
+                          {action && (
+                            <a
+                              className="firm-conn"
+                              href={action.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {action.label}
+                            </a>
+                          )}
+                        </div>
+                        <p className="lead-msg">“{l.msg}”</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </section>
 
             <div className="admin-grid">
               {/* O QUE A IA MAIS RECOMENDA */}
@@ -202,7 +302,17 @@ export default function PauloAdmin() {
                     {stats.recommended.map((r, i) => (
                       <li key={r.id}>
                         <span className="rk-pos">{i + 1}</span>
-                        <span className="rk-name">{r.nome}</span>
+                        <span className="rk-name">
+                          {r.nome}
+                          <span
+                            className="rk-bar"
+                            style={{
+                              width: `${
+                                (r.count / stats.recommended[0].count) * 100
+                              }%`,
+                            }}
+                          />
+                        </span>
                         <span className="rk-count">{r.count}</span>
                       </li>
                     ))}
@@ -220,7 +330,18 @@ export default function PauloAdmin() {
                     {stats.connectsRanking.map((r, i) => (
                       <li key={r.id}>
                         <span className="rk-pos">{i + 1}</span>
-                        <span className="rk-name">{r.nome}</span>
+                        <span className="rk-name">
+                          {r.nome}
+                          <span
+                            className="rk-bar"
+                            style={{
+                              width: `${
+                                (r.count / stats.connectsRanking[0].count) *
+                                100
+                              }%`,
+                            }}
+                          />
+                        </span>
                         <span className="rk-count">{r.count}</span>
                       </li>
                     ))}

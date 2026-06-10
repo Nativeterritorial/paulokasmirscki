@@ -303,6 +303,9 @@ a {
 /* Hero photo */
 .hero-photo {
   position: relative;
+  /* alinhada ao topo pra foto + legenda aparecerem inteiras na abertura */
+  align-self: start;
+  margin-top: 8px;
 }
 
 .hero-photo-frame {
@@ -310,6 +313,11 @@ a {
   border-radius: var(--radius);
   overflow: hidden;
   aspect-ratio: 4 / 5;
+  /* nunca mais alta que a janela: foto + legenda visíveis no primeiro scroll */
+  height: min(66vh, 560px);
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
   background: #111;
   border: 1px solid var(--border);
 }
@@ -889,6 +897,12 @@ section {
   .hero-photo {
     order: -1;
     max-width: 440px;
+  }
+  /* no mobile a largura manda de novo (a altura segue a proporção) */
+  .hero-photo-frame {
+    width: 100%;
+    height: auto;
+    max-height: none;
   }
   .eco-grid,
   .testimonials {

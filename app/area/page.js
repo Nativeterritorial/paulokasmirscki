@@ -55,6 +55,29 @@ export default function Area() {
 
   useEffect(() => {
     try {
+      // link-convite: /area?convite=CODIGO entra direto
+      const convite = new URLSearchParams(window.location.search).get(
+        "convite"
+      );
+      if (convite) {
+        window.history.replaceState({}, "", "/area");
+        fetch("/api/area-login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code: convite }),
+        })
+          .then((r) => r.json())
+          .then((d) => {
+            if (d.ok) {
+              setCode(convite);
+              setAuthed(true);
+              try {
+                localStorage.setItem("area_code", convite);
+              } catch (e) {}
+            }
+          })
+          .catch(() => {});
+      }
       const saved = localStorage.getItem("area_code");
       if (saved) {
         setCode(saved);
@@ -270,8 +293,14 @@ export default function Area() {
             <h2 style={{ fontSize: "1.35rem" }}>Como posso te conectar hoje?</h2>
           </div>
           <div className="area-chat" ref={chatRef}>
-            {messages.map((m, i) =>
-              m.role === "assistant" ? (
+            {messages.map((m, i) => {
+              // último pedido do usuário antes desta resposta (contexto pro WhatsApp)
+              const pedido = messages
+                .slice(0, i)
+                .filter((x) => x.role === "user")
+                .pop()
+                ?.content?.slice(0, 160);
+              return m.role === "assistant" ? (
                 <div key={i} className="msg-block">
                   <div
                     className="bubble assistant"
@@ -291,7 +320,8 @@ export default function Area() {
                             <a
                               className="firm-conn"
                               href={wa(
-                                `Olá Paulo! Quero me conectar com a ${c.nome} do ecossistema.`
+                                `Olá Paulo! Quero me conectar com a ${c.nome} do ecossistema.` +
+                                  (pedido ? ` Meu pedido: "${pedido}"` : "")
                               )}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -308,8 +338,8 @@ export default function Area() {
                 <div key={i} className="bubble user">
                   {m.content}
                 </div>
-              )
-            )}
+              );
+            })}
             {sending && messages[messages.length - 1]?.role === "user" && (
               <div className="bubble assistant typing">digitando…</div>
             )}

@@ -166,7 +166,30 @@ export default function PauloAdmin() {
                 <div className="admin-num">{stats.totals.connects}</div>
                 <div className="admin-lbl">Pedidos de conexão</div>
               </div>
+              <div className="admin-card">
+                <div className="admin-num">{stats.totals.leads || 0}</div>
+                <div className="admin-lbl">Leads do site</div>
+              </div>
             </div>
+
+            {/* LEADS DO FORMULÁRIO */}
+            {stats.leads?.length > 0 && (
+              <section className="admin-panel" style={{ marginBottom: 22 }}>
+                <h3>📥 Leads do site (formulário da home)</h3>
+                <ul className="admin-log">
+                  {stats.leads.map((l, i) => (
+                    <li key={i} className="lead-item">
+                      <span className="lg-time">{fmtDate(l.t)}</span>
+                      <span className="lg-text">
+                        <strong>{l.nome}</strong> · {l.contato}
+                        <br />
+                        {l.msg}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
 
             <div className="admin-grid">
               {/* O QUE A IA MAIS RECOMENDA */}
@@ -215,7 +238,17 @@ export default function PauloAdmin() {
                     {stats.recentQueries.map((q, i) => (
                       <li key={i}>
                         <span className="lg-time">{fmtDate(q.t)}</span>
-                        <span className="lg-text">{q.q}</span>
+                        <span className="lg-text">
+                          {q.q}
+                          {Array.isArray(q.r) && q.r.length === 0 && (
+                            <span
+                              className="lg-tag"
+                              title="A IA não tinha empresa na rede pra esse pedido — oportunidade de recrutar"
+                            >
+                              sem empresa na rede
+                            </span>
+                          )}
+                        </span>
                       </li>
                     ))}
                   </ul>

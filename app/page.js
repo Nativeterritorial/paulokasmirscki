@@ -1,6 +1,7 @@
 import Effects from "./effects";
 import CookieBanner from "./cookie";
 import HeroAI from "./hero-ai";
+import LeadForm from "./lead-form";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const INSTAGRAM = "https://instagram.com/paulokasmirscki";
@@ -791,6 +792,8 @@ export default function Home() {
             >
               Falar no WhatsApp
             </a>
+            <div className="lead-divider">ou deixe seu pedido por aqui</div>
+            <LeadForm />
           </div>
         </section>
       </main>

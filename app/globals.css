@@ -2384,6 +2384,112 @@ body {
   }
 }
 
+/* ---------- Formulário de lead (home) ---------- */
+.lead-divider {
+  margin: 34px auto 18px;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.lead-form {
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+.lead-row {
+  display: flex;
+  gap: 12px;
+}
+.lead-row input {
+  flex: 1;
+  min-width: 0;
+}
+.lead-form input,
+.lead-form textarea {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px 16px;
+  color: var(--text);
+  font-size: 0.92rem;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+}
+.lead-form input:focus,
+.lead-form textarea:focus {
+  border-color: var(--gold-2);
+}
+.lead-form input::placeholder,
+.lead-form textarea::placeholder {
+  color: var(--muted-2);
+}
+.lead-form .btn {
+  align-self: center;
+  margin-top: 4px;
+}
+.lead-hp {
+  position: absolute !important;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.lead-err {
+  color: #ff9b9b;
+  font-size: 0.85rem;
+  text-align: center;
+}
+.lead-done {
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 26px 0 6px;
+}
+.lead-done-ic {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--gold-2);
+  border: 1px solid var(--gold-2);
+}
+.lead-done p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  max-width: 420px;
+}
+@media (max-width: 640px) {
+  .lead-row {
+    flex-direction: column;
+  }
+}
+
+/* painel: tag de demanda não atendida + leads */
+.lg-tag {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffc46b;
+  border: 1px solid rgba(255, 196, 107, 0.5);
+  border-radius: 999px;
+  padding: 2px 8px;
+  vertical-align: middle;
+}
+.lead-item .lg-text strong {
+  color: var(--text);
+}
+
 /* ---------- 404 ---------- */
 .nf {
   min-height: 100vh;

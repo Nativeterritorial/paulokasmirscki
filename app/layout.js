@@ -20,10 +20,48 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  themeColor: "#0a0c1e",
+};
+
+// dados estruturados pro Google (quem é o Paulo + o site)
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://www.paulokasmirscki.com.br/#paulo",
+      name: "Paulo Kasmirscki",
+      jobTitle: "Conector de negócios",
+      description:
+        "Conector de um ecossistema de negócios — une pessoas e marcas de diferentes segmentos, gerando indicações, parcerias e oportunidades.",
+      url: "https://www.paulokasmirscki.com.br",
+      sameAs: ["https://instagram.com/paulokasmirscki"],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Veranópolis",
+        addressRegion: "RS",
+        addressCountry: "BR",
+      },
+    },
+    {
+      "@type": "WebSite",
+      name: "Paulo Kasmirscki — Conectando pessoas e gerando negócios",
+      url: "https://www.paulokasmirscki.com.br",
+      inLanguage: "pt-BR",
+      about: { "@id": "https://www.paulokasmirscki.com.br/#paulo" },
+    },
+  ],
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

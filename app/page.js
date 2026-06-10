@@ -470,7 +470,8 @@ export default function Home() {
             </div>
 
             <p className="brands-note">
-              E a sua marca? <a href="#contato" style={{ color: "var(--gold-2)" }}>Faça parte da rede →</a>
+              <a href="/rede" style={{ color: "var(--gold-2)" }}>Ver todas as empresas →</a>
+              {"  ·  "}E a sua marca? <a href="#contato" style={{ color: "var(--gold-2)" }}>Faça parte da rede →</a>
             </p>
           </div>
         </section>
@@ -831,6 +832,7 @@ export default function Home() {
             </div>
             <div>
               <h4>A Rede</h4>
+              <a href="/rede">Todas as empresas</a>
               <a href="https://nativeterritorial.com.br" target="_blank" rel="noopener noreferrer">
                 NATIVE
               </a>

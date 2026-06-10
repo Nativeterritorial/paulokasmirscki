@@ -2729,6 +2729,125 @@ body {
   color: var(--text);
 }
 
+/* ---------- Páginas da rede (/rede) ---------- */
+.rede-page {
+  min-height: 100vh;
+}
+.rede-wrap {
+  padding-bottom: 80px;
+}
+.rede-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 36px;
+}
+.rede-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 26px 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  transition: border-color 0.25s ease, background 0.25s ease,
+    transform 0.25s ease;
+}
+.rede-card:hover {
+  border-color: var(--gold-2);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-3px);
+}
+.rede-sg {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+}
+.rede-card h2 {
+  font-size: 1.25rem;
+}
+.rede-card p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  flex: 1;
+}
+.empresa-wrap {
+  padding: 36px 0 80px;
+}
+.empresa-back {
+  display: inline-block;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+.empresa-back:hover {
+  color: var(--gold-2);
+}
+.empresa-hero {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.empresa-logo {
+  max-height: 72px;
+  max-width: 280px;
+  object-fit: contain;
+  margin: 18px 0 6px;
+}
+.empresa-nome {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-top: 10px;
+}
+.empresa-nome-sub {
+  font-size: 1.3rem;
+  margin-top: 4px;
+}
+.empresa-desc {
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.65;
+  max-width: 560px;
+  margin-top: 14px;
+}
+.empresa-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+.empresa-side-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+}
+.empresa-side-card p {
+  margin-top: 12px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+.empresa-side-muted {
+  color: var(--muted) !important;
+  font-size: 0.85rem !important;
+}
+.empresa-side-card a {
+  color: var(--gold-2);
+  text-decoration: underline;
+}
+@media (max-width: 900px) {
+  .rede-grid {
+    grid-template-columns: 1fr;
+  }
+  .empresa-hero {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
 /* ---------- 404 ---------- */
 .nf {
   min-height: 100vh;

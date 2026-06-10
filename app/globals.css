@@ -2165,6 +2165,143 @@ body {
   margin: -6px 0 12px;
   line-height: 1.5;
 }
+/* barra de ferramentas do painel */
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.admin-periods,
+.admin-tools {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.admin-search {
+  flex: 1;
+  min-width: 200px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 16px;
+  color: var(--text);
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+}
+.admin-search:focus {
+  border-color: var(--gold-2);
+}
+.admin-search::placeholder {
+  color: var(--muted-2);
+}
+.chip-on {
+  border-color: var(--gold-2);
+  background: rgba(138, 147, 255, 0.18);
+  color: #fff;
+}
+
+/* gráfico de atividade */
+.admin-chart-panel {
+  margin-bottom: 22px;
+}
+.admin-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 130px;
+  padding-top: 8px;
+}
+.ac-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+}
+.ac-bars {
+  flex: 1;
+  width: 100%;
+  max-width: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2px;
+}
+.ac-bar {
+  width: 100%;
+  border-radius: 4px;
+  min-height: 5px;
+}
+.ac-q {
+  background: #5b9bff;
+}
+.ac-c {
+  background: var(--gold-2);
+}
+.ac-l {
+  background: #ffc46b;
+}
+.ac-zero {
+  width: 100%;
+  height: 3px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+}
+.ac-day {
+  font-size: 0.64rem;
+  color: var(--muted-2);
+}
+.ac-legend {
+  display: flex;
+  gap: 18px;
+  margin-top: 12px;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+.ac-legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+
+/* lead atendido */
+.lead-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+.lead-check {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.lead-check:hover {
+  border-color: var(--gold-2);
+  color: var(--text);
+}
+.lead-check.on {
+  color: #7ee2a8;
+  border-color: rgba(126, 226, 168, 0.5);
+}
+.lead-ok {
+  opacity: 0.55;
+}
+
 .admin-radar {
   margin-bottom: 22px;
   border-color: rgba(255, 196, 107, 0.45);

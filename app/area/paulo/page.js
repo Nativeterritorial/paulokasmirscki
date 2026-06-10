@@ -23,6 +23,10 @@ export default function PauloAdmin() {
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState(null);
+  const [inviteLink, setInviteLink] = useState("");
+  const [copied, setCopied] = useState(false);
+  const [busca, setBusca] = useState("");
+  const [periodo, setPeriodo] = useState("all"); // "7" | "30" | "all"
 
   useEffect(() => {
     try {
@@ -56,6 +60,7 @@ export default function PauloAdmin() {
       }
       const d = await r.json();
       setStats(d.stats);
+      if (d.inviteLink) setInviteLink(d.inviteLink);
       setAuthed(true);
       try {
         localStorage.setItem("admin_code", c);
@@ -64,6 +69,60 @@ export default function PauloAdmin() {
       setErr("Erro ao carregar. Tente novamente.");
     }
     setLoading(false);
+  };
+
+  // atualização automática a cada 60s
+  useEffect(() => {
+    if (!authed || !code) return;
+    const id = setInterval(() => load(code), 60000);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authed, code]);
+
+  // marca/desmarca lead como atendido (otimista + persiste no servidor)
+  const toggleLeadDone = (t, done) => {
+    setStats((s) => ({
+      ...s,
+      leadsDone: done
+        ? [...(s.leadsDone || []), String(t)]
+        : (s.leadsDone || []).filter((x) => x !== String(t)),
+    }));
+    fetch("/api/admin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code, action: "leadDone", t, done }),
+    }).catch(() => {});
+  };
+
+  const copyInvite = async () => {
+    try {
+      await navigator.clipboard.writeText(inviteLink);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (e) {}
+  };
+
+  // exporta os leads em CSV (abre no Excel)
+  const exportCsv = () => {
+    const rows = [
+      ["Data", "Nome", "Contato", "Pedido", "Atendido"],
+      ...(stats?.leads || []).map((l) => [
+        fmtDate(l.t),
+        l.nome,
+        l.contato,
+        l.msg,
+        (stats.leadsDone || []).includes(String(l.t)) ? "sim" : "não",
+      ]),
+    ];
+    const csv = rows
+      .map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(";"))
+      .join("\r\n");
+    const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "leads-ecossistema.csv";
+    a.click();
+    URL.revokeObjectURL(a.href);
   };
 
   const login = (e) => {
@@ -157,6 +216,44 @@ export default function PauloAdmin() {
     month: "long",
   });
 
+  // filtros de período e busca aplicados às listas
+  const cutoff =
+    periodo === "all" ? 0 : Date.now() - Number(periodo) * 86400000;
+  const inPeriod = (x) => !cutoff || (x.t || 0) >= cutoff;
+  const match = (txt) =>
+    !busca || String(txt || "").toLowerCase().includes(busca.toLowerCase());
+  const fQueries = (stats?.recentQueries || [])
+    .filter(inPeriod)
+    .filter((q) => match(q.q));
+  const fConnects = (stats?.recentConnects || [])
+    .filter(inPeriod)
+    .filter((c) => match(c.nome));
+  const fLeads = (stats?.leads || [])
+    .filter(inPeriod)
+    .filter((l) => match(`${l.nome} ${l.contato} ${l.msg}`));
+  const isDone = (l) => (stats?.leadsDone || []).includes(String(l.t));
+  const pendentes = (stats?.leads || []).filter((l) => !isDone(l)).length;
+
+  // gráfico: eventos por dia nos últimos 14 dias
+  const days = [...Array(14)].map((_, i) => {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    d.setDate(d.getDate() - (13 - i));
+    return d.getTime();
+  });
+  const chart = days.map((d0) => {
+    const d1 = d0 + 86400000;
+    const cnt = (list) =>
+      (list || []).filter((x) => x.t >= d0 && x.t < d1).length;
+    return {
+      d: d0,
+      q: cnt(stats?.recentQueries),
+      c: cnt(stats?.recentConnects),
+      l: cnt(stats?.leads),
+    };
+  });
+  const chartMax = Math.max(1, ...chart.map((d) => d.q + d.c + d.l));
+
   // ---------- PAINEL ----------
   return (
     <div className="area">
@@ -207,6 +304,44 @@ export default function PauloAdmin() {
               </div>
             </div>
 
+            {/* FERRAMENTAS */}
+            <div className="admin-toolbar">
+              <div className="admin-periods">
+                {[
+                  ["7", "7 dias"],
+                  ["30", "30 dias"],
+                  ["all", "Tudo"],
+                ].map(([v, lbl]) => (
+                  <button
+                    key={v}
+                    type="button"
+                    className={`chip${periodo === v ? " chip-on" : ""}`}
+                    onClick={() => setPeriodo(v)}
+                  >
+                    {lbl}
+                  </button>
+                ))}
+              </div>
+              <input
+                className="admin-search"
+                placeholder="Buscar lead, pergunta, empresa…"
+                value={busca}
+                onChange={(e) => setBusca(e.target.value)}
+              />
+              <div className="admin-tools">
+                {inviteLink && (
+                  <button type="button" className="chip" onClick={copyInvite}>
+                    {copied ? "✓ Copiado!" : "🔗 Copiar link-convite"}
+                  </button>
+                )}
+                {stats.leads?.length > 0 && (
+                  <button type="button" className="chip" onClick={exportCsv}>
+                    ⬇ Exportar leads (CSV)
+                  </button>
+                )}
+              </div>
+            </div>
+
             {/* CARTÕES DE TOTAIS */}
             <div className="admin-cards">
               <div className="admin-card">
@@ -232,6 +367,61 @@ export default function PauloAdmin() {
               </div>
             </div>
 
+            {/* GRÁFICO DE ATIVIDADE (14 DIAS) */}
+            <section className="admin-panel admin-chart-panel">
+              <h3>📈 Atividade — últimos 14 dias</h3>
+              <div className="admin-chart">
+                {chart.map((d) => (
+                  <div
+                    className="ac-col"
+                    key={d.d}
+                    title={`${new Date(d.d).toLocaleDateString("pt-BR", {
+                      day: "2-digit",
+                      month: "2-digit",
+                    })} — ${d.q} conversa(s), ${d.c} conexão(ões), ${d.l} lead(s)`}
+                  >
+                    <div className="ac-bars">
+                      {d.l > 0 && (
+                        <div
+                          className="ac-bar ac-l"
+                          style={{ height: `${(d.l / chartMax) * 100}%` }}
+                        />
+                      )}
+                      {d.c > 0 && (
+                        <div
+                          className="ac-bar ac-c"
+                          style={{ height: `${(d.c / chartMax) * 100}%` }}
+                        />
+                      )}
+                      {d.q > 0 && (
+                        <div
+                          className="ac-bar ac-q"
+                          style={{ height: `${(d.q / chartMax) * 100}%` }}
+                        />
+                      )}
+                      {d.q + d.c + d.l === 0 && <div className="ac-zero" />}
+                    </div>
+                    <div className="ac-day">
+                      {new Date(d.d).toLocaleDateString("pt-BR", {
+                        day: "2-digit",
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="ac-legend">
+                <span>
+                  <i className="ac-q" /> Conversas
+                </span>
+                <span>
+                  <i className="ac-c" /> Conexões
+                </span>
+                <span>
+                  <i className="ac-l" /> Leads
+                </span>
+              </div>
+            </section>
+
             {/* RADAR: DEMANDA SEM EMPRESA NA REDE */}
             {gaps.length > 0 && (
               <section className="admin-panel admin-radar">
@@ -253,18 +443,28 @@ export default function PauloAdmin() {
 
             {/* LEADS DO FORMULÁRIO */}
             <section className="admin-panel admin-leads">
-              <h3>📥 Leads do site</h3>
-              {!stats.leads?.length ? (
+              <h3>
+                📥 Leads do site
+                {pendentes > 0 && (
+                  <span className="lg-tag">{pendentes} a responder</span>
+                )}
+              </h3>
+              {!fLeads.length ? (
                 <p className="admin-empty">
-                  Nenhum lead ainda. Eles chegam pelo formulário no final da
-                  página inicial.
+                  {stats.leads?.length
+                    ? "Nenhum lead nesse filtro."
+                    : "Nenhum lead ainda. Eles chegam pelo formulário no final da página inicial."}
                 </p>
               ) : (
                 <div className="lead-cards">
-                  {stats.leads.map((l, i) => {
+                  {fLeads.map((l, i) => {
                     const action = leadAction(l);
+                    const done = isDone(l);
                     return (
-                      <div className="lead-card" key={i}>
+                      <div
+                        className={`lead-card${done ? " lead-ok" : ""}`}
+                        key={i}
+                      >
                         <div className="lead-card-top">
                           <div>
                             <div className="lead-nm">{l.nome}</div>
@@ -272,16 +472,30 @@ export default function PauloAdmin() {
                               {l.contato} · {fmtDate(l.t)}
                             </div>
                           </div>
-                          {action && (
-                            <a
-                              className="firm-conn"
-                              href={action.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                          <div className="lead-actions">
+                            {action && !done && (
+                              <a
+                                className="firm-conn"
+                                href={action.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {action.label}
+                              </a>
+                            )}
+                            <button
+                              type="button"
+                              className={`lead-check${done ? " on" : ""}`}
+                              onClick={() => toggleLeadDone(l.t, !done)}
+                              title={
+                                done
+                                  ? "Marcar como pendente"
+                                  : "Marcar como atendido"
+                              }
                             >
-                              {action.label}
-                            </a>
-                          )}
+                              ✓ {done ? "Atendido" : "Atender"}
+                            </button>
+                          </div>
                         </div>
                         <p className="lead-msg">“{l.msg}”</p>
                       </div>
@@ -352,11 +566,11 @@ export default function PauloAdmin() {
               {/* ÚLTIMAS CONVERSAS */}
               <section className="admin-panel">
                 <h3>💬 Últimas perguntas à IA</h3>
-                {stats.recentQueries.length === 0 ? (
-                  <p className="admin-empty">Ainda sem dados.</p>
+                {fQueries.length === 0 ? (
+                  <p className="admin-empty">Nada por aqui.</p>
                 ) : (
                   <ul className="admin-log">
-                    {stats.recentQueries.map((q, i) => (
+                    {fQueries.map((q, i) => (
                       <li key={i}>
                         <span className="lg-time">{fmtDate(q.t)}</span>
                         <span className="lg-text">
@@ -379,11 +593,11 @@ export default function PauloAdmin() {
               {/* ÚLTIMAS CONEXÕES */}
               <section className="admin-panel">
                 <h3>📌 Últimos pedidos de conexão</h3>
-                {stats.recentConnects.length === 0 ? (
-                  <p className="admin-empty">Ainda sem dados.</p>
+                {fConnects.length === 0 ? (
+                  <p className="admin-empty">Nada por aqui.</p>
                 ) : (
                   <ul className="admin-log">
-                    {stats.recentConnects.map((c, i) => (
+                    {fConnects.map((c, i) => (
                       <li key={i}>
                         <span className="lg-time">{fmtDate(c.t)}</span>
                         <span className="lg-text">{c.nome}</span>

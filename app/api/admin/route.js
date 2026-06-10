@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getStats } from "../../../lib/store";
+import { getStats, setLeadDone } from "../../../lib/store";
 import { COMPANIES } from "../../area/companies";
 
 export const runtime = "nodejs";
@@ -16,7 +16,17 @@ export async function POST(req) {
     return NextResponse.json({ ok: false }, { status: 401 });
   }
 
+  // ação: marcar/desmarcar lead como atendido
+  if (body.action === "leadDone" && body.t) {
+    await setLeadDone(body.t, body.done !== false);
+  }
+
   const stats = await getStats();
+
+  // link-convite pronto pra copiar (o servidor conhece o código de acesso)
+  const inviteLink = `https://www.paulokasmirscki.com.br/area?convite=${encodeURIComponent(
+    process.env.AREA_CODE || "teste123"
+  )}`;
 
   // adiciona o nome das empresas aos rankings (que guardam só o id)
   const nameOf = (id) => COMPANIES.find((c) => c.id === id)?.nome || id;
@@ -31,5 +41,5 @@ export async function POST(req) {
     }));
   }
 
-  return NextResponse.json({ ok: true, stats });
+  return NextResponse.json({ ok: true, stats, inviteLink });
 }

@@ -314,7 +314,7 @@ a {
   overflow: hidden;
   aspect-ratio: 4 / 5;
   /* nunca mais alta que a janela: foto + legenda visíveis no primeiro scroll */
-  height: min(66vh, 560px);
+  height: min(76vh, 660px);
   width: auto;
   max-width: 100%;
   margin: 0 auto;

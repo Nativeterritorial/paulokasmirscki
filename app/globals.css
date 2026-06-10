@@ -2191,6 +2191,31 @@ body {
 .bubble.assistant strong {
   color: #ffffff;
 }
+.chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 18px 4px;
+}
+.chip {
+  font-size: 0.78rem;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.chip:hover {
+  border-color: var(--gold-2);
+  background: rgba(255, 255, 255, 0.1);
+}
+.chip:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
 .area-chat-input {
   display: flex;
   gap: 10px;
@@ -2316,6 +2341,49 @@ body {
   .area-panel {
     height: 70vh;
   }
+}
+
+/* ---------- 404 ---------- */
+.nf {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+  gap: 18px;
+}
+.nf .brand {
+  margin-bottom: 10px;
+}
+.nf-code {
+  font-family: var(--serif);
+  font-size: clamp(5rem, 16vw, 9rem);
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, #5b9bff, var(--gold-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.9;
+}
+.nf h1 {
+  font-size: clamp(1.4rem, 3.4vw, 2rem);
+  max-width: 560px;
+}
+.nf p {
+  color: var(--muted);
+  max-width: 480px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.nf-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 /* botão Entrar (área de membros) no header */

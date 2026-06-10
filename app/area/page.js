@@ -40,13 +40,14 @@ export default function Area() {
   const [err, setErr] = useState("");
   const [loadingLogin, setLoadingLogin] = useState(false);
 
-  const [messages, setMessages] = useState([
+  const GREETING = [
     {
       role: "assistant",
       content:
         "Olá! 👋 Sou o concierge do ecossistema. Me conte o que você precisa — ex.: \"preciso de uma empresa pra fazer meu site\" — que eu encontro a pessoa certa na rede.",
     },
-  ]);
+  ];
+  const [messages, setMessages] = useState(GREETING);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [openSeg, setOpenSeg] = useState(null);
@@ -59,8 +60,18 @@ export default function Area() {
         setCode(saved);
         setAuthed(true);
       }
+      // restaura o histórico da conversa
+      const chat = JSON.parse(localStorage.getItem("area_chat") || "null");
+      if (Array.isArray(chat) && chat.length) setMessages(chat);
     } catch (e) {}
   }, []);
+
+  // salva a conversa (últimas 40 mensagens) a cada atualização
+  useEffect(() => {
+    try {
+      localStorage.setItem("area_chat", JSON.stringify(messages.slice(-40)));
+    } catch (e) {}
+  }, [messages]);
 
   useEffect(() => {
     if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight;
@@ -106,9 +117,11 @@ export default function Area() {
   const logout = () => {
     try {
       localStorage.removeItem("area_code");
+      localStorage.removeItem("area_chat");
     } catch (e) {}
     setAuthed(false);
     setCode("");
+    setMessages(GREETING);
   };
 
   const send = async (text) => {
@@ -301,6 +314,27 @@ export default function Area() {
               <div className="bubble assistant typing">digitando…</div>
             )}
           </div>
+          {!messages.some((m) => m.role === "user") && (
+            <div className="chat-chips">
+              {[
+                "Preciso de um site pro meu negócio",
+                "Procuro um contador",
+                "Quero comprar ou vender um imóvel",
+                "Preciso de material gráfico",
+                "Busco consultoria pra minha empresa",
+              ].map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  className="chip"
+                  onClick={() => send(s)}
+                  disabled={sending}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
           <form
             className="area-chat-input"
             onSubmit={(e) => {

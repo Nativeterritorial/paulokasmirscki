@@ -12,6 +12,12 @@ export const metadata = {
       "Networking estratégico, parcerias e oportunidades que transformam relações em resultados.",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Paulo Kasmirscki — Conectando pessoas e gerando negócios",
+    description:
+      "Networking estratégico, parcerias e oportunidades que transformam relações em resultados.",
+  },
 };
 
 export default function RootLayout({ children }) {

@@ -261,26 +261,37 @@ export default function Area() {
             <h2 style={{ fontSize: "1.2rem" }}>Explorar o ecossistema</h2>
           </div>
           <div className="area-firms">
-            {COMPANIES.map((c) => (
-              <div className="firm" key={c.id}>
-                <div className="firm-info">
-                  <div className="firm-nm">{c.nome}</div>
-                  <div className="firm-sg">{c.segmento}</div>
-                  <div className="firm-d">{c.descricao}</div>
+            {Object.entries(
+              COMPANIES.reduce((acc, c) => {
+                (acc[c.segmento] = acc[c.segmento] || []).push(c);
+                return acc;
+              }, {})
+            )
+              .sort(([a], [b]) => a.localeCompare(b, "pt-BR"))
+              .map(([segmento, firms]) => (
+                <div className="firm-group" key={segmento}>
+                  <div className="firm-group-title">{segmento}</div>
+                  {firms.map((c) => (
+                    <div className="firm" key={c.id}>
+                      <div className="firm-info">
+                        <div className="firm-nm">{c.nome}</div>
+                        <div className="firm-d">{c.descricao}</div>
+                      </div>
+                      <a
+                        className="firm-conn"
+                        href={wa(
+                          `Olá Paulo! Quero me conectar com a ${c.nome} do ecossistema.`
+                        )}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => trackConnect(c.id)}
+                      >
+                        Conectar
+                      </a>
+                    </div>
+                  ))}
                 </div>
-                <a
-                  className="firm-conn"
-                  href={wa(
-                    `Olá Paulo! Quero me conectar com a ${c.nome} do ecossistema.`
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackConnect(c.id)}
-                >
-                  Conectar
-                </a>
-              </div>
-            ))}
+              ))}
           </div>
         </aside>
       </div>

@@ -101,6 +101,16 @@ export const COMPANIES = [
     linkLabel: "Falar com o Paulo",
   },
   {
+    id: "ordeclean",
+    nome: "Ordeclean",
+    segmento: "Agro & Pecuária",
+    descricao:
+      "Soluções para ordenha — higiene, produtos e equipamentos para a pecuária leiteira produzir com qualidade.",
+    atende: ["Agro & Indústria", "Comércio & Varejo"],
+    link: "https://www.instagram.com/ordeclean/",
+    linkLabel: "@ordeclean",
+  },
+  {
     id: "alsus",
     nome: "Grupo ALSUS",
     segmento: "Construção & Infraestrutura",

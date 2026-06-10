@@ -140,6 +140,19 @@ const BRANDS = [
     link: "Falar no WhatsApp →",
   },
   {
+    id: "ordeclean",
+    href: "https://www.instagram.com/ordeclean/",
+    logo: (
+      <span className="ordeclean-mark">
+        <span className="drop" aria-hidden="true" />
+        ORDECLEAN
+      </span>
+    ),
+    role: "Agro & Pecuária",
+    desc: "Soluções para ordenha — higiene, produtos e equipamentos para a pecuária leiteira.",
+    link: "@ordeclean →",
+  },
+  {
     id: "alsus",
     href: "https://www.alsus.com.br",
     logo: <img className="tile-logo" src="/brand-alsus.png" alt="Grupo ALSUS" />,

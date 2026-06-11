@@ -2323,6 +2323,70 @@ body {
 .admin-radar h3 {
   color: #ffc46b;
 }
+.gap-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+.gap-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: rgba(255, 196, 107, 0.06);
+  border: 1px solid rgba(255, 196, 107, 0.22);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.gap-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.gap-text {
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.gap-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.gap-done {
+  margin-top: 14px;
+}
+.gap-done summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+.gap-done summary:hover {
+  color: var(--text);
+}
+.gap-undo {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  color: var(--gold-2);
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: underline;
+}
+@media (max-width: 640px) {
+  .gap-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .gap-actions {
+    justify-content: flex-end;
+  }
+}
 .admin-leads {
   margin-bottom: 22px;
 }

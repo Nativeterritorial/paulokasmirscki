@@ -94,6 +94,21 @@ export default function PauloAdmin() {
     }).catch(() => {});
   };
 
+  // marca/desmarca demanda (pedido sem empresa) como já buscada/recrutada
+  const toggleDemandDone = (t, done) => {
+    setStats((s) => ({
+      ...s,
+      demandsDone: done
+        ? [...(s.demandsDone || []), String(t)]
+        : (s.demandsDone || []).filter((x) => x !== String(t)),
+    }));
+    fetch("/api/admin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code, action: "demandDone", t, done }),
+    }).catch(() => {});
+  };
+
   const copyInvite = async () => {
     try {
       await navigator.clipboard.writeText(inviteLink);
@@ -207,9 +222,13 @@ export default function PauloAdmin() {
   };
 
   // pedidos à IA sem empresa correspondente = oportunidade de recrutamento
-  const gaps = (stats?.recentQueries || []).filter(
+  const isDemandDone = (q) =>
+    (stats?.demandsDone || []).includes(String(q.t));
+  const allGaps = (stats?.recentQueries || []).filter(
     (q) => Array.isArray(q.r) && q.r.length === 0
   );
+  const gaps = allGaps.filter((q) => !isDemandDone(q));
+  const gapsDone = allGaps.filter(isDemandDone);
   const hoje = new Date().toLocaleDateString("pt-BR", {
     weekday: "long",
     day: "numeric",
@@ -423,21 +442,81 @@ export default function PauloAdmin() {
             </section>
 
             {/* RADAR: DEMANDA SEM EMPRESA NA REDE */}
-            {gaps.length > 0 && (
+            {(gaps.length > 0 || gapsDone.length > 0) && (
               <section className="admin-panel admin-radar">
-                <h3>🎯 Radar — pedidos sem empresa na rede</h3>
+                <h3>
+                  🎯 Radar — pedidos sem empresa na rede
+                  {gaps.length > 0 && (
+                    <span className="lg-tag">{gaps.length} pra buscar</span>
+                  )}
+                </h3>
                 <p className="admin-hint">
                   Pessoas pediram isso à IA e ainda não há quem atenda. É aqui
-                  que vale recrutar empresa nova pro ecossistema.
+                  que vale recrutar empresa nova pro ecossistema. Marque “Já
+                  busquei” quando encontrar/recrutar um parceiro.
                 </p>
-                <ul className="admin-log">
-                  {gaps.slice(0, 8).map((q, i) => (
-                    <li key={i}>
-                      <span className="lg-time">{fmtDate(q.t)}</span>
-                      <span className="lg-text">{q.q}</span>
-                    </li>
-                  ))}
-                </ul>
+                {gaps.length === 0 ? (
+                  <p className="admin-empty">
+                    Tudo em dia — nenhuma demanda em aberto. 🎉
+                  </p>
+                ) : (
+                  <div className="gap-cards">
+                    {gaps.slice(0, 12).map((q, i) => (
+                      <div className="gap-card" key={q.t || i}>
+                        <div className="gap-body">
+                          <span className="lg-time">{fmtDate(q.t)}</span>
+                          <span className="gap-text">“{q.q}”</span>
+                        </div>
+                        <div className="gap-actions">
+                          <a
+                            className="chip"
+                            href={`https://www.google.com/search?q=${encodeURIComponent(
+                              q.q + " Caxias do Sul RS"
+                            )}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Procurar um parceiro no Google"
+                          >
+                            🔎 Buscar
+                          </a>
+                          <button
+                            type="button"
+                            className="lead-check"
+                            onClick={() => toggleDemandDone(q.t, true)}
+                            title="Marcar como já buscada/recrutada"
+                          >
+                            ✓ Já busquei
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {gapsDone.length > 0 && (
+                  <details className="gap-done">
+                    <summary>
+                      Já buscadas ({gapsDone.length})
+                    </summary>
+                    <ul className="admin-log">
+                      {gapsDone.slice(0, 12).map((q, i) => (
+                        <li key={q.t || i}>
+                          <span className="lg-time">{fmtDate(q.t)}</span>
+                          <span className="lg-text" style={{ opacity: 0.6 }}>
+                            {q.q}
+                          </span>
+                          <button
+                            type="button"
+                            className="gap-undo"
+                            onClick={() => toggleDemandDone(q.t, false)}
+                            title="Reabrir demanda"
+                          >
+                            reabrir
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
               </section>
             )}
 

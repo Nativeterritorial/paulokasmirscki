@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getStats, setLeadDone } from "../../../lib/store";
+import { getStats, setLeadDone, setDemandDone } from "../../../lib/store";
 import { COMPANIES } from "../../area/companies";
 
 export const runtime = "nodejs";
@@ -19,6 +19,11 @@ export async function POST(req) {
   // ação: marcar/desmarcar lead como atendido
   if (body.action === "leadDone" && body.t) {
     await setLeadDone(body.t, body.done !== false);
+  }
+
+  // ação: marcar/desmarcar demanda (pedido sem empresa) como já buscada
+  if (body.action === "demandDone" && body.t) {
+    await setDemandDone(body.t, body.done !== false);
   }
 
   const stats = await getStats();

@@ -200,10 +200,15 @@ export default function Area() {
           const recs = recMatch
             ? recMatch[1].split(",").filter(Boolean)
             : undefined;
-          // esconde marcador completo ou parcial (começando em @@) no fim do buffer
+          // esconde marcadores completos (@@REC / @@GAP) e qualquer parcial no fim
           const visible = buf
             .replace(/@@REC:[^@]*@@/g, "")
-            .replace(/@@(?:R(?:E(?:C(?::[^@]*)?)?)?)?$/, "");
+            .replace(/@@GAP:[^@]*@@/g, "")
+            .replace(
+              /@@(?:R(?:E(?:C(?::[^@]*)?)?)?|G(?:A(?:P(?::[^@]*)?)?)?)?$/,
+              ""
+            )
+            .trimEnd();
           setMessages((m) => {
             const next = [...m];
             next[next.length - 1] = {

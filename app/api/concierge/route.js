@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
-import { logQuery } from "../../../lib/store";
+import { logQuery, logDemand } from "../../../lib/store";
 import { getAllCompanies } from "../../../lib/companies";
 
 export const runtime = "nodejs";
@@ -35,7 +35,14 @@ REGRAS:
 - Pode recomendar mais de uma se fizer sentido.
 - Seja breve (até ~4 linhas). Não invente preços, telefones ou dados que não estão no diretório.
 - O Paulo é sempre a ponte entre o cliente e a empresa.
-- IMPORTANTE: escreva em TEXTO SIMPLES. NÃO use markdown — nada de asteriscos (**) nem links em colchetes [texto](url). Cite o nome da empresa normalmente e, se mencionar um site, escreva o endereço direto (ex.: visaradigital.com.br).`;
+- IMPORTANTE: escreva em TEXTO SIMPLES. NÃO use markdown — nada de asteriscos (**) nem links em colchetes [texto](url). Cite o nome da empresa normalmente e, se mencionar um site, escreva o endereço direto (ex.: visaradigital.com.br).
+
+REGISTRO DE DEMANDA (uso interno):
+- Quando — e SOMENTE quando — o cliente expressar uma necessidade REAL de produto/serviço que NENHUMA empresa do diretório atende, acrescente NO FINAL da sua resposta, em uma linha separada, um marcador exatamente neste formato: @@GAP:descrição curta da necessidade@@
+- A descrição deve ser objetiva e em terceira pessoa, juntando o que você entendeu da conversa, incluindo cidade/região se o cliente disse. Ex.: @@GAP:Empresa de segurança e monitoramento em Veranópolis/RS@@
+- Use apenas UM marcador por resposta, resumindo a necessidade principal (não repita um por mensagem).
+- NÃO emita o marcador para saudações, agradecimentos, conversa fiada, perguntas genéricas, nem quando você recomendou alguma empresa do diretório. Nesses casos, responda normalmente SEM o marcador.
+- O marcador é invisível para o cliente (o sistema o remove). Nunca o comente nem o explique.`;
 }
 
 export async function POST(req) {
@@ -105,13 +112,22 @@ export async function POST(req) {
             controller.enqueue(encoder.encode(ev.delta.text));
           }
         }
-        const recs = detectRecommended(full, companies);
+        // separa o marcador de demanda @@GAP:...@@ do texto
+        const gapMatch = full.match(/@@GAP:([^@]*)@@/);
+        const gapText = gapMatch ? gapMatch[1].trim() : "";
+        const visibleFull = full.replace(/@@GAP:[^@]*@@/g, "").trim();
+
+        const recs = detectRecommended(visibleFull, companies);
         if (recs.length) {
           controller.enqueue(encoder.encode(`@@REC:${recs.join(",")}@@`));
         }
         // registra a pergunta + empresas recomendadas (não bloqueia a resposta)
         const lastUser = [...clean].reverse().find((m) => m.role === "user");
         logQuery(lastUser?.content || "", recs).catch(() => {});
+        // registra a DEMANDA resumida pela IA, se houver (radar do Paulo)
+        if (gapText && recs.length === 0) {
+          logDemand(gapText).catch(() => {});
+        }
       } catch (err) {
         const msg =
           err instanceof Anthropic.APIError

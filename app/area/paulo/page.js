@@ -292,12 +292,10 @@ export default function PauloAdmin() {
     return null;
   };
 
-  // pedidos à IA sem empresa correspondente = oportunidade de recrutamento
+  // demandas (necessidades reais sem empresa, já resumidas pela IA) = recrutamento
   const isDemandDone = (q) =>
     (stats?.demandsDone || []).includes(String(q.t));
-  const allGaps = (stats?.recentQueries || []).filter(
-    (q) => Array.isArray(q.r) && q.r.length === 0
-  );
+  const allGaps = stats?.demands || [];
   const gaps = allGaps.filter((q) => !isDemandDone(q));
   const gapsDone = allGaps.filter(isDemandDone);
   const hoje = new Date().toLocaleDateString("pt-BR", {

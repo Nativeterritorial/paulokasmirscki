@@ -2,6 +2,7 @@ import Effects from "./effects";
 import CookieBanner from "./cookie";
 import HeroAI from "./hero-ai";
 import LeadForm from "./lead-form";
+import BrandsCarousel from "./brands-carousel";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const INSTAGRAM = "https://instagram.com/paulokasmirscki";
@@ -468,28 +469,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="brands-carousel fade-up">
-              <div className="bc-track">
-                {[0, 1].map((dup) =>
-                  BRANDS.map((b) => (
-                    <a
-                      className="brand-card"
-                      key={`${dup}-${b.id}`}
-                      href={b.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-hidden={dup === 1 ? "true" : undefined}
-                      tabIndex={dup === 1 ? -1 : undefined}
-                    >
-                      <div className="logo-slot">{b.logo}</div>
-                      <div className="b-role">{b.role}</div>
-                      <p className="b-desc">{b.desc}</p>
-                      <span className="b-link">{b.link}</span>
-                    </a>
-                  ))
-                )}
-              </div>
-            </div>
+            <BrandsCarousel brands={BRANDS} />
 
             <p className="brands-note">
               <a href="/rede" style={{ color: "var(--gold-2)" }}>Ver todas as empresas →</a>

@@ -704,7 +704,18 @@ export default function PauloAdmin() {
                     “Adicionar empresa” pra começar.
                   </p>
                 )}
-                {customCompanies.map((c) => (
+                {customCompanies.map((c) => {
+                  const norm = (s) =>
+                    String(s || "")
+                      .normalize("NFD")
+                      .replace(/[̀-ͯ]/g, "")
+                      .toLowerCase()
+                      .replace(/\s+/g, " ")
+                      .trim();
+                  const dup = fixedCompanies.some(
+                    (f) => f.id === c.id || norm(f.nome) === norm(c.nome)
+                  );
+                  return (
                   <div className="co-card" key={c.id}>
                     <div className="co-badge" aria-hidden="true">
                       {(c.nome || "?").trim().charAt(0).toUpperCase()}
@@ -713,6 +724,12 @@ export default function PauloAdmin() {
                       <div className="co-nm">{c.nome}</div>
                       <div className="co-sg">{c.segmento}</div>
                       <div className="co-ds">{c.descricao}</div>
+                      {dup && (
+                        <div className="co-warn">
+                          ⚠️ Já existe uma versão oficial desta empresa (com logo
+                          na home). Pode remover esta para não duplicar.
+                        </div>
+                      )}
                     </div>
                     <div className="co-actions">
                       <button
@@ -731,7 +748,8 @@ export default function PauloAdmin() {
                       </button>
                     </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
 
               {fixedCompanies.length > 0 && (

@@ -148,6 +148,20 @@ const BRANDS = [
     link: "@ordeclean →",
   },
   {
+    id: "serafin",
+    href: "https://www.serafinsuplementos.com.br",
+    logo: (
+      <img
+        className="tile-logo"
+        src="/brand-serafin.png"
+        alt="Serafin Suplementos"
+      />
+    ),
+    role: "Saúde & Suplementos",
+    desc: "Suplementos — proteínas, creatina, pré-treino, emagrecedores, vitaminas e acessórios, com entrega para todo o Brasil.",
+    link: "serafinsuplementos.com.br →",
+  },
+  {
     id: "alsus",
     href: "https://www.alsus.com.br",
     logo: <img className="tile-logo" src="/brand-alsus.png" alt="Grupo ALSUS" />,

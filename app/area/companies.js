@@ -111,6 +111,16 @@ export const COMPANIES = [
     linkLabel: "@ordeclean",
   },
   {
+    id: "serafin",
+    nome: "Serafin Suplementos",
+    segmento: "Saúde & Suplementos",
+    descricao:
+      "Loja de suplementos — proteínas e aminoácidos, creatina, pré e pós-treino, emagrecedores, colágeno, vitaminas e acessórios esportivos, com entrega para todo o Brasil.",
+    atende: ["Saúde & Bem-estar", "Comércio & Varejo", "Esporte & Lazer"],
+    link: "https://www.serafinsuplementos.com.br",
+    linkLabel: "serafinsuplementos.com.br",
+  },
+  {
     id: "alsus",
     nome: "Grupo ALSUS",
     segmento: "Construção & Infraestrutura",

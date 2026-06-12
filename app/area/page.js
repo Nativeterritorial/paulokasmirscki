@@ -51,7 +51,20 @@ export default function Area() {
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [openSeg, setOpenSeg] = useState(null);
+  // empresas combinadas (fixas + cadastradas pelo Paulo); começa com as fixas
+  const [companies, setCompanies] = useState(COMPANIES);
   const chatRef = useRef(null);
+
+  // busca a lista atualizada de empresas (inclui as que o Paulo cadastra)
+  useEffect(() => {
+    fetch("/api/companies")
+      .then((r) => r.json())
+      .then((d) => {
+        if (Array.isArray(d.companies) && d.companies.length)
+          setCompanies(d.companies);
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     try {
@@ -309,7 +322,7 @@ export default function Area() {
                   {m.recs?.length > 0 && (
                     <div className="bubble-recs">
                       {m.recs
-                        .map((id) => COMPANIES.find((c) => c.id === id))
+                        .map((id) => companies.find((c) => c.id === id))
                         .filter(Boolean)
                         .map((c) => (
                           <div className="rec-card" key={c.id}>
@@ -391,7 +404,7 @@ export default function Area() {
           </div>
           <div className="area-firms">
             {Object.entries(
-              COMPANIES.reduce((acc, c) => {
+              companies.reduce((acc, c) => {
                 (acc[c.segmento] = acc[c.segmento] || []).push(c);
                 return acc;
               }, {})

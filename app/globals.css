@@ -2387,6 +2387,164 @@ body {
     justify-content: flex-end;
   }
 }
+
+/* ---- GERENCIAR EMPRESAS ---- */
+.admin-companies {
+  margin-bottom: 22px;
+}
+.admin-companies h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.chip-add {
+  font-weight: 600;
+}
+.chip-danger {
+  color: #ff9b9b;
+  border-color: rgba(255, 155, 155, 0.4);
+}
+.chip-danger:hover {
+  border-color: #ff9b9b;
+  color: #fff;
+}
+.co-form {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  margin: 14px 0 18px;
+}
+.co-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.co-form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.co-form-grid .co-full {
+  grid-column: 1 / -1;
+}
+.co-form-grid input,
+.co-form-grid textarea {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+.co-form-grid input:focus,
+.co-form-grid textarea:focus {
+  outline: none;
+  border-color: var(--gold-2);
+}
+.co-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.co-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+.co-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.co-badge {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #fff;
+  background: var(--gold-grad);
+}
+.co-body {
+  flex: 1;
+  min-width: 0;
+}
+.co-nm {
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.co-sg {
+  font-size: 0.8rem;
+  color: var(--gold-2);
+  margin-top: 1px;
+}
+.co-ds {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.co-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.co-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+.co-card-fixed {
+  opacity: 0.75;
+}
+.co-fixed {
+  margin-top: 16px;
+}
+.co-fixed summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+.co-fixed summary:hover {
+  color: var(--text);
+}
+@media (max-width: 640px) {
+  .co-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .co-card {
+    flex-wrap: wrap;
+  }
+  .co-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
 .admin-leads {
   margin-bottom: 22px;
 }

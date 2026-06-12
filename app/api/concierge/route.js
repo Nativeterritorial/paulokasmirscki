@@ -1,20 +1,20 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
-import { COMPANIES } from "../../area/companies";
 import { logQuery } from "../../../lib/store";
+import { getAllCompanies } from "../../../lib/companies";
 
 export const runtime = "nodejs";
 
 // Detecta quais empresas do diretório foram citadas na resposta da IA
-function detectRecommended(reply) {
+function detectRecommended(reply, companies) {
   const low = String(reply || "").toLowerCase();
-  return COMPANIES.filter((c) => low.includes(c.nome.toLowerCase())).map(
-    (c) => c.id
-  );
+  return companies
+    .filter((c) => low.includes(c.nome.toLowerCase()))
+    .map((c) => c.id);
 }
 
-function buildSystem() {
-  const dir = COMPANIES.map(
+function buildSystem(companies) {
+  const dir = companies.map(
     (c) =>
       `- ${c.nome} | Segmento: ${c.segmento} | Atende: ${c.atende.join(
         ", "
@@ -72,6 +72,9 @@ export async function POST(req) {
     });
   }
 
+  // lista combinada: empresas fixas + as cadastradas pelo Paulo no painel
+  const companies = await getAllCompanies();
+
   const client = new Anthropic();
   const encoder = new TextEncoder();
 
@@ -87,7 +90,7 @@ export async function POST(req) {
           system: [
             {
               type: "text",
-              text: buildSystem(),
+              text: buildSystem(companies),
               cache_control: { type: "ephemeral" },
             },
           ],
@@ -102,7 +105,7 @@ export async function POST(req) {
             controller.enqueue(encoder.encode(ev.delta.text));
           }
         }
-        const recs = detectRecommended(full);
+        const recs = detectRecommended(full, companies);
         if (recs.length) {
           controller.enqueue(encoder.encode(`@@REC:${recs.join(",")}@@`));
         }

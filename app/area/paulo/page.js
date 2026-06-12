@@ -27,6 +27,10 @@ export default function PauloAdmin() {
   const [copied, setCopied] = useState(false);
   const [busca, setBusca] = useState("");
   const [periodo, setPeriodo] = useState("all"); // "7" | "30" | "all"
+  const [customCompanies, setCustomCompanies] = useState([]);
+  const [fixedCompanies, setFixedCompanies] = useState([]);
+  const [editing, setEditing] = useState(null); // empresa em edição (ou nova)
+  const [savingCo, setSavingCo] = useState(false);
 
   useEffect(() => {
     try {
@@ -61,6 +65,8 @@ export default function PauloAdmin() {
       const d = await r.json();
       setStats(d.stats);
       if (d.inviteLink) setInviteLink(d.inviteLink);
+      if (Array.isArray(d.customCompanies)) setCustomCompanies(d.customCompanies);
+      if (Array.isArray(d.fixedCompanies)) setFixedCompanies(d.fixedCompanies);
       setAuthed(true);
       try {
         localStorage.setItem("admin_code", c);
@@ -107,6 +113,71 @@ export default function PauloAdmin() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ code, action: "demandDone", t, done }),
     }).catch(() => {});
+  };
+
+  // ---- gerenciar empresas da rede ----
+  const emptyCompany = {
+    id: "",
+    nome: "",
+    segmento: "",
+    descricao: "",
+    atende: "",
+    link: "",
+    linkLabel: "",
+  };
+  const startNew = () => setEditing({ ...emptyCompany });
+  const startEdit = (c) =>
+    setEditing({
+      ...c,
+      atende: Array.isArray(c.atende) ? c.atende.join(", ") : c.atende || "",
+    });
+  const cancelEdit = () => setEditing(null);
+
+  const saveCompanyForm = async () => {
+    if (!editing?.nome?.trim()) return;
+    setSavingCo(true);
+    try {
+      const r = await fetch("/api/admin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code,
+          action: "companySave",
+          company: {
+            id: editing.id || undefined,
+            nome: editing.nome,
+            segmento: editing.segmento,
+            descricao: editing.descricao,
+            atende: editing.atende,
+            link: editing.link,
+            linkLabel: editing.linkLabel,
+          },
+        }),
+      });
+      const d = await r.json();
+      if (Array.isArray(d.customCompanies)) setCustomCompanies(d.customCompanies);
+      setEditing(null);
+    } catch (e) {}
+    setSavingCo(false);
+  };
+
+  const deleteCompanyForm = async (id) => {
+    if (!id) return;
+    if (
+      typeof window !== "undefined" &&
+      !window.confirm("Remover esta empresa da rede? A IA deixa de indicá-la.")
+    )
+      return;
+    setCustomCompanies((list) => list.filter((c) => c.id !== id));
+    try {
+      const r = await fetch("/api/admin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code, action: "companyDelete", id }),
+      });
+      const d = await r.json();
+      if (Array.isArray(d.customCompanies)) setCustomCompanies(d.customCompanies);
+    } catch (e) {}
   };
 
   const copyInvite = async () => {
@@ -519,6 +590,181 @@ export default function PauloAdmin() {
                 )}
               </section>
             )}
+
+            {/* GERENCIAR EMPRESAS DA REDE */}
+            <section className="admin-panel admin-companies">
+              <h3>
+                🏢 Empresas da rede
+                <button
+                  type="button"
+                  className="chip chip-add"
+                  onClick={startNew}
+                >
+                  + Adicionar empresa
+                </button>
+              </h3>
+              <p className="admin-hint">
+                Cadastre, edite ou remova as empresas que a IA recomenda. As
+                alterações entram na hora no concierge e no diretório.
+              </p>
+
+              {editing && (
+                <div className="co-form">
+                  <div className="co-form-grid">
+                    <label>
+                      Nome da empresa *
+                      <input
+                        value={editing.nome}
+                        onChange={(e) =>
+                          setEditing((s) => ({ ...s, nome: e.target.value }))
+                        }
+                        placeholder="Ex.: Padaria do João"
+                      />
+                    </label>
+                    <label>
+                      Segmento
+                      <input
+                        value={editing.segmento}
+                        onChange={(e) =>
+                          setEditing((s) => ({ ...s, segmento: e.target.value }))
+                        }
+                        placeholder="Ex.: Alimentação"
+                      />
+                    </label>
+                    <label className="co-full">
+                      Descrição (o que ela faz)
+                      <textarea
+                        rows={2}
+                        value={editing.descricao}
+                        onChange={(e) =>
+                          setEditing((s) => ({
+                            ...s,
+                            descricao: e.target.value,
+                          }))
+                        }
+                        placeholder="Em 1 ou 2 frases, o que a empresa oferece."
+                      />
+                    </label>
+                    <label className="co-full">
+                      Atende (áreas, separadas por vírgula)
+                      <input
+                        value={editing.atende}
+                        onChange={(e) =>
+                          setEditing((s) => ({ ...s, atende: e.target.value }))
+                        }
+                        placeholder="Ex.: Alimentação, Comércio & Varejo"
+                      />
+                    </label>
+                    <label>
+                      Link de contato
+                      <input
+                        value={editing.link}
+                        onChange={(e) =>
+                          setEditing((s) => ({ ...s, link: e.target.value }))
+                        }
+                        placeholder="https://wa.me/55... ou site"
+                      />
+                    </label>
+                    <label>
+                      Texto do botão
+                      <input
+                        value={editing.linkLabel}
+                        onChange={(e) =>
+                          setEditing((s) => ({
+                            ...s,
+                            linkLabel: e.target.value,
+                          }))
+                        }
+                        placeholder="Ex.: Falar no WhatsApp"
+                      />
+                    </label>
+                  </div>
+                  <div className="co-form-actions">
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={saveCompanyForm}
+                      disabled={savingCo || !editing.nome.trim()}
+                    >
+                      {savingCo ? "Salvando..." : "Salvar empresa"}
+                    </button>
+                    <button
+                      type="button"
+                      className="chip"
+                      onClick={cancelEdit}
+                    >
+                      Cancelar
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              <div className="co-list">
+                {customCompanies.length === 0 && !editing && (
+                  <p className="admin-empty">
+                    Nenhuma empresa cadastrada por você ainda. Clique em
+                    “Adicionar empresa” pra começar.
+                  </p>
+                )}
+                {customCompanies.map((c) => (
+                  <div className="co-card" key={c.id}>
+                    <div className="co-badge" aria-hidden="true">
+                      {(c.nome || "?").trim().charAt(0).toUpperCase()}
+                    </div>
+                    <div className="co-body">
+                      <div className="co-nm">{c.nome}</div>
+                      <div className="co-sg">{c.segmento}</div>
+                      <div className="co-ds">{c.descricao}</div>
+                    </div>
+                    <div className="co-actions">
+                      <button
+                        type="button"
+                        className="chip"
+                        onClick={() => startEdit(c)}
+                      >
+                        Editar
+                      </button>
+                      <button
+                        type="button"
+                        className="chip chip-danger"
+                        onClick={() => deleteCompanyForm(c.id)}
+                      >
+                        Remover
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {fixedCompanies.length > 0 && (
+                <details className="co-fixed">
+                  <summary>
+                    Empresas fixas da equipe ({fixedCompanies.length}) — com logo
+                    na home
+                  </summary>
+                  <div className="co-list">
+                    {fixedCompanies.map((c) => (
+                      <div className="co-card co-card-fixed" key={c.id}>
+                        <div className="co-badge" aria-hidden="true">
+                          {(c.nome || "?").trim().charAt(0).toUpperCase()}
+                        </div>
+                        <div className="co-body">
+                          <div className="co-nm">
+                            {c.nome}
+                            <span className="co-tag">fixa</span>
+                          </div>
+                          <div className="co-sg">{c.segmento}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="admin-hint" style={{ marginTop: 10 }}>
+                    Essas são mantidas pela equipe (têm logo caprichado na home).
+                    Pra mudar uma delas, fale com o Felipe.
+                  </p>
+                </details>
+              )}
+            </section>
 
             {/* LEADS DO FORMULÁRIO */}
             <section className="admin-panel admin-leads">

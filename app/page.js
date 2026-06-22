@@ -869,6 +869,10 @@ export default function Home() {
               >
                 Visara Digital
               </a>
+              {" · "}
+              <a className="fc-admin" href="/area/paulo">
+                Painel do Paulo
+              </a>
             </span>
           </div>
         </div>

@@ -2632,6 +2632,14 @@ body {
   margin-bottom: 22px;
 }
 
+/* link discreto pro painel do Paulo (rodapé) */
+.fc-admin {
+  opacity: 0.55;
+}
+.fc-admin:hover {
+  opacity: 1;
+}
+
 .co-warn {
   margin-top: 8px;
   font-size: 0.8rem;

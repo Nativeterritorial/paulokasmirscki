@@ -89,21 +89,12 @@ export default function Ecossistema() {
           <aside className="join-buy">
             <div className="join-buy-card">
               <div className="kick">Cadastro</div>
-              <div className="join-price">
-                {PRECO ? (
-                  <>
-                    <span className="jp-val">{PRECO}</span>
-                    <span className="jp-sub">acesso completo à rede</span>
-                  </>
-                ) : (
-                  <>
-                    <span className="jp-val">Vagas por convite</span>
-                    <span className="jp-sub">
-                      condições direto com o Paulo
-                    </span>
-                  </>
-                )}
-              </div>
+              {PRECO && (
+                <div className="join-price">
+                  <span className="jp-val">{PRECO}</span>
+                  <span className="jp-sub">acesso completo à rede</span>
+                </div>
+              )}
               <ul className="join-checks">
                 <li>✓ Concierge de IA ilimitado</li>
                 <li>✓ Sua empresa no diretório</li>

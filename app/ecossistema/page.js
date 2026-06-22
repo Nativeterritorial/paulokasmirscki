@@ -1,19 +1,8 @@
-const WHATSAPP = "https://wa.me/5554996505799";
-const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+import SignupForm from "./signup-form";
 
 // Preço da assinatura. Deixe null para "condições direto com o Paulo";
 // preencha (ex.: "R$ 97/mês" ou "R$ 497/ano") quando definirem.
 const PRECO = null;
-
-// Quando tiverem um link de pagamento (Mercado Pago, InfinitePay...),
-// cole aqui que o botão principal passa a usar ele no lugar do WhatsApp.
-const LINK_PAGAMENTO = null;
-
-const CTA_HREF =
-  LINK_PAGAMENTO ||
-  wa(
-    "Olá Paulo! Quero me cadastrar no Ecossistema e ter acesso à área de membros."
-  );
 
 export const metadata = {
   title: "Faça parte do Ecossistema — Paulo Kasmirscki",
@@ -121,17 +110,7 @@ export default function Ecossistema() {
                 <li>✓ Página própria no site da rede</li>
                 <li>✓ Indicações acompanhadas pelo Paulo</li>
               </ul>
-              <a
-                className="btn btn-primary join-cta"
-                href={CTA_HREF}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Quero me cadastrar
-              </a>
-              <div className="join-hint">
-                Cadastro confirmado em minutos, direto com o Paulo.
-              </div>
+              <SignupForm />
             </div>
           </aside>
         </div>

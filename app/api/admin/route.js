@@ -3,6 +3,7 @@ import {
   getStats,
   setLeadDone,
   setDemandDone,
+  setSignupDone,
   getCustomCompanies,
   saveCompany,
   deleteCompany,
@@ -31,6 +32,11 @@ export async function POST(req) {
   // ação: marcar/desmarcar demanda (pedido sem empresa) como já buscada
   if (body.action === "demandDone" && body.t) {
     await setDemandDone(body.t, body.done !== false);
+  }
+
+  // ação: marcar/desmarcar cadastro de empresa como atendido
+  if (body.action === "signupDone" && body.t) {
+    await setSignupDone(body.t, body.done !== false);
   }
 
   // ação: criar/editar empresa cadastrada pelo Paulo

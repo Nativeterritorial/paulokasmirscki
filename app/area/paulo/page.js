@@ -180,6 +180,21 @@ export default function PauloAdmin() {
     } catch (e) {}
   };
 
+  // marca/desmarca cadastro de empresa (form do /ecossistema) como atendido
+  const toggleSignupDone = (t, done) => {
+    setStats((s) => ({
+      ...s,
+      signupsDone: done
+        ? [...(s.signupsDone || []), String(t)]
+        : (s.signupsDone || []).filter((x) => x !== String(t)),
+    }));
+    fetch("/api/admin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code, action: "signupDone", t, done }),
+    }).catch(() => {});
+  };
+
   const copyInvite = async () => {
     try {
       await navigator.clipboard.writeText(inviteLink);
@@ -298,6 +313,10 @@ export default function PauloAdmin() {
   const allGaps = stats?.demands || [];
   const gaps = allGaps.filter((q) => !isDemandDone(q));
   const gapsDone = allGaps.filter(isDemandDone);
+
+  // cadastros de empresas (form do /ecossistema)
+  const isSignupDone = (s) => (stats?.signupsDone || []).includes(String(s.t));
+  const signupsPend = (stats?.signups || []).filter((s) => !isSignupDone(s)).length;
   const hoje = new Date().toLocaleDateString("pt-BR", {
     weekday: "long",
     day: "numeric",
@@ -588,6 +607,123 @@ export default function PauloAdmin() {
                 )}
               </section>
             )}
+
+            {/* CADASTROS DE EMPRESAS (form do /ecossistema) */}
+            <section className="admin-panel admin-signups">
+              <h3>
+                📨 Cadastros de empresas
+                {signupsPend > 0 && (
+                  <span className="lg-tag">{signupsPend} novo(s)</span>
+                )}
+              </h3>
+              <p className="admin-hint">
+                Empresas que pediram pra entrar na rede pelo site (página
+                “Entre para o Ecossistema”). Fale com elas e marque como
+                atendido.
+              </p>
+              {!(stats.signups || []).length ? (
+                <p className="admin-empty">
+                  Nenhum cadastro ainda. Eles chegam pelo formulário em
+                  /ecossistema.
+                </p>
+              ) : (
+                <div className="lead-cards">
+                  {(stats.signups || [])
+                    .filter((s) => match(`${s.nome} ${s.empresa} ${s.email} ${s.whatsapp}`))
+                    .filter(inPeriod)
+                    .map((s, i) => {
+                      const done = isSignupDone(s);
+                      const digits = String(s.whatsapp || "").replace(/\D/g, "");
+                      const waFull =
+                        digits.length >= 10
+                          ? digits.length <= 11
+                            ? `55${digits}`
+                            : digits
+                          : "";
+                      return (
+                        <div
+                          className={`lead-card${done ? " lead-ok" : ""}`}
+                          key={s.t || i}
+                        >
+                          <div className="lead-card-top">
+                            <div>
+                              <div className="lead-nm">
+                                {s.nome}
+                                {s.empresa && (
+                                  <span className="su-emp"> · {s.empresa}</span>
+                                )}
+                              </div>
+                              <div className="lead-ct">{fmtDate(s.t)}</div>
+                            </div>
+                            <div className="lead-actions">
+                              {!done && waFull && (
+                                <a
+                                  className="firm-conn"
+                                  href={`https://wa.me/${waFull}?text=${encodeURIComponent(
+                                    `Olá ${s.nome}! Aqui é o Paulo Kasmirscki. Recebi seu cadastro pra entrar na rede. Vamos conversar?`
+                                  )}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  WhatsApp
+                                </a>
+                              )}
+                              {!done && !waFull && s.email && (
+                                <a
+                                  className="firm-conn"
+                                  href={`mailto:${s.email}?subject=${encodeURIComponent(
+                                    "Sua entrada na rede do Paulo Kasmirscki"
+                                  )}`}
+                                >
+                                  E-mail
+                                </a>
+                              )}
+                              <button
+                                type="button"
+                                className={`lead-check${done ? " on" : ""}`}
+                                onClick={() => toggleSignupDone(s.t, !done)}
+                              >
+                                ✓ {done ? "Atendido" : "Atender"}
+                              </button>
+                            </div>
+                          </div>
+                          <div className="su-contacts">
+                            {s.whatsapp && (
+                              <span>📱 {s.whatsapp}</span>
+                            )}
+                            {s.email && <span>✉️ {s.email}</span>}
+                            {s.site && (
+                              <a
+                                href={
+                                  s.site.startsWith("http")
+                                    ? s.site
+                                    : `https://${s.site}`
+                                }
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                🌐 {s.site}
+                              </a>
+                            )}
+                            {s.instagram && (
+                              <a
+                                href={`https://instagram.com/${s.instagram.replace(
+                                  /^@/,
+                                  ""
+                                )}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                📷 {s.instagram}
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
+              )}
+            </section>
 
             {/* GERENCIAR EMPRESAS DA REDE */}
             <section className="admin-panel admin-companies">

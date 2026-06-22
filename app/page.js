@@ -123,7 +123,7 @@ const BRANDS = [
     href: "https://www.instagram.com/giliolicontabilidade/",
     logo: (
       <img
-        className="pulse-logo"
+        className="tile-logo"
         src="/brand-gilioli.png"
         alt="Gilioli Organizações Contábeis"
       />

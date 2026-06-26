@@ -149,6 +149,20 @@ const BRANDS = [
     link: "@ordeclean →",
   },
   {
+    id: "mbx",
+    href: "https://www.mbxglobalservices.com",
+    logo: (
+      <img
+        className="tile-logo"
+        src="/brand-mbx.png"
+        alt="MBX Global Services"
+      />
+    ),
+    role: "Logística & Comércio Exterior",
+    desc: "Logística internacional e global sourcing — transporte, importação/exportação, aduana e procurement, com 22 anos de atuação.",
+    link: "mbxglobalservices.com →",
+  },
+  {
     id: "gazzana",
     href: "https://www.instagram.com/gazzanaemaragno/",
     logo: (

@@ -111,6 +111,16 @@ export const COMPANIES = [
     linkLabel: "@ordeclean",
   },
   {
+    id: "mbx",
+    nome: "MBX Global Services",
+    segmento: "Logística & Comércio Exterior",
+    descricao:
+      "Logística internacional e global sourcing — transporte (aéreo, marítimo, rodoviário), importação/exportação, aduana, procurement e soluções para comércio exterior. 22 anos de atuação em 5 continentes.",
+    atende: ["Logística & Transporte", "Comércio Exterior", "Agro & Indústria", "Comércio & Varejo"],
+    link: "https://www.mbxglobalservices.com",
+    linkLabel: "mbxglobalservices.com",
+  },
+  {
     id: "gazzana",
     nome: "Gazzana & Maragno",
     segmento: "Jurídico",

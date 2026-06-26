@@ -111,6 +111,16 @@ export const COMPANIES = [
     linkLabel: "@ordeclean",
   },
   {
+    id: "gazzana",
+    nome: "Gazzana & Maragno",
+    segmento: "Jurídico",
+    descricao:
+      "Assessoria jurídica — consultoria e suporte legal para empresas e pessoas: contratos, regularizações, consultivo e demandas do dia a dia.",
+    atende: ["Jurídico", "Serviços", "Imóveis & Construção", "Comércio & Varejo"],
+    link: "https://www.instagram.com/gazzanaemaragno/",
+    linkLabel: "@gazzanaemaragno",
+  },
+  {
     id: "serafin",
     nome: "Serafin Suplementos",
     segmento: "Saúde & Suplementos",

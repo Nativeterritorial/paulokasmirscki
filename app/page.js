@@ -149,6 +149,20 @@ const BRANDS = [
     link: "@ordeclean →",
   },
   {
+    id: "gazzana",
+    href: "https://www.instagram.com/gazzanaemaragno/",
+    logo: (
+      <img
+        className="tile-logo"
+        src="/brand-gazzana.png"
+        alt="Gazzana & Maragno Assessoria Jurídica"
+      />
+    ),
+    role: "Jurídico",
+    desc: "Assessoria jurídica — contratos, regularizações, consultivo e demandas do dia a dia, para empresas e pessoas.",
+    link: "@gazzanaemaragno →",
+  },
+  {
     id: "serafin",
     href: "https://www.serafinsuplementos.com.br",
     logo: (

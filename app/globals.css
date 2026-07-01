@@ -2640,6 +2640,171 @@ body {
   opacity: 1;
 }
 
+/* ---- MAPA DA REDE ---- */
+.netmap {
+  position: relative;
+  margin-top: 34px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background:
+    radial-gradient(120% 90% at 45% 45%, rgba(60, 80, 170, 0.18), transparent 70%),
+    rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+  padding: 8px;
+}
+.netmap-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@keyframes nmflow {
+  to {
+    stroke-dashoffset: -120;
+  }
+}
+.netmap-line {
+  stroke: rgba(138, 176, 255, 0.16);
+  stroke-width: 1.2;
+  stroke-dasharray: 5 7;
+  animation: nmflow 4s linear infinite;
+}
+.netmap-line.on {
+  stroke: rgba(160, 190, 255, 0.75);
+  stroke-width: 2;
+}
+.netmap-arc {
+  stroke: rgba(126, 226, 168, 0.5);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 6;
+  animation: nmflow 5s linear infinite;
+}
+.netmap-world circle {
+  fill: rgba(126, 226, 168, 0.85);
+}
+.netmap-world text {
+  fill: rgba(180, 230, 200, 0.9);
+  font-size: 15px;
+  font-family: inherit;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.netmap-hub {
+  cursor: pointer;
+}
+.netmap-hub-dot {
+  fill: #fff;
+}
+.netmap-hub-pulse {
+  fill: rgba(138, 176, 255, 0.35);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nmpulse 2.4s ease-out infinite;
+}
+@keyframes nmpulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+.netmap-hub text {
+  fill: #fff;
+  font-size: 21px;
+  font-weight: 600;
+  font-family: inherit;
+}
+.netmap-node {
+  cursor: pointer;
+  outline: none;
+}
+.netmap-hit {
+  fill: transparent;
+}
+.netmap-dot {
+  fill: #9db4ff;
+  transition: fill 0.15s;
+}
+.netmap-node:hover .netmap-dot,
+.netmap-node.sel .netmap-dot {
+  fill: #fff;
+}
+.netmap-node.sel .netmap-dot {
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 6;
+}
+.netmap-label {
+  fill: rgba(220, 226, 255, 0.55);
+  font-size: 15px;
+  font-family: inherit;
+  pointer-events: none;
+  transition: fill 0.15s;
+}
+.netmap-node:hover .netmap-label,
+.netmap-node.sel .netmap-label {
+  fill: #fff;
+}
+.netmap-card {
+  position: absolute;
+  left: 22px;
+  bottom: 22px;
+  background: rgba(10, 12, 30, 0.82);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 15px 18px;
+  max-width: 280px;
+}
+.nm-city {
+  font-size: 0.78rem;
+  color: var(--gold-2);
+}
+.nm-name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 3px;
+  line-height: 1.2;
+}
+.nm-seg {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.nm-link {
+  display: inline-block;
+  margin-top: 11px;
+  color: var(--gold-2);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.nm-link:hover {
+  text-decoration: underline;
+}
+.nm-hub-tag {
+  margin-top: 9px;
+  font-size: 0.8rem;
+  color: #7ee2a8;
+}
+.nm-hint {
+  margin-top: 12px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  opacity: 0.7;
+}
+@media (max-width: 760px) {
+  .netmap-card {
+    position: static;
+    max-width: none;
+    margin: 6px 6px 10px;
+  }
+  .netmap-label {
+    font-size: 17px;
+  }
+}
+
 .co-warn {
   margin-top: 8px;
   font-size: 0.8rem;

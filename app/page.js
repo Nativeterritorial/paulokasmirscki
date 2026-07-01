@@ -3,6 +3,7 @@ import CookieBanner from "./cookie";
 import HeroAI from "./hero-ai";
 import LeadForm from "./lead-form";
 import BrandsCarousel from "./brands-carousel";
+import NetworkMap from "./network-map";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const INSTAGRAM = "https://instagram.com/paulokasmirscki";
@@ -511,6 +512,25 @@ export default function Home() {
               <a href="/rede" style={{ color: "var(--gold-2)" }}>Ver todas as empresas →</a>
               {"  ·  "}E a sua marca? <a href="#contato" style={{ color: "var(--gold-2)" }}>Faça parte da rede →</a>
             </p>
+          </div>
+        </section>
+
+        {/* 03b — O mapa da rede */}
+        <section id="mapa">
+          <div className="container">
+            <div className="section-head">
+              <div className="section-num">
+                03 <span>/ O mapa da rede</span>
+              </div>
+              <h2>
+                Uma rede que <em>conecta</em> a Serra ao mundo
+              </h2>
+              <p>
+                Cada ponto é uma empresa da rede. Todas passam pelo Paulo — o
+                elo entre elas. Da Serra Gaúcha ao alcance internacional.
+              </p>
+            </div>
+            <NetworkMap />
           </div>
         </section>
 

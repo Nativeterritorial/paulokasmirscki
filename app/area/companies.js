@@ -111,6 +111,16 @@ export const COMPANIES = [
     linkLabel: "@ordeclean",
   },
   {
+    id: "rapadura",
+    nome: "Rapadura da Serra Gaúcha",
+    segmento: "Alimentação & Doces",
+    descricao:
+      "Fábrica familiar de doces artesanais da Serra Gaúcha — rapadura, cajuzinho, brigadeiros e novidades, feitos com sabor, tradição e qualidade. De Cotiporã/RS.",
+    atende: ["Alimentação", "Comércio & Varejo"],
+    link: "https://www.instagram.com/rapaduradaserra/",
+    linkLabel: "@rapaduradaserra",
+  },
+  {
     id: "rbs",
     nome: "Grupo RBS",
     segmento: "Mídia & Comunicação",

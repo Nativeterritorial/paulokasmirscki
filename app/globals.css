@@ -2640,7 +2640,51 @@ body {
   opacity: 1;
 }
 
-/* ---- MAPA DA REDE ---- */
+/* ---- GLOBO 3D DA REDE ---- */
+.globe-wrap {
+  position: relative;
+  margin-top: 34px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background:
+    radial-gradient(120% 90% at 50% 40%, rgba(50, 70, 160, 0.16), transparent 70%),
+    rgba(255, 255, 255, 0.015);
+  overflow: hidden;
+  min-height: 540px;
+}
+.globe-canvas {
+  width: 100%;
+  height: 540px;
+  cursor: grab;
+}
+.globe-canvas:active {
+  cursor: grabbing;
+}
+.globe-canvas canvas {
+  display: block;
+}
+.globe-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+.globe-card {
+  z-index: 2;
+}
+@media (max-width: 760px) {
+  .globe-wrap {
+    min-height: 420px;
+  }
+  .globe-canvas {
+    height: 420px;
+  }
+}
+
+/* ---- MAPA DA REDE (SVG legado) ---- */
 .netmap {
   position: relative;
   margin-top: 34px;

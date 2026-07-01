@@ -11,8 +11,11 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.102.0",
     "@upstash/redis": "^1.38.0",
+    "globe.gl": "^2.46.1",
     "next": "^15.5.19",
     "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react-dom": "19.0.0",
+    "three": "^0.185.1",
+    "topojson-client": "^3.1.0"
   }
 }

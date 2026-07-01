@@ -2641,21 +2641,110 @@ body {
 }
 
 /* ---- GLOBO 3D DA REDE ---- */
+.globe-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 16px;
+  margin-top: 34px;
+}
 .globe-wrap {
   position: relative;
-  margin-top: 34px;
   border: 1px solid var(--border);
   border-radius: 20px;
   background:
     radial-gradient(120% 90% at 50% 40%, rgba(50, 70, 160, 0.16), transparent 70%),
     rgba(255, 255, 255, 0.015);
   overflow: hidden;
-  min-height: 540px;
+  min-height: 560px;
 }
 .globe-canvas {
   width: 100%;
-  height: 540px;
+  height: 560px;
   cursor: grab;
+}
+/* lista lateral de empresas */
+.globe-list {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  max-height: 560px;
+}
+.gl-head {
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.gl-scroll {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.gl-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 10px;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--text);
+  transition: background 0.15s;
+}
+.gl-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.gl-item.on {
+  background: rgba(120, 150, 255, 0.16);
+}
+.gl-dot {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ffd15b;
+}
+.gl-dot.hub {
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+.gl-dot.intl {
+  background: #7ee2a8;
+}
+.gl-nm {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.gl-ct {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--muted);
+  margin-top: 1px;
+}
+.gl-sep {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7ee2a8;
+  opacity: 0.8;
+  padding: 14px 10px 6px;
+}
+@media (max-width: 860px) {
+  .globe-layout {
+    grid-template-columns: 1fr;
+  }
+  .globe-list {
+    max-height: 320px;
+  }
 }
 .globe-canvas:active {
   cursor: grabbing;

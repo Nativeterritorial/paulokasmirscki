@@ -149,6 +149,14 @@ const BRANDS = [
     link: "@ordeclean →",
   },
   {
+    id: "rbs",
+    href: "https://www.gruporbs.com.br",
+    logo: <img className="tile-logo" src="/brand-rbs.svg" alt="Grupo RBS" />,
+    role: "Mídia & Comunicação",
+    desc: "Maior grupo de comunicação do Sul do Brasil — TV, jornais, portais, rádios e soluções de publicidade (RBS ADS).",
+    link: "gruporbs.com.br →",
+  },
+  {
     id: "mbx",
     href: "https://www.mbxglobalservices.com",
     logo: (

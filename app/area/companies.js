@@ -111,6 +111,16 @@ export const COMPANIES = [
     linkLabel: "@ordeclean",
   },
   {
+    id: "rbs",
+    nome: "Grupo RBS",
+    segmento: "Mídia & Comunicação",
+    descricao:
+      "Maior grupo de comunicação do Sul do Brasil — TV (RBS TV), jornais e portais (Zero Hora, GZH, Pioneiro), rádios (Gaúcha, Atlântida) e soluções de publicidade e mídia (RBS ADS) para marcas crescerem.",
+    atende: ["Marketing & Digital", "Mídia & Comunicação", "Comércio & Varejo", "Serviços"],
+    link: "https://www.gruporbs.com.br",
+    linkLabel: "gruporbs.com.br",
+  },
+  {
     id: "mbx",
     nome: "MBX Global Services",
     segmento: "Logística & Comércio Exterior",

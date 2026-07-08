@@ -2665,6 +2665,7 @@ body {
 }
 .globe-wrap {
   position: relative;
+  margin-top: 34px;
   border: 1px solid var(--border);
   border-radius: 20px;
   background:
@@ -2672,6 +2673,51 @@ body {
     rgba(255, 255, 255, 0.015);
   overflow: hidden;
   min-height: 560px;
+}
+/* pins no globo */
+.globe-pin {
+  position: relative;
+  cursor: pointer;
+}
+.globe-pin .gp-dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffd15b;
+  box-shadow: 0 0 0 4px rgba(255, 209, 91, 0.25);
+}
+.globe-pin.hub .gp-dot {
+  width: 13px;
+  height: 13px;
+  background: #ffffff;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3);
+}
+.globe-pin.intl .gp-dot {
+  background: #7ee2a8;
+  box-shadow: 0 0 0 4px rgba(126, 226, 168, 0.25);
+}
+.globe-pin .gp-label {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 500;
+  color: #eef2ff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+}
+.globe-pin.hub .gp-label {
+  font-size: 13px;
+  font-weight: 600;
+}
+.globe-pin.intl .gp-label {
+  color: #c6f4d8;
 }
 .globe-canvas {
   width: 100%;

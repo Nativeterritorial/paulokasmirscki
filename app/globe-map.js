@@ -13,21 +13,22 @@ const HUB = {
   hub: true,
 };
 
+// coords espalhadas pela Serra Gaúcha/RS pra os pins não empilharem
 const COMPANIES = [
-  { id: "native", nome: "NATIVE", seg: "Inteligência Territorial", cidade: "Veranópolis · RS", lat: -28.93, lng: -51.55 },
-  { id: "ordeclean", nome: "Ordeclean", seg: "Agro & Pecuária", cidade: "Serra Gaúcha · RS", lat: -28.99, lng: -51.62 },
-  { id: "rapadura", nome: "Rapadura da Serra Gaúcha", seg: "Alimentação & Doces", cidade: "Cotiporã · RS", lat: -28.9797, lng: -51.7139 },
-  { id: "bigwolf", nome: "Big Wolf", seg: "Moda & Vestuário", cidade: "Loja online", lat: -28.90, lng: -51.49 },
-  { id: "pulse", nome: "Pulse Jiu-Jitsu", seg: "Esporte & Lazer", cidade: "Veranópolis · RS", lat: -28.945, lng: -51.545 },
-  { id: "mutalys", nome: "Mutalys", seg: "Gestão & Consultoria", cidade: "Serra Gaúcha · RS", lat: -29.05, lng: -51.42 },
-  { id: "serafin", nome: "Serafin Suplementos", seg: "Saúde & Suplementos", cidade: "Veranópolis · RS", lat: -28.928, lng: -51.562 },
-  { id: "gazzana", nome: "Gazzana & Maragno", seg: "Jurídico", cidade: "Veranópolis · RS", lat: -28.921, lng: -51.552 },
-  { id: "visara", nome: "Visara Digital", seg: "Marketing & Digital", cidade: "Serra Gaúcha · RS", lat: -29.16, lng: -51.35 },
-  { id: "gilioli", nome: "Gilioli", seg: "Contabilidade", cidade: "Serra Gaúcha · RS", lat: -29.02, lng: -51.48 },
-  { id: "alsus", nome: "Grupo ALSUS", seg: "Construção & Infra", cidade: "Serra Gaúcha · RS", lat: -29.18, lng: -51.44 },
-  { id: "agetra", nome: "Agetra Gráfica", seg: "Gráfica & Impressão", cidade: "Caxias do Sul · RS", lat: -29.1678, lng: -51.1794 },
-  { id: "mbx", nome: "MBX Global Services", seg: "Logística & Comércio Exterior", cidade: "Porto Alegre · RS", lat: -30.0346, lng: -51.2177 },
-  { id: "rbs", nome: "Grupo RBS", seg: "Mídia & Comunicação", cidade: "Porto Alegre · RS", lat: -30.03, lng: -51.23 },
+  { id: "native", nome: "NATIVE", seg: "Inteligência Territorial", cidade: "Veranópolis · RS", lat: -28.86, lng: -51.78 },
+  { id: "ordeclean", nome: "Ordeclean", seg: "Agro & Pecuária", cidade: "Serra Gaúcha · RS", lat: -28.42, lng: -51.55 },
+  { id: "rapadura", nome: "Rapadura da Serra Gaúcha", seg: "Alimentação & Doces", cidade: "Cotiporã · RS", lat: -28.98, lng: -51.71 },
+  { id: "bigwolf", nome: "Big Wolf", seg: "Moda & Vestuário", cidade: "Loja online", lat: -28.55, lng: -51.10 },
+  { id: "pulse", nome: "Pulse Jiu-Jitsu", seg: "Esporte & Lazer", cidade: "Veranópolis · RS", lat: -29.02, lng: -51.30 },
+  { id: "mutalys", nome: "Mutalys", seg: "Gestão & Consultoria", cidade: "Serra Gaúcha · RS", lat: -29.40, lng: -51.80 },
+  { id: "serafin", nome: "Serafin Suplementos", seg: "Saúde & Suplementos", cidade: "Veranópolis · RS", lat: -28.93, lng: -51.55 },
+  { id: "gazzana", nome: "Gazzana & Maragno", seg: "Jurídico", cidade: "Veranópolis · RS", lat: -28.72, lng: -51.33 },
+  { id: "visara", nome: "Visara Digital", seg: "Marketing & Digital", cidade: "Serra Gaúcha · RS", lat: -29.22, lng: -51.58 },
+  { id: "gilioli", nome: "Gilioli", seg: "Contabilidade", cidade: "Serra Gaúcha · RS", lat: -29.10, lng: -51.98 },
+  { id: "alsus", nome: "Grupo ALSUS", seg: "Construção & Infra", cidade: "Serra Gaúcha · RS", lat: -29.48, lng: -51.28 },
+  { id: "agetra", nome: "Agetra Gráfica", seg: "Gráfica & Impressão", cidade: "Caxias do Sul · RS", lat: -29.17, lng: -51.18 },
+  { id: "mbx", nome: "MBX Global Services", seg: "Logística & Comércio Exterior", cidade: "Porto Alegre · RS", lat: -30.03, lng: -51.22 },
+  { id: "rbs", nome: "Grupo RBS", seg: "Mídia & Comunicação", cidade: "Porto Alegre · RS", lat: -30.15, lng: -51.42 },
 ];
 
 // Marcadores internacionais (alcance da MBX / Exatus)
@@ -65,6 +66,35 @@ export default function GlobeMap() {
         ...INTL.map((c) => ({ startLat: HUB.lat, startLng: HUB.lng, endLat: c.lat, endLng: c.lng, kind: "intl" })),
       ];
 
+      const select = (d) => {
+        setSel(d);
+        const g = globeRef.current;
+        if (!g) return;
+        g.controls().autoRotate = false;
+        if (d.lat != null) {
+          g.pointOfView(
+            { lat: d.lat, lng: d.lng, altitude: d.intl ? 1.6 : 0.7 },
+            900
+          );
+        }
+      };
+
+      const makePin = (d) => {
+        const el = document.createElement("div");
+        el.className =
+          "globe-pin" + (d.hub ? " hub" : "") + (d.intl ? " intl" : "");
+        el.innerHTML =
+          '<span class="gp-dot"></span><span class="gp-label">' +
+          (d.hub ? "Paulo" : d.intl ? d.cidade : d.nome) +
+          "</span>";
+        el.style.pointerEvents = "auto";
+        el.addEventListener("click", (e) => {
+          e.stopPropagation();
+          select(d);
+        });
+        return el;
+      };
+
       const globe = Globe()(elRef.current)
         .width(elRef.current.clientWidth)
         .height(560)
@@ -79,22 +109,11 @@ export default function GlobeMap() {
         .polygonSideColor(() => "rgba(0,0,0,0)")
         .polygonStrokeColor(() => "rgba(180,200,255,0.35)")
         .polygonAltitude(0.005)
-        .pointsData(points)
-        .pointLat("lat")
-        .pointLng("lng")
-        .pointColor((d) => (d.hub ? "#ffffff" : d.intl ? "#7ee2a8" : "#ffd15b"))
-        .pointAltitude((d) => (d.hub ? 0.07 : 0.03))
-        .pointRadius((d) => (d.hub ? 0.6 : 0.34))
-        .pointLabel((d) => `${d.nome}${d.cidade ? " — " + d.cidade : ""}`)
-        .onPointClick((d) => select(d))
-        .labelsData([...INTL])
-        .labelLat("lat")
-        .labelLng("lng")
-        .labelText((d) => d.cidade)
-        .labelSize(1.1)
-        .labelDotRadius(0.3)
-        .labelColor(() => "rgba(126,226,168,0.9)")
-        .labelResolution(2)
+        .htmlElementsData(points)
+        .htmlLat("lat")
+        .htmlLng("lng")
+        .htmlAltitude((d) => (d.hub ? 0.04 : 0.02))
+        .htmlElement(makePin)
         .arcsData(arcs)
         .arcColor((a) =>
           a.kind === "intl"
@@ -107,7 +126,7 @@ export default function GlobeMap() {
         .arcDashGap(0.25)
         .arcDashAnimateTime((a) => (a.kind === "intl" ? 3500 : 2200));
 
-      globe.pointOfView({ lat: -12, lng: -55, altitude: 2.0 }, 0);
+      globe.pointOfView({ lat: -22, lng: -53, altitude: 1.6 }, 0);
       const controls = globe.controls();
       controls.autoRotate = true;
       controls.autoRotateSpeed = 0.5;
@@ -137,92 +156,29 @@ export default function GlobeMap() {
     };
   }, []);
 
-  // seleciona uma empresa: voa até ela e mostra o rótulo com o nome
-  const select = (d) => {
-    setSel(d);
-    const g = globeRef.current;
-    if (!g) return;
-    g.controls().autoRotate = false;
-    const extra = d.hub || d.intl ? [] : [d];
-    g.labelsData([...INTL, ...extra]);
-    if (d.lat != null) {
-      g.pointOfView(
-        { lat: d.lat, lng: d.lng, altitude: d.intl ? 1.6 : 0.9 },
-        900
-      );
-    }
-  };
-
   return (
-    <div className="globe-layout">
-      <div className="globe-wrap">
-        <div ref={elRef} className="globe-canvas" />
-        {!ready && <div className="globe-loading">carregando o globo…</div>}
-        <div className="netmap-card globe-card" aria-live="polite">
-          <div className="nm-city">📍 {sel.cidade}</div>
-          <div className="nm-name">{sel.nome}</div>
-          <div className="nm-seg">{sel.seg}</div>
-          {sel.hub ? (
-            <div className="nm-hub-tag">O conector da rede</div>
-          ) : sel.intl ? (
-            <div className="nm-hub-tag" style={{ color: "#7ee2a8" }}>
-              Alcance da rede no mundo
-            </div>
-          ) : (
-            <a className="nm-link" href={`/rede/${sel.id}`}>
-              Conhecer a empresa →
-            </a>
-          )}
-          <div className="nm-hint">Arraste pra girar · role pra dar zoom</div>
+    <div className="globe-wrap">
+      <div ref={elRef} className="globe-canvas" />
+      {!ready && <div className="globe-loading">carregando o globo…</div>}
+      <div className="netmap-card globe-card" aria-live="polite">
+        <div className="nm-city">📍 {sel.cidade}</div>
+        <div className="nm-name">{sel.nome}</div>
+        <div className="nm-seg">{sel.seg}</div>
+        {sel.hub ? (
+          <div className="nm-hub-tag">O conector da rede</div>
+        ) : sel.intl ? (
+          <div className="nm-hub-tag" style={{ color: "#7ee2a8" }}>
+            Alcance da rede no mundo
+          </div>
+        ) : (
+          <a className="nm-link" href={`/rede/${sel.id}`}>
+            Conhecer a empresa →
+          </a>
+        )}
+        <div className="nm-hint">
+          Arraste pra girar · role pra dar zoom · clique nos pins
         </div>
       </div>
-
-      <aside className="globe-list">
-        <div className="gl-head">
-          <button
-            type="button"
-            className={`gl-item gl-hub${sel.id === "pk" ? " on" : ""}`}
-            onClick={() => select(HUB)}
-          >
-            <span className="gl-dot hub" />
-            <span>
-              <span className="gl-nm">Paulo Kasmirscki</span>
-              <span className="gl-ct">Veranópolis · o conector</span>
-            </span>
-          </button>
-        </div>
-        <div className="gl-scroll">
-          {COMPANIES.map((c) => (
-            <button
-              type="button"
-              key={c.id}
-              className={`gl-item${sel.id === c.id ? " on" : ""}`}
-              onClick={() => select(c)}
-            >
-              <span className="gl-dot" />
-              <span>
-                <span className="gl-nm">{c.nome}</span>
-                <span className="gl-ct">{c.cidade}</span>
-              </span>
-            </button>
-          ))}
-          <div className="gl-sep">Alcance internacional</div>
-          {INTL.map((c) => (
-            <button
-              type="button"
-              key={c.id}
-              className={`gl-item${sel.id === c.id ? " on" : ""}`}
-              onClick={() => select(c)}
-            >
-              <span className="gl-dot intl" />
-              <span>
-                <span className="gl-nm">{c.cidade}</span>
-                <span className="gl-ct">{c.seg}</span>
-              </span>
-            </button>
-          ))}
-        </div>
-      </aside>
     </div>
   );
 }

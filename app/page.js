@@ -641,10 +641,10 @@ export default function Home() {
                   i: "V",
                 },
                 {
-                  t: "Conheço pouca gente com a facilidade do Paulo para unir as pessoas. Quando ele te conecta a alguém, vem sempre com responsabilidade e confiança.",
-                  a: "Depoimento em breve",
-                  s: "Personalidade da rede",
-                  i: "★",
+                  t: "Conheço o Paulo há anos e ao longo desse tempo pude vivenciar o impacto das relações que ele tem com diversos negócios em diversos nichos. Posso afirmar que esse ecossistema pode auxiliar muito qualquer negócio a prosperar.",
+                  a: "Executiva de Vendas",
+                  s: "Grupo RBS",
+                  i: "R",
                 },
               ].map((d) => (
                 <article className="testimonial" key={d.a}>

@@ -733,6 +733,22 @@ section {
   background: var(--gold-grad);
 }
 
+.testimonial .t-logo {
+  height: 28px;
+  width: auto;
+  max-width: 118px;
+  object-fit: contain;
+  flex: none;
+}
+.testimonial .t-visara {
+  font-size: 1.15rem;
+  flex: none;
+}
+.testimonial .t-visara .dot {
+  width: 15px;
+  height: 15px;
+}
+
 .testimonial .author .name {
   font-weight: 500;
   font-size: 0.96rem;

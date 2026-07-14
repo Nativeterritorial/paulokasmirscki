@@ -49,7 +49,7 @@ export default function GlobeMap() {
   // cria o globo (uma vez)
   useEffect(() => {
     let destroyed = false;
-    let onResize = null;
+    let ro = null;
 
     (async () => {
       const [{ default: Globe }, topojson] = await Promise.all([
@@ -79,22 +79,6 @@ export default function GlobeMap() {
         }
       };
 
-      const makePin = (d) => {
-        const el = document.createElement("div");
-        el.className =
-          "globe-pin" + (d.hub ? " hub" : "") + (d.intl ? " intl" : "");
-        el.innerHTML =
-          '<span class="gp-dot"></span><span class="gp-label">' +
-          (d.hub ? "Paulo" : d.intl ? d.cidade : d.nome) +
-          "</span>";
-        el.style.pointerEvents = "auto";
-        el.addEventListener("click", (e) => {
-          e.stopPropagation();
-          select(d);
-        });
-        return el;
-      };
-
       const globe = Globe()(elRef.current)
         .width(elRef.current.clientWidth)
         .height(560)
@@ -109,11 +93,18 @@ export default function GlobeMap() {
         .polygonSideColor(() => "rgba(0,0,0,0)")
         .polygonStrokeColor(() => "rgba(180,200,255,0.35)")
         .polygonAltitude(0.005)
-        .htmlElementsData(points)
-        .htmlLat("lat")
-        .htmlLng("lng")
-        .htmlAltitude((d) => (d.hub ? 0.04 : 0.02))
-        .htmlElement(makePin)
+        .labelsData(points)
+        .labelLat("lat")
+        .labelLng("lng")
+        .labelText((d) => (d.hub ? "Paulo" : d.intl ? d.cidade : d.nome))
+        .labelSize((d) => (d.hub ? 0.9 : 0.62))
+        .labelDotRadius((d) => (d.hub ? 0.5 : 0.32))
+        .labelColor((d) =>
+          d.hub ? "#ffffff" : d.intl ? "#7ee2a8" : "#ffd15b"
+        )
+        .labelResolution(2)
+        .labelAltitude(0.01)
+        .onLabelClick((d) => select(d))
         .arcsData(arcs)
         .arcColor((a) =>
           a.kind === "intl"
@@ -140,15 +131,30 @@ export default function GlobeMap() {
       globeRef.current = globe;
       setReady(true);
 
-      onResize = () => {
-        if (elRef.current) globe.width(elRef.current.clientWidth);
+      // mantém a largura sincronizada assim que o layout define o tamanho
+      // (corrige canvas 0x0 quando o clientWidth ainda era 0 na criação)
+      const resize = () => {
+        const w = elRef.current && elRef.current.clientWidth;
+        if (w > 0) globe.width(w);
       };
-      window.addEventListener("resize", onResize);
+      // roda várias vezes: o globe.gl reseta a largura na init interna,
+      // então reforçamos depois dela (senão o canvas fica 0x0)
+      resize();
+      requestAnimationFrame(resize);
+      [100, 350, 800].forEach((t) => setTimeout(resize, t));
+      if (typeof ResizeObserver !== "undefined" && elRef.current) {
+        ro = new ResizeObserver(resize);
+        ro.observe(elRef.current);
+      }
+      window.addEventListener("resize", resize);
+      globeRef.current._resizeHandler = resize;
     })();
 
     return () => {
       destroyed = true;
-      if (onResize) window.removeEventListener("resize", onResize);
+      if (ro) ro.disconnect();
+      if (globeRef.current?._resizeHandler)
+        window.removeEventListener("resize", globeRef.current._resizeHandler);
       try {
         globeRef.current?._destructor?.();
       } catch (e) {}

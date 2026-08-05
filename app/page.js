@@ -149,20 +149,6 @@ const BRANDS = [
     link: "@ordeclean →",
   },
   {
-    id: "rapadura",
-    href: "https://www.instagram.com/rapaduradaserra/",
-    logo: (
-      <img
-        className="pulse-logo"
-        src="/brand-rapadura.png"
-        alt="Rapadura da Serra Gaúcha"
-      />
-    ),
-    role: "Alimentação & Doces",
-    desc: "Fábrica familiar de doces artesanais — rapadura, cajuzinho e brigadeiros, com sabor e tradição. De Cotiporã/RS.",
-    link: "@rapaduradaserra →",
-  },
-  {
     id: "rbs",
     href: "https://www.gruporbs.com.br",
     logo: <img className="tile-logo" src="/brand-rbs.svg" alt="Grupo RBS" />,

@@ -68,7 +68,9 @@ export default function HeroAI() {
         </div>
       </div>
       <a className="hero-ai-cta" href="/area">
-        Falar com a IA da rede →
+        <span className="hai-cta-icon">✦</span>
+        Falar com a IA da rede
+        <span className="hai-cta-arrow">→</span>
       </a>
     </div>
   );

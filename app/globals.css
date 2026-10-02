@@ -2072,18 +2072,49 @@ body {
   color: #ffffff;
 }
 .hero-ai-cta {
-  display: inline-block;
-  margin-top: 14px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #eaf0ff;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #06304a;
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  padding-bottom: 2px;
-  transition: opacity 0.2s ease;
+  background: linear-gradient(120deg, #6fffbf, #46d6ff);
+  padding: 14px 26px;
+  border-radius: 999px;
+  box-shadow: 0 0 0 0 rgba(111, 255, 191, 0.55), 0 10px 30px rgba(70, 214, 255, 0.3);
+  animation: haiCtaGlow 2.2s infinite;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 .hero-ai-cta:hover {
-  opacity: 0.7;
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+.hai-cta-icon {
+  font-size: 1.05em;
+  animation: haiTwinkle 2.2s ease-in-out infinite;
+}
+.hai-cta-arrow {
+  transition: transform 0.2s ease;
+}
+.hero-ai-cta:hover .hai-cta-arrow {
+  transform: translateX(4px);
+}
+@keyframes haiCtaGlow {
+  0% { box-shadow: 0 0 0 0 rgba(111, 255, 191, 0.55), 0 10px 30px rgba(70, 214, 255, 0.3); }
+  70% { box-shadow: 0 0 0 12px rgba(111, 255, 191, 0), 0 10px 30px rgba(70, 214, 255, 0.3); }
+  100% { box-shadow: 0 0 0 0 rgba(111, 255, 191, 0), 0 10px 30px rgba(70, 214, 255, 0.3); }
+}
+@keyframes haiTwinkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.25) rotate(20deg); opacity: 0.75; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-ai-cta,
+  .hai-cta-icon {
+    animation: none;
+  }
 }
 
 /* ---------- PAINEL DO PAULO ---------- */

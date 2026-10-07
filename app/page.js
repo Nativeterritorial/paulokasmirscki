@@ -615,18 +615,18 @@ export default function Home() {
                   i: "F",
                 },
                 {
-                  t: "Estar dentro do ecossistema do Paulo abriu portas reais para a Visara. Ele entende de gente e de negócio — apresenta a pessoa certa e o negócio flui.",
-                  a: "Visara Digital",
-                  s: "Agência Digital",
-                  mark: "visara",
-                  i: "V",
-                },
-                {
                   t: "Conheço o Paulo há anos e ao longo desse tempo pude vivenciar o impacto das relações que ele tem com diversos negócios em diversos nichos. Posso afirmar que esse ecossistema pode auxiliar muito qualquer negócio a prosperar.",
                   a: "Executiva de Vendas",
                   s: "Grupo RBS",
                   logo: "/brand-rbs.svg",
                   i: "R",
+                },
+                {
+                  t: "Estar dentro do ecossistema do Paulo abriu portas reais para a Visara. Ele entende de gente e de negócio — apresenta a pessoa certa e o negócio flui.",
+                  a: "Visara Digital",
+                  s: "Agência Digital",
+                  mark: "visara",
+                  i: "V",
                 },
               ].map((d) => (
                 <article className="testimonial" key={d.a}>

@@ -160,4 +160,14 @@ export const COMPANIES = [
     link: "https://www.alsus.com.br",
     linkLabel: "alsus.com.br",
   },
+  {
+    id: "abraaofrainer",
+    nome: "Abraão Frainer Filmes",
+    segmento: "Fotografia & Filmagem",
+    descricao:
+      "Fotografia e filmagem profissional na Serra Gaúcha — casamentos, pré-wedding, festas de 15 anos e vídeos para empresas, com olhar de cinema e atenção aos detalhes.",
+    atende: ["Fotografia & Filmagem", "Marketing & Digital", "Serviços"],
+    link: "https://abraaofrainer.com.br",
+    linkLabel: "abraaofrainer.com.br",
+  },
 ];

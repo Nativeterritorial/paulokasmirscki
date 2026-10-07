@@ -206,6 +206,20 @@ const BRANDS = [
     desc: "Urbanização, infraestrutura e construção — loteamentos, terraplenagem, drenagem e obras.",
     link: "alsus.com.br →",
   },
+  {
+    id: "abraaofrainer",
+    href: "https://abraaofrainer.com.br",
+    logo: (
+      <img
+        className="tile-logo"
+        src="/brand-abraaofrainer.png"
+        alt="Abraão Frainer Filmes"
+      />
+    ),
+    role: "Fotografia & Filmagem",
+    desc: "Fotografia e filmagem na Serra Gaúcha — casamentos, pré-wedding, 15 anos e vídeos para empresas, com olhar de cinema.",
+    link: "abraaofrainer.com.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

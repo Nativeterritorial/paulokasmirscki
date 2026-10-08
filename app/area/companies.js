@@ -270,4 +270,14 @@ export const COMPANIES = [
     link: "https://sebilar.com.br",
     linkLabel: "sebilar.com.br",
   },
+  {
+    id: "vsm",
+    nome: "VSM",
+    segmento: "Componentes para Vidro Temperado",
+    descricao:
+      "Indústria de componentes para vidro temperado — perfis, acessórios, kits para box, guarnições e fitas, com parque fabril próprio, pintura de última geração e mais de 15 anos de mercado.",
+    atende: ["Agro & Indústria", "Imóveis & Construção", "Arquitetura", "Comércio & Varejo"],
+    link: "https://vsm.ind.br",
+    linkLabel: "vsm.ind.br",
+  },
 ];

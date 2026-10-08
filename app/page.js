@@ -361,6 +361,21 @@ const BRANDS = [
     desc: "Monitoramento e pronto atendimento 24 horas, sistemas eletrônicos de proteção e soluções em áudio e vídeo.",
     link: "sebilar.com.br →",
   },
+  {
+    id: "vsm",
+    href: "https://vsm.ind.br",
+    logo: (
+      <img
+        className="tile-logo"
+        style={{ maxWidth: 190 }}
+        src="/brand-vsm.png"
+        alt="VSM — Componentes para Vidro Temperado"
+      />
+    ),
+    role: "Componentes para Vidro Temperado",
+    desc: "Indústria de perfis, acessórios, kits para box, guarnições e fitas para vidro temperado.",
+    link: "vsm.ind.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

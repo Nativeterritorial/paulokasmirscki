@@ -1576,6 +1576,26 @@ section {
   background: var(--gold-1);
   flex: none;
 }
+.seg-tag.has-ico {
+  padding-left: 9px;
+}
+.seg-tag.has-ico::before {
+  display: none;
+}
+.seg-tag .ico {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.seg-tag:hover .ico {
+  background: linear-gradient(120deg, #6fffbf, #46d6ff);
+  color: #06304a;
+}
 .seg-tag:hover {
   border-color: var(--gold-1);
   color: var(--gold-2);

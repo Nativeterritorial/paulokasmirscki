@@ -2,6 +2,7 @@ import Effects from "./effects";
 import CookieBanner from "./cookie";
 import HeroAI from "./hero-ai";
 import SegmentHub from "./segment-hub";
+import { SegIcon } from "./segment-icons";
 import LeadForm from "./lead-form";
 import BrandsCarousel from "./brands-carousel";
 
@@ -969,7 +970,10 @@ export default function Home() {
             {/* Grade com todos os segmentos */}
             <div className="seg-grid fade-up">
               {SEGMENTOS.map((seg) => (
-                <span className="seg-tag" key={seg}>
+                <span className="seg-tag has-ico" key={seg}>
+                  <span className="ico">
+                    <SegIcon label={seg} size={14} />
+                  </span>
                   {seg}
                 </span>
               ))}

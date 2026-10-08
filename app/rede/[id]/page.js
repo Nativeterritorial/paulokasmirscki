@@ -43,6 +43,7 @@ const LOGOS = {
   mga: "/brand-mga.png",
   dnlinfo: "/brand-dnlinfo.png",
   amparo: "/brand-amparo.png",
+  casanostra: "/brand-casanostra.png",
 };
 
 export function generateStaticParams() {

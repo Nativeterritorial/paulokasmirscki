@@ -440,4 +440,14 @@ export const COMPANIES = [
     link: "https://amparoseguros.com.br",
     linkLabel: "amparoseguros.com.br",
   },
+  {
+    id: "casanostra",
+    nome: "Casa Nostra Materiais de Construção",
+    segmento: "Materiais de Construção",
+    descricao:
+      "Materiais de construção e acabamentos em Veranópolis, do Grupo Mapracon — tudo para construir, reformar e dar o acabamento da sua obra.",
+    atende: ["Imóveis & Construção", "Comércio & Varejo", "Arquitetura"],
+    link: "https://www.instagram.com/casanostra_rs/",
+    linkLabel: "@casanostra_rs",
+  },
 ];

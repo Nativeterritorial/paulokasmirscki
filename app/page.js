@@ -607,6 +607,20 @@ const BRANDS = [
     desc: "Corretora de seguros para família e empresa — automóvel, residencial, vida e mais.",
     link: "amparoseguros.com.br →",
   },
+  {
+    id: "casanostra",
+    href: "https://www.instagram.com/casanostra_rs/",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        src="/brand-casanostra.png"
+        alt="Casa Nostra Materiais de Construção"
+      />
+    ),
+    role: "Materiais de Construção",
+    desc: "Materiais de construção e acabamentos em Veranópolis — Grupo Mapracon.",
+    link: "@casanostra_rs →",
+  },
 ];
 
 function GhostMarquee({ word }) {

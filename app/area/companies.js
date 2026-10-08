@@ -180,4 +180,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/pulsarveranopolis/",
     linkLabel: "@pulsarveranopolis",
   },
+  {
+    id: "detoni",
+    nome: "De Toni Odontologia",
+    segmento: "Odontologia",
+    descricao:
+      "Odontologia humanizada em Veranópolis — clínica geral, especializada em estética e implantes, na Praça XV de Novembro.",
+    atende: ["Saúde & Bem-estar", "Estética & Beleza", "Serviços"],
+    link: "https://www.instagram.com/detoniodonto/",
+    linkLabel: "@detoniodonto",
+  },
 ];

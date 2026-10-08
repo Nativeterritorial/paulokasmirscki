@@ -17,6 +17,7 @@ const LOGOS = {
   ordeclean: "/brand-ordeclean.svg",
   abraaofrainer: "/brand-abraaofrainer.png",
   pulsar: "/brand-pulsar.png",
+  detoni: "/brand-detoni.png",
 };
 
 export function generateStaticParams() {

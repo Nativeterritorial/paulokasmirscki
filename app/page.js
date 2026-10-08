@@ -234,6 +234,20 @@ const BRANDS = [
     desc: "Clínica médica em Veranópolis — medicina de excelência, com consultas e exames em um só lugar.",
     link: "@pulsarveranopolis →",
   },
+  {
+    id: "detoni",
+    href: "https://www.instagram.com/detoniodonto/",
+    logo: (
+      <img
+        className="tile-logo"
+        src="/brand-detoni.png"
+        alt="De Toni Odontologia"
+      />
+    ),
+    role: "Odontologia",
+    desc: "Odontologia humanizada em Veranópolis — clínica geral, especializada em estética e implantes.",
+    link: "@detoniodonto →",
+  },
 ];
 
 function GhostMarquee({ word }) {

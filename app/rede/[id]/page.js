@@ -31,6 +31,7 @@ const LOGOS = {
   estribo: "/brand-estribo.png",
   astronet: "/brand-astronet.png",
   rometal: "/brand-rometal.png",
+  ipacol: "/brand-ipacol.png",
 };
 
 export function generateStaticParams() {

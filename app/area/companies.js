@@ -320,4 +320,14 @@ export const COMPANIES = [
     link: "https://www.rometal.com.br",
     linkLabel: "rometal.com.br",
   },
+  {
+    id: "ipacol",
+    nome: "Ipacol Máquinas Agrícolas",
+    segmento: "Máquinas Agrícolas",
+    descricao:
+      "Fabricante de máquinas e implementos agrícolas desde 1976 — vagões misturadores e forrageiros, carretas, distribuidores e descompactadores de solo, do preparo do solo ao trato dos animais, com mais de 1.500 revendas no Brasil.",
+    atende: ["Agro & Indústria", "Comércio & Varejo"],
+    link: "https://ipacol.com.br",
+    linkLabel: "ipacol.com.br",
+  },
 ];

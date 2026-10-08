@@ -435,6 +435,21 @@ const BRANDS = [
     desc: "Sistemas deslizantes para portas, puxadores, perfis e espelhos — soluções que valorizam móveis e ambientes.",
     link: "rometal.com.br →",
   },
+  {
+    id: "ipacol",
+    href: "https://ipacol.com.br",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        style={{ maxHeight: 72 }}
+        src="/brand-ipacol.png"
+        alt="Ipacol — Parceria de sol a sol"
+      />
+    ),
+    role: "Máquinas Agrícolas",
+    desc: "Máquinas e implementos agrícolas desde 1976 — do preparo do solo ao trato dos animais.",
+    link: "ipacol.com.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

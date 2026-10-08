@@ -806,6 +806,24 @@ section {
 .insta-box:hover {
   border-color: var(--gold-1);
 }
+.insta-btn {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+  padding: 17px 34px;
+  background: linear-gradient(45deg, #f58529, #dd2a7b 45%, #8134af 75%, #515bd4);
+  box-shadow: 0 10px 30px rgba(221, 42, 123, 0.4);
+}
+.insta-box:hover .insta-btn {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(221, 42, 123, 0.55);
+}
+.insta-btn-arrow {
+  transition: transform 0.2s ease;
+}
+.insta-box:hover .insta-btn-arrow {
+  transform: translateX(4px);
+}
 .insta-left .name {
   font-family: var(--serif);
   font-size: 1.4rem;

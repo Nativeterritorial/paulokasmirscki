@@ -450,6 +450,20 @@ const BRANDS = [
     desc: "Máquinas e implementos agrícolas desde 1976 — do preparo do solo ao trato dos animais.",
     link: "ipacol.com.br →",
   },
+  {
+    id: "veranopolis",
+    href: "https://www.veranopolis.rs.gov.br",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        src="/brand-veranopolis.png"
+        alt="Prefeitura de Veranópolis"
+      />
+    ),
+    role: "Poder Público Municipal",
+    desc: "Prefeitura Municipal de Veranópolis/RS — serviços ao cidadão e às empresas do município.",
+    link: "veranopolis.rs.gov.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

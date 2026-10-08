@@ -330,4 +330,14 @@ export const COMPANIES = [
     link: "https://ipacol.com.br",
     linkLabel: "ipacol.com.br",
   },
+  {
+    id: "veranopolis",
+    nome: "Prefeitura de Veranópolis",
+    segmento: "Poder Público Municipal",
+    descricao:
+      "Prefeitura Municipal de Veranópolis/RS — serviços ao cidadão e às empresas: protocolos, nota fiscal eletrônica, licenciamento digital, licitações, meio ambiente e desenvolvimento econômico e rural.",
+    atende: ["Poder Público", "Serviços", "Negócios & Empresas"],
+    link: "https://www.veranopolis.rs.gov.br",
+    linkLabel: "veranopolis.rs.gov.br",
+  },
 ];

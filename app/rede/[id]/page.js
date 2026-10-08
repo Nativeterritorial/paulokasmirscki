@@ -32,6 +32,7 @@ const LOGOS = {
   astronet: "/brand-astronet.png",
   rometal: "/brand-rometal.png",
   ipacol: "/brand-ipacol.png",
+  veranopolis: "/brand-veranopolis.png",
 };
 
 export function generateStaticParams() {

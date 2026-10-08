@@ -97,7 +97,7 @@ const BRANDS = [
   {
     id: "exatus",
     href: "https://exatusgene.com",
-    logo: <img src="/brand-exatus.png" alt="Exatus Gene" />,
+    logo: <img className="tile-logo tall-logo" style={{ maxHeight: 72 }} src="/brand-exatus.png" alt="Exatus Gene" />,
     role: "Saúde & Genética",
     desc: "Testes genéticos avançados, pesquisa clínica e soluções para clínicas de fertilidade.",
     link: "exatusgene.com →",

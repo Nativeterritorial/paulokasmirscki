@@ -332,6 +332,20 @@ const BRANDS = [
     desc: "Restaurante e lancheria na BR 470, em Veranópolis — diversidade no cardápio e qualidade em cada detalhe.",
     link: "@paradouro470 →",
   },
+  {
+    id: "farinvest",
+    href: "https://farinvest.com.br",
+    logo: (
+      <img
+        className="tile-logo"
+        src="/brand-farinvest.png"
+        alt="Farinvest Consórcios"
+      />
+    ),
+    role: "Consórcios & Investimentos",
+    desc: "Consórcios de imóveis e veículos, cartas contempladas e alavancagem patrimonial — corretor autorizado HS Consórcios.",
+    link: "farinvest.com.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

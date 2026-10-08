@@ -250,4 +250,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/paradouro470/",
     linkLabel: "@paradouro470",
   },
+  {
+    id: "farinvest",
+    nome: "Farinvest Consórcios",
+    segmento: "Consórcios & Investimentos",
+    descricao:
+      "Consórcios de imóveis e veículos, cartas contempladas e consórcio como investimento e alavancagem patrimonial, para pessoas e empresas. Corretor autorizado HS Consórcios.",
+    atende: ["Finanças & Investimentos", "Imóveis & Construção", "Negócios & Empresas"],
+    link: "https://farinvest.com.br",
+    linkLabel: "farinvest.com.br",
+  },
 ];

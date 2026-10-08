@@ -450,4 +450,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/casanostra_rs/",
     linkLabel: "@casanostra_rs",
   },
+  {
+    id: "coexistir",
+    nome: "Coexistir",
+    segmento: "Desenvolvimento de Pessoas & Negócios",
+    descricao:
+      "Centro de desenvolvimento de pessoas e negócios — mentorias, consultorias, cursos, treinamentos e aconselhamento, com agendamento.",
+    atende: ["Gestão & Consultoria", "Educação & Capacitação", "Negócios & Empresas"],
+    link: "https://www.instagram.com/coenegocios/",
+    linkLabel: "@coenegocios",
+  },
 ];

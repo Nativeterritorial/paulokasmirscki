@@ -621,6 +621,21 @@ const BRANDS = [
     desc: "Materiais de construção e acabamentos em Veranópolis — Grupo Mapracon.",
     link: "@casanostra_rs →",
   },
+  {
+    id: "coexistir",
+    href: "https://www.instagram.com/coenegocios/",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        style={{ maxHeight: 76 }}
+        src="/brand-coexistir.png"
+        alt="Coexistir — Centro de Desenvolvimento"
+      />
+    ),
+    role: "Desenvolvimento de Pessoas & Negócios",
+    desc: "Mentorias, consultorias, cursos, treinamentos e aconselhamento para pessoas e negócios.",
+    link: "@coenegocios →",
+  },
 ];
 
 function GhostMarquee({ word }) {

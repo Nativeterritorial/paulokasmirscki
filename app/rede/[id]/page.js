@@ -27,6 +27,7 @@ const LOGOS = {
   farinvest: "/brand-farinvest.png",
   sebilar: "/brand-sebilar.png",
   vsm: "/brand-vsm.png",
+  monteaurea: "/brand-monteaurea.png",
 };
 
 export function generateStaticParams() {

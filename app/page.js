@@ -113,7 +113,7 @@ const BRANDS = [
   {
     id: "agetra",
     href: "http://agetra.com.br",
-    logo: <img className="tile-logo" src="/brand-agetra.png" alt="Agetra Gráfica" />,
+    logo: <img className="tile-logo tall-logo" style={{ maxHeight: 76 }} src="/brand-agetra.png" alt="Agetra Gráfica" />,
     role: "Gráfica & Impressão",
     desc: "Gráfica completa — impressos, comunicação visual, papelaria e soluções gráficas para empresas.",
     link: "agetra.com.br →",
@@ -375,6 +375,21 @@ const BRANDS = [
     role: "Componentes para Vidro Temperado",
     desc: "Indústria de perfis, acessórios, kits para box, guarnições e fitas para vidro temperado.",
     link: "vsm.ind.br →",
+  },
+  {
+    id: "monteaurea",
+    href: "https://www.instagram.com/monteaurea.joias/",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        style={{ maxHeight: 60, transform: "translateY(-2px)" }}
+        src="/brand-monteaurea.png"
+        alt="Monte Aurea Jóias"
+      />
+    ),
+    role: "Joalheria",
+    desc: "Alianças, solitários, brincos, correntes e joias de formatura, com fabricação própria — Veranópolis e Porto Alegre.",
+    link: "@monteaurea.joias →",
   },
 ];
 

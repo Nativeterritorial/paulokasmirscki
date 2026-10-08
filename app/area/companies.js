@@ -280,4 +280,14 @@ export const COMPANIES = [
     link: "https://vsm.ind.br",
     linkLabel: "vsm.ind.br",
   },
+  {
+    id: "monteaurea",
+    nome: "Monte Aurea Jóias",
+    segmento: "Joalheria",
+    descricao:
+      "Joalheria com fabricação própria e garantia, em Veranópolis e Porto Alegre — alianças, solitários, brincos, correntes e joias de formatura para eternizar momentos.",
+    atende: ["Joias & Acessórios", "Comércio & Varejo", "Moda & Vestuário"],
+    link: "https://www.instagram.com/monteaurea.joias/",
+    linkLabel: "@monteaurea.joias",
+  },
 ];

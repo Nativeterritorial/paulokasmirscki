@@ -535,6 +535,20 @@ const BRANDS = [
     desc: "Transporte de cargas com cobertura nacional — dedicada, fracionada e lotação, com frota própria e seguro.",
     link: "asxsolucoeslogisticas.com.br →",
   },
+  {
+    id: "145cafe",
+    href: "https://www.instagram.com/145cafe/",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        src="/brand-145cafe.png"
+        alt="145 Café"
+      />
+    ),
+    role: "Cafeteria",
+    desc: "Cafeteria — “o café nos move”. Cafés e um menu para acompanhar.",
+    link: "@145cafe →",
+  },
 ];
 
 function GhostMarquee({ word }) {

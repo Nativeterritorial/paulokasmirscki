@@ -38,6 +38,7 @@ const LOGOS = {
   floriculturaalma: "/brand-floriculturaalma.png",
   jogastore: "/brand-jogastore.png",
   asx: "/brand-asx.png",
+  "145cafe": "/brand-145cafe.png",
 };
 
 export function generateStaticParams() {

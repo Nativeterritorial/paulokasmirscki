@@ -390,4 +390,14 @@ export const COMPANIES = [
     link: "https://asxsolucoeslogisticas.com.br",
     linkLabel: "asxsolucoeslogisticas.com.br",
   },
+  {
+    id: "145cafe",
+    nome: "145 Café",
+    segmento: "Cafeteria",
+    descricao:
+      "Cafeteria — \"o café nos move\". Cafés e um menu para acompanhar, num espaço para encontros e pausas.",
+    atende: ["Gastronomia", "Comércio & Varejo"],
+    link: "https://www.instagram.com/145cafe/",
+    linkLabel: "@145cafe",
+  },
 ];

@@ -290,6 +290,20 @@ const BRANDS = [
     desc: "A maior rede de academias do RS, com unidade em Veranópolis — musculação, aulas coletivas e funcional.",
     link: "26fit.com.br →",
   },
+  {
+    id: "prg",
+    href: "https://construtoraprg.com.br",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        src="/brand-prg.png"
+        alt="Construtora PRG"
+      />
+    ),
+    role: "Construção & Incorporação",
+    desc: "Construtora de Gramado — empreendimentos de alto padrão, imóveis avulsos e arquitetura de interiores.",
+    link: "construtoraprg.com.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

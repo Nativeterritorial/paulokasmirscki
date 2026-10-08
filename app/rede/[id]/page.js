@@ -21,6 +21,7 @@ const LOGOS = {
   vervue: "/brand-vervue.png",
   studiotv: "/brand-studiotv.png",
   "26fit": "/brand-26fit.png",
+  prg: "/brand-prg.png",
 };
 
 export function generateStaticParams() {

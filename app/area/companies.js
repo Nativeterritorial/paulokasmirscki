@@ -220,4 +220,14 @@ export const COMPANIES = [
     link: "https://26fit.com.br",
     linkLabel: "26fit.com.br",
   },
+  {
+    id: "prg",
+    nome: "Construtora PRG",
+    segmento: "Construção & Incorporação",
+    descricao:
+      "Construtora de Gramado — empreendimentos imobiliários de alto padrão, imóveis avulsos e arquitetura de interiores na Serra Gaúcha.",
+    atende: ["Imóveis & Construção", "Arquitetura"],
+    link: "https://construtoraprg.com.br",
+    linkLabel: "construtoraprg.com.br",
+  },
 ];

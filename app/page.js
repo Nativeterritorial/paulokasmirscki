@@ -225,7 +225,7 @@ const BRANDS = [
     href: "https://www.instagram.com/pulsarveranopolis/",
     logo: (
       <img
-        className="tile-logo"
+        className="tile-logo tall-logo"
         src="/brand-pulsar.png"
         alt="Pulsar Veranópolis"
       />
@@ -239,7 +239,7 @@ const BRANDS = [
     href: "https://www.instagram.com/detoniodonto/",
     logo: (
       <img
-        className="tile-logo"
+        className="tile-logo tall-logo"
         src="/brand-detoni.png"
         alt="De Toni Odontologia"
       />

@@ -1127,6 +1127,12 @@ section {
   width: auto;
   object-fit: contain;
 }
+/* logos verticais (símbolo em cima do nome): passam um pouco do slot pra não ficarem miúdos */
+.brand-card .logo-slot img.tall-logo {
+  max-height: 84px;
+  flex: none;
+  transform: translateY(-8px);
+}
 .brand-card .visara-mark {
   display: inline-flex;
   align-items: center;

@@ -592,6 +592,21 @@ const BRANDS = [
     desc: "Assistência técnica de informática em Veranópolis.",
     link: "Falar no WhatsApp →",
   },
+  {
+    id: "amparo",
+    href: "https://amparoseguros.com.br",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        style={{ maxHeight: 64, transform: "translateY(-2px)" }}
+        src="/brand-amparo.png"
+        alt="Amparo Seguros"
+      />
+    ),
+    role: "Seguros",
+    desc: "Corretora de seguros para família e empresa — automóvel, residencial, vida e mais.",
+    link: "amparoseguros.com.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

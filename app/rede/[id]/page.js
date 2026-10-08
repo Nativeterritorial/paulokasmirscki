@@ -42,6 +42,7 @@ const LOGOS = {
   marangoni: "/brand-marangoni.png",
   mga: "/brand-mga.png",
   dnlinfo: "/brand-dnlinfo.png",
+  amparo: "/brand-amparo.png",
 };
 
 export function generateStaticParams() {

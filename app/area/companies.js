@@ -430,4 +430,14 @@ export const COMPANIES = [
     link: "https://wa.me/5554996505799",
     linkLabel: "Falar no WhatsApp",
   },
+  {
+    id: "amparo",
+    nome: "Amparo Corretora de Seguros",
+    segmento: "Seguros",
+    descricao:
+      "Corretora de seguros para a sua família e a sua empresa — automóvel, residencial, vida e outras modalidades, com consultoria para encontrar o seguro ideal.",
+    atende: ["Finanças & Investimentos", "Seguros", "Serviços", "Negócios & Empresas"],
+    link: "https://amparoseguros.com.br",
+    linkLabel: "amparoseguros.com.br",
+  },
 ];

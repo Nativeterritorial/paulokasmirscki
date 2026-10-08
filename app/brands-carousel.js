@@ -25,7 +25,11 @@ export default function BrandsCarousel({ brands }) {
 
   return (
     <div className="brands-carousel fade-up">
-      <div className="bc-track">
+      {/* duração proporcional ao nº de marcas: a velocidade não muda quando a rede cresce */}
+      <div
+        className="bc-track"
+        style={{ animationDuration: `${Math.round(brands.length * 1.9)}s` }}
+      >
         {[0, 1].map((dup) =>
           order.map((b) => (
             <a

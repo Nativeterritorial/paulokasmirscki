@@ -420,6 +420,21 @@ const BRANDS = [
     desc: "Internet 100% fibra óptica em Veranópolis, Esteio e Sapucaia do Sul — banda ilimitada e atendimento humanizado.",
     link: "astronet.com.br →",
   },
+  {
+    id: "rometal",
+    href: "https://www.rometal.com.br",
+    logo: (
+      <img
+        className="tile-logo"
+        style={{ maxWidth: 190 }}
+        src="/brand-rometal.png"
+        alt="Rometal"
+      />
+    ),
+    role: "Sistemas & Acessórios para Móveis",
+    desc: "Sistemas deslizantes para portas, puxadores, perfis e espelhos — soluções que valorizam móveis e ambientes.",
+    link: "rometal.com.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

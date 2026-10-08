@@ -310,4 +310,14 @@ export const COMPANIES = [
     link: "https://www.astronet.com.br",
     linkLabel: "astronet.com.br",
   },
+  {
+    id: "rometal",
+    nome: "Rometal",
+    segmento: "Sistemas & Acessórios para Móveis",
+    descricao:
+      "Indústria de soluções para móveis e ambientes — sistemas deslizantes e coplanares para portas, puxadores, perfis e espelhos com iluminação, unindo design e funcionalidade.",
+    atende: ["Agro & Indústria", "Arquitetura", "Imóveis & Construção", "Comércio & Varejo"],
+    link: "https://www.rometal.com.br",
+    linkLabel: "rometal.com.br",
+  },
 ];

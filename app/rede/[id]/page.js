@@ -30,6 +30,7 @@ const LOGOS = {
   monteaurea: "/brand-monteaurea.png",
   estribo: "/brand-estribo.png",
   astronet: "/brand-astronet.png",
+  rometal: "/brand-rometal.png",
 };
 
 export function generateStaticParams() {

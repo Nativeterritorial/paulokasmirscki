@@ -41,6 +41,7 @@ const LOGOS = {
   "145cafe": "/brand-145cafe.png",
   marangoni: "/brand-marangoni.png",
   mga: "/brand-mga.png",
+  dnlinfo: "/brand-dnlinfo.png",
 };
 
 export function generateStaticParams() {

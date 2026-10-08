@@ -578,6 +578,20 @@ const BRANDS = [
     desc: "Fabricante de válvulas de esfera, peças em PTFE e microfundidos desde 1991, com certificação ISO 9001.",
     link: "mga.com.br →",
   },
+  {
+    id: "dnlinfo",
+    href: wa("Olá Paulo! Quero me conectar com a DNL Informática do ecossistema."),
+    logo: (
+      <img
+        className="tile-logo"
+        src="/brand-dnlinfo.png"
+        alt="DNL Informática"
+      />
+    ),
+    role: "Informática & Assistência Técnica",
+    desc: "Assistência técnica de informática em Veranópolis.",
+    link: "Falar no WhatsApp →",
+  },
 ];
 
 function GhostMarquee({ word }) {

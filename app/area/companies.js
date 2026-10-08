@@ -420,4 +420,14 @@ export const COMPANIES = [
     link: "https://www.mga.com.br",
     linkLabel: "mga.com.br",
   },
+  {
+    id: "dnlinfo",
+    nome: "DNL Informática",
+    segmento: "Informática & Assistência Técnica",
+    descricao:
+      "Assistência técnica de informática em Veranópolis — manutenção e conserto de computadores e notebooks, para casas e empresas.",
+    atende: ["Tecnologia & IA", "Serviços", "Comércio & Varejo"],
+    link: "https://wa.me/5554996505799",
+    linkLabel: "Falar no WhatsApp",
+  },
 ];

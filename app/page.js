@@ -612,9 +612,14 @@ export default function Home() {
                   sintam à vontade para conversar — e para fechar negócio.
                 </p>
                 <p>
-                  Ao longo da carreira na área comercial, com forte experiência
-                  em <strong>vendas e prospecção de clientes</strong>, construiu
-                  uma <strong>rede de contatos ampla e diversa</strong>, que
+                  Formado em <strong>Administração de Empresas</strong> e{" "}
+                  <strong>Corretor de Imóveis</strong>, soma{" "}
+                  <strong>
+                    mais de 15 anos de experiência na área comercial e de vendas
+                  </strong>
+                  . Ao longo dessa trajetória, com forte atuação em prospecção
+                  de clientes, construiu uma{" "}
+                  <strong>rede de contatos ampla e diversa</strong>, que
                   percorre os mais variados setores do mercado.
                 </p>
                 <p>

@@ -64,9 +64,12 @@ export default function SegmentHub({ nodes }) {
 
   const active = hover ?? auto;
 
+  // o fade-up fica num wrapper de classe fixa: o reveal-on-scroll adiciona a
+  // classe "in" direto no DOM, e o React a apagaria ao trocar o className aqui
   return (
+    <div className="fade-up">
     <nav
-      className={`hub2 fade-up${hover !== null ? " is-hover" : ""}`}
+      className={`hub2${hover !== null ? " is-hover" : ""}`}
       aria-label="Segmentos da rede"
     >
       <div className="hub2-wm" aria-hidden="true">
@@ -132,5 +135,6 @@ export default function SegmentHub({ nodes }) {
         </a>
       ))}
     </nav>
+    </div>
   );
 }

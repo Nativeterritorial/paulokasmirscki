@@ -340,4 +340,14 @@ export const COMPANIES = [
     link: "https://www.veranopolis.rs.gov.br",
     linkLabel: "veranopolis.rs.gov.br",
   },
+  {
+    id: "barbeariadopai",
+    nome: "Barbearia do Pai",
+    segmento: "Barbearia",
+    descricao:
+      "Barbearia em Veranópolis, na Rua Marechal Deodoro da Fonseca, 280 — cortes e barba com hora marcada, de terça a sábado, com agendamento online.",
+    atende: ["Estética & Beleza", "Serviços"],
+    link: "https://www.instagram.com/barbearia.do.pai/",
+    linkLabel: "@barbearia.do.pai",
+  },
 ];

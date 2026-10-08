@@ -464,6 +464,20 @@ const BRANDS = [
     desc: "Prefeitura Municipal de Veranópolis/RS — serviços ao cidadão e às empresas do município.",
     link: "veranopolis.rs.gov.br →",
   },
+  {
+    id: "barbeariadopai",
+    href: "https://www.instagram.com/barbearia.do.pai/",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        src="/brand-barbeariadopai.png"
+        alt="Barbearia do Pai"
+      />
+    ),
+    role: "Barbearia",
+    desc: "Barbearia em Veranópolis — cortes e barba com hora marcada e agendamento online.",
+    link: "@barbearia.do.pai →",
+  },
 ];
 
 function GhostMarquee({ word }) {

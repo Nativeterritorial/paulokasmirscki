@@ -210,4 +210,14 @@ export const COMPANIES = [
     link: "https://www.studio.tv.br",
     linkLabel: "studio.tv.br",
   },
+  {
+    id: "26fit",
+    nome: "26fit",
+    segmento: "Academia & Fitness",
+    descricao:
+      "A maior rede de academias do Rio Grande do Sul, com unidade em Veranópolis — musculação, aulas coletivas e funcional, com planos flexíveis, app de treino e acesso a mais de 70 unidades.",
+    atende: ["Esporte & Lazer", "Saúde & Bem-estar"],
+    link: "https://26fit.com.br",
+    linkLabel: "26fit.com.br",
+  },
 ];

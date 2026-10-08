@@ -276,6 +276,20 @@ const BRANDS = [
     desc: "Rádio, TV e o Studio Notícias — o principal portal de notícias de Veranópolis e região.",
     link: "studio.tv.br →",
   },
+  {
+    id: "26fit",
+    href: "https://26fit.com.br",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        src="/brand-26fit.png"
+        alt="26fit"
+      />
+    ),
+    role: "Academia & Fitness",
+    desc: "A maior rede de academias do RS, com unidade em Veranópolis — musculação, aulas coletivas e funcional.",
+    link: "26fit.com.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

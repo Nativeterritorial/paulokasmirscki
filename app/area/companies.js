@@ -170,4 +170,14 @@ export const COMPANIES = [
     link: "https://abraaofrainer.com.br",
     linkLabel: "abraaofrainer.com.br",
   },
+  {
+    id: "pulsar",
+    nome: "Pulsar Veranópolis",
+    segmento: "Saúde & Medicina",
+    descricao:
+      "Clínica médica em Veranópolis — medicina de excelência, com consultas e exames em um só lugar e agendamento pelo WhatsApp.",
+    atende: ["Saúde & Bem-estar", "Serviços"],
+    link: "https://www.instagram.com/pulsarveranopolis/",
+    linkLabel: "@pulsarveranopolis",
+  },
 ];

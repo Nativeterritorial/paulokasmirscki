@@ -220,6 +220,20 @@ const BRANDS = [
     desc: "Fotografia e filmagem na Serra Gaúcha — casamentos, pré-wedding, 15 anos e vídeos para empresas, com olhar de cinema.",
     link: "abraaofrainer.com.br →",
   },
+  {
+    id: "pulsar",
+    href: "https://www.instagram.com/pulsarveranopolis/",
+    logo: (
+      <img
+        className="tile-logo"
+        src="/brand-pulsar.png"
+        alt="Pulsar Veranópolis"
+      />
+    ),
+    role: "Saúde & Medicina",
+    desc: "Clínica médica em Veranópolis — medicina de excelência, com consultas e exames em um só lugar.",
+    link: "@pulsarveranopolis →",
+  },
 ];
 
 function GhostMarquee({ word }) {

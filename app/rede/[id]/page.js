@@ -16,6 +16,7 @@ const LOGOS = {
   alsus: "/brand-alsus.png",
   ordeclean: "/brand-ordeclean.svg",
   abraaofrainer: "/brand-abraaofrainer.png",
+  pulsar: "/brand-pulsar.png",
 };
 
 export function generateStaticParams() {

@@ -520,6 +520,21 @@ const BRANDS = [
     desc: "Loja de roupas em Veranópolis — somente produtos originais.",
     link: "@jogastore23 →",
   },
+  {
+    id: "asx",
+    href: "https://asxsolucoeslogisticas.com.br",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        style={{ maxHeight: 72 }}
+        src="/brand-asx.png"
+        alt="ASX Soluções Logísticas"
+      />
+    ),
+    role: "Transporte & Logística",
+    desc: "Transporte de cargas com cobertura nacional — dedicada, fracionada e lotação, com frota própria e seguro.",
+    link: "asxsolucoeslogisticas.com.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

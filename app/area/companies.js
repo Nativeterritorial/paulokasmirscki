@@ -380,4 +380,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/jogastore23/",
     linkLabel: "@jogastore23",
   },
+  {
+    id: "asx",
+    nome: "ASX Soluções Logísticas",
+    segmento: "Transporte & Logística",
+    descricao:
+      "Transportadora de Veranópolis com cobertura nacional — cargas dedicadas, fracionadas e de lotação, cargas frágeis, de até 6 metros e máquinas, coletas e entregas ágeis, com frota própria e seguro para todas as cargas.",
+    atende: ["Logística & Transporte", "Agro & Indústria", "Comércio & Varejo", "Serviços"],
+    link: "https://asxsolucoeslogisticas.com.br",
+    linkLabel: "asxsolucoeslogisticas.com.br",
+  },
 ];

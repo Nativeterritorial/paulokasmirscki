@@ -318,6 +318,20 @@ const BRANDS = [
     desc: "Tradição que se renova desde 1973 — tortas, doces, salgados e cookies, em Veranópolis.",
     link: "@padariaveranense →",
   },
+  {
+    id: "paradouro470",
+    href: "https://www.instagram.com/paradouro470/",
+    logo: (
+      <img
+        className="tile-logo"
+        src="/brand-paradouro470.png"
+        alt="Paradouro 470 — Restaurante e Lancheria"
+      />
+    ),
+    role: "Restaurante & Lancheria",
+    desc: "Restaurante e lancheria na BR 470, em Veranópolis — diversidade no cardápio e qualidade em cada detalhe.",
+    link: "@paradouro470 →",
+  },
 ];
 
 function GhostMarquee({ word }) {

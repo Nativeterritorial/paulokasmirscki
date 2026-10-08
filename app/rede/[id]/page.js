@@ -23,6 +23,7 @@ const LOGOS = {
   "26fit": "/brand-26fit.png",
   prg: "/brand-prg.png",
   veranense: "/brand-veranense.png",
+  paradouro470: "/brand-paradouro470.png",
 };
 
 export function generateStaticParams() {

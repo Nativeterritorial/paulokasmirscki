@@ -240,4 +240,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/padariaveranense/",
     linkLabel: "@padariaveranense",
   },
+  {
+    id: "paradouro470",
+    nome: "Paradouro 470",
+    segmento: "Restaurante & Lancheria",
+    descricao:
+      "Restaurante e lancheria na BR 470, km 175, em Veranópolis — diversidade no cardápio e qualidade em cada detalhe, para refeições e lanches.",
+    atende: ["Gastronomia", "Turismo & Hotelaria"],
+    link: "https://www.instagram.com/paradouro470/",
+    linkLabel: "@paradouro470",
+  },
 ];

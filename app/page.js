@@ -296,6 +296,7 @@ const BRANDS = [
     logo: (
       <img
         className="tile-logo tall-logo"
+        style={{ maxHeight: 68, transform: "translateY(-4px)" }}
         src="/brand-prg.png"
         alt="Construtora PRG"
       />

@@ -19,6 +19,7 @@ const LOGOS = {
   pulsar: "/brand-pulsar.png",
   detoni: "/brand-detoni.png",
   vervue: "/brand-vervue.png",
+  studiotv: "/brand-studiotv.png",
 };
 
 export function generateStaticParams() {

@@ -262,6 +262,20 @@ const BRANDS = [
     desc: "Óculos de sol, armações e lentes de grau de grandes marcas — loja online com envio para todo o Brasil.",
     link: "vervue.com.br →",
   },
+  {
+    id: "studiotv",
+    href: "https://www.studio.tv.br",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        src="/brand-studiotv.png"
+        alt="Rádio Studio TV"
+      />
+    ),
+    role: "Mídia & Comunicação",
+    desc: "Rádio, TV e o Studio Notícias — o principal portal de notícias de Veranópolis e região.",
+    link: "studio.tv.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

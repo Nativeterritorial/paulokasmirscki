@@ -200,4 +200,14 @@ export const COMPANIES = [
     link: "https://www.vervue.com.br",
     linkLabel: "vervue.com.br",
   },
+  {
+    id: "studiotv",
+    nome: "Rádio Studio TV",
+    segmento: "Mídia & Comunicação",
+    descricao:
+      "Rádio, TV e o Studio Notícias — o principal portal de notícias de Veranópolis e região, com informação, esporte e entretenimento.",
+    atende: ["Mídia & Comunicação", "Marketing & Digital", "Serviços"],
+    link: "https://www.studio.tv.br",
+    linkLabel: "studio.tv.br",
+  },
 ];

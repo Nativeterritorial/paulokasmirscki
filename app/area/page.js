@@ -6,6 +6,14 @@ import { COMPANIES } from "./companies";
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
+// normaliza pra busca (sem acento, minúsculo, sem espaços nas pontas)
+const norm = (s) =>
+  String(s || "")
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .trim();
+
 // Renderiza a resposta da IA: escapa HTML, aplica negrito e links, quebra linhas.
 function formatMsg(text) {
   let s = String(text || "");
@@ -51,6 +59,7 @@ export default function Area() {
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [openSeg, setOpenSeg] = useState(null);
+  const [busca, setBusca] = useState("");
   // empresas combinadas (fixas + cadastradas pelo Paulo); começa com as fixas
   const [companies, setCompanies] = useState(COMPANIES);
   const chatRef = useRef(null);
@@ -406,9 +415,64 @@ export default function Area() {
           <div className="area-panel-head">
             <div className="kick">Empresas da rede</div>
             <h2 style={{ fontSize: "1.2rem" }}>Explorar o ecossistema</h2>
+            <label className="firm-search">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <path d="m20 20-3.5-3.5" />
+              </svg>
+              <input
+                type="search"
+                placeholder="Buscar empresa pelo nome"
+                aria-label="Buscar empresa pelo nome"
+                value={busca}
+                onChange={(e) => setBusca(e.target.value)}
+              />
+            </label>
           </div>
           <div className="area-firms">
-            {Object.entries(
+            {norm(busca) &&
+              (() => {
+                const achadas = companies
+                  .filter((c) => norm(c.nome).includes(norm(busca)))
+                  .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
+                if (!achadas.length)
+                  return (
+                    <p className="firm-empty">
+                      Nenhuma empresa encontrada com esse nome.
+                    </p>
+                  );
+                return achadas.map((c) => (
+                  <div className="firm" key={c.id}>
+                    <div className="firm-info">
+                      <div className="firm-seg">{c.segmento}</div>
+                      <div className="firm-nm">{c.nome}</div>
+                      <div className="firm-d">{c.descricao}</div>
+                    </div>
+                    <a
+                      className="firm-conn"
+                      href={wa(
+                        `Olá Paulo! Quero me conectar com a ${c.nome} do ecossistema.`
+                      )}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackConnect(c.id)}
+                    >
+                      Conectar
+                    </a>
+                  </div>
+                ));
+              })()}
+            {!norm(busca) && Object.entries(
               companies.reduce((acc, c) => {
                 (acc[c.segmento] = acc[c.segmento] || []).push(c);
                 return acc;

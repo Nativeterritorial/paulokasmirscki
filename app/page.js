@@ -492,6 +492,20 @@ const BRANDS = [
     desc: "Fabricação e comercialização de adubos orgânicos para jardinagem, horticultura e agricultura.",
     link: "Falar no WhatsApp →",
   },
+  {
+    id: "floriculturaalma",
+    href: "https://www.instagram.com/floriculturaalma/",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        src="/brand-floriculturaalma.png"
+        alt="Floricultura Alma"
+      />
+    ),
+    role: "Floricultura",
+    desc: "Flores para celebrar quem importa — arranjos exclusivos, presentes e paisagismo.",
+    link: "@floriculturaalma →",
+  },
 ];
 
 function GhostMarquee({ word }) {

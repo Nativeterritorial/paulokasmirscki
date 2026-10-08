@@ -360,4 +360,14 @@ export const COMPANIES = [
     link: "https://wa.me/5554996505799",
     linkLabel: "Falar no WhatsApp",
   },
+  {
+    id: "floriculturaalma",
+    nome: "Floricultura Alma",
+    segmento: "Floricultura",
+    descricao:
+      "Flores para celebrar quem importa — arranjos exclusivos, presentes, assinatura floral e paisagismo, com catálogo e encomendas pelo WhatsApp.",
+    atende: ["Flores & Presentes", "Comércio & Varejo", "Sustentabilidade & Meio Ambiente"],
+    link: "https://www.instagram.com/floriculturaalma/",
+    linkLabel: "@floriculturaalma",
+  },
 ];

@@ -35,6 +35,7 @@ const LOGOS = {
   veranopolis: "/brand-veranopolis.png",
   barbeariadopai: "/brand-barbeariadopai.png",
   dubom: "/brand-dubom.png",
+  floriculturaalma: "/brand-floriculturaalma.png",
 };
 
 export function generateStaticParams() {

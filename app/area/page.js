@@ -432,8 +432,8 @@ export default function Area() {
               </svg>
               <input
                 type="search"
-                placeholder="Buscar empresa pelo nome"
-                aria-label="Buscar empresa pelo nome"
+                placeholder="Buscar empresa ou segmento"
+                aria-label="Buscar empresa ou segmento"
                 value={busca}
                 onChange={(e) => setBusca(e.target.value)}
               />
@@ -443,12 +443,14 @@ export default function Area() {
             {norm(busca) &&
               (() => {
                 const achadas = companies
-                  .filter((c) => norm(c.nome).includes(norm(busca)))
+                  .filter((c) =>
+                    norm(`${c.nome} ${c.segmento}`).includes(norm(busca))
+                  )
                   .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
                 if (!achadas.length)
                   return (
                     <p className="firm-empty">
-                      Nenhuma empresa encontrada com esse nome.
+                      Nenhuma empresa ou segmento encontrado.
                     </p>
                   );
                 return achadas.map((c) => (

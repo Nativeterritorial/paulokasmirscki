@@ -506,6 +506,20 @@ const BRANDS = [
     desc: "Flores para celebrar quem importa — arranjos exclusivos, presentes e paisagismo.",
     link: "@floriculturaalma →",
   },
+  {
+    id: "jogastore",
+    href: "https://www.instagram.com/jogastore23/",
+    logo: (
+      <img
+        className="tile-logo"
+        src="/brand-jogastore.png"
+        alt="JO-GA Store"
+      />
+    ),
+    role: "Moda & Vestuário",
+    desc: "Loja de roupas em Veranópolis — somente produtos originais.",
+    link: "@jogastore23 →",
+  },
 ];
 
 function GhostMarquee({ word }) {

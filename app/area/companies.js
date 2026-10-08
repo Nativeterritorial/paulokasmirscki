@@ -370,4 +370,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/floriculturaalma/",
     linkLabel: "@floriculturaalma",
   },
+  {
+    id: "jogastore",
+    nome: "JO-GA Store",
+    segmento: "Moda & Vestuário",
+    descricao:
+      "Loja de roupas em Veranópolis, na Av. Osvaldo Aranha, 1372 — moda com somente produtos originais e atendimento pelo WhatsApp.",
+    atende: ["Moda & Vestuário", "Comércio & Varejo"],
+    link: "https://www.instagram.com/jogastore23/",
+    linkLabel: "@jogastore23",
+  },
 ];

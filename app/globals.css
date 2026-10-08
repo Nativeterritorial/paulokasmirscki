@@ -1168,17 +1168,19 @@ section {
 }
 .brand-card .pk-name {
   font-family: "Michroma", sans-serif;
-  font-size: clamp(0.78rem, 2.1vw, 1rem);
+  font-size: clamp(0.86rem, 2.3vw, 1.1rem);
   letter-spacing: 0.04em;
   line-height: 1.35;
   color: #ffffff;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.45);
 }
 .brand-card .pk-sub {
   font-family: "Michroma", sans-serif;
-  font-size: 0.6rem;
+  font-size: 0.66rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 .brand-card .b-role {
   font-size: 0.72rem;

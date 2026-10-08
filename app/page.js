@@ -391,6 +391,20 @@ const BRANDS = [
     desc: "Alianças, solitários, brincos, correntes e joias de formatura, com fabricação própria — Veranópolis e Porto Alegre.",
     link: "@monteaurea.joias →",
   },
+  {
+    id: "estribo",
+    href: "https://www.instagram.com/estribohotelestancia/",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        src="/brand-estribo.png"
+        alt="Estribo Hotel Estância"
+      />
+    ),
+    role: "Hotel Fazenda",
+    desc: "Hotel fazenda em Santo Antônio da Patrulha/RS — hospedagem, gastronomia, SPA e eventos. 2º melhor do Brasil (2025/2026).",
+    link: "@estribohotelestancia →",
+  },
 ];
 
 function GhostMarquee({ word }) {

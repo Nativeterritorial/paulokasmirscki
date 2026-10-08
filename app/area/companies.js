@@ -290,4 +290,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/monteaurea.joias/",
     linkLabel: "@monteaurea.joias",
   },
+  {
+    id: "estribo",
+    nome: "Estribo Hotel Estância",
+    segmento: "Hotel Fazenda",
+    descricao:
+      "Hotel fazenda em Santo Antônio da Patrulha/RS, eleito o 2º melhor hotel fazenda do Brasil (2025/2026) — hospedagem, gastronomia, SPA, vivências de fazenda e espaço para eventos.",
+    atende: ["Turismo & Hotelaria", "Gastronomia", "Esporte & Lazer"],
+    link: "https://www.instagram.com/estribohotelestancia/",
+    linkLabel: "@estribohotelestancia",
+  },
 ];

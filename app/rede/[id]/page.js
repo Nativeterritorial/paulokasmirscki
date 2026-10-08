@@ -28,6 +28,7 @@ const LOGOS = {
   sebilar: "/brand-sebilar.png",
   vsm: "/brand-vsm.png",
   monteaurea: "/brand-monteaurea.png",
+  estribo: "/brand-estribo.png",
 };
 
 export function generateStaticParams() {

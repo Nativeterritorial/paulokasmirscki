@@ -1287,44 +1287,35 @@ export default function Home() {
       {/* Footer multi-coluna */}
       <footer className="footer-rich">
         <div className="container">
-          <div className="footer-cols">
+          <div className="footer-card">
             <div className="fc-brand">
-              <div className="brand-name">Paulo Kasmirscki</div>
+              <div className="fc-id">
+                <img src="/logo-mark.svg" alt="" />
+                <div className="brand-name">Paulo Kasmirscki</div>
+              </div>
               <p>
-                O conector do ecossistema. Conectando pessoas e gerando
-                negócios em Veranópolis e na Serra Gaúcha.
+                O conector do ecossistema.
+                <br />
+                Conectando pessoas e gerando negócios.
               </p>
+              <span className="fc-loc">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z" /><path d="M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" /></svg>
+                Veranópolis - RS
+              </span>
             </div>
-            <div>
-              <h4>Navegue</h4>
-              <a href="#sobre">Sobre</a>
-              <a href="#ecossistema">Ecossistema</a>
-              <a href="#rede">A Rede</a>
-              <a href="#segmentos">Segmentos</a>
-            </div>
-            <div>
-              <h4>A Rede</h4>
-              <a href="/rede">Todas as empresas</a>
-              <a href="https://nativeterritorial.com.br" target="_blank" rel="noopener noreferrer">
-                NATIVE
-              </a>
-              <a href="https://visaradigital.com.br" target="_blank" rel="noopener noreferrer">
-                Visara Digital
-              </a>
-              <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
-                PK Corretor de Imóveis
-              </a>
-            </div>
-            <div>
-              <h4>Contato</h4>
-              <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+            <div className="fc-actions">
+              <a className="fc-btn wa" href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.7 7.4L3 20l1.2-5A8.5 8.5 0 1 1 21 11.5z" /><path d="M9 10a4 4 0 0 0 5 5" /></svg>
                 WhatsApp
               </a>
-              <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer">
+              <a className="fc-btn" href={INSTAGRAM} target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" /></svg>
                 Instagram
               </a>
-              <a href="/area">Área de Membros</a>
-              <span className="fc-item">Veranópolis · RS</span>
+              <a className="fc-btn" href="/area">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" /><path d="M4 21a8 8 0 0 1 16 0" /></svg>
+                Área de Membros
+              </a>
             </div>
           </div>
           <div className="footer-base">

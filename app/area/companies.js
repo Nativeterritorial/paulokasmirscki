@@ -190,4 +190,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/detoniodonto/",
     linkLabel: "@detoniodonto",
   },
+  {
+    id: "vervue",
+    nome: "Ótica VerVue",
+    segmento: "Ótica",
+    descricao:
+      "Ótica com loja online — óculos de sol, armações e lentes de grau, linha infantil e outlet de grandes marcas (Ray-Ban, Gucci, Prada, Max Mara), com envio para todo o Brasil.",
+    atende: ["Comércio & Varejo", "Saúde & Bem-estar", "Moda & Vestuário"],
+    link: "https://www.vervue.com.br",
+    linkLabel: "vervue.com.br",
+  },
 ];

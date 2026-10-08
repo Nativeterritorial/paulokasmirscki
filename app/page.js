@@ -248,6 +248,20 @@ const BRANDS = [
     desc: "Odontologia humanizada em Veranópolis — clínica geral, especializada em estética e implantes.",
     link: "@detoniodonto →",
   },
+  {
+    id: "vervue",
+    href: "https://www.vervue.com.br",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        src="/brand-vervue.png"
+        alt="Ótica VerVue"
+      />
+    ),
+    role: "Ótica",
+    desc: "Óculos de sol, armações e lentes de grau de grandes marcas — loja online com envio para todo o Brasil.",
+    link: "vervue.com.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

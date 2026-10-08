@@ -22,6 +22,7 @@ const LOGOS = {
   studiotv: "/brand-studiotv.png",
   "26fit": "/brand-26fit.png",
   prg: "/brand-prg.png",
+  veranense: "/brand-veranense.png",
 };
 
 export function generateStaticParams() {

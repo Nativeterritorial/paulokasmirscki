@@ -230,4 +230,14 @@ export const COMPANIES = [
     link: "https://construtoraprg.com.br",
     linkLabel: "construtoraprg.com.br",
   },
+  {
+    id: "veranense",
+    nome: "Padaria e Confeitaria Veranense",
+    segmento: "Padaria & Confeitaria",
+    descricao:
+      "Tradição que se renova desde 1973 — padaria e confeitaria em Veranópolis, com tortas, doces, salgados e cookies de produção própria.",
+    atende: ["Gastronomia", "Comércio & Varejo"],
+    link: "https://www.instagram.com/padariaveranense/",
+    linkLabel: "@padariaveranense",
+  },
 ];

@@ -304,6 +304,20 @@ const BRANDS = [
     desc: "Construtora de Gramado — empreendimentos de alto padrão, imóveis avulsos e arquitetura de interiores.",
     link: "construtoraprg.com.br →",
   },
+  {
+    id: "veranense",
+    href: "https://www.instagram.com/padariaveranense/",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        src="/brand-veranense.png"
+        alt="Padaria e Confeitaria Veranense"
+      />
+    ),
+    role: "Padaria & Confeitaria",
+    desc: "Tradição que se renova desde 1973 — tortas, doces, salgados e cookies, em Veranópolis.",
+    link: "@padariaveranense →",
+  },
 ];
 
 function GhostMarquee({ word }) {

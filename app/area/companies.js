@@ -410,4 +410,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/marangoniatacado/",
     linkLabel: "@marangoniatacado",
   },
+  {
+    id: "mga",
+    nome: "MGA Válvulas Industriais",
+    segmento: "Válvulas Industriais",
+    descricao:
+      "Metalúrgica Golden Art's — fabricante de válvulas de esfera, visores de fluxo, peças em PTFE, microfundidos e acessórios desde 1991, com certificação ISO 9001, mais de 500 colaboradores e revendas no Brasil e na América Latina.",
+    atende: ["Agro & Indústria", "Comércio & Varejo", "Comércio Exterior"],
+    link: "https://www.mga.com.br",
+    linkLabel: "mga.com.br",
+  },
 ];

@@ -40,6 +40,7 @@ const LOGOS = {
   asx: "/brand-asx.png",
   "145cafe": "/brand-145cafe.png",
   marangoni: "/brand-marangoni.png",
+  mga: "/brand-mga.png",
 };
 
 export function generateStaticParams() {

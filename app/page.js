@@ -563,6 +563,21 @@ const BRANDS = [
     desc: "Mercado, atacado e varejo no Centro de Veranópolis — para casa e para o seu negócio.",
     link: "@marangoniatacado →",
   },
+  {
+    id: "mga",
+    href: "https://www.mga.com.br",
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        style={{ maxHeight: 68, transform: "translateY(-4px)" }}
+        src="/brand-mga.png"
+        alt="MGA Válvulas Industriais"
+      />
+    ),
+    role: "Válvulas Industriais",
+    desc: "Fabricante de válvulas de esfera, peças em PTFE e microfundidos desde 1991, com certificação ISO 9001.",
+    link: "mga.com.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

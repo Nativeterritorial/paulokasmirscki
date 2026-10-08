@@ -346,6 +346,20 @@ const BRANDS = [
     desc: "Consórcios de imóveis e veículos, cartas contempladas e alavancagem patrimonial — corretor autorizado HS Consórcios.",
     link: "farinvest.com.br →",
   },
+  {
+    id: "sebilar",
+    href: "https://sebilar.com.br",
+    logo: (
+      <img
+        className="tile-logo"
+        src="/brand-sebilar.png"
+        alt="Sebilar Sistemas de Segurança"
+      />
+    ),
+    role: "Sistemas de Segurança",
+    desc: "Monitoramento e pronto atendimento 24 horas, sistemas eletrônicos de proteção e soluções em áudio e vídeo.",
+    link: "sebilar.com.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

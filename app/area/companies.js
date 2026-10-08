@@ -260,4 +260,14 @@ export const COMPANIES = [
     link: "https://farinvest.com.br",
     linkLabel: "farinvest.com.br",
   },
+  {
+    id: "sebilar",
+    nome: "Sebilar",
+    segmento: "Sistemas de Segurança",
+    descricao:
+      "Sistemas de segurança — monitoramento e pronto atendimento 24 horas (Sebilar Security), sistemas eletrônicos de proteção e soluções em áudio e vídeo, sob medida para cada necessidade.",
+    atende: ["Segurança", "Tecnologia & IA", "Serviços", "Imóveis & Construção"],
+    link: "https://sebilar.com.br",
+    linkLabel: "sebilar.com.br",
+  },
 ];

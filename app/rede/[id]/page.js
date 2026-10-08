@@ -34,6 +34,7 @@ const LOGOS = {
   ipacol: "/brand-ipacol.png",
   veranopolis: "/brand-veranopolis.png",
   barbeariadopai: "/brand-barbeariadopai.png",
+  dubom: "/brand-dubom.png",
 };
 
 export function generateStaticParams() {

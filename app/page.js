@@ -478,6 +478,20 @@ const BRANDS = [
     desc: "Barbearia em Veranópolis — cortes e barba com hora marcada e agendamento online.",
     link: "@barbearia.do.pai →",
   },
+  {
+    id: "dubom",
+    href: wa("Olá Paulo! Quero me conectar com a Dubom Fertilizantes do ecossistema."),
+    logo: (
+      <img
+        className="tile-logo tall-logo"
+        src="/brand-dubom.png"
+        alt="Dubom Fertilizantes"
+      />
+    ),
+    role: "Fertilizantes & Adubos Orgânicos",
+    desc: "Fabricação e comercialização de adubos orgânicos para jardinagem, horticultura e agricultura.",
+    link: "Falar no WhatsApp →",
+  },
 ];
 
 function GhostMarquee({ word }) {

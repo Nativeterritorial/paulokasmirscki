@@ -350,4 +350,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/barbearia.do.pai/",
     linkLabel: "@barbearia.do.pai",
   },
+  {
+    id: "dubom",
+    nome: "Dubom Fertilizantes",
+    segmento: "Fertilizantes & Adubos Orgânicos",
+    descricao:
+      "Empresa especializada na fabricação e comercialização de adubos orgânicos, com opções voltadas para jardinagem, horticultura e agricultura.",
+    atende: ["Agro & Indústria", "Sustentabilidade & Meio Ambiente", "Comércio & Varejo"],
+    link: "https://wa.me/5554996505799",
+    linkLabel: "Falar no WhatsApp",
+  },
 ];

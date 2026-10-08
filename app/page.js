@@ -1,6 +1,7 @@
 import Effects from "./effects";
 import CookieBanner from "./cookie";
 import HeroAI from "./hero-ai";
+import SegmentHub from "./segment-hub";
 import LeadForm from "./lead-form";
 import BrandsCarousel from "./brands-carousel";
 
@@ -43,10 +44,10 @@ const SEGMENTOS = [
 const HUB_NODES = [
   { label: "Imóveis & Construção", x: 50, y: 10 },
   { label: "Finanças & Investimentos", x: 78.28, y: 21.72 },
-  { label: "Jurídico", x: 90, y: 50 },
+  { label: "Negócios & Empresas", x: 90, y: 50 },
   { label: "Marketing & Digital", x: 78.28, y: 78.28 },
   { label: "Saúde & Bem-estar", x: 50, y: 90 },
-  { label: "Negócios & Empresas", x: 21.72, y: 78.28 },
+  { label: "Agro & Indústria", x: 21.72, y: 78.28 },
   { label: "Gastronomia", x: 10, y: 50 },
   { label: "Tecnologia & IA", x: 21.72, y: 21.72 },
 ];
@@ -962,44 +963,8 @@ export default function Home() {
               </h2>
             </div>
 
-            {/* Hub emblema (visual) */}
-            <div className="hub hub-emblem fade-up" aria-hidden="true">
-              <svg className="hub-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-                <circle className="hub-ring" cx="50" cy="50" r="40" />
-                <circle className="hub-ring hub-ring-2" cx="50" cy="50" r="40" />
-                {HUB_NODES.map((n) => (
-                  <line
-                    key={n.label}
-                    className="hub-line"
-                    x1="50"
-                    y1="50"
-                    x2={n.x}
-                    y2={n.y}
-                  />
-                ))}
-              </svg>
-
-              <div className="hub-watermark" aria-hidden="true">
-                <span>PK</span>
-              </div>
-
-              <div className="hub-core">
-                <div className="core">
-                  <img src="/logo-mark.svg" alt="" />
-                </div>
-              </div>
-
-              {HUB_NODES.map((n) => (
-                <div
-                  className="hub-node"
-                  key={n.label}
-                  style={{ left: `${n.x}%`, top: `${n.y}%` }}
-                >
-                  <span className="dot" />
-                  <span className="label">{n.label}</span>
-                </div>
-              ))}
-            </div>
+            {/* Hub de segmentos (feixes de conexão) */}
+            <SegmentHub nodes={HUB_NODES} />
 
             {/* Grade com todos os segmentos */}
             <div className="seg-grid fade-up">

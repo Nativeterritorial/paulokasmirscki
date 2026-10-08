@@ -549,6 +549,20 @@ const BRANDS = [
     desc: "Cafeteria — “o café nos move”. Cafés e um menu para acompanhar.",
     link: "@145cafe →",
   },
+  {
+    id: "marangoni",
+    href: "https://www.instagram.com/marangoniatacado/",
+    logo: (
+      <img
+        className="tile-logo"
+        src="/brand-marangoni.png"
+        alt="Marangoni Atacado e Varejo"
+      />
+    ),
+    role: "Mercado & Atacado",
+    desc: "Mercado, atacado e varejo no Centro de Veranópolis — para casa e para o seu negócio.",
+    link: "@marangoniatacado →",
+  },
 ];
 
 function GhostMarquee({ word }) {

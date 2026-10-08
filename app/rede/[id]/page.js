@@ -39,6 +39,7 @@ const LOGOS = {
   jogastore: "/brand-jogastore.png",
   asx: "/brand-asx.png",
   "145cafe": "/brand-145cafe.png",
+  marangoni: "/brand-marangoni.png",
 };
 
 export function generateStaticParams() {

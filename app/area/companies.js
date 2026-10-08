@@ -400,4 +400,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/145cafe/",
     linkLabel: "@145cafe",
   },
+  {
+    id: "marangoni",
+    nome: "Marangoni Atacado e Varejo",
+    segmento: "Mercado & Atacado",
+    descricao:
+      "Mercado, atacado e varejo no Centro de Veranópolis (Rua Alfredo Chaves, 321) — produtos para casa e para o seu negócio, cestas e atendimento de vendas pelo WhatsApp.",
+    atende: ["Comércio & Varejo", "Gastronomia", "Negócios & Empresas"],
+    link: "https://www.instagram.com/marangoniatacado/",
+    linkLabel: "@marangoniatacado",
+  },
 ];

@@ -405,6 +405,21 @@ const BRANDS = [
     desc: "Hotel fazenda em Santo Antônio da Patrulha/RS — hospedagem, gastronomia, SPA e eventos. 2º melhor do Brasil (2025/2026).",
     link: "@estribohotelestancia →",
   },
+  {
+    id: "astronet",
+    href: "https://www.astronet.com.br",
+    logo: (
+      <img
+        className="tile-logo"
+        style={{ maxHeight: 54 }}
+        src="/brand-astronet.png"
+        alt="Astronet — Internet via Fibra Óptica"
+      />
+    ),
+    role: "Internet & Telecom",
+    desc: "Internet 100% fibra óptica em Veranópolis, Esteio e Sapucaia do Sul — banda ilimitada e atendimento humanizado.",
+    link: "astronet.com.br →",
+  },
 ];
 
 function GhostMarquee({ word }) {

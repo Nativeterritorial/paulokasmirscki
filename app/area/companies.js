@@ -300,4 +300,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/estribohotelestancia/",
     linkLabel: "@estribohotelestancia",
   },
+  {
+    id: "astronet",
+    nome: "Astronet",
+    segmento: "Internet & Telecom",
+    descricao:
+      "Provedor de internet 100% fibra óptica em Veranópolis, Esteio e Sapucaia do Sul — banda ilimitada, wi-fi sob medida e atendimento humanizado, além de TV e telefonia móvel, para casas e empresas.",
+    atende: ["Tecnologia & IA", "Internet & Telecom", "Serviços"],
+    link: "https://www.astronet.com.br",
+    linkLabel: "astronet.com.br",
+  },
 ];

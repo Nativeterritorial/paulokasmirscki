@@ -29,6 +29,7 @@ const LOGOS = {
   vsm: "/brand-vsm.png",
   monteaurea: "/brand-monteaurea.png",
   estribo: "/brand-estribo.png",
+  astronet: "/brand-astronet.png",
 };
 
 export function generateStaticParams() {

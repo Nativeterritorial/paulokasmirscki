@@ -800,13 +800,14 @@ export default function Home() {
                   sintam à vontade para conversar — e para fechar negócio.
                 </p>
                 <p>
-                  Formado em <strong>Administração de Empresas</strong> e{" "}
-                  <strong>Corretor de Imóveis</strong>, soma{" "}
+                  Formado em <strong>Administração de Empresas</strong> e
+                  atuando como <strong>Corretor de Imóveis</strong> (CRECI-RS
+                  77988), soma{" "}
                   <strong>
                     mais de 15 anos de experiência na área comercial e de vendas
                   </strong>
-                  . Ao longo dessa trajetória, com forte atuação em prospecção
-                  de clientes, construiu uma{" "}
+                  , com forte atuação em prospecção de clientes. Ao longo dessa
+                  trajetória, construiu uma{" "}
                   <strong>rede de contatos ampla e diversa</strong>, que
                   percorre os mais variados setores do mercado.
                 </p>

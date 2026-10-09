@@ -931,9 +931,13 @@ export default function Home() {
               <div className="marquee-group" key={k}>
                 {[
                   "Conexões",
+                  "Negócios",
                   "Networking",
+                  "Indicações",
                   "Parcerias",
+                  "Confiança",
                   "Oportunidades",
+                  "Contatos",
                   "Soluções",
                   "Relacionamento",
                 ].map((word) => (

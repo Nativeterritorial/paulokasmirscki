@@ -16,6 +16,12 @@ export default function sitemap() {
       priority: 0.9,
     },
     {
+      url: `${base}/parcerias`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${base}/rede`,
       lastModified: new Date(),
       changeFrequency: "weekly",

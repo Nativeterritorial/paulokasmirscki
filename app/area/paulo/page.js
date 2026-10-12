@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { protocolo } from "../../parcerias/referral-form";
 
 function fmtDate(ts) {
   try {
@@ -195,6 +196,21 @@ export default function PauloAdmin() {
     }).catch(() => {});
   };
 
+  // marca/desmarca indicação de negócio (form do /parcerias) como tratada
+  const toggleReferralDone = (t, done) => {
+    setStats((s) => ({
+      ...s,
+      referralsDone: done
+        ? [...(s.referralsDone || []), String(t)]
+        : (s.referralsDone || []).filter((x) => x !== String(t)),
+    }));
+    fetch("/api/admin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code, action: "referralDone", t, done }),
+    }).catch(() => {});
+  };
+
   const copyInvite = async () => {
     try {
       await navigator.clipboard.writeText(inviteLink);
@@ -317,6 +333,17 @@ export default function PauloAdmin() {
   // cadastros de empresas (form do /ecossistema)
   const isSignupDone = (s) => (stats?.signupsDone || []).includes(String(s.t));
   const signupsPend = (stats?.signups || []).filter((s) => !isSignupDone(s)).length;
+
+  // indicações de negócio imobiliário (form do /parcerias)
+  const isReferralDone = (r) =>
+    (stats?.referralsDone || []).includes(String(r.t));
+  const referralsPend = (stats?.referrals || []).filter(
+    (r) => !isReferralDone(r)
+  ).length;
+  const waDigits = (v) => {
+    const d = String(v || "").replace(/[^0-9]/g, "");
+    return d.length >= 10 ? (d.length <= 11 ? "55" + d : d) : "";
+  };
   const hoje = new Date().toLocaleDateString("pt-BR", {
     weekday: "long",
     day: "numeric",
@@ -718,6 +745,100 @@ export default function PauloAdmin() {
                               </a>
                             )}
                           </div>
+                        </div>
+                      );
+                    })}
+                </div>
+              )}
+            </section>
+
+            {/* INDICAÇÕES DE NEGÓCIO (form do /parcerias) */}
+            <section className="admin-panel admin-signups">
+              <h3>
+                🏠 Indicações de negócio
+                {referralsPend > 0 && (
+                  <span className="lg-tag">{referralsPend} nova(s)</span>
+                )}
+              </h3>
+              <p className="admin-hint">
+                Indicações de negócio imobiliário registradas pela página
+                “Parcerias”. A data do registro define quem indicou primeiro.
+                Confirme com quem indicou e marque como tratada.
+              </p>
+              {!(stats.referrals || []).length ? (
+                <p className="admin-empty">
+                  Nenhuma indicação ainda. Elas chegam pelo formulário em
+                  /parcerias.
+                </p>
+              ) : (
+                <div className="lead-cards">
+                  {(stats.referrals || [])
+                    .filter((r) =>
+                      match(
+                        `${r.nome} ${r.whatsapp} ${r.indicado} ${r.indicadoContato} ${r.obs}`
+                      )
+                    )
+                    .filter(inPeriod)
+                    .map((r, i) => {
+                      const done = isReferralDone(r);
+                      const waIndicador = waDigits(r.whatsapp);
+                      const waIndicado = waDigits(r.indicadoContato);
+                      return (
+                        <div
+                          className={`lead-card${done ? " lead-ok" : ""}`}
+                          key={r.t || i}
+                        >
+                          <div className="lead-card-top">
+                            <div>
+                              <div className="lead-nm">
+                                {r.indicado}
+                                {r.tipo && (
+                                  <span className="su-emp"> · {r.tipo}</span>
+                                )}
+                              </div>
+                              <div className="lead-ct">
+                                {protocolo(r.t)} · {fmtDate(r.t)}
+                              </div>
+                            </div>
+                            <div className="lead-actions">
+                              {!done && waIndicador && (
+                                <a
+                                  className="firm-conn"
+                                  href={`https://wa.me/${waIndicador}?text=${encodeURIComponent(
+                                    `Olá ${r.nome}! Aqui é o Paulo Kasmirscki. Recebi a sua indicação (${protocolo(r.t)}). Obrigado!`
+                                  )}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Falar com quem indicou
+                                </a>
+                              )}
+                              <button
+                                type="button"
+                                className={`lead-check${done ? " on" : ""}`}
+                                onClick={() => toggleReferralDone(r.t, !done)}
+                              >
+                                ✓ {done ? "Tratada" : "Tratar"}
+                              </button>
+                            </div>
+                          </div>
+                          <div className="su-contacts">
+                            <span>
+                              👤 Indicado por {r.nome} ({r.whatsapp})
+                            </span>
+                            {waIndicado ? (
+                              <a
+                                href={`https://wa.me/${waIndicado}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                📱 {r.indicadoContato}
+                              </a>
+                            ) : (
+                              <span>✉️ {r.indicadoContato}</span>
+                            )}
+                          </div>
+                          {r.obs && <div className="ref-meta">{r.obs}</div>}
                         </div>
                       );
                     })}

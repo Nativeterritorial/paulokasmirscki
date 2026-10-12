@@ -4,6 +4,7 @@ import {
   setLeadDone,
   setDemandDone,
   setSignupDone,
+  setReferralDone,
   getCustomCompanies,
   saveCompany,
   deleteCompany,
@@ -37,6 +38,11 @@ export async function POST(req) {
   // ação: marcar/desmarcar cadastro de empresa como atendido
   if (body.action === "signupDone" && body.t) {
     await setSignupDone(body.t, body.done !== false);
+  }
+
+  // ação: marcar/desmarcar indicação de negócio como tratada
+  if (body.action === "referralDone" && body.t) {
+    await setReferralDone(body.t, body.done !== false);
   }
 
   // ação: criar/editar empresa cadastrada pelo Paulo

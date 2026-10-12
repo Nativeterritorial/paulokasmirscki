@@ -670,6 +670,7 @@ export default function Home() {
             <a href="#ecossistema">Ecossistema</a>
             <a href="#rede">A Rede</a>
             <a href="#segmentos">Segmentos</a>
+            <a href="/parcerias">Parcerias</a>
             <a href="#contato">Contato</a>
           </nav>
           <div className="nav-actions">

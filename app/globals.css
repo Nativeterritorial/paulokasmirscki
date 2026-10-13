@@ -2157,6 +2157,71 @@ body {
   text-transform: uppercase;
   cursor: pointer;
 }
+.area-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.area-hello {
+  font-size: 0.85rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.area-install {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #06304a;
+  background: linear-gradient(120deg, #6fffbf, #46d6ff);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.area-install-tip {
+  position: absolute;
+  right: 16px;
+  top: 64px;
+  z-index: 20;
+  max-width: 280px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text);
+  background: #0c1f66;
+  border: 1px solid var(--border);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+}
+.member-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0 16px;
+}
+.member-form input {
+  flex: 1 1 200px;
+  padding: 10px 13px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  outline: none;
+}
+.member-form input:focus {
+  border-color: var(--gold-2);
+}
+@media (max-width: 560px) {
+  .area-hello {
+    display: none;
+  }
+}
 .area-logout:hover {
   border-color: var(--gold-2);
   color: var(--gold-2);

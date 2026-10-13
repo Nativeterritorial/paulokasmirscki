@@ -32,6 +32,9 @@ export default function PauloAdmin() {
   const [fixedCompanies, setFixedCompanies] = useState([]);
   const [editing, setEditing] = useState(null); // empresa em edição (ou nova)
   const [savingCo, setSavingCo] = useState(false);
+  const [members, setMembers] = useState([]);
+  const [memberForm, setMemberForm] = useState({ nome: "", whatsapp: "" });
+  const [copiedMember, setCopiedMember] = useState("");
 
   useEffect(() => {
     try {
@@ -68,6 +71,7 @@ export default function PauloAdmin() {
       if (d.inviteLink) setInviteLink(d.inviteLink);
       if (Array.isArray(d.customCompanies)) setCustomCompanies(d.customCompanies);
       if (Array.isArray(d.fixedCompanies)) setFixedCompanies(d.fixedCompanies);
+      if (Array.isArray(d.members)) setMembers(d.members);
       setAuthed(true);
       try {
         localStorage.setItem("admin_code", c);
@@ -209,6 +213,46 @@ export default function PauloAdmin() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ code, action: "referralDone", t, done }),
     }).catch(() => {});
+  };
+
+  // ---- membros com link pessoal ----
+  const memberAction = async (payload) => {
+    try {
+      const r = await fetch("/api/admin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code, ...payload }),
+      });
+      const d = await r.json();
+      if (Array.isArray(d.members)) setMembers(d.members);
+    } catch (e) {}
+  };
+  const addMember = async (e) => {
+    e.preventDefault();
+    if (!memberForm.nome.trim()) return;
+    await memberAction({ action: "memberSave", member: memberForm });
+    setMemberForm({ nome: "", whatsapp: "" });
+  };
+  const resetMember = (m) => {
+    if (
+      !window.confirm(
+        `Gerar um novo link para ${m.nome}? O link atual para de funcionar.`
+      )
+    )
+      return;
+    memberAction({ action: "memberReset", id: m.id });
+  };
+  const removeMember = (m) => {
+    if (!window.confirm(`Remover ${m.nome}? O link dele para de funcionar.`))
+      return;
+    memberAction({ action: "memberDelete", id: m.id });
+  };
+  const copyMemberLink = async (m) => {
+    try {
+      await navigator.clipboard.writeText(m.link);
+      setCopiedMember(m.id);
+      setTimeout(() => setCopiedMember(""), 2000);
+    } catch (e) {}
   };
 
   const copyInvite = async () => {
@@ -744,6 +788,104 @@ export default function PauloAdmin() {
                                 📷 {s.instagram}
                               </a>
                             )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
+              )}
+            </section>
+
+            {/* MEMBROS — acesso individual (link pessoal) */}
+            <section className="admin-panel admin-signups">
+              <h3>
+                👥 Membros
+                <span className="lg-tag">{members.length}</span>
+              </h3>
+              <p className="admin-hint">
+                Cada membro tem um link pessoal de acesso. Cadastre a pessoa,
+                envie o link pelo WhatsApp e ela entra direto, sem digitar
+                código. Se o link vazar, clique em “Novo link”: o antigo para de
+                funcionar na hora.
+              </p>
+              <form className="member-form" onSubmit={addMember}>
+                <input
+                  placeholder="Nome do membro"
+                  value={memberForm.nome}
+                  onChange={(e) =>
+                    setMemberForm((f) => ({ ...f, nome: e.target.value }))
+                  }
+                />
+                <input
+                  placeholder="WhatsApp (opcional)"
+                  inputMode="tel"
+                  value={memberForm.whatsapp}
+                  onChange={(e) =>
+                    setMemberForm((f) => ({ ...f, whatsapp: e.target.value }))
+                  }
+                />
+                <button className="chip chip-add" disabled={!memberForm.nome.trim()}>
+                  + Adicionar membro
+                </button>
+              </form>
+              {!members.length ? (
+                <p className="admin-empty">
+                  Nenhum membro com link pessoal ainda. Quem entra pelo código
+                  geral continua com acesso normalmente.
+                </p>
+              ) : (
+                <div className="lead-cards">
+                  {members
+                    .filter((m) => match(`${m.nome} ${m.whatsapp}`))
+                    .map((m) => {
+                      const wa = waDigits(m.whatsapp);
+                      return (
+                        <div className="lead-card" key={m.id}>
+                          <div className="lead-card-top">
+                            <div>
+                              <div className="lead-nm">{m.nome}</div>
+                              <div className="lead-ct">
+                                {m.visto
+                                  ? `Último acesso: ${fmtDate(m.visto)}`
+                                  : "Ainda não acessou"}
+                                {m.whatsapp ? ` · ${m.whatsapp}` : ""}
+                              </div>
+                            </div>
+                            <div className="lead-actions">
+                              {wa && (
+                                <a
+                                  className="firm-conn"
+                                  href={`https://wa.me/${wa}?text=${encodeURIComponent(
+                                    `Olá ${m.nome}! Aqui é o Paulo Kasmirscki. Este é o seu link pessoal de acesso ao ecossistema: ${m.link}`
+                                  )}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Enviar por WhatsApp
+                                </a>
+                              )}
+                              <button
+                                type="button"
+                                className="chip"
+                                onClick={() => copyMemberLink(m)}
+                              >
+                                {copiedMember === m.id ? "✓ Copiado!" : "🔗 Copiar link"}
+                              </button>
+                              <button
+                                type="button"
+                                className="chip"
+                                onClick={() => resetMember(m)}
+                              >
+                                Novo link
+                              </button>
+                              <button
+                                type="button"
+                                className="chip"
+                                onClick={() => removeMember(m)}
+                              >
+                                Remover
+                              </button>
+                            </div>
                           </div>
                         </div>
                       );

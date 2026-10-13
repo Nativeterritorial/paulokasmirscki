@@ -8,6 +8,10 @@ import {
   getCustomCompanies,
   saveCompany,
   deleteCompany,
+  getMembers,
+  saveMember,
+  resetMemberToken,
+  deleteMember,
 } from "../../../lib/store";
 import { COMPANIES } from "../../area/companies";
 
@@ -55,6 +59,17 @@ export async function POST(req) {
     await deleteCompany(body.id);
   }
 
+  // ações: membros com link pessoal de acesso
+  if (body.action === "memberSave" && body.member) {
+    await saveMember(body.member);
+  }
+  if (body.action === "memberReset" && body.id) {
+    await resetMemberToken(body.id);
+  }
+  if (body.action === "memberDelete" && body.id) {
+    await deleteMember(body.id);
+  }
+
   const stats = await getStats();
   const customCompanies = await getCustomCompanies();
 
@@ -90,8 +105,21 @@ export async function POST(req) {
     fixed: true,
   }));
 
+  // membros, já com o link pessoal pronto pra copiar/enviar
+  const members = (await getMembers()).map((m) => ({
+    id: m.id,
+    nome: m.nome,
+    whatsapp: m.whatsapp,
+    t: m.t,
+    visto: m.visto,
+    link: `https://www.paulokasmirscki.com.br/area?convite=${encodeURIComponent(
+      m.token
+    )}`,
+  }));
+
   return NextResponse.json({
     ok: true,
+    members,
     stats,
     inviteLink,
     customCompanies,

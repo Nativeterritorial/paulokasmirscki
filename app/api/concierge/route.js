@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 import { logQuery, logDemand } from "../../../lib/store";
 import { getAllCompanies } from "../../../lib/companies";
+import { checkAccess } from "../../../lib/auth";
 
 export const runtime = "nodejs";
 
@@ -54,9 +55,9 @@ export async function POST(req) {
     code = (body.code || "").trim();
   } catch (e) {}
 
-  // gate simples de acesso
-  const expected = process.env.AREA_CODE || "teste123";
-  if (code !== expected) {
+  // gate de acesso: link pessoal do membro ou código geral
+  const { ok } = await checkAccess(code);
+  if (!ok) {
     return NextResponse.json({ error: "Acesso negado." }, { status: 401 });
   }
 

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { logConnect } from "../../../lib/store";
 import { COMPANIES } from "../../area/companies";
+import { checkAccess } from "../../../lib/auth";
 
 export const runtime = "nodejs";
 
@@ -10,9 +11,8 @@ export async function POST(req) {
     body = await req.json();
   } catch (e) {}
 
-  const code = (body.code || "").trim();
-  const expected = process.env.AREA_CODE || "teste123";
-  if (code !== expected) {
+  const { ok } = await checkAccess(body.code);
+  if (!ok) {
     return NextResponse.json({ ok: false }, { status: 401 });
   }
 

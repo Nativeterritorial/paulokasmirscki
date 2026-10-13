@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
+import { checkAccess } from "../../../lib/auth";
+import { touchMember } from "../../../lib/store";
 
 export const runtime = "nodejs";
 
+// Confere o acesso à Área de Membros: link pessoal do membro ou código geral.
 export async function POST(req) {
   let code = "";
   try {
@@ -9,9 +12,8 @@ export async function POST(req) {
     code = (body.code || "").trim();
   } catch (e) {}
 
-  // código de acesso (defina AREA_CODE no .env.local / Vercel; padrão p/ teste)
-  const expected = process.env.AREA_CODE || "teste123";
-  const ok = code.length > 0 && code === expected;
+  const { ok, member } = await checkAccess(code);
+  if (ok && member) await touchMember(member.id);
 
-  return NextResponse.json({ ok });
+  return NextResponse.json({ ok, member });
 }

@@ -73,6 +73,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
         <link rel="icon" type="image/svg+xml" href="/logo-mark.svg" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body>{children}</body>
     </html>

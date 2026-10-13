@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { COMPANIES } from "./companies";
+import InstallApp from "./install-app";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
@@ -47,6 +48,7 @@ export default function Area() {
   const [codeInput, setCodeInput] = useState("");
   const [err, setErr] = useState("");
   const [loadingLogin, setLoadingLogin] = useState(false);
+  const [member, setMember] = useState(null); // { id, nome } quando entrou por link pessoal
 
   const GREETING = [
     {
@@ -92,6 +94,7 @@ export default function Area() {
           .then((d) => {
             if (d.ok) {
               setCode(convite);
+              setMember(d.member || null);
               setAuthed(true);
               try {
                 localStorage.setItem("area_code", convite);
@@ -101,9 +104,28 @@ export default function Area() {
           .catch(() => {});
       }
       const saved = localStorage.getItem("area_code");
-      if (saved) {
+      if (saved && !convite) {
         setCode(saved);
         setAuthed(true);
+        // revalida o acesso salvo: um link trocado ou removido sai na hora
+        // (se a rede falhar, mantém a sessão)
+        fetch("/api/area-login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code: saved }),
+        })
+          .then((r) => r.json())
+          .then((d) => {
+            if (d.ok) setMember(d.member || null);
+            else {
+              try {
+                localStorage.removeItem("area_code");
+              } catch (e) {}
+              setAuthed(false);
+              setCode("");
+            }
+          })
+          .catch(() => {});
       }
       // restaura o histórico da conversa
       const chat = JSON.parse(localStorage.getItem("area_chat") || "null");
@@ -135,6 +157,7 @@ export default function Area() {
       const d = await r.json();
       if (d.ok) {
         setCode(codeInput);
+        setMember(d.member || null);
         setAuthed(true);
         try {
           localStorage.setItem("area_code", codeInput);
@@ -166,6 +189,7 @@ export default function Area() {
     } catch (e) {}
     setAuthed(false);
     setCode("");
+    setMember(null);
     setMessages(GREETING);
   };
 
@@ -305,9 +329,15 @@ export default function Area() {
           <span className="brand-name">Paulo Kasmirscki</span>
           <span className="area-badge">Área de Membros</span>
         </a>
-        <button className="area-logout" onClick={logout}>
-          Sair
-        </button>
+        <div className="area-top-actions">
+          {member && (
+            <span className="area-hello">Olá, {member.nome.split(" ")[0]}</span>
+          )}
+          <InstallApp />
+          <button className="area-logout" onClick={logout}>
+            Sair
+          </button>
+        </div>
       </header>
 
       <div className="area-wrap">

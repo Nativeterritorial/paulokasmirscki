@@ -4183,6 +4183,17 @@ body {
   font-size: clamp(1.6rem, 3.6vw, 2.2rem);
   margin-top: 10px;
 }
+/* títulos em caixa alta com a palavra-chave em azul claro, como na capa da home */
+.mdl-title {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.mdl-title em {
+  font-style: normal;
+  color: #bcd6ff;
+}
 .mdl-head p {
   color: var(--muted);
   line-height: 1.65;

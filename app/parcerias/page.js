@@ -132,7 +132,7 @@ export default function Parcerias() {
       <main className="container join-wrap">
         <div className="join-hero">
           <div className="eyebrow">Parcerias</div>
-          <h1>
+          <h1 className="mdl-title">
             Três formas de fazer <em>negócio</em> comigo
           </h1>
           <p className="join-lead">
@@ -160,7 +160,9 @@ export default function Parcerias() {
         <section className="mdl-sec" id="indicar">
           <div className="mdl-head">
             <div className="kick">Modelo 01</div>
-            <h2>Indique um negócio imobiliário</h2>
+            <h2 className="mdl-title">
+              Indique um negócio <em>imobiliário</em>
+            </h2>
           </div>
           <div className="join-cols">
             <div>
@@ -196,7 +198,9 @@ export default function Parcerias() {
         <section className="mdl-sec" id="abrir">
           <div className="mdl-head">
             <div className="kick">Modelo 02</div>
-            <h2>Da ideia à abertura</h2>
+            <h2 className="mdl-title">
+              Da ideia à <em>abertura</em>
+            </h2>
             <p>
               Abrir um negócio envolve contador, advogado, imóvel, obra, seguro
               e divulgação. Eu coordeno tudo com empresas da rede, em seis
@@ -231,7 +235,9 @@ export default function Parcerias() {
         <section className="mdl-sec" id="gestor">
           <div className="mdl-head">
             <div className="kick">Modelo 03</div>
-            <h2>Gestor de negócios</h2>
+            <h2 className="mdl-title">
+              Gestor de <em>negócios</em>
+            </h2>
             <p>
               Eu atuo ao lado do dono da empresa, mês a mês: ajudo a definir
               aonde o negócio quer chegar, acompanho os números, organizo a

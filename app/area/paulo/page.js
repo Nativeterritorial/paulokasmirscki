@@ -233,6 +233,12 @@ export default function PauloAdmin() {
     await memberAction({ action: "memberSave", member: memberForm });
     setMemberForm({ nome: "", whatsapp: "" });
   };
+  // cria o acesso (membro com link pessoal) a partir de um cadastro do site
+  const createAccess = (s) =>
+    memberAction({
+      action: "memberSave",
+      member: { nome: s.nome, whatsapp: s.whatsapp || "" },
+    });
   const resetMember = (m) => {
     if (
       !window.confirm(
@@ -387,6 +393,18 @@ export default function PauloAdmin() {
   const waDigits = (v) => {
     const d = String(v || "").replace(/[^0-9]/g, "");
     return d.length >= 10 ? (d.length <= 11 ? "55" + d : d) : "";
+  };
+  // membro que corresponde a um cadastro do site: mesmo WhatsApp ou, sem ele,
+  // mesmo nome (evita criar dois acessos pra mesma pessoa)
+  const sameName = (a, b) =>
+    String(a || "").trim().toLowerCase() === String(b || "").trim().toLowerCase();
+  const memberOf = (s) => {
+    const w = waDigits(s.whatsapp);
+    return (
+      members.find((m) =>
+        w ? waDigits(m.whatsapp) === w : !waDigits(m.whatsapp) && sameName(m.nome, s.nome)
+      ) || null
+    );
   };
   const hoje = new Date().toLocaleDateString("pt-BR", {
     weekday: "long",
@@ -749,6 +767,42 @@ export default function PauloAdmin() {
                                   E-mail
                                 </a>
                               )}
+                              {(() => {
+                                // já virou membro? oferece o link; senão, cria o acesso
+                                const m = memberOf(s);
+                                if (!m)
+                                  return (
+                                    <button
+                                      type="button"
+                                      className="chip chip-add"
+                                      onClick={() => createAccess(s)}
+                                    >
+                                      + Criar acesso
+                                    </button>
+                                  );
+                                return waFull ? (
+                                  <a
+                                    className="chip"
+                                    href={`https://wa.me/${waFull}?text=${encodeURIComponent(
+                                      `Olá ${s.nome}! Aqui é o Paulo Kasmirscki. Este é o seu link pessoal de acesso ao ecossistema: ${m.link}`
+                                    )}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    Enviar link de acesso
+                                  </a>
+                                ) : (
+                                  <button
+                                    type="button"
+                                    className="chip"
+                                    onClick={() => copyMemberLink(m)}
+                                  >
+                                    {copiedMember === m.id
+                                      ? "✓ Copiado!"
+                                      : "🔗 Copiar link de acesso"}
+                                  </button>
+                                );
+                              })()}
                               <button
                                 type="button"
                                 className={`lead-check${done ? " on" : ""}`}

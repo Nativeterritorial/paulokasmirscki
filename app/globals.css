@@ -4194,6 +4194,13 @@ body {
   font-style: normal;
   color: #bcd6ff;
 }
+/* 10% maiores que os títulos padrão dessas áreas */
+.join-hero h1.mdl-title {
+  font-size: clamp(2.2rem, 5.5vw, 3.3rem);
+}
+.mdl-head h2.mdl-title {
+  font-size: clamp(1.76rem, 3.96vw, 2.42rem);
+}
 .mdl-head p {
   color: var(--muted);
   line-height: 1.65;

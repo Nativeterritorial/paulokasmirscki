@@ -82,7 +82,7 @@ const TEXTOS = {
     ok: "Ideia enviada!",
   },
   gestao: {
-    titulo: ["Nome da empresa *", "Ex.: Mercado Bom Preço"],
+    titulo: ["Sua empresa (ou seu nome) *", "Ex.: Mercado Bom Preço ou João Silva"],
     local: ["Segmento", "Ex.: supermercado, indústria, serviços"],
     fase: ["Há quanto tempo a empresa existe", TEMPO_EMPRESA],
     descricao: ["Qual é o maior desafio hoje? *", "Ex.: o caixa aperta todo mês, quero abrir filial, falta organização"],

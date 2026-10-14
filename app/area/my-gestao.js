@@ -77,8 +77,8 @@ export default function MyGestao({ code, member }) {
       <div className="area-refs-head">
         <div>
           <div className="kick">Minha gestão · Gestor de negócios</div>
-          <h2>Quer um gestor ao lado da sua empresa?</h2>
-          <p>Conte o momento da sua empresa: o Paulo atua com você, mês a mês, no planejamento, nos números, nos processos e nas negociações.</p>
+          <h2>Quer um gestor para você ou sua empresa?</h2>
+          <p>Conte o seu momento ou o da sua empresa: o Paulo atua com você, mês a mês, no planejamento, nos números, nos processos e nas negociações.</p>
         </div>
         <button type="button" className="btn btn-primary" onClick={() => setOpen((o) => !o)}>
           {open ? "Fechar" : "+ Nova gestão"}

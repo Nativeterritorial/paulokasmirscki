@@ -17,6 +17,9 @@ import {
   getProjects,
   saveProject,
   deleteProject,
+  getGestoes,
+  saveGestao,
+  deleteGestao,
 } from "../../../lib/store";
 import { COMPANIES } from "../../area/companies";
 
@@ -93,6 +96,14 @@ export async function POST(req) {
     await deleteProject(body.id);
   }
 
+  // ações: gestão "Gestor de negócios"
+  if (body.action === "gestaoSave" && body.gestao) {
+    await saveGestao(body.gestao);
+  }
+  if (body.action === "gestaoDelete" && body.id) {
+    await deleteGestao(body.id);
+  }
+
   const stats = await getStats();
   const customCompanies = await getCustomCompanies();
 
@@ -141,10 +152,12 @@ export async function POST(req) {
   }));
 
   const projects = await getProjects();
+  const gestoes = await getGestoes();
 
   return NextResponse.json({
     ok: true,
     projects,
+    gestoes,
     members,
     stats,
     inviteLink,

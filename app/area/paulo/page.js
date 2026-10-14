@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ProjectsAdmin from "./projects-admin";
+import GestaoAdmin from "./gestao-admin";
 import {
   REFERRAL_STATUS,
   statusInfo,
@@ -39,9 +40,10 @@ export default function PauloAdmin() {
   const [savingCo, setSavingCo] = useState(false);
   const [members, setMembers] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [gestoes, setGestoes] = useState([]);
   const [memberForm, setMemberForm] = useState({ nome: "", whatsapp: "" });
   const [copiedMember, setCopiedMember] = useState("");
-  const [tab, setTab] = useState("sol"); // sol | ind | proj | mem | emp | num
+  const [tab, setTab] = useState("sol"); // sol | ind | proj | gest | mem | emp | num
 
   useEffect(() => {
     try {
@@ -80,6 +82,7 @@ export default function PauloAdmin() {
       if (Array.isArray(d.fixedCompanies)) setFixedCompanies(d.fixedCompanies);
       if (Array.isArray(d.members)) setMembers(d.members);
       if (Array.isArray(d.projects)) setProjects(d.projects);
+      if (Array.isArray(d.gestoes)) setGestoes(d.gestoes);
       setAuthed(true);
       try {
         localStorage.setItem("admin_code", c);
@@ -566,6 +569,7 @@ export default function PauloAdmin() {
                 ["sol", "Solicitações", solPend],
                 ["ind", "Indicações", referralsPend],
                 ["proj", "Projetos", 0],
+                ["gest", "Gestão", 0],
                 ["mem", "Membros", 0],
                 ["emp", "Empresas", 0],
                 ["num", "Números", 0],
@@ -1065,6 +1069,15 @@ export default function PauloAdmin() {
                 members={members}
                 companies={[...fixedCompanies, ...customCompanies]}
                 onChange={setProjects}
+              />
+            )}
+
+            {tab === "gest" && (
+              <GestaoAdmin
+                code={code}
+                gestoes={gestoes}
+                members={members}
+                onChange={setGestoes}
               />
             )}
 

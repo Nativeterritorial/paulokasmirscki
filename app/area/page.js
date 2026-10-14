@@ -5,6 +5,7 @@ import { COMPANIES } from "./companies";
 import InstallApp from "./install-app";
 import MyReferrals from "./my-referrals";
 import MyProjects from "./my-projects";
+import MyGestao from "./my-gestao";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
@@ -52,6 +53,7 @@ export default function Area() {
   const [loadingLogin, setLoadingLogin] = useState(false);
   const [member, setMember] = useState(null); // { id, nome } quando entrou por link pessoal
   const [hasProject, setHasProject] = useState(false);
+  const [hasGestao, setHasGestao] = useState(false);
 
   const GREETING = [
     {
@@ -341,6 +343,11 @@ export default function Area() {
               Meu projeto
             </a>
           )}
+          {hasGestao && (
+            <a className="area-refs-link" href="#gestao">
+              Minha gestão
+            </a>
+          )}
           <a className="area-refs-link" href="#indicacoes">
             {member ? "Minhas indicações" : "Indicar negócio"}
           </a>
@@ -573,6 +580,11 @@ export default function Area() {
         code={code}
         member={member}
         onLoaded={(n) => setHasProject(n > 0)}
+      />
+      <MyGestao
+        code={code}
+        member={member}
+        onLoaded={(n) => setHasGestao(n > 0)}
       />
       <MyReferrals code={code} member={member} />
     </div>

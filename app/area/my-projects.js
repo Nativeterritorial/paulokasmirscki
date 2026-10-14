@@ -46,7 +46,7 @@ export default function MyProjects({ code, member }) {
         <div>
           <div className="kick">Meu projeto · Da ideia à abertura</div>
           <h2>Tem a ideia de um negócio?</h2>
-          <p>Conte a sua ideia: o Paulo coordena as empresas da rede em cada etapa, da viabilidade até a inauguração.</p>
+          <p>O Paulo ajuda a tirar a sua ideia do papel e reúne os parceiros certos para cada etapa. Você foca no seu sonho, e ele cuida do caminho até a inauguração.</p>
         </div>
         <button type="button" className="btn btn-primary" onClick={() => setOpen((o) => !o)}>
           {open ? "Fechar" : "+ Novo projeto"}

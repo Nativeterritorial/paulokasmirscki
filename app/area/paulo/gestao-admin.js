@@ -25,8 +25,8 @@ const waDigits = (v) => {
 
 const tmpId = (p) => `${p}${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
 
-// Aba "Gestão" do painel: o Paulo acompanha as empresas do modelo "Gestor de
-// negócios" — metas e relatório mensal. O cliente vê isso em "Minha gestão".
+// Aba "Gestão" do painel: o Paulo acompanha as pessoas e empresas do modelo
+// "Gestor de negócios" — metas e relatório mensal. O cliente vê isso em "Minha gestão".
 export default function GestaoAdmin({ code, gestoes, members, onChange }) {
   const [novo, setNovo] = useState(EMPTY_NEW);
   const [open, setOpen] = useState("");
@@ -120,18 +120,19 @@ export default function GestaoAdmin({ code, gestoes, members, onChange }) {
         <span className="lg-tag">{gestoes.length}</span>
       </h3>
       <p className="admin-hint">
-        Acompanhe as empresas em que você atua como gestor. Ligue a empresa a um
-        membro e ele vê as metas e o relatório de cada mês na área dele.
+        Acompanhe as pessoas e as empresas em que você atua como gestor. Ligue
+        cada uma a um membro e ele vê as metas e o relatório de cada mês na área
+        dele.
       </p>
 
       <form className="member-form" onSubmit={create}>
         <input
-          placeholder="Nome da empresa"
+          placeholder="Pessoa ou empresa"
           value={novo.empresa}
           onChange={(e) => setNovo((f) => ({ ...f, empresa: e.target.value }))}
         />
         <input
-          placeholder="Dono (nome)"
+          placeholder="Responsável (nome)"
           value={novo.cliente}
           onChange={(e) => setNovo((f) => ({ ...f, cliente: e.target.value }))}
         />
@@ -149,14 +150,14 @@ export default function GestaoAdmin({ code, gestoes, members, onChange }) {
           ))}
         </select>
         <button className="chip chip-add" disabled={!novo.empresa.trim()}>
-          + Nova empresa
+          + Nova gestão
         </button>
       </form>
 
       {!gestoes.length ? (
         <p className="admin-empty">
-          Nenhuma empresa ainda. Cadastre a primeira quando fechar um cliente do
-          modelo “Gestor de negócios”.
+          Ninguém ainda. Cadastre a primeira pessoa ou empresa quando fechar um
+          cliente do modelo “Gestor de negócios”.
         </p>
       ) : (
         <div className="lead-cards proj-cards">
@@ -188,7 +189,7 @@ export default function GestaoAdmin({ code, gestoes, members, onChange }) {
                       <a
                         className="firm-conn"
                         href={`https://wa.me/${wa}?text=${encodeURIComponent(
-                          `Olá ${member.nome}! Aqui é o Paulo Kasmirscki. O relatório da ${g.empresa} está atualizado na sua área de membros.`
+                          `Olá ${member.nome}! Aqui é o Paulo Kasmirscki. O relatório de ${g.empresa} está atualizado na sua área de membros.`
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -209,11 +210,11 @@ export default function GestaoAdmin({ code, gestoes, members, onChange }) {
                   <div className="proj-edit">
                     <div className="proj-edit-row proj-edit-head">
                       <label>
-                        Empresa
+                        Pessoa ou empresa
                         <input value={draft.empresa || ""} onChange={(e) => setField("empresa", e.target.value)} />
                       </label>
                       <label>
-                        Dono
+                        Responsável
                         <input value={draft.cliente || ""} onChange={(e) => setField("cliente", e.target.value)} />
                       </label>
                       <label>

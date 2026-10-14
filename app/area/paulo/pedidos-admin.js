@@ -26,7 +26,7 @@ const ROTULOS = {
     local: "Segmento",
     fase: "Tempo de empresa",
     criar: "Criar gestão",
-    msg: (p) => `Olá ${p.nome}! Aqui é o Paulo Kasmirscki. Recebi o seu pedido de gestão para a ${p.titulo}. Vamos conversar?`,
+    msg: (p) => `Olá ${p.nome}! Aqui é o Paulo Kasmirscki. Recebi o seu pedido de gestão para ${p.titulo}. Vamos conversar?`,
   },
 };
 

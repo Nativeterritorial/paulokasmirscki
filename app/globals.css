@@ -5450,3 +5450,30 @@ body:has(.area-login) {
 .pd-actions {
   margin-top: 12px;
 }
+
+/* /parcerias: chamada para indicar (no lugar do formulário) */
+.ind-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ind-cta h3 {
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+.ind-cta p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.ind-cta .btn {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+.ind-cta-login {
+  font-size: 0.88rem;
+  color: var(--gold-2);
+  text-align: center;
+  text-decoration: underline;
+}

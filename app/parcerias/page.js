@@ -1,4 +1,3 @@
-import ReferralForm from "./referral-form";
 import { PROJECT_STAGES } from "./project-stages";
 
 const WHATSAPP = "https://wa.me/5554996505799";
@@ -180,9 +179,28 @@ export default function Parcerias() {
               </p>
             </div>
             <aside className="join-buy">
-              <div className="join-buy-card">
-                <div className="kick">Registrar indicação</div>
-                <ReferralForm />
+              <div className="join-buy-card ind-cta">
+                <div className="kick">Quer indicar alguém?</div>
+                <h3>Fale comigo ou indique pela Área de Membros</h3>
+                <p>
+                  Me mande pelo WhatsApp o nome e o contato de quem você quer
+                  indicar. Se preferir registrar e acompanhar cada indicação,
+                  faça o seu cadastro no ecossistema.
+                </p>
+                <a
+                  className="btn btn-primary"
+                  href={wa("Olá Paulo! Quero indicar um negócio imobiliário. Quem eu indico: ")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Indicar pelo WhatsApp
+                </a>
+                <a className="btn btn-outline" href="/ecossistema">
+                  Fazer meu cadastro
+                </a>
+                <a className="ind-cta-login" href="/area#indicacoes">
+                  Já é membro? Entrar na Área de Membros →
+                </a>
               </div>
             </aside>
           </div>

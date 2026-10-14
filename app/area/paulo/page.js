@@ -39,6 +39,7 @@ export default function PauloAdmin() {
   const [members, setMembers] = useState([]);
   const [memberForm, setMemberForm] = useState({ nome: "", whatsapp: "" });
   const [copiedMember, setCopiedMember] = useState("");
+  const [tab, setTab] = useState("sol"); // sol | ind | mem | emp | num
 
   useEffect(() => {
     try {
@@ -470,6 +471,9 @@ export default function PauloAdmin() {
     .filter((l) => match(`${l.nome} ${l.contato} ${l.msg}`));
   const isDone = (l) => (stats?.leadsDone || []).includes(String(l.t));
   const pendentes = (stats?.leads || []).filter((l) => !isDone(l)).length;
+  // tudo que espera uma ação do Paulo (mostrado na saudação e na aba)
+  const solPend = pendentes + signupsPend + gaps.length;
+  const totalPend = solPend + referralsPend;
 
   // gráfico: eventos por dia nos últimos 14 dias
   const days = [...Array(14)].map((_, i) => {
@@ -501,6 +505,14 @@ export default function PauloAdmin() {
           <span className="area-badge">Painel do Paulo</span>
         </a>
         <div style={{ display: "flex", gap: 10 }}>
+          <a
+            className="area-logout"
+            href="/area"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver área de membros
+          </a>
           <button className="area-logout" onClick={() => load(code)}>
             Atualizar
           </button>
@@ -530,16 +542,42 @@ export default function PauloAdmin() {
                   Olá, <em>Paulo</em> 👋
                 </h1>
                 <p>
-                  Sua rede gerou <strong>{stats.totals.queries}</strong>{" "}
-                  {stats.totals.queries === 1 ? "conversa" : "conversas"} com a
-                  IA, <strong>{stats.totals.connects}</strong>{" "}
-                  {stats.totals.connects === 1 ? "pedido" : "pedidos"} de
-                  conexão e <strong>{stats.totals.leads || 0}</strong>{" "}
-                  {(stats.totals.leads || 0) === 1 ? "lead" : "leads"} até
-                  agora.
+                  {totalPend > 0 ? (
+                    <>
+                      Você tem <strong>{totalPend}</strong>{" "}
+                      {totalPend === 1
+                        ? "solicitação aguardando"
+                        : "solicitações aguardando"}{" "}
+                      a sua resposta.
+                    </>
+                  ) : (
+                    "Nenhuma solicitação aguardando. Tudo em dia."
+                  )}
                 </p>
               </div>
             </div>
+
+            {/* ABAS */}
+            <nav className="admin-tabs" aria-label="Seções do painel">
+              {[
+                ["sol", "Solicitações", solPend],
+                ["ind", "Indicações", referralsPend],
+                ["mem", "Membros", 0],
+                ["emp", "Empresas", 0],
+                ["num", "Números", 0],
+              ].map(([id, lbl, n]) => (
+                <button
+                  key={id}
+                  type="button"
+                  className={`admin-tab${tab === id ? " on" : ""}`}
+                  aria-current={tab === id ? "page" : undefined}
+                  onClick={() => setTab(id)}
+                >
+                  {lbl}
+                  {n > 0 && <span className="admin-tab-n">{n}</span>}
+                </button>
+              ))}
+            </nav>
 
             {/* FERRAMENTAS */}
             <div className="admin-toolbar">
@@ -579,167 +617,95 @@ export default function PauloAdmin() {
               </div>
             </div>
 
-            {/* CARTÕES DE TOTAIS */}
-            <div className="admin-cards">
-              <div className="admin-card">
-                <div className="admin-ic" aria-hidden="true">
-                  💬
+            {tab === "sol" && (
+              <>
+                {/* RESUMO: o que está esperando ação (clica e vai pra lista) */}
+                <div className="admin-todo">
+                  {[
+                    ["sec-leads", pendentes, "Leads do site", "a responder"],
+                    ["sec-signups", signupsPend, "Cadastros de empresas", "novos"],
+                    ["sec-radar", gaps.length, "Pedidos sem empresa", "pra buscar"],
+                  ].map(([id, n, lbl, sub]) => (
+                    <a
+                      key={id}
+                      className={`admin-todo-item${n > 0 ? " has" : ""}`}
+                      href={`#${id}`}
+                    >
+                      <span className="admin-todo-n">{n}</span>
+                      <span className="admin-todo-lbl">
+                        {lbl}
+                        <small>{n > 0 ? sub : "em dia"}</small>
+                      </span>
+                    </a>
+                  ))}
                 </div>
-                <div className="admin-num">{stats.totals.queries}</div>
-                <div className="admin-lbl">Conversas com a IA</div>
-              </div>
-              <div className="admin-card">
-                <div className="admin-ic" aria-hidden="true">
-                  🤝
-                </div>
-                <div className="admin-num">{stats.totals.connects}</div>
-                <div className="admin-lbl">Pedidos de conexão</div>
-              </div>
-              <div className="admin-card">
-                <div className="admin-ic" aria-hidden="true">
-                  📥
-                </div>
-                <div className="admin-num">{stats.totals.leads || 0}</div>
-                <div className="admin-lbl">Leads do site</div>
-              </div>
-            </div>
 
-            {/* GRÁFICO DE ATIVIDADE (14 DIAS) */}
-            <section className="admin-panel admin-chart-panel">
-              <h3>📈 Atividade — últimos 14 dias</h3>
-              <div className="admin-chart">
-                {chart.map((d) => (
-                  <div
-                    className="ac-col"
-                    key={d.d}
-                    title={`${new Date(d.d).toLocaleDateString("pt-BR", {
-                      day: "2-digit",
-                      month: "2-digit",
-                    })} — ${d.q} conversa(s), ${d.c} conexão(ões), ${d.l} lead(s)`}
-                  >
-                    <div className="ac-bars">
-                      {d.l > 0 && (
-                        <div
-                          className="ac-bar ac-l"
-                          style={{ height: `${(d.l / chartMax) * 100}%` }}
-                        />
-                      )}
-                      {d.c > 0 && (
-                        <div
-                          className="ac-bar ac-c"
-                          style={{ height: `${(d.c / chartMax) * 100}%` }}
-                        />
-                      )}
-                      {d.q > 0 && (
-                        <div
-                          className="ac-bar ac-q"
-                          style={{ height: `${(d.q / chartMax) * 100}%` }}
-                        />
-                      )}
-                      {d.q + d.c + d.l === 0 && <div className="ac-zero" />}
-                    </div>
-                    <div className="ac-day">
-                      {new Date(d.d).toLocaleDateString("pt-BR", {
-                        day: "2-digit",
-                      })}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="ac-legend">
-                <span>
-                  <i className="ac-q" /> Conversas
-                </span>
-                <span>
-                  <i className="ac-c" /> Conexões
-                </span>
-                <span>
-                  <i className="ac-l" /> Leads
-                </span>
-              </div>
+            {/* LEADS DO FORMULÁRIO */}
+            <section className="admin-panel admin-leads" id="sec-leads">
+              <h3>
+                📥 Leads do site
+                {pendentes > 0 && (
+                  <span className="lg-tag">{pendentes} a responder</span>
+                )}
+              </h3>
+              {!fLeads.length ? (
+                <p className="admin-empty">
+                  {stats.leads?.length
+                    ? "Nenhum lead nesse filtro."
+                    : "Nenhum lead ainda. Eles chegam pelo formulário no final da página inicial."}
+                </p>
+              ) : (
+                <div className="lead-cards">
+                  {fLeads.map((l, i) => {
+                    const action = leadAction(l);
+                    const done = isDone(l);
+                    return (
+                      <div
+                        className={`lead-card${done ? " lead-ok" : ""}`}
+                        key={i}
+                      >
+                        <div className="lead-card-top">
+                          <div>
+                            <div className="lead-nm">{l.nome}</div>
+                            <div className="lead-ct">
+                              {l.contato} · {fmtDate(l.t)}
+                            </div>
+                          </div>
+                          <div className="lead-actions">
+                            {action && !done && (
+                              <a
+                                className="firm-conn"
+                                href={action.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {action.label}
+                              </a>
+                            )}
+                            <button
+                              type="button"
+                              className={`lead-check${done ? " on" : ""}`}
+                              onClick={() => toggleLeadDone(l.t, !done)}
+                              title={
+                                done
+                                  ? "Marcar como pendente"
+                                  : "Marcar como atendido"
+                              }
+                            >
+                              ✓ {done ? "Atendido" : "Atender"}
+                            </button>
+                          </div>
+                        </div>
+                        <p className="lead-msg">“{l.msg}”</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </section>
 
-            {/* RADAR: DEMANDA SEM EMPRESA NA REDE */}
-            {(gaps.length > 0 || gapsDone.length > 0) && (
-              <section className="admin-panel admin-radar">
-                <h3>
-                  🎯 Radar — pedidos sem empresa na rede
-                  {gaps.length > 0 && (
-                    <span className="lg-tag">{gaps.length} pra buscar</span>
-                  )}
-                </h3>
-                <p className="admin-hint">
-                  Pessoas pediram isso à IA e ainda não há quem atenda. É aqui
-                  que vale recrutar empresa nova pro ecossistema. Marque “Já
-                  busquei” quando encontrar/recrutar um parceiro.
-                </p>
-                {gaps.length === 0 ? (
-                  <p className="admin-empty">
-                    Tudo em dia — nenhuma demanda em aberto. 🎉
-                  </p>
-                ) : (
-                  <div className="gap-cards">
-                    {gaps.slice(0, 12).map((q, i) => (
-                      <div className="gap-card" key={q.t || i}>
-                        <div className="gap-body">
-                          <span className="lg-time">{fmtDate(q.t)}</span>
-                          <span className="gap-text">“{q.q}”</span>
-                        </div>
-                        <div className="gap-actions">
-                          <a
-                            className="chip"
-                            href={`https://www.google.com/search?q=${encodeURIComponent(
-                              q.q + " Caxias do Sul RS"
-                            )}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            title="Procurar um parceiro no Google"
-                          >
-                            🔎 Buscar
-                          </a>
-                          <button
-                            type="button"
-                            className="lead-check"
-                            onClick={() => toggleDemandDone(q.t, true)}
-                            title="Marcar como já buscada/recrutada"
-                          >
-                            ✓ Já busquei
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {gapsDone.length > 0 && (
-                  <details className="gap-done">
-                    <summary>
-                      Já buscadas ({gapsDone.length})
-                    </summary>
-                    <ul className="admin-log">
-                      {gapsDone.slice(0, 12).map((q, i) => (
-                        <li key={q.t || i}>
-                          <span className="lg-time">{fmtDate(q.t)}</span>
-                          <span className="lg-text" style={{ opacity: 0.6 }}>
-                            {q.q}
-                          </span>
-                          <button
-                            type="button"
-                            className="gap-undo"
-                            onClick={() => toggleDemandDone(q.t, false)}
-                            title="Reabrir demanda"
-                          >
-                            reabrir
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-                )}
-              </section>
-            )}
-
             {/* CADASTROS DE EMPRESAS (form do /ecossistema) */}
-            <section className="admin-panel admin-signups">
+            <section className="admin-panel admin-signups" id="sec-signups">
               <h3>
                 📨 Cadastros de empresas
                 {signupsPend > 0 && (
@@ -891,106 +857,92 @@ export default function PauloAdmin() {
               )}
             </section>
 
-            {/* MEMBROS — acesso individual (link pessoal) */}
-            <section className="admin-panel admin-signups">
-              <h3>
-                👥 Membros
-                <span className="lg-tag">{members.length}</span>
-              </h3>
-              <p className="admin-hint">
-                Cada membro tem um link pessoal de acesso. Cadastre a pessoa,
-                envie o link pelo WhatsApp e ela entra direto, sem digitar
-                código. Se o link vazar, clique em “Novo link”: o antigo para de
-                funcionar na hora.
-              </p>
-              <form className="member-form" onSubmit={addMember}>
-                <input
-                  placeholder="Nome do membro"
-                  value={memberForm.nome}
-                  onChange={(e) =>
-                    setMemberForm((f) => ({ ...f, nome: e.target.value }))
-                  }
-                />
-                <input
-                  placeholder="WhatsApp (opcional)"
-                  inputMode="tel"
-                  value={memberForm.whatsapp}
-                  onChange={(e) =>
-                    setMemberForm((f) => ({ ...f, whatsapp: e.target.value }))
-                  }
-                />
-                <button className="chip chip-add" disabled={!memberForm.nome.trim()}>
-                  + Adicionar membro
-                </button>
-              </form>
-              {!members.length ? (
-                <p className="admin-empty">
-                  Nenhum membro com link pessoal ainda. Quem entra pelo código
-                  geral continua com acesso normalmente.
+            {/* RADAR: DEMANDA SEM EMPRESA NA REDE */}
+            {(gaps.length > 0 || gapsDone.length > 0) && (
+              <section className="admin-panel admin-radar" id="sec-radar">
+                <h3>
+                  🎯 Radar — pedidos sem empresa na rede
+                  {gaps.length > 0 && (
+                    <span className="lg-tag">{gaps.length} pra buscar</span>
+                  )}
+                </h3>
+                <p className="admin-hint">
+                  Pessoas pediram isso à IA e ainda não há quem atenda. É aqui
+                  que vale recrutar empresa nova pro ecossistema. Marque “Já
+                  busquei” quando encontrar/recrutar um parceiro.
                 </p>
-              ) : (
-                <div className="lead-cards">
-                  {members
-                    .filter((m) => match(`${m.nome} ${m.whatsapp}`))
-                    .map((m) => {
-                      const wa = waDigits(m.whatsapp);
-                      return (
-                        <div className="lead-card" key={m.id}>
-                          <div className="lead-card-top">
-                            <div>
-                              <div className="lead-nm">{m.nome}</div>
-                              <div className="lead-ct">
-                                {m.visto
-                                  ? `Último acesso: ${fmtDate(m.visto)}`
-                                  : "Ainda não acessou"}
-                                {m.whatsapp ? ` · ${m.whatsapp}` : ""}
-                              </div>
-                            </div>
-                            <div className="lead-actions">
-                              {wa && (
-                                <a
-                                  className="firm-conn"
-                                  href={`https://wa.me/${wa}?text=${encodeURIComponent(
-                                    `Olá ${m.nome}! Aqui é o Paulo Kasmirscki. Este é o seu link pessoal de acesso ao ecossistema: ${m.link}`
-                                  )}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  Enviar por WhatsApp
-                                </a>
-                              )}
-                              <button
-                                type="button"
-                                className="chip"
-                                onClick={() => copyMemberLink(m)}
-                              >
-                                {copiedMember === m.id ? "✓ Copiado!" : "🔗 Copiar link"}
-                              </button>
-                              <button
-                                type="button"
-                                className="chip"
-                                onClick={() => resetMember(m)}
-                              >
-                                Novo link
-                              </button>
-                              <button
-                                type="button"
-                                className="chip"
-                                onClick={() => removeMember(m)}
-                              >
-                                Remover
-                              </button>
-                            </div>
-                          </div>
+                {gaps.length === 0 ? (
+                  <p className="admin-empty">
+                    Tudo em dia — nenhuma demanda em aberto. 🎉
+                  </p>
+                ) : (
+                  <div className="gap-cards">
+                    {gaps.slice(0, 12).map((q, i) => (
+                      <div className="gap-card" key={q.t || i}>
+                        <div className="gap-body">
+                          <span className="lg-time">{fmtDate(q.t)}</span>
+                          <span className="gap-text">“{q.q}”</span>
                         </div>
-                      );
-                    })}
-                </div>
-              )}
-            </section>
+                        <div className="gap-actions">
+                          <a
+                            className="chip"
+                            href={`https://www.google.com/search?q=${encodeURIComponent(
+                              q.q + " Caxias do Sul RS"
+                            )}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Procurar um parceiro no Google"
+                          >
+                            🔎 Buscar
+                          </a>
+                          <button
+                            type="button"
+                            className="lead-check"
+                            onClick={() => toggleDemandDone(q.t, true)}
+                            title="Marcar como já buscada/recrutada"
+                          >
+                            ✓ Já busquei
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {gapsDone.length > 0 && (
+                  <details className="gap-done">
+                    <summary>
+                      Já buscadas ({gapsDone.length})
+                    </summary>
+                    <ul className="admin-log">
+                      {gapsDone.slice(0, 12).map((q, i) => (
+                        <li key={q.t || i}>
+                          <span className="lg-time">{fmtDate(q.t)}</span>
+                          <span className="lg-text" style={{ opacity: 0.6 }}>
+                            {q.q}
+                          </span>
+                          <button
+                            type="button"
+                            className="gap-undo"
+                            onClick={() => toggleDemandDone(q.t, false)}
+                            title="Reabrir demanda"
+                          >
+                            reabrir
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
+              </section>
+            )}
 
+              </>
+            )}
+
+            {tab === "ind" && (
+              <>
             {/* INDICAÇÕES DE NEGÓCIO (form do /parcerias) */}
-            <section className="admin-panel admin-signups">
+            <section className="admin-panel admin-signups" id="sec-referrals">
               <h3>
                 🏠 Indicações de negócio
                 {referralsPend > 0 && (
@@ -1099,6 +1051,114 @@ export default function PauloAdmin() {
               )}
             </section>
 
+              </>
+            )}
+
+            {tab === "mem" && (
+              <>
+            {/* MEMBROS — acesso individual (link pessoal) */}
+            <section className="admin-panel admin-signups">
+              <h3>
+                👥 Membros
+                <span className="lg-tag">{members.length}</span>
+              </h3>
+              <p className="admin-hint">
+                Cada membro tem um link pessoal de acesso. Cadastre a pessoa,
+                envie o link pelo WhatsApp e ela entra direto, sem digitar
+                código. Se o link vazar, clique em “Novo link”: o antigo para de
+                funcionar na hora.
+              </p>
+              <form className="member-form" onSubmit={addMember}>
+                <input
+                  placeholder="Nome do membro"
+                  value={memberForm.nome}
+                  onChange={(e) =>
+                    setMemberForm((f) => ({ ...f, nome: e.target.value }))
+                  }
+                />
+                <input
+                  placeholder="WhatsApp (opcional)"
+                  inputMode="tel"
+                  value={memberForm.whatsapp}
+                  onChange={(e) =>
+                    setMemberForm((f) => ({ ...f, whatsapp: e.target.value }))
+                  }
+                />
+                <button className="chip chip-add" disabled={!memberForm.nome.trim()}>
+                  + Adicionar membro
+                </button>
+              </form>
+              {!members.length ? (
+                <p className="admin-empty">
+                  Nenhum membro com link pessoal ainda. Quem entra pelo código
+                  geral continua com acesso normalmente.
+                </p>
+              ) : (
+                <div className="lead-cards">
+                  {members
+                    .filter((m) => match(`${m.nome} ${m.whatsapp}`))
+                    .map((m) => {
+                      const wa = waDigits(m.whatsapp);
+                      return (
+                        <div className="lead-card" key={m.id}>
+                          <div className="lead-card-top">
+                            <div>
+                              <div className="lead-nm">{m.nome}</div>
+                              <div className="lead-ct">
+                                {m.visto
+                                  ? `Último acesso: ${fmtDate(m.visto)}`
+                                  : "Ainda não acessou"}
+                                {m.whatsapp ? ` · ${m.whatsapp}` : ""}
+                              </div>
+                            </div>
+                            <div className="lead-actions">
+                              {wa && (
+                                <a
+                                  className="firm-conn"
+                                  href={`https://wa.me/${wa}?text=${encodeURIComponent(
+                                    `Olá ${m.nome}! Aqui é o Paulo Kasmirscki. Este é o seu link pessoal de acesso ao ecossistema: ${m.link}`
+                                  )}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Enviar por WhatsApp
+                                </a>
+                              )}
+                              <button
+                                type="button"
+                                className="chip"
+                                onClick={() => copyMemberLink(m)}
+                              >
+                                {copiedMember === m.id ? "✓ Copiado!" : "🔗 Copiar link"}
+                              </button>
+                              <button
+                                type="button"
+                                className="chip"
+                                onClick={() => resetMember(m)}
+                              >
+                                Novo link
+                              </button>
+                              <button
+                                type="button"
+                                className="chip"
+                                onClick={() => removeMember(m)}
+                              >
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
+              )}
+            </section>
+
+              </>
+            )}
+
+            {tab === "emp" && (
+              <>
             {/* GERENCIAR EMPRESAS DA REDE */}
             <section className="admin-panel admin-companies">
               <h3>
@@ -1292,68 +1352,89 @@ export default function PauloAdmin() {
               )}
             </section>
 
-            {/* LEADS DO FORMULÁRIO */}
-            <section className="admin-panel admin-leads">
-              <h3>
-                📥 Leads do site
-                {pendentes > 0 && (
-                  <span className="lg-tag">{pendentes} a responder</span>
-                )}
-              </h3>
-              {!fLeads.length ? (
-                <p className="admin-empty">
-                  {stats.leads?.length
-                    ? "Nenhum lead nesse filtro."
-                    : "Nenhum lead ainda. Eles chegam pelo formulário no final da página inicial."}
-                </p>
-              ) : (
-                <div className="lead-cards">
-                  {fLeads.map((l, i) => {
-                    const action = leadAction(l);
-                    const done = isDone(l);
-                    return (
-                      <div
-                        className={`lead-card${done ? " lead-ok" : ""}`}
-                        key={i}
-                      >
-                        <div className="lead-card-top">
-                          <div>
-                            <div className="lead-nm">{l.nome}</div>
-                            <div className="lead-ct">
-                              {l.contato} · {fmtDate(l.t)}
-                            </div>
-                          </div>
-                          <div className="lead-actions">
-                            {action && !done && (
-                              <a
-                                className="firm-conn"
-                                href={action.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                {action.label}
-                              </a>
-                            )}
-                            <button
-                              type="button"
-                              className={`lead-check${done ? " on" : ""}`}
-                              onClick={() => toggleLeadDone(l.t, !done)}
-                              title={
-                                done
-                                  ? "Marcar como pendente"
-                                  : "Marcar como atendido"
-                              }
-                            >
-                              ✓ {done ? "Atendido" : "Atender"}
-                            </button>
-                          </div>
-                        </div>
-                        <p className="lead-msg">“{l.msg}”</p>
-                      </div>
-                    );
-                  })}
+              </>
+            )}
+
+            {tab === "num" && (
+              <>
+            {/* CARTÕES DE TOTAIS */}
+            <div className="admin-cards">
+              <div className="admin-card">
+                <div className="admin-ic" aria-hidden="true">
+                  💬
                 </div>
-              )}
+                <div className="admin-num">{stats.totals.queries}</div>
+                <div className="admin-lbl">Conversas com a IA</div>
+              </div>
+              <div className="admin-card">
+                <div className="admin-ic" aria-hidden="true">
+                  🤝
+                </div>
+                <div className="admin-num">{stats.totals.connects}</div>
+                <div className="admin-lbl">Pedidos de conexão</div>
+              </div>
+              <div className="admin-card">
+                <div className="admin-ic" aria-hidden="true">
+                  📥
+                </div>
+                <div className="admin-num">{stats.totals.leads || 0}</div>
+                <div className="admin-lbl">Leads do site</div>
+              </div>
+            </div>
+
+            {/* GRÁFICO DE ATIVIDADE (14 DIAS) */}
+            <section className="admin-panel admin-chart-panel">
+              <h3>📈 Atividade — últimos 14 dias</h3>
+              <div className="admin-chart">
+                {chart.map((d) => (
+                  <div
+                    className="ac-col"
+                    key={d.d}
+                    title={`${new Date(d.d).toLocaleDateString("pt-BR", {
+                      day: "2-digit",
+                      month: "2-digit",
+                    })} — ${d.q} conversa(s), ${d.c} conexão(ões), ${d.l} lead(s)`}
+                  >
+                    <div className="ac-bars">
+                      {d.l > 0 && (
+                        <div
+                          className="ac-bar ac-l"
+                          style={{ height: `${(d.l / chartMax) * 100}%` }}
+                        />
+                      )}
+                      {d.c > 0 && (
+                        <div
+                          className="ac-bar ac-c"
+                          style={{ height: `${(d.c / chartMax) * 100}%` }}
+                        />
+                      )}
+                      {d.q > 0 && (
+                        <div
+                          className="ac-bar ac-q"
+                          style={{ height: `${(d.q / chartMax) * 100}%` }}
+                        />
+                      )}
+                      {d.q + d.c + d.l === 0 && <div className="ac-zero" />}
+                    </div>
+                    <div className="ac-day">
+                      {new Date(d.d).toLocaleDateString("pt-BR", {
+                        day: "2-digit",
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="ac-legend">
+                <span>
+                  <i className="ac-q" /> Conversas
+                </span>
+                <span>
+                  <i className="ac-c" /> Conexões
+                </span>
+                <span>
+                  <i className="ac-l" /> Leads
+                </span>
+              </div>
             </section>
 
             <div className="admin-grid">
@@ -1458,6 +1539,9 @@ export default function PauloAdmin() {
                 )}
               </section>
             </div>
+              </>
+            )}
+
           </>
         )}
       </div>

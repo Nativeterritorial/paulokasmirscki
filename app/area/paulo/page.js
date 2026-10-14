@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ProjectsAdmin from "./projects-admin";
 import {
   REFERRAL_STATUS,
   statusInfo,
@@ -37,9 +38,10 @@ export default function PauloAdmin() {
   const [editing, setEditing] = useState(null); // empresa em edição (ou nova)
   const [savingCo, setSavingCo] = useState(false);
   const [members, setMembers] = useState([]);
+  const [projects, setProjects] = useState([]);
   const [memberForm, setMemberForm] = useState({ nome: "", whatsapp: "" });
   const [copiedMember, setCopiedMember] = useState("");
-  const [tab, setTab] = useState("sol"); // sol | ind | mem | emp | num
+  const [tab, setTab] = useState("sol"); // sol | ind | proj | mem | emp | num
 
   useEffect(() => {
     try {
@@ -77,6 +79,7 @@ export default function PauloAdmin() {
       if (Array.isArray(d.customCompanies)) setCustomCompanies(d.customCompanies);
       if (Array.isArray(d.fixedCompanies)) setFixedCompanies(d.fixedCompanies);
       if (Array.isArray(d.members)) setMembers(d.members);
+      if (Array.isArray(d.projects)) setProjects(d.projects);
       setAuthed(true);
       try {
         localStorage.setItem("admin_code", c);
@@ -562,6 +565,7 @@ export default function PauloAdmin() {
               {[
                 ["sol", "Solicitações", solPend],
                 ["ind", "Indicações", referralsPend],
+                ["proj", "Projetos", 0],
                 ["mem", "Membros", 0],
                 ["emp", "Empresas", 0],
                 ["num", "Números", 0],
@@ -1052,6 +1056,16 @@ export default function PauloAdmin() {
             </section>
 
               </>
+            )}
+
+            {tab === "proj" && (
+              <ProjectsAdmin
+                code={code}
+                projects={projects}
+                members={members}
+                companies={[...fixedCompanies, ...customCompanies]}
+                onChange={setProjects}
+              />
             )}
 
             {tab === "mem" && (

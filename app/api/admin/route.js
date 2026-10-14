@@ -14,6 +14,9 @@ import {
   saveMember,
   resetMemberToken,
   deleteMember,
+  getProjects,
+  saveProject,
+  deleteProject,
 } from "../../../lib/store";
 import { COMPANIES } from "../../area/companies";
 
@@ -82,6 +85,14 @@ export async function POST(req) {
     await deleteMember(body.id);
   }
 
+  // ações: projetos "Da ideia à abertura"
+  if (body.action === "projectSave" && body.project) {
+    await saveProject(body.project);
+  }
+  if (body.action === "projectDelete" && body.id) {
+    await deleteProject(body.id);
+  }
+
   const stats = await getStats();
   const customCompanies = await getCustomCompanies();
 
@@ -129,8 +140,11 @@ export async function POST(req) {
     )}`,
   }));
 
+  const projects = await getProjects();
+
   return NextResponse.json({
     ok: true,
+    projects,
     members,
     stats,
     inviteLink,

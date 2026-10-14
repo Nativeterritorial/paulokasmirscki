@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { COMPANIES } from "./companies";
 import InstallApp from "./install-app";
 import MyReferrals from "./my-referrals";
+import MyProjects from "./my-projects";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
@@ -50,6 +51,7 @@ export default function Area() {
   const [err, setErr] = useState("");
   const [loadingLogin, setLoadingLogin] = useState(false);
   const [member, setMember] = useState(null); // { id, nome } quando entrou por link pessoal
+  const [hasProject, setHasProject] = useState(false);
 
   const GREETING = [
     {
@@ -334,6 +336,11 @@ export default function Area() {
           {member && (
             <span className="area-hello">Olá, {member.nome.split(" ")[0]}</span>
           )}
+          {hasProject && (
+            <a className="area-refs-link" href="#projeto">
+              Meu projeto
+            </a>
+          )}
           <a className="area-refs-link" href="#indicacoes">
             {member ? "Minhas indicações" : "Indicar negócio"}
           </a>
@@ -562,6 +569,11 @@ export default function Area() {
         </aside>
       </div>
 
+      <MyProjects
+        code={code}
+        member={member}
+        onLoaded={(n) => setHasProject(n > 0)}
+      />
       <MyReferrals code={code} member={member} />
     </div>
   );

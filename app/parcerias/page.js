@@ -1,4 +1,5 @@
 import ReferralForm from "./referral-form";
+import { PROJECT_STAGES } from "./project-stages";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
@@ -84,14 +85,7 @@ const REGRAS = [
   "Quem indica apenas apresenta. Mostrar imóvel, negociar e fechar é trabalho do corretor.",
 ];
 
-const ETAPAS = [
-  ["Ideia e viabilidade", "Validar o modelo, o público e os custos antes de investir."],
-  ["Formalização", "Tipo de empresa, CNPJ, contratos e alvarás, com contador e advogado."],
-  ["Ponto", "Compra ou locação do imóvel certo e a regularização dele."],
-  ["Obra e estrutura", "Reforma, materiais, móveis, segurança, internet e informática."],
-  ["Proteção e crédito", "Seguros e alternativas de crédito para o negócio começar protegido."],
-  ["Marca e lançamento", "Site, material gráfico, vídeo e divulgação na mídia local."],
-];
+const ETAPAS = PROJECT_STAGES.map((s) => [s.nome, s.desc]);
 
 const GESTOR_FAZ = [
   ["Planejamento estratégico", "Definir metas de curto, médio e longo prazo e traçar o caminho para chegar lá."],

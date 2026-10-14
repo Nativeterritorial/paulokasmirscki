@@ -61,8 +61,8 @@ const MODELOS = [
     n: "03",
     ic: ["M3 8h18v12H3z", "M9 8V5h6v3", "M3 13h18"],
     t: "Gestor de negócios",
-    d: "Eu atuo ao lado do dono da empresa, mês a mês, no planejamento, nos números, nos processos e nas negociações do negócio.",
-    p: "Para o empresário que quer crescer com organização e não tem tempo de parar para planejar.",
+    d: "Eu atuo ao seu lado, como pessoa física ou dono de empresa, mês a mês, no planejamento, nos números, nos processos e nas negociações.",
+    p: "Para quem quer crescer com organização, na vida financeira ou na empresa, e não tem tempo de parar para planejar.",
   },
 ];
 
@@ -92,12 +92,6 @@ const GESTOR_FAZ = [
   ["Organização de processos", "Ajustar tempo, tarefas e operação para evitar desperdícios e gargalos."],
   ["Visão de mercado", "Analisar a concorrência, identificar novas oportunidades e sugerir inovações."],
   ["Negociação e parcerias", "Lidar com fornecedores, clientes estratégicos e contratos importantes."],
-];
-
-const GESTOR_REGRAS = [
-  "As decisões e os pagamentos continuam com você.",
-  "Contabilidade e jurídico seguem com os profissionais habilitados.",
-  "Todo mês você recebe um relatório do que foi feito.",
 ];
 
 export default function Parcerias() {
@@ -251,9 +245,9 @@ export default function Parcerias() {
               Gestor de <em>negócios</em>
             </h2>
             <p>
-              Eu atuo ao lado do dono da empresa, mês a mês: ajudo a definir
-              aonde o negócio quer chegar, acompanho os números, organizo a
-              operação e conduzo as negociações importantes.
+              Para pessoa física ou empresa: eu atuo ao seu lado, mês a mês,
+              ajudo a definir aonde você quer chegar, acompanho os números,
+              organizo a rotina e conduzo as negociações importantes.
             </p>
           </div>
           <div className="mdl-stages">
@@ -264,14 +258,6 @@ export default function Parcerias() {
                 <p>{d}</p>
               </div>
             ))}
-            <div className="join-step mdl-step-hl">
-              <h4>Como eu trabalho</h4>
-              <ul className="mdl-list">
-                {GESTOR_REGRAS.map((r) => (
-                  <li key={r}>{r}</li>
-                ))}
-              </ul>
-            </div>
           </div>
           <a
             className="btn btn-primary mdl-cta"

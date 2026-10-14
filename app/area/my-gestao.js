@@ -72,27 +72,6 @@ export default function MyGestao({ code, member }) {
   const { list: pedidos, load: loadPedidos, cancel } = usePedidos(code, member, "gestao");
   const [open, setOpen] = useState(false);
 
-  // quem entrou pelo código geral não tem identidade: só o convite
-  if (!member) {
-    return (
-      <section className="area-refs area-projects" id="gestao">
-        <div className="area-refs-head">
-          <div>
-            <div className="kick">Minha gestão · Gestor de negócios</div>
-            <h2>Quer um gestor ao lado da sua empresa?</h2>
-            <p>
-              Conte o momento da sua empresa: o Paulo atua com você, mês a mês, no planejamento, nos números, nos processos e nas negociações. Para pedir e acompanhar por aqui, peça ao Paulo o seu link
-              pessoal de acesso.
-            </p>
-          </div>
-          <a className="btn btn-primary" href="/parcerias#gestor">
-            Ver como funciona
-          </a>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="area-refs area-projects" id="gestao">
       <div className="area-refs-head">
@@ -108,7 +87,7 @@ export default function MyGestao({ code, member }) {
 
       {open && (
         <div className="area-refs-form">
-          <PedidoForm code={code} tipo="gestao" onDone={loadPedidos} />
+          <PedidoForm code={code} tipo="gestao" member={member} onDone={loadPedidos} />
         </div>
       )}
 

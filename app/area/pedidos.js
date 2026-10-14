@@ -92,9 +92,9 @@ const TEXTOS = {
 };
 
 // Formulário de "+ Novo projeto" / "+ Nova gestão"
-export function PedidoForm({ code, tipo, onDone }) {
+export function PedidoForm({ code, tipo, member, onDone }) {
   const T = TEXTOS[tipo];
-  const [f, setF] = useState({ titulo: "", local: "", fase: "", descricao: "", areas: [] });
+  const [f, setF] = useState({ nome: "", whatsapp: "", titulo: "", local: "", fase: "", descricao: "", areas: [] });
   const [sending, setSending] = useState(false);
   const [err, setErr] = useState("");
   const [done, setDone] = useState(false);
@@ -108,6 +108,10 @@ export function PedidoForm({ code, tipo, onDone }) {
   const submit = async (e) => {
     e.preventDefault();
     setErr("");
+    if (!member && (!f.nome.trim() || !f.whatsapp.trim())) {
+      setErr("Preencha seu nome e WhatsApp.");
+      return;
+    }
     if (!f.titulo.trim() || !f.descricao.trim()) {
       setErr("Preencha os campos com *.");
       return;
@@ -139,6 +143,24 @@ export function PedidoForm({ code, tipo, onDone }) {
 
   return (
     <form className="signup-form" onSubmit={submit}>
+      {!member && (
+        <div className="signup-row">
+          <label>
+            Seu nome *
+            <input value={f.nome} onChange={upd("nome")} placeholder="Seu nome" autoComplete="name" />
+          </label>
+          <label>
+            Seu WhatsApp *
+            <input
+              value={f.whatsapp}
+              onChange={upd("whatsapp")}
+              placeholder="(54) 99999-9999"
+              inputMode="tel"
+              autoComplete="tel"
+            />
+          </label>
+        </div>
+      )}
       <div className="signup-row">
         <label>
           {T.titulo[0]}

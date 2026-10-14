@@ -32,7 +32,8 @@ const ROTULOS = {
 
 // Pedidos de "+ Novo projeto" / "+ Nova gestão" feitos pelos membros. Fica no
 // alto das abas Projetos e Gestão. "Criar" já monta o projeto/gestão ligado ao
-// membro e marca o pedido como aprovado.
+// membro e marca o pedido como aprovado. Pedido feito pelo código geral fica sem
+// membro: crie o acesso dele em Membros (mesmo WhatsApp) para ele acompanhar.
 export default function PedidosAdmin({ code, tipo, pedidos, onData }) {
   const R = ROTULOS[tipo];
   const [verTodos, setVerTodos] = useState(false);
@@ -111,6 +112,7 @@ export default function PedidosAdmin({ code, tipo, pedidos, onData }) {
                     <div className="lead-ct">
                       {fmt(p.t)}
                       {p.whatsapp ? ` · ${p.whatsapp}` : " · sem WhatsApp no cadastro"}
+                      {!p.memberId && " · pelo código geral (sem link pessoal)"}
                     </div>
                   </div>
                   <select

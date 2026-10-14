@@ -40,27 +40,6 @@ export default function MyProjects({ code, member }) {
   const { list: pedidos, load: loadPedidos, cancel } = usePedidos(code, member, "projeto");
   const [open, setOpen] = useState(false);
 
-  // quem entrou pelo código geral não tem identidade: só o convite
-  if (!member) {
-    return (
-      <section className="area-refs area-projects" id="projeto">
-        <div className="area-refs-head">
-          <div>
-            <div className="kick">Meu projeto · Da ideia à abertura</div>
-            <h2>Tem a ideia de um negócio?</h2>
-            <p>
-              Conte a sua ideia: o Paulo coordena as empresas da rede em cada etapa, da viabilidade até a inauguração. Para pedir e acompanhar por aqui, peça ao Paulo o seu link
-              pessoal de acesso.
-            </p>
-          </div>
-          <a className="btn btn-primary" href="/parcerias#abrir">
-            Ver como funciona
-          </a>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="area-refs area-projects" id="projeto">
       <div className="area-refs-head">
@@ -76,7 +55,7 @@ export default function MyProjects({ code, member }) {
 
       {open && (
         <div className="area-refs-form">
-          <PedidoForm code={code} tipo="projeto" onDone={loadPedidos} />
+          <PedidoForm code={code} tipo="projeto" member={member} onDone={loadPedidos} />
         </div>
       )}
 

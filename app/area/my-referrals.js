@@ -64,34 +64,16 @@ export default function MyReferrals({ code, member }) {
     }
   };
 
-  // quem entrou pelo código geral não tem identidade: só o convite pra indicar
-  if (!member) {
-    return (
-      <section className="area-refs" id="indicacoes">
-        <div className="area-refs-head">
-          <div>
-            <div className="kick">Indique um negócio imobiliário</div>
-            <h2>Conhece alguém que quer comprar, vender ou alugar?</h2>
-            <p>
-              Você apresenta, o Paulo conduz o negócio e você recebe uma
-              bonificação quando ele fecha. Para acompanhar o andamento por
-              aqui, peça ao Paulo o seu link pessoal de acesso.
-            </p>
-          </div>
-          <a className="btn btn-primary" href="/parcerias#indicar">
-            Indicar um negócio
-          </a>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="area-refs" id="indicacoes">
       <div className="area-refs-head">
         <div>
           <div className="kick">Minhas indicações</div>
-          <h2>Acompanhe os negócios que você indicou</h2>
+          <h2>
+            {member
+              ? "Acompanhe os negócios que você indicou"
+              : "Indique um negócio imobiliário"}
+          </h2>
         </div>
         <button
           type="button"
@@ -104,11 +86,11 @@ export default function MyReferrals({ code, member }) {
 
       {open && (
         <div className="area-refs-form">
-          <ReferralForm member={member} code={code} onDone={load} />
+          <ReferralForm member={member} code={member ? code : ""} onDone={load} />
         </div>
       )}
 
-      {failed && (
+      {member && failed && (
         <p className="area-refs-empty">
           Não consegui carregar as suas indicações agora.{" "}
           <button type="button" className="area-refs-retry" onClick={load}>
@@ -116,10 +98,10 @@ export default function MyReferrals({ code, member }) {
           </button>
         </p>
       )}
-      {!failed && list === null && (
+      {member && !failed && list === null && (
         <p className="area-refs-empty">Carregando…</p>
       )}
-      {!failed && list && !list.length && (
+      {member && !failed && list && !list.length && (
         <p className="area-refs-empty">
           Você ainda não indicou nenhum negócio. Conhece alguém que quer
           comprar, vender ou alugar um imóvel? Toque em “Nova indicação”.

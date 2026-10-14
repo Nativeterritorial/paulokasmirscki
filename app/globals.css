@@ -2076,6 +2076,11 @@ body {
 .area-login {
   background: linear-gradient(135deg, #050915 0%, #0a1230 50%, #0f1c48 100%) fixed;
 }
+/* o body também escurece nessas telas, pra não sobrar faixa clara em nenhuma borda */
+body:has(.area),
+body:has(.area-login) {
+  background: #0a1230;
+}
 .area-login {
   min-height: 100vh;
   display: grid;
@@ -2239,8 +2244,10 @@ body {
 }
 .area-refs {
   max-width: 1280px;
-  margin: 0 auto 60px;
-  padding: 0 28px;
+  margin: 0 auto;
+  /* o respiro de baixo é padding, não margin: margin vazaria pra fora da
+     .area e mostraria o fundo claro do site */
+  padding: 0 28px 60px;
   scroll-margin-top: 90px;
 }
 .area-refs-head {
@@ -2443,7 +2450,7 @@ body {
 }
 @media (max-width: 760px) {
   .area-refs {
-    padding: 0 16px;
+    padding: 0 16px 48px;
   }
   .area-refs-link {
     display: none;
@@ -2747,9 +2754,9 @@ body {
 
 /* ---------- PAINEL DO PAULO ---------- */
 .admin-wrap {
-  max-width: 1100px;
+  max-width: 1280px; /* mesma largura da Área de Membros */
   margin: 0 auto;
-  padding: 28px 22px 60px;
+  padding: 28px 28px 60px;
 }
 .admin-alert {
   background: rgba(255, 255, 255, 0.08);

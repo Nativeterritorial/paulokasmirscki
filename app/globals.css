@@ -2207,7 +2207,15 @@ body {
     min-height: 460px;
   }
   .area-dir .area-firms {
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+  }
+  /* sem isto os itens (que têm overflow: hidden) encolhem até sumir pra caber */
+  .area-dir .area-firms > * {
+    flex: none;
   }
 }
 .area-refs-link {

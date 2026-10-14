@@ -9,6 +9,12 @@ import {
 
 const EMPTY_NEW = { nome: "", cliente: "", memberId: "" };
 
+// nome + WhatsApp (ou data de criação) pra não confundir dois membros de mesmo nome
+const memberLabel = (m) =>
+  m.whatsapp
+    ? `${m.nome} — ${m.whatsapp}`
+    : `${m.nome} — sem WhatsApp (criado em ${new Date(m.t).toLocaleDateString("pt-BR")})`;
+
 const waDigits = (v) => {
   const d = String(v || "").replace(/[^0-9]/g, "");
   return d.length >= 10 ? (d.length <= 11 ? "55" + d : d) : "";
@@ -115,7 +121,7 @@ export default function ProjectsAdmin({ code, projects, members, companies, onCh
           <option value="">Sem membro (só você vê)</option>
           {members.map((m) => (
             <option key={m.id} value={m.id}>
-              {m.nome}
+              {memberLabel(m)}
             </option>
           ))}
         </select>
@@ -207,7 +213,7 @@ export default function ProjectsAdmin({ code, projects, members, companies, onCh
                           <option value="">Sem membro (só você vê)</option>
                           {members.map((m) => (
                             <option key={m.id} value={m.id}>
-                              {m.nome}
+                              {memberLabel(m)}
                             </option>
                           ))}
                         </select>

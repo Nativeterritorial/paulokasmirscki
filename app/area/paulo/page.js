@@ -1117,7 +1117,12 @@ export default function PauloAdmin() {
                         <div className="lead-card" key={m.id}>
                           <div className="lead-card-top">
                             <div>
-                              <div className="lead-nm">{m.nome}</div>
+                              <div className="lead-nm">
+                                {m.nome}
+                                {members.filter((x) => x.nome.trim().toLowerCase() === m.nome.trim().toLowerCase()).length > 1 && (
+                                  <span className="lg-tag">nome repetido</span>
+                                )}
+                              </div>
                               <div className="lead-ct">
                                 {m.visto
                                   ? `Último acesso: ${fmtDate(m.visto)}`

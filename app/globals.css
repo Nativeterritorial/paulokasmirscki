@@ -179,6 +179,10 @@ a {
     display: none;
   }
 }
+/* respiro entre logo, links e botões */
+.nav {
+  gap: 20px;
+}
 
 .btn {
   display: inline-flex;
@@ -4636,7 +4640,10 @@ body:has(.area-login) {
 
 /* ---------- Página de cadastro (/ecossistema) ---------- */
 .join-wrap {
-  padding: 44px 0 90px;
+  /* só em cima e embaixo: as laterais vêm do .container (senão o texto
+     encosta na borda da tela no celular) */
+  padding-top: 44px;
+  padding-bottom: 90px;
 }
 .join-hero {
   max-width: 640px;
@@ -5679,4 +5686,450 @@ body:has(.area-login) {
   border-radius: 10px;
   overflow: hidden;
   display: block;
+}
+
+/* ---------- Vitrine de imóveis (/imoveis) ---------- */
+.vt-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 34px;
+}
+.vt-filters select,
+.vt-search {
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+}
+.vt-filters select {
+  padding: 0 16px;
+  cursor: pointer;
+}
+.vt-filters select option {
+  color: #0a205f;
+}
+.vt-search {
+  flex: 1 1 280px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 18px;
+}
+.vt-search svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--muted);
+  flex: none;
+}
+.vt-search input {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  outline: none;
+  color: inherit;
+  font: inherit;
+}
+.vt-count {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.vt-count button {
+  background: none;
+  border: none;
+  color: var(--gold-2);
+  text-decoration: underline;
+  font: inherit;
+  cursor: pointer;
+}
+.vt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 18px;
+  margin-top: 16px;
+}
+.vt-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.vt-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold-2);
+}
+.vt-card-img {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: rgba(255, 255, 255, 0.05);
+}
+.vt-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.vt-noimg {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.vt-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #3a2600;
+  background: #ffd36e;
+}
+.vt-tipo {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #fff;
+  background: rgba(5, 8, 30, 0.7);
+}
+.vt-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px 20px;
+  flex: 1;
+}
+.vt-loc {
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.vt-card h2 {
+  font-size: 1.12rem;
+  line-height: 1.3;
+}
+.vt-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+.vt-preco {
+  margin-top: auto;
+  padding-top: 6px;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #6fffbf;
+}
+.vt-empty {
+  margin-top: 34px;
+  padding: 34px;
+  border-radius: 18px;
+  border: 1px dashed var(--border);
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+  color: var(--muted);
+}
+.vt-empty h2 {
+  color: var(--text);
+  font-size: 1.3rem;
+}
+.vt-sell {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  margin-top: 56px;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(111, 255, 191, 0.45);
+}
+.vt-sell h2 {
+  font-size: 1.35rem;
+  margin-top: 8px;
+}
+.vt-sell p {
+  max-width: 560px;
+  margin-top: 8px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.vt-sell-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+/* página do imóvel */
+.vt-page {
+  padding-top: 30px;
+}
+.vt-detail {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+.vt-gal-main {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+.vt-gal-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.vt-gal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(5, 8, 30, 0.6);
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.vt-gal-nav.prev {
+  left: 12px;
+}
+.vt-gal-nav.next {
+  right: 12px;
+}
+.vt-gal-n {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: rgba(5, 8, 30, 0.65);
+}
+.vt-gal-thumbs {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.vt-gal-thumbs button {
+  flex: none;
+  width: 86px;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background: none;
+  cursor: pointer;
+  opacity: 0.65;
+}
+.vt-gal-thumbs button.on {
+  border-color: #6fffbf;
+  opacity: 1;
+}
+.vt-gal-thumbs img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.vt-info {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+}
+.vt-info h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.2;
+}
+.vt-info .btn {
+  justify-content: center;
+}
+.vt-preco-lg {
+  font-size: 1.8rem;
+  margin: 0;
+  padding: 0;
+}
+.vt-reservado {
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.86rem;
+  color: #ffe2a3;
+  background: rgba(255, 211, 110, 0.12);
+}
+.vt-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.vt-spec-grid div {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}
+.vt-spec-grid strong {
+  font-size: 1.15rem;
+}
+.vt-spec-grid small {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.vt-legal {
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--muted-2);
+}
+.vt-desc {
+  max-width: 760px;
+  margin-top: 40px;
+}
+.vt-desc h2 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+.vt-desc p {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 8px;
+}
+.vt-link {
+  color: var(--gold-2);
+  text-decoration: underline;
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .vt-detail {
+    grid-template-columns: 1fr;
+  }
+  .vt-info {
+    position: static;
+  }
+}
+/* painel: lista e editor da vitrine */
+.vt-adm-top {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.vt-adm-capa {
+  flex: none;
+  width: 84px;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  font-size: 0.66rem;
+  color: var(--muted-2);
+  background: rgba(255, 255, 255, 0.06);
+}
+.vt-adm-capa img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lg-tag.vt-st-disponivel {
+  color: #06304a;
+  background: #6fffbf;
+  border-color: #6fffbf;
+}
+.lg-tag.vt-st-reservado {
+  color: #3a2600;
+  background: #ffd36e;
+  border-color: #ffd36e;
+}
+.vt-adm-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+@media (max-width: 1000px) {
+  .vt-adm-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.vt-adm-add {
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.78rem;
+}
+.vt-adm-fotos {
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+}
+.vt-capa {
+  outline: 2px solid #6fffbf;
+}
+.vt-foto-ctl {
+  position: absolute;
+  inset: auto 4px 4px 4px;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+.vt-foto-ctl button {
+  position: static;
+  flex: 1;
+  height: 24px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(5, 8, 30, 0.75);
+  color: #fff;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.vt-foto-ctl button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+@media (max-width: 640px) {
+  .vt-filters select {
+    flex: 1 1 calc(50% - 5px);
+    min-width: 0;
+  }
 }

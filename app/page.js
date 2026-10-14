@@ -672,7 +672,7 @@ export default function Home() {
             <a href="#rede">A Rede</a>
             <a href="#segmentos">Segmentos</a>
             <a href="/parcerias">Parcerias</a>
-            <a href="#contato">Contato</a>
+            <a href="/imoveis">Imóveis</a>
           </nav>
           <div className="nav-actions">
             <a className="nav-login" href="/area" aria-label="Entrar na Área de Membros">

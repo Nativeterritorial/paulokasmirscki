@@ -18,7 +18,10 @@ export default function MyImoveis({ code, member }) {
           <h2>Tem um imóvel para vender?</h2>
           <p>
             Cadastre o seu imóvel: o Paulo avalia com você, prepara o anúncio e
-            leva até os compradores e indicadores do ecossistema.
+            leva até os compradores e indicadores do ecossistema.{" "}
+            <a className="vt-link" href="/imoveis">
+              Ver a vitrine de imóveis →
+            </a>
           </p>
         </div>
         <button type="button" className="btn btn-primary" onClick={() => setOpen((o) => !o)}>

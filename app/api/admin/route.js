@@ -23,6 +23,11 @@ import {
   getPedidos,
   setPedidoStatus,
   deletePedido,
+  saveFoto,
+  getImoveis,
+  saveImovel,
+  deleteImovel,
+  imovelFromPedido,
 } from "../../../lib/store";
 import { COMPANIES } from "../../area/companies";
 
@@ -38,6 +43,12 @@ export async function POST(req) {
   const expected = process.env.ADMIN_CODE || "paulo-admin";
   if (!code || code !== expected) {
     return NextResponse.json({ ok: false }, { status: 401 });
+  }
+
+  // foto da vitrine (uma por vez, já reduzida no navegador): responde só o id
+  if (body.action === "foto") {
+    const id = await saveFoto(body.data);
+    return NextResponse.json(id ? { ok: true, id } : { ok: false }, { status: id ? 200 : 400 });
   }
 
   // ação: marcar/desmarcar lead como atendido
@@ -115,6 +126,18 @@ export async function POST(req) {
     await deletePedido(body.id);
   }
 
+  // ações: vitrine de imóveis
+  let novoImovel = null;
+  if (body.action === "imovelFromPedido" && body.id) {
+    novoImovel = await imovelFromPedido(body.id);
+  }
+  if (body.action === "imovelSave" && body.imovel) {
+    novoImovel = await saveImovel(body.imovel);
+  }
+  if (body.action === "imovelDelete" && body.id) {
+    await deleteImovel(body.id);
+  }
+
   const stats = await getStats();
   const customCompanies = await getCustomCompanies();
 
@@ -165,9 +188,12 @@ export async function POST(req) {
   const projects = await getProjects();
   const gestoes = await getGestoes();
   const pedidos = await getPedidos();
+  const imoveis = await getImoveis();
 
   return NextResponse.json({
     ok: true,
+    imoveis,
+    novoImovel,
     pedidos,
     projects,
     gestoes,

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ProjectsAdmin from "./projects-admin";
 import GestaoAdmin from "./gestao-admin";
 import PedidosAdmin from "./pedidos-admin";
+import ImoveisAdmin from "./imoveis-admin";
 import {
   REFERRAL_STATUS,
   statusInfo,
@@ -43,6 +44,8 @@ export default function PauloAdmin() {
   const [projects, setProjects] = useState([]);
   const [gestoes, setGestoes] = useState([]);
   const [pedidos, setPedidos] = useState([]);
+  const [imoveis, setImoveis] = useState([]);
+  const [imovelAberto, setImovelAberto] = useState("");
   const [memberForm, setMemberForm] = useState({ nome: "", whatsapp: "" });
   const [copiedMember, setCopiedMember] = useState("");
   const [tab, setTab] = useState("sol"); // sol | ind | imo | proj | gest | mem | emp | num
@@ -86,6 +89,7 @@ export default function PauloAdmin() {
       if (Array.isArray(d.projects)) setProjects(d.projects);
       if (Array.isArray(d.gestoes)) setGestoes(d.gestoes);
       if (Array.isArray(d.pedidos)) setPedidos(d.pedidos);
+      if (Array.isArray(d.imoveis)) setImoveis(d.imoveis);
       setAuthed(true);
       try {
         localStorage.setItem("admin_code", c);
@@ -496,6 +500,7 @@ export default function PauloAdmin() {
     if (Array.isArray(d?.pedidos)) setPedidos(d.pedidos);
     if (Array.isArray(d?.projects)) setProjects(d.projects);
     if (Array.isArray(d?.gestoes)) setGestoes(d.gestoes);
+    if (Array.isArray(d?.imoveis)) setImoveis(d.imoveis);
   };
 
   // gráfico: eventos por dia nos últimos 14 dias
@@ -1081,12 +1086,22 @@ export default function PauloAdmin() {
             )}
 
             {tab === "imo" && (
+              <>
               <PedidosAdmin
                 code={code}
                 tipo="imovel"
                 pedidos={pedidos}
                 onData={applyAdminData}
+                onImovel={setImovelAberto}
               />
+              <ImoveisAdmin
+                code={code}
+                imoveis={imoveis}
+                open={imovelAberto}
+                setOpen={setImovelAberto}
+                onData={applyAdminData}
+              />
+              </>
             )}
 
             {tab === "proj" && (

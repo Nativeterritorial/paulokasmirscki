@@ -25,7 +25,7 @@ const ROTULOS = {
     vazio: "Nenhum imóvel ainda. Eles chegam pelo botão “+ Cadastrar imóvel” da área de membros.",
     local: "Cidade",
     fase: "Situação",
-    criar: "",
+    criar: "Preparar anúncio",
     msg: (p) => `Olá ${p.nome}! Aqui é o Paulo Kasmirscki. Recebi o cadastro do imóvel (${p.titulo}${p.bairro ? " no " + p.bairro : ""}) pela área de membros. Vamos conversar?`,
   },
   gestao: {
@@ -42,7 +42,7 @@ const ROTULOS = {
 // alto das abas Projetos e Gestão. "Criar" já monta o projeto/gestão ligado ao
 // membro e marca o pedido como aprovado. Pedido feito pelo código geral fica sem
 // membro: crie o acesso dele em Membros (mesmo WhatsApp) para ele acompanhar.
-export default function PedidosAdmin({ code, tipo, pedidos, onData }) {
+export default function PedidosAdmin({ code, tipo, pedidos, onData, onImovel }) {
   const R = ROTULOS[tipo];
   const [verTodos, setVerTodos] = useState(false);
   const [busy, setBusy] = useState("");
@@ -63,7 +63,15 @@ export default function PedidosAdmin({ code, tipo, pedidos, onData }) {
   };
 
   const criar = async (p) => {
+    if (busy) return;
     setBusy(p.id);
+    // imóvel: cria um rascunho na vitrine (o servidor já marca o cadastro como aprovado)
+    if (tipo === "imovel") {
+      const d = await call({ action: "imovelFromPedido", id: p.id });
+      setBusy("");
+      if (d?.novoImovel && onImovel) onImovel(d.novoImovel);
+      return;
+    }
     if (tipo === "projeto") {
       await call({
         action: "projectSave",

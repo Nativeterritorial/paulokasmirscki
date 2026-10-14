@@ -28,7 +28,7 @@ const loadImg = (file) =>
     img.src = url;
   });
 
-async function toJpeg(file) {
+export async function toJpeg(file) {
   const img = await loadImg(file);
   let max = 1600;
   let data = "";

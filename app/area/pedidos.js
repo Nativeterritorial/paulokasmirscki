@@ -5,8 +5,45 @@ import {
   FASES_PROJETO,
   TEMPO_EMPRESA,
   AREAS_GESTAO,
+  TIPOS_IMOVEL,
+  SITUACAO_IMOVEL,
   pedidoStatus,
 } from "../parcerias/pedidos";
+
+const MAX_FOTOS = 10;
+
+// reduz a foto no navegador (lado maior 1600px, JPEG até ~300 KB) antes de enviar
+const loadImg = (file) =>
+  new Promise((res, rej) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      res(img);
+    };
+    img.onerror = (e) => {
+      URL.revokeObjectURL(url);
+      rej(e);
+    };
+    img.src = url;
+  });
+
+async function toJpeg(file) {
+  const img = await loadImg(file);
+  let max = 1600;
+  let data = "";
+  for (let tries = 0; tries < 6; tries++) {
+    const k = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
+    const c = document.createElement("canvas");
+    c.width = Math.round(img.naturalWidth * k);
+    c.height = Math.round(img.naturalHeight * k);
+    c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+    data = c.toDataURL("image/jpeg", 0.8);
+    if (data.length < 420000) return data;
+    max = Math.round(max * 0.8);
+  }
+  return data;
+}
 
 const fmt = (t) =>
   new Date(t).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric" });
@@ -49,13 +86,18 @@ export function PedidosList({ list, onCancel }) {
   return (
     <div className="ref-list">
       {list.map((p) => {
-        const st = pedidoStatus(p.status);
+        const st = pedidoStatus(p.status, p.tipo);
         return (
           <article className={`ref-item${st.id === "encerrado" ? " closed" : ""}`} key={p.id}>
             <div className="ref-item-top">
               <div>
-                <div className="ref-nm">{p.titulo}</div>
-                <div className="ref-meta-line">Pedido enviado em {fmt(p.t)}</div>
+                <div className="ref-nm">
+                  {p.titulo}
+                  {p.onde && <span className="ref-tipo"> · {p.onde}</span>}
+                </div>
+                <div className="ref-meta-line">
+                  {p.tipo === "imovel" ? "Cadastrado" : "Pedido enviado"} em {fmt(p.t)}
+                </div>
               </div>
               <span className={`ref-badge pd-${st.id}`}>{st.label}</span>
             </div>
@@ -89,12 +131,58 @@ const TEXTOS = {
     enviar: "Solicitar gestão",
     ok: "Pedido enviado!",
   },
+  imovel: {
+    titulo: ["Tipo de imóvel *", TIPOS_IMOVEL],
+    local: ["Cidade", "Ex.: Veranópolis"],
+    fase: ["Situação do imóvel", SITUACAO_IMOVEL],
+    descricao: ["Conte sobre o imóvel *", "Ex.: casa de alvenaria, 2 vagas de garagem, pátio, reformada em 2022"],
+    enviar: "Cadastrar meu imóvel",
+    ok: "Imóvel cadastrado!",
+  },
 };
 
 // Formulário de "+ Novo projeto" / "+ Nova gestão"
 export function PedidoForm({ code, tipo, member, onDone }) {
   const T = TEXTOS[tipo];
-  const [f, setF] = useState({ nome: "", whatsapp: "", titulo: "", local: "", fase: "", descricao: "", areas: [] });
+  const [f, setF] = useState({
+    nome: "",
+    whatsapp: "",
+    titulo: "",
+    local: "",
+    fase: "",
+    descricao: "",
+    areas: [],
+    bairro: "",
+    valor: "",
+    metragem: "",
+    quartos: "",
+    proprietario: false,
+    valorVisivel: true,
+    origem: "proprietario",
+    creci: "",
+    endereco: "",
+  });
+  const [fotos, setFotos] = useState([]); // [{ id, src }]
+  const [enviando, setEnviando] = useState(0);
+
+  const addFotos = async (e) => {
+    const files = [...(e.target.files || [])].slice(0, MAX_FOTOS - fotos.length);
+    e.target.value = "";
+    setErr("");
+    for (const file of files) {
+      setEnviando((n) => n + 1);
+      try {
+        const src = await toJpeg(file);
+        const d = await post(code, { action: "foto", data: src.split(",")[1] });
+        if (d.ok) setFotos((l) => (l.length < MAX_FOTOS ? [...l, { id: d.id, src }] : l));
+        else setErr(d.error || "Não consegui enviar uma das fotos.");
+      } catch (e2) {
+        setErr("Não consegui ler uma das fotos. Tente outra.");
+      }
+      setEnviando((n) => n - 1);
+    }
+  };
+  const imovel = tipo === "imovel";
   const [sending, setSending] = useState(false);
   const [err, setErr] = useState("");
   const [done, setDone] = useState(false);
@@ -116,9 +204,20 @@ export function PedidoForm({ code, tipo, member, onDone }) {
       setErr("Preencha os campos com *.");
       return;
     }
+    if (enviando > 0) {
+      setErr("Aguarde as fotos terminarem de enviar.");
+      return;
+    }
+    if (imovel && !f.proprietario) {
+      setErr("Confirme que você é o proprietário ou tem autorização dele.");
+      return;
+    }
     setSending(true);
     try {
-      const d = await post(code, { action: "create", pedido: { ...f, tipo } });
+      const d = await post(code, {
+        action: "create",
+        pedido: { ...f, tipo, fotos: fotos.map((x) => x.id) },
+      });
       if (d.ok) {
         setDone(true);
         if (onDone) onDone();
@@ -136,7 +235,11 @@ export function PedidoForm({ code, tipo, member, onDone }) {
           ✓
         </div>
         <h3>{T.ok}</h3>
-        <p>O Paulo recebeu o seu pedido e vai falar com você pelo WhatsApp.</p>
+        <p>
+          {imovel
+            ? "O Paulo vai avaliar o cadastro e falar com você pelo WhatsApp."
+            : "O Paulo recebeu o seu pedido e vai falar com você pelo WhatsApp."}
+        </p>
       </div>
     );
   }
@@ -161,16 +264,89 @@ export function PedidoForm({ code, tipo, member, onDone }) {
           </label>
         </div>
       )}
+      {imovel && (
+        <div className="signup-row">
+          <label>
+            Quem está cadastrando
+            <select value={f.origem} onChange={upd("origem")}>
+              <option value="proprietario">Sou o proprietário</option>
+              <option value="parceiro">Sou corretor / imobiliária parceira</option>
+            </select>
+          </label>
+          {f.origem === "parceiro" ? (
+            <label>
+              Seu CRECI
+              <input value={f.creci} onChange={upd("creci")} placeholder="Ex.: CRECI-RS 12345" />
+            </label>
+          ) : (
+            <span />
+          )}
+        </div>
+      )}
       <div className="signup-row">
         <label>
           {T.titulo[0]}
-          <input value={f.titulo} onChange={upd("titulo")} placeholder={T.titulo[1]} />
+          {imovel ? (
+            <select value={f.titulo} onChange={upd("titulo")}>
+              <option value="">Selecione</option>
+              {T.titulo[1].map((o) => (
+                <option key={o} value={o}>
+                  {o}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <input value={f.titulo} onChange={upd("titulo")} placeholder={T.titulo[1]} />
+          )}
         </label>
         <label>
           {T.local[0]}
           <input value={f.local} onChange={upd("local")} placeholder={T.local[1]} />
         </label>
       </div>
+      {imovel && (
+        <>
+          <div className="signup-row">
+            <label>
+              Bairro
+              <input value={f.bairro} onChange={upd("bairro")} placeholder="Ex.: Centro" />
+            </label>
+            <label>
+              Valor que você pede
+              <input value={f.valor} onChange={upd("valor")} placeholder="Ex.: R$ 650 mil" />
+            </label>
+          </div>
+          <label>
+            Endereço completo
+            <input
+              value={f.endereco}
+              onChange={upd("endereco")}
+              placeholder="Rua, número, complemento"
+              autoComplete="street-address"
+            />
+          </label>
+          <label>
+            No anúncio, o valor deve aparecer?
+            <select
+              value={f.valorVisivel ? "sim" : "nao"}
+              onChange={(e) => setF((s) => ({ ...s, valorVisivel: e.target.value === "sim" }))}
+            >
+              <option value="sim">Sim, mostrar o valor</option>
+              <option value="nao">Não, deixar “sob consulta”</option>
+            </select>
+          </label>
+          <div className="signup-row">
+            <label>
+              Área (m²)
+              <input value={f.metragem} onChange={upd("metragem")} placeholder="Ex.: 180" inputMode="numeric" />
+            </label>
+            <label>
+              Quartos
+              <input value={f.quartos} onChange={upd("quartos")} placeholder="Ex.: 3" inputMode="numeric" />
+            </label>
+          </div>
+        </>
+      )}
       <label>
         {T.fase[0]}
         <select value={f.fase} onChange={upd("fase")}>
@@ -196,6 +372,61 @@ export function PedidoForm({ code, tipo, member, onDone }) {
             </label>
           ))}
         </fieldset>
+      )}
+      {imovel && (
+        <>
+          <div className="pd-fotos">
+            <div className="pd-fotos-head">
+              <span>
+                Fotos do imóvel <small>({fotos.length}/{MAX_FOTOS})</small>
+              </span>
+              {fotos.length < MAX_FOTOS && (
+                <label className="btn btn-outline pd-fotos-add">
+                  + Adicionar fotos
+                  <input type="file" accept="image/*" multiple onChange={addFotos} hidden />
+                </label>
+              )}
+            </div>
+            {(fotos.length > 0 || enviando > 0) && (
+              <div className="pd-fotos-grid">
+                {fotos.map((x) => (
+                  <div className="pd-foto" key={x.id}>
+                    <img src={x.src} alt="" />
+                    <button
+                      type="button"
+                      aria-label="Remover foto"
+                      onClick={() => setFotos((l) => l.filter((y) => y.id !== x.id))}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+                {[...Array(enviando)].map((_, i) => (
+                  <div className="pd-foto pd-foto-load" key={"l" + i}>
+                    Enviando…
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <label className="ref-check">
+            <input
+              type="checkbox"
+              checked={f.proprietario}
+              onChange={(e) => setF((s) => ({ ...s, proprietario: e.target.checked }))}
+            />
+            <span>
+              {f.origem === "parceiro"
+                ? "Tenho autorização do proprietário para anunciar e vender este imóvel. *"
+                : "Sou o proprietário do imóvel ou tenho autorização dele para vender. *"}
+            </span>
+          </label>
+          <p className="join-hint">
+            O endereço fica só com o Paulo: o anúncio mostra apenas o bairro e
+            todo contato passa por ele. As fotos são avaliadas antes de ir para
+            a vitrine.
+          </p>
+        </>
       )}
       {err && <p className="signup-err">{err}</p>}
       <button className="btn btn-primary join-cta" disabled={sending}>

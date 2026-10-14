@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import { checkAccess } from "../../../lib/auth";
-import { savePedido, getPedidosFor, setPedidoStatus } from "../../../lib/store";
+import { savePedido, getPedidosFor, setPedidoStatus, saveFoto } from "../../../lib/store";
 
 export const runtime = "nodejs";
 
 const ERROS = {
   campos: "Preencha os campos obrigatórios.",
   contato: "Preencha seu nome e WhatsApp.",
+  proprietario: "Confirme que você é o proprietário ou tem autorização dele.",
   limite: "Você já tem pedidos em aberto. Aguarde o contato do Paulo.",
   indisponivel: "Não consegui enviar agora. Fale com o Paulo pelo WhatsApp.",
 };
@@ -22,6 +23,15 @@ export async function POST(req) {
 
   const { ok, member } = await checkAccess(body.code);
   if (!ok) return NextResponse.json({ ok: false }, { status: 401 });
+
+  // foto do imóvel (uma por vez, já reduzida no navegador)
+  if (body.action === "foto") {
+    const id = await saveFoto(body.data);
+    if (!id) {
+      return NextResponse.json({ ok: false, error: "Não consegui enviar essa foto." }, { status: 400 });
+    }
+    return NextResponse.json({ ok: true, id });
+  }
 
   // pelo código geral: dá pra pedir (com nome e WhatsApp), mas não acompanhar
   if (!member) {

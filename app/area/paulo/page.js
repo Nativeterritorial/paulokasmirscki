@@ -45,7 +45,7 @@ export default function PauloAdmin() {
   const [pedidos, setPedidos] = useState([]);
   const [memberForm, setMemberForm] = useState({ nome: "", whatsapp: "" });
   const [copiedMember, setCopiedMember] = useState("");
-  const [tab, setTab] = useState("sol"); // sol | ind | proj | gest | mem | emp | num
+  const [tab, setTab] = useState("sol"); // sol | ind | imo | proj | gest | mem | emp | num
 
   useEffect(() => {
     try {
@@ -486,7 +486,11 @@ export default function PauloAdmin() {
   const pedidosNovos = (tipo) =>
     pedidos.filter((p) => p.tipo === tipo && p.status === "novo").length;
   const totalPend =
-    solPend + referralsPend + pedidosNovos("projeto") + pedidosNovos("gestao");
+    solPend +
+    referralsPend +
+    pedidosNovos("projeto") +
+    pedidosNovos("gestao") +
+    pedidosNovos("imovel");
   // o painel de pedidos atualiza projetos/gestões/pedidos de uma vez
   const applyAdminData = (d) => {
     if (Array.isArray(d?.pedidos)) setPedidos(d.pedidos);
@@ -581,6 +585,7 @@ export default function PauloAdmin() {
               {[
                 ["sol", "Solicitações", solPend],
                 ["ind", "Indicações", referralsPend],
+                ["imo", "Imóveis", pedidosNovos("imovel")],
                 ["proj", "Projetos", pedidosNovos("projeto")],
                 ["gest", "Gestão", pedidosNovos("gestao")],
                 ["mem", "Membros", 0],
@@ -1073,6 +1078,15 @@ export default function PauloAdmin() {
             </section>
 
               </>
+            )}
+
+            {tab === "imo" && (
+              <PedidosAdmin
+                code={code}
+                tipo="imovel"
+                pedidos={pedidos}
+                onData={applyAdminData}
+              />
             )}
 
             {tab === "proj" && (

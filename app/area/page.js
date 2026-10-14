@@ -6,6 +6,7 @@ import InstallApp from "./install-app";
 import MyReferrals from "./my-referrals";
 import MyProjects from "./my-projects";
 import MyGestao from "./my-gestao";
+import MyImoveis from "./my-imoveis";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
@@ -339,6 +340,9 @@ export default function Area() {
           <a className="area-refs-link" href="#indicacoes">
             {member ? "Minhas indicações" : "Indicar negócio"}
           </a>
+          <a className="area-refs-link" href="#vender">
+            Vender imóvel
+          </a>
           <a className="area-refs-link" href="#projeto">
             Meu projeto
           </a>
@@ -571,6 +575,7 @@ export default function Area() {
       </div>
 
       <MyReferrals code={code} member={member} />
+      <MyImoveis code={code} member={member} />
       <MyProjects code={code} member={member} />
       <MyGestao code={code} member={member} />
     </div>

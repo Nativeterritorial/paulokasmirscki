@@ -20,6 +20,14 @@ const ROTULOS = {
     criar: "Criar projeto",
     msg: (p) => `Olá ${p.nome}! Aqui é o Paulo Kasmirscki. Recebi a sua ideia de ${p.titulo} pela área de membros. Vamos conversar?`,
   },
+  imovel: {
+    titulo: "🏠 Imóveis para vender",
+    vazio: "Nenhum imóvel ainda. Eles chegam pelo botão “+ Cadastrar imóvel” da área de membros.",
+    local: "Cidade",
+    fase: "Situação",
+    criar: "",
+    msg: (p) => `Olá ${p.nome}! Aqui é o Paulo Kasmirscki. Recebi o cadastro do imóvel (${p.titulo}${p.bairro ? " no " + p.bairro : ""}) pela área de membros. Vamos conversar?`,
+  },
   gestao: {
     titulo: "📨 Pedidos de gestão",
     vazio: "Nenhum pedido ainda. Eles chegam pelo botão “+ Nova gestão” da área de membros.",
@@ -128,8 +136,24 @@ export default function PedidosAdmin({ code, tipo, pedidos, onData }) {
                     ))}
                   </select>
                 </div>
-                {(p.local || p.fase) && (
+                {(p.local || p.fase || p.bairro || p.valor) && (
                   <div className="pd-facts">
+                    {p.origem === "parceiro" && (
+                      <span>
+                        <strong>Parceiro</strong>
+                        {p.creci ? ` · ${p.creci}` : " · sem CRECI informado"}
+                      </span>
+                    )}
+                    {p.endereco && (
+                      <span>
+                        Endereço: <strong>{p.endereco}</strong>
+                      </span>
+                    )}
+                    {p.bairro && (
+                      <span>
+                        Bairro: <strong>{p.bairro}</strong>
+                      </span>
+                    )}
                     {p.local && (
                       <span>
                         {R.local}: <strong>{p.local}</strong>
@@ -140,9 +164,34 @@ export default function PedidosAdmin({ code, tipo, pedidos, onData }) {
                         {R.fase}: <strong>{p.fase}</strong>
                       </span>
                     )}
+                    {p.valor && (
+                      <span>
+                        Valor pedido: <strong>{p.valor}</strong>
+                        {p.valorVisivel === false && " (anúncio: sob consulta)"}
+                      </span>
+                    )}
+                    {p.metragem && (
+                      <span>
+                        Área: <strong>{p.metragem} m²</strong>
+                      </span>
+                    )}
+                    {p.quartos && (
+                      <span>
+                        Quartos: <strong>{p.quartos}</strong>
+                      </span>
+                    )}
                   </div>
                 )}
                 <p className="lead-msg">{p.descricao}</p>
+                {p.fotos?.length > 0 && (
+                  <div className="pd-fotos-grid pd-fotos-admin">
+                    {p.fotos.map((f) => (
+                      <a key={f} href={`/api/foto/${f}`} target="_blank" rel="noopener noreferrer">
+                        <img src={`/api/foto/${f}`} alt="Foto do imóvel" loading="lazy" />
+                      </a>
+                    ))}
+                  </div>
+                )}
                 {p.areas?.length > 0 && (
                   <div className="pd-tags">
                     {p.areas.map((a) => (
@@ -163,7 +212,7 @@ export default function PedidosAdmin({ code, tipo, pedidos, onData }) {
                       WhatsApp
                     </a>
                   )}
-                  {p.status !== "aceito" && (
+                  {R.criar && p.status !== "aceito" && (
                     <button
                       type="button"
                       className="chip chip-add"

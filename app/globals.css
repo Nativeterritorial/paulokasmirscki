@@ -2070,6 +2070,12 @@ body {
 }
 
 /* ============ ÁREA DE MEMBROS (MVP) ============ */
+/* Área de Membros e Painel do Paulo usam um azul mais escuro que o site público
+   (o fundo do body é o degradê azul claro; aqui a página cobre ele) */
+.area,
+.area-login {
+  background: linear-gradient(135deg, #050915 0%, #0a1230 50%, #0f1c48 100%) fixed;
+}
 .area-login {
   min-height: 100vh;
   display: grid;

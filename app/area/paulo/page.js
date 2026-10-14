@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import ProjectsAdmin from "./projects-admin";
 import GestaoAdmin from "./gestao-admin";
+import PedidosAdmin from "./pedidos-admin";
 import {
   REFERRAL_STATUS,
   statusInfo,
@@ -41,6 +42,7 @@ export default function PauloAdmin() {
   const [members, setMembers] = useState([]);
   const [projects, setProjects] = useState([]);
   const [gestoes, setGestoes] = useState([]);
+  const [pedidos, setPedidos] = useState([]);
   const [memberForm, setMemberForm] = useState({ nome: "", whatsapp: "" });
   const [copiedMember, setCopiedMember] = useState("");
   const [tab, setTab] = useState("sol"); // sol | ind | proj | gest | mem | emp | num
@@ -83,6 +85,7 @@ export default function PauloAdmin() {
       if (Array.isArray(d.members)) setMembers(d.members);
       if (Array.isArray(d.projects)) setProjects(d.projects);
       if (Array.isArray(d.gestoes)) setGestoes(d.gestoes);
+      if (Array.isArray(d.pedidos)) setPedidos(d.pedidos);
       setAuthed(true);
       try {
         localStorage.setItem("admin_code", c);
@@ -479,7 +482,17 @@ export default function PauloAdmin() {
   const pendentes = (stats?.leads || []).filter((l) => !isDone(l)).length;
   // tudo que espera uma ação do Paulo (mostrado na saudação e na aba)
   const solPend = pendentes + signupsPend + gaps.length;
-  const totalPend = solPend + referralsPend;
+  // pedidos de projeto/gestão que ainda ninguém olhou
+  const pedidosNovos = (tipo) =>
+    pedidos.filter((p) => p.tipo === tipo && p.status === "novo").length;
+  const totalPend =
+    solPend + referralsPend + pedidosNovos("projeto") + pedidosNovos("gestao");
+  // o painel de pedidos atualiza projetos/gestões/pedidos de uma vez
+  const applyAdminData = (d) => {
+    if (Array.isArray(d?.pedidos)) setPedidos(d.pedidos);
+    if (Array.isArray(d?.projects)) setProjects(d.projects);
+    if (Array.isArray(d?.gestoes)) setGestoes(d.gestoes);
+  };
 
   // gráfico: eventos por dia nos últimos 14 dias
   const days = [...Array(14)].map((_, i) => {
@@ -568,8 +581,8 @@ export default function PauloAdmin() {
               {[
                 ["sol", "Solicitações", solPend],
                 ["ind", "Indicações", referralsPend],
-                ["proj", "Projetos", 0],
-                ["gest", "Gestão", 0],
+                ["proj", "Projetos", pedidosNovos("projeto")],
+                ["gest", "Gestão", pedidosNovos("gestao")],
                 ["mem", "Membros", 0],
                 ["emp", "Empresas", 0],
                 ["num", "Números", 0],
@@ -1063,6 +1076,13 @@ export default function PauloAdmin() {
             )}
 
             {tab === "proj" && (
+              <>
+              <PedidosAdmin
+                code={code}
+                tipo="projeto"
+                pedidos={pedidos}
+                onData={applyAdminData}
+              />
               <ProjectsAdmin
                 code={code}
                 projects={projects}
@@ -1070,15 +1090,24 @@ export default function PauloAdmin() {
                 companies={[...fixedCompanies, ...customCompanies]}
                 onChange={setProjects}
               />
+              </>
             )}
 
             {tab === "gest" && (
+              <>
+              <PedidosAdmin
+                code={code}
+                tipo="gestao"
+                pedidos={pedidos}
+                onData={applyAdminData}
+              />
               <GestaoAdmin
                 code={code}
                 gestoes={gestoes}
                 members={members}
                 onChange={setGestoes}
               />
+              </>
             )}
 
             {tab === "mem" && (

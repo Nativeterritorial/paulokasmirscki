@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePedidos, PedidosList, PedidoForm } from "./pedidos";
 import {
   GOAL_TERMS,
   goalStatusLabel,
@@ -44,8 +45,8 @@ function Relatorio({ r }) {
 }
 
 // "Minha gestão": o cliente do modelo "Gestor de negócios" acompanha as metas
-// e lê o relatório de cada mês. Não aparece pra quem não tem gestão.
-export default function MyGestao({ code, member, onLoaded }) {
+// e lê o relatório de cada mês. Com "+ Nova gestão" o membro pede o serviço.
+export default function MyGestao({ code, member }) {
   const [gestoes, setGestoes] = useState([]);
 
   useEffect(() => {
@@ -60,7 +61,6 @@ export default function MyGestao({ code, member, onLoaded }) {
       .then((d) => {
         if (!alive || !d.ok) return;
         setGestoes(d.gestoes || []);
-        if (onLoaded) onLoaded((d.gestoes || []).length);
       })
       .catch(() => {});
     return () => {
@@ -69,10 +69,50 @@ export default function MyGestao({ code, member, onLoaded }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code, member]);
 
-  if (!member || !gestoes.length) return null;
+  const { list: pedidos, load: loadPedidos, cancel } = usePedidos(code, member, "gestao");
+  const [open, setOpen] = useState(false);
+
+  // quem entrou pelo código geral não tem identidade: só o convite
+  if (!member) {
+    return (
+      <section className="area-refs area-projects" id="gestao">
+        <div className="area-refs-head">
+          <div>
+            <div className="kick">Minha gestão · Gestor de negócios</div>
+            <h2>Quer um gestor ao lado da sua empresa?</h2>
+            <p>
+              Conte o momento da sua empresa: o Paulo atua com você, mês a mês, no planejamento, nos números, nos processos e nas negociações. Para pedir e acompanhar por aqui, peça ao Paulo o seu link
+              pessoal de acesso.
+            </p>
+          </div>
+          <a className="btn btn-primary" href="/parcerias#gestor">
+            Ver como funciona
+          </a>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="area-refs area-projects" id="gestao">
+      <div className="area-refs-head">
+        <div>
+          <div className="kick">Minha gestão · Gestor de negócios</div>
+          <h2>Quer um gestor ao lado da sua empresa?</h2>
+          <p>Conte o momento da sua empresa: o Paulo atua com você, mês a mês, no planejamento, nos números, nos processos e nas negociações.</p>
+        </div>
+        <button type="button" className="btn btn-primary" onClick={() => setOpen((o) => !o)}>
+          {open ? "Fechar" : "+ Nova gestão"}
+        </button>
+      </div>
+
+      {open && (
+        <div className="area-refs-form">
+          <PedidoForm code={code} tipo="gestao" onDone={loadPedidos} />
+        </div>
+      )}
+
+      <PedidosList list={pedidos} onCancel={cancel} />
       {gestoes.map((g) => {
         const metas = g.metas || [];
         const done = goalsDone(g);

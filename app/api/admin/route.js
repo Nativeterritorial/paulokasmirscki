@@ -20,6 +20,9 @@ import {
   getGestoes,
   saveGestao,
   deleteGestao,
+  getPedidos,
+  setPedidoStatus,
+  deletePedido,
 } from "../../../lib/store";
 import { COMPANIES } from "../../area/companies";
 
@@ -104,6 +107,14 @@ export async function POST(req) {
     await deleteGestao(body.id);
   }
 
+  // ações: pedidos de projeto/gestão feitos pelos membros
+  if (body.action === "pedidoStatus" && body.id) {
+    await setPedidoStatus(body.id, body.status);
+  }
+  if (body.action === "pedidoDelete" && body.id) {
+    await deletePedido(body.id);
+  }
+
   const stats = await getStats();
   const customCompanies = await getCustomCompanies();
 
@@ -153,9 +164,11 @@ export async function POST(req) {
 
   const projects = await getProjects();
   const gestoes = await getGestoes();
+  const pedidos = await getPedidos();
 
   return NextResponse.json({
     ok: true,
+    pedidos,
     projects,
     gestoes,
     members,

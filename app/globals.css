@@ -2426,6 +2426,9 @@ body:has(.area-login) {
 .area-projects {
   padding-bottom: 22px;
 }
+.area-projects .proj {
+  margin-top: 16px;
+}
 .proj + .proj {
   margin-top: 26px;
 }
@@ -5398,4 +5401,49 @@ body:has(.area-login) {
   .gest-edit-meta input {
     grid-column: 1 / -1;
   }
+}
+
+/* ---------- Pedidos de projeto / gestão ---------- */
+.ref-badge.pd-conversa {
+  color: #06304a;
+  background: #46d6ff;
+}
+.ref-badge.pd-aceito {
+  color: #06304a;
+  background: #6fffbf;
+}
+.pd-areas {
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.pd-areas legend {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.pd-admin {
+  margin-bottom: 18px;
+}
+.pd-admin > .chip {
+  margin-bottom: 10px;
+}
+.pd-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 10px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.pd-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.pd-actions {
+  margin-top: 12px;
 }

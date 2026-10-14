@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePedidos, PedidosList, PedidoForm } from "./pedidos";
 import {
   PROJECT_STAGES,
   stageStatusLabel,
@@ -12,8 +13,8 @@ const fmt = (t) =>
 
 // "Meu projeto": o cliente do modelo "Da ideia à abertura" acompanha as seis
 // etapas — o que já foi feito, quem cuida de cada uma e o próximo passo.
-// Não aparece pra quem não tem projeto.
-export default function MyProjects({ code, member, onLoaded }) {
+// Sempre aparece: com "+ Novo projeto" o membro manda a ideia pro Paulo.
+export default function MyProjects({ code, member }) {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -28,7 +29,6 @@ export default function MyProjects({ code, member, onLoaded }) {
       .then((d) => {
         if (!alive || !d.ok) return;
         setProjects(d.projects || []);
-        if (onLoaded) onLoaded((d.projects || []).length);
       })
       .catch(() => {});
     return () => {
@@ -37,10 +37,50 @@ export default function MyProjects({ code, member, onLoaded }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code, member]);
 
-  if (!member || !projects.length) return null;
+  const { list: pedidos, load: loadPedidos, cancel } = usePedidos(code, member, "projeto");
+  const [open, setOpen] = useState(false);
+
+  // quem entrou pelo código geral não tem identidade: só o convite
+  if (!member) {
+    return (
+      <section className="area-refs area-projects" id="projeto">
+        <div className="area-refs-head">
+          <div>
+            <div className="kick">Meu projeto · Da ideia à abertura</div>
+            <h2>Tem a ideia de um negócio?</h2>
+            <p>
+              Conte a sua ideia: o Paulo coordena as empresas da rede em cada etapa, da viabilidade até a inauguração. Para pedir e acompanhar por aqui, peça ao Paulo o seu link
+              pessoal de acesso.
+            </p>
+          </div>
+          <a className="btn btn-primary" href="/parcerias#abrir">
+            Ver como funciona
+          </a>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="area-refs area-projects" id="projeto">
+      <div className="area-refs-head">
+        <div>
+          <div className="kick">Meu projeto · Da ideia à abertura</div>
+          <h2>Tem a ideia de um negócio?</h2>
+          <p>Conte a sua ideia: o Paulo coordena as empresas da rede em cada etapa, da viabilidade até a inauguração.</p>
+        </div>
+        <button type="button" className="btn btn-primary" onClick={() => setOpen((o) => !o)}>
+          {open ? "Fechar" : "+ Novo projeto"}
+        </button>
+      </div>
+
+      {open && (
+        <div className="area-refs-form">
+          <PedidoForm code={code} tipo="projeto" onDone={loadPedidos} />
+        </div>
+      )}
+
+      <PedidosList list={pedidos} onCancel={cancel} />
       {projects.map((p) => {
         const done = projectProgress(p);
         const total = PROJECT_STAGES.length;

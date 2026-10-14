@@ -65,7 +65,7 @@ export default function MyReferrals({ code, member }) {
   };
 
   return (
-    <section className="area-refs" id="indicacoes">
+    <section className="area-refs area-projects" id="indicacoes">
       <div className="area-refs-head">
         <div>
           <div className="kick">Minhas indicações</div>
@@ -74,6 +74,11 @@ export default function MyReferrals({ code, member }) {
               ? "Acompanhe os negócios que você indicou"
               : "Indique um negócio imobiliário"}
           </h2>
+          <p>
+            Conhece alguém que quer comprar, vender ou alugar um imóvel? Você
+            indica, o Paulo conduz o negócio e você recebe uma bonificação
+            sobre a comissão quando ele fecha.
+          </p>
         </div>
         <button
           type="button"

@@ -2426,6 +2426,9 @@ body:has(.area-login) {
 .area-projects {
   padding-bottom: 22px;
 }
+.area-projects:last-child {
+  padding-bottom: 60px;
+}
 .area-projects .proj {
   margin-top: 16px;
 }

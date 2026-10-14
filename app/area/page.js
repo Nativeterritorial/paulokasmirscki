@@ -336,14 +336,14 @@ export default function Area() {
           {member && (
             <span className="area-hello">Olá, {member.nome.split(" ")[0]}</span>
           )}
+          <a className="area-refs-link" href="#indicacoes">
+            {member ? "Minhas indicações" : "Indicar negócio"}
+          </a>
           <a className="area-refs-link" href="#projeto">
             Meu projeto
           </a>
           <a className="area-refs-link" href="#gestao">
             Minha gestão
-          </a>
-          <a className="area-refs-link" href="#indicacoes">
-            {member ? "Minhas indicações" : "Indicar negócio"}
           </a>
           <InstallApp />
           <button className="area-logout" onClick={logout}>
@@ -570,9 +570,9 @@ export default function Area() {
         </aside>
       </div>
 
+      <MyReferrals code={code} member={member} />
       <MyProjects code={code} member={member} />
       <MyGestao code={code} member={member} />
-      <MyReferrals code={code} member={member} />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { checkAccess } from "../../../lib/auth";
-import { getReferralsFor } from "../../../lib/store";
+import { getReferralsFor, deleteReferral } from "../../../lib/store";
 
 export const runtime = "nodejs";
 
@@ -16,6 +16,27 @@ export async function POST(req) {
   if (!ok) return NextResponse.json({ ok: false }, { status: 401 });
   if (!member) return NextResponse.json({ ok: true, personal: false, referrals: [] });
 
-  const referrals = await getReferralsFor(member);
+  let referrals = await getReferralsFor(member);
+
+  // excluir: só uma indicação do próprio membro e só enquanto está "registrada".
+  // Depois que o Paulo confirma, o registro vale como comprovante e só ele exclui.
+  if (body.action === "delete" && body.t) {
+    const alvo = referrals.find((r) => String(r.t) === String(body.t));
+    if (!alvo) {
+      return NextResponse.json({ ok: false, error: "Indicação não encontrada." }, { status: 404 });
+    }
+    if (alvo.status !== "registrada") {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "Essa indicação já foi confirmada. Fale com o Paulo para excluir.",
+        },
+        { status: 409 }
+      );
+    }
+    await deleteReferral(alvo.t);
+    referrals = referrals.filter((r) => r !== alvo);
+  }
+
   return NextResponse.json({ ok: true, personal: true, referrals });
 }

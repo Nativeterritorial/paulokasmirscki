@@ -2407,6 +2407,20 @@ body {
   line-height: 1.5;
   color: var(--muted);
 }
+.ref-del {
+  margin-top: 12px;
+  padding: 0;
+  font: inherit;
+  font-size: 0.78rem;
+  color: var(--muted-2);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.ref-del:hover {
+  color: #ffb4b4;
+}
 .ref-status-select {
   padding: 8px 12px;
   border-radius: 999px;

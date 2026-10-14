@@ -43,6 +43,27 @@ export default function MyReferrals({ code, member }) {
     load();
   }, [load]);
 
+  const [delErr, setDelErr] = useState("");
+  const remove = async (r) => {
+    setDelErr("");
+    if (!window.confirm(`Excluir a indicação de ${r.indicado}?`)) return;
+    try {
+      const res = await fetch("/api/my-referrals", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code, action: "delete", t: r.t }),
+      });
+      const d = await res.json();
+      if (d.ok) setList(d.referrals || []);
+      else {
+        setDelErr(d.error || "Não consegui excluir. Tente novamente.");
+        load();
+      }
+    } catch (e) {
+      setDelErr("Não consegui excluir. Tente novamente.");
+    }
+  };
+
   // quem entrou pelo código geral não tem identidade: só o convite pra indicar
   if (!member) {
     return (
@@ -105,6 +126,8 @@ export default function MyReferrals({ code, member }) {
         </p>
       )}
 
+      {delErr && <p className="area-refs-empty">{delErr}</p>}
+
       {!failed && list && list.length > 0 && (
         <div className="ref-list">
           {list.map((r) => {
@@ -139,6 +162,15 @@ export default function MyReferrals({ code, member }) {
                   </ol>
                 )}
                 <p className="ref-desc">{st.desc}</p>
+                {st.id === "registrada" && (
+                  <button
+                    type="button"
+                    className="ref-del"
+                    onClick={() => remove(r)}
+                  >
+                    Excluir indicação
+                  </button>
+                )}
               </article>
             );
           })}

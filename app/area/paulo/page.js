@@ -217,6 +217,25 @@ export default function PauloAdmin() {
     }).catch(() => {});
   };
 
+  // exclui uma indicação (some daqui e da lista de quem indicou)
+  const deleteReferral = (r) => {
+    if (
+      !window.confirm(
+        `Excluir a indicação de ${r.indicado} (${protocolo(r.t)})? Ela some do painel e da área de quem indicou.`
+      )
+    )
+      return;
+    setStats((s) => ({
+      ...s,
+      referrals: (s.referrals || []).filter((x) => x.t !== r.t),
+    }));
+    fetch("/api/admin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code, action: "referralDelete", t: r.t }),
+    }).catch(() => {});
+  };
+
   // marca/desmarca indicação de negócio (form do /parcerias) como tratada
   const toggleReferralDone = (t, done) => {
     setStats((s) => ({
@@ -1047,6 +1066,13 @@ export default function PauloAdmin() {
                                   </option>
                                 ))}
                               </select>
+                              <button
+                                type="button"
+                                className="chip chip-danger"
+                                onClick={() => deleteReferral(r)}
+                              >
+                                Excluir
+                              </button>
                             </div>
                           </div>
                           <div className="su-contacts">

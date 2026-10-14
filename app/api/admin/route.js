@@ -6,6 +6,7 @@ import {
   setSignupDone,
   setReferralDone,
   setReferralStatus,
+  deleteReferral,
   getCustomCompanies,
   saveCompany,
   deleteCompany,
@@ -53,6 +54,11 @@ export async function POST(req) {
   // ação: mudar o andamento de uma indicação (o membro vê na área dele)
   if (body.action === "referralStatus" && body.t && body.status) {
     await setReferralStatus(body.t, String(body.status));
+  }
+
+  // ação: excluir uma indicação (some do painel e da lista de quem indicou)
+  if (body.action === "referralDelete" && body.t) {
+    await deleteReferral(body.t);
   }
 
   // ação: criar/editar empresa cadastrada pelo Paulo

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { COMPANIES } from "./companies";
 import InstallApp from "./install-app";
+import MyReferrals from "./my-referrals";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
@@ -333,6 +334,9 @@ export default function Area() {
           {member && (
             <span className="area-hello">Olá, {member.nome.split(" ")[0]}</span>
           )}
+          <a className="area-refs-link" href="#indicacoes">
+            {member ? "Minhas indicações" : "Indicar negócio"}
+          </a>
           <InstallApp />
           <button className="area-logout" onClick={logout}>
             Sair
@@ -557,6 +561,8 @@ export default function Area() {
           </div>
         </aside>
       </div>
+
+      <MyReferrals code={code} member={member} />
     </div>
   );
 }

@@ -1,7 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { protocolo } from "../../parcerias/referral-form";
+import {
+  REFERRAL_STATUS,
+  statusInfo,
+  protocolo,
+} from "../../parcerias/referral-status";
 
 function fmtDate(ts) {
   try {
@@ -200,6 +204,19 @@ export default function PauloAdmin() {
     }).catch(() => {});
   };
 
+  // muda o andamento de uma indicação (otimista + persiste no servidor)
+  const setReferralStatus = (t, status) => {
+    setStats((s) => ({
+      ...s,
+      referralStatus: { ...(s.referralStatus || {}), [String(t)]: status },
+    }));
+    fetch("/api/admin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code, action: "referralStatus", t, status }),
+    }).catch(() => {});
+  };
+
   // marca/desmarca indicação de negócio (form do /parcerias) como tratada
   const toggleReferralDone = (t, done) => {
     setStats((s) => ({
@@ -387,8 +404,13 @@ export default function PauloAdmin() {
   // indicações de negócio imobiliário (form do /parcerias)
   const isReferralDone = (r) =>
     (stats?.referralsDone || []).includes(String(r.t));
+  // andamento: o que o Paulo escolheu; sem escolha, "registrada" (ou
+  // "confirmada" pras que já tinham sido marcadas como tratadas antes)
+  const referralStatusOf = (r) =>
+    (stats?.referralStatus || {})[String(r.t)] ||
+    (isReferralDone(r) ? "confirmada" : "registrada");
   const referralsPend = (stats?.referrals || []).filter(
-    (r) => !isReferralDone(r)
+    (r) => referralStatusOf(r) === "registrada"
   ).length;
   const waDigits = (v) => {
     const d = String(v || "").replace(/[^0-9]/g, "");
@@ -959,7 +981,8 @@ export default function PauloAdmin() {
               <p className="admin-hint">
                 Indicações de negócio imobiliário registradas pela página
                 “Parcerias”. A data do registro define quem indicou primeiro.
-                Confirme com quem indicou e marque como tratada.
+                Atualize o andamento: quem indicou acompanha pela área de
+                membros.
               </p>
               {!(stats.referrals || []).length ? (
                 <p className="admin-empty">
@@ -976,7 +999,8 @@ export default function PauloAdmin() {
                     )
                     .filter(inPeriod)
                     .map((r, i) => {
-                      const done = isReferralDone(r);
+                      const st = statusInfo(referralStatusOf(r));
+                      const done = st.id === "paga" || st.id === "encerrada";
                       const waIndicador = waDigits(r.whatsapp);
                       const waIndicado = waDigits(r.indicadoContato);
                       return (
@@ -997,25 +1021,32 @@ export default function PauloAdmin() {
                               </div>
                             </div>
                             <div className="lead-actions">
-                              {!done && waIndicador && (
+                              {waIndicador && (
                                 <a
                                   className="firm-conn"
                                   href={`https://wa.me/${waIndicador}?text=${encodeURIComponent(
-                                    `Olá ${r.nome}! Aqui é o Paulo Kasmirscki. Recebi a sua indicação (${protocolo(r.t)}). Obrigado!`
+                                    `Olá ${r.nome}! Aqui é o Paulo Kasmirscki. Atualização da sua indicação ${protocolo(r.t)} (${r.indicado}): ${st.label}. Você acompanha o andamento na área de membros.`
                                   )}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
-                                  Falar com quem indicou
+                                  Avisar quem indicou
                                 </a>
                               )}
-                              <button
-                                type="button"
-                                className={`lead-check${done ? " on" : ""}`}
-                                onClick={() => toggleReferralDone(r.t, !done)}
+                              <select
+                                className="ref-status-select"
+                                aria-label={`Andamento da indicação de ${r.indicado}`}
+                                value={st.id}
+                                onChange={(e) =>
+                                  setReferralStatus(r.t, e.target.value)
+                                }
                               >
-                                ✓ {done ? "Tratada" : "Tratar"}
-                              </button>
+                                {REFERRAL_STATUS.map((o) => (
+                                  <option key={o.id} value={o.id}>
+                                    {o.label}
+                                  </option>
+                                ))}
+                              </select>
                             </div>
                           </div>
                           <div className="su-contacts">

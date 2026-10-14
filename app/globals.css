@@ -2197,6 +2197,233 @@ body {
   border: 1px solid var(--border);
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
 }
+/* no computador o diretório fica da altura do chat e rola por dentro, pra
+   "Minhas indicações" aparecer logo abaixo e não depois de toda a lista */
+@media (min-width: 901px) {
+  .area-dir {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 75px - 52px);
+    min-height: 460px;
+  }
+  .area-dir .area-firms {
+    overflow-y: auto;
+  }
+}
+.area-refs-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+.area-refs-link:hover {
+  border-color: var(--gold-2);
+}
+.area-refs {
+  max-width: 1280px;
+  margin: 0 auto 60px;
+  padding: 0 28px;
+  scroll-margin-top: 90px;
+}
+.area-refs-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 26px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+}
+.area-refs-head h2 {
+  font-size: 1.35rem;
+  margin-top: 8px;
+}
+.area-refs-head p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-top: 8px;
+  max-width: 620px;
+}
+.area-refs-form {
+  margin-top: 16px;
+  padding: 24px;
+  max-width: 620px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(111, 255, 191, 0.5);
+}
+.area-refs-form .ref-check a {
+  color: var(--gold-2);
+  text-decoration: underline;
+}
+.area-refs-empty {
+  margin-top: 16px;
+  padding: 20px 26px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  border-radius: 14px;
+  border: 1px dashed var(--border);
+}
+.area-refs-retry {
+  font: inherit;
+  color: var(--gold-2);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.ref-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+.ref-item {
+  padding: 20px 22px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+}
+.ref-item.closed {
+  opacity: 0.65;
+}
+.ref-item-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ref-nm {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.ref-tipo {
+  font-weight: 400;
+  color: var(--muted);
+}
+.ref-meta-line {
+  margin-top: 4px;
+  font-size: 0.76rem;
+  color: var(--muted-2);
+}
+.ref-badge {
+  flex: none;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.12);
+}
+.ref-badge.s-confirmada,
+.ref-badge.s-negociacao {
+  color: #06304a;
+  background: #46d6ff;
+}
+.ref-badge.s-fechada,
+.ref-badge.s-paga {
+  color: #06304a;
+  background: #6fffbf;
+}
+.ref-steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 18px 0 0;
+  padding: 0;
+}
+.ref-steps li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  text-align: center;
+}
+.ref-steps li::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 50%;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.16);
+}
+.ref-steps li:first-child::before {
+  display: none;
+}
+.ref-steps li.done::before,
+.ref-steps li.now::before {
+  background: #6fffbf;
+}
+.ref-steps .dot {
+  position: relative;
+  z-index: 1;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #1a3fa8;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+.ref-steps li.done .dot {
+  background: #6fffbf;
+  border-color: #6fffbf;
+}
+.ref-steps li.now .dot {
+  background: #6fffbf;
+  border-color: #fff;
+  box-shadow: 0 0 0 4px rgba(111, 255, 191, 0.25);
+}
+.ref-steps .lbl {
+  font-size: 0.64rem;
+  line-height: 1.25;
+  color: var(--muted-2);
+}
+.ref-steps li.done .lbl,
+.ref-steps li.now .lbl {
+  color: var(--text);
+}
+.ref-desc {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.ref-status-select {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ref-status-select option {
+  color: #0a205f;
+}
+@media (max-width: 760px) {
+  .area-refs {
+    padding: 0 16px;
+  }
+  .area-refs-link {
+    display: none;
+  }
+  .ref-list {
+    grid-template-columns: 1fr;
+  }
+}
 .member-form {
   display: flex;
   flex-wrap: wrap;

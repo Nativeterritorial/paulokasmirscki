@@ -15,5 +15,9 @@ export async function POST(req) {
   const { ok, member } = await checkAccess(code);
   if (ok && member) await touchMember(member.id);
 
-  return NextResponse.json({ ok, member });
+  // pro navegador vai só o necessário pra saudação
+  return NextResponse.json({
+    ok,
+    member: member ? { id: member.id, nome: member.nome } : null,
+  });
 }

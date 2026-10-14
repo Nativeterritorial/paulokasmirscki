@@ -1,0 +1,149 @@
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+import ReferralForm from "../parcerias/referral-form";
+import {
+  REFERRAL_STATUS,
+  statusInfo,
+  protocolo,
+} from "../parcerias/referral-status";
+
+// etapas do processo (sem o desfecho "encerrada"), pra desenhar a linha de progresso
+const STEPS = REFERRAL_STATUS.filter((s) => s.id !== "encerrada");
+
+const fmt = (t) =>
+  new Date(t).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric" });
+
+// "Minhas indicações": o membro vê o andamento de cada negócio que indicou e
+// registra novas indicações sem sair da Área de Membros.
+export default function MyReferrals({ code, member }) {
+  const [list, setList] = useState(null); // null = carregando
+  const [failed, setFailed] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const load = useCallback(async () => {
+    if (!member) return;
+    try {
+      const r = await fetch("/api/my-referrals", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code }),
+      });
+      const d = await r.json();
+      if (d.ok) {
+        setList(d.referrals || []);
+        setFailed(false);
+      } else setFailed(true);
+    } catch (e) {
+      setFailed(true);
+    }
+  }, [code, member]);
+
+  useEffect(() => {
+    load();
+  }, [load]);
+
+  // quem entrou pelo código geral não tem identidade: só o convite pra indicar
+  if (!member) {
+    return (
+      <section className="area-refs" id="indicacoes">
+        <div className="area-refs-head">
+          <div>
+            <div className="kick">Indique um negócio imobiliário</div>
+            <h2>Conhece alguém que quer comprar, vender ou alugar?</h2>
+            <p>
+              Você apresenta, o Paulo conduz o negócio e você recebe uma
+              bonificação quando ele fecha. Para acompanhar o andamento por
+              aqui, peça ao Paulo o seu link pessoal de acesso.
+            </p>
+          </div>
+          <a className="btn btn-primary" href="/parcerias#indicar">
+            Indicar um negócio
+          </a>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="area-refs" id="indicacoes">
+      <div className="area-refs-head">
+        <div>
+          <div className="kick">Minhas indicações</div>
+          <h2>Acompanhe os negócios que você indicou</h2>
+        </div>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => setOpen((o) => !o)}
+        >
+          {open ? "Fechar" : "+ Nova indicação"}
+        </button>
+      </div>
+
+      {open && (
+        <div className="area-refs-form">
+          <ReferralForm member={member} code={code} onDone={load} />
+        </div>
+      )}
+
+      {failed && (
+        <p className="area-refs-empty">
+          Não consegui carregar as suas indicações agora.{" "}
+          <button type="button" className="area-refs-retry" onClick={load}>
+            Tentar de novo
+          </button>
+        </p>
+      )}
+      {!failed && list === null && (
+        <p className="area-refs-empty">Carregando…</p>
+      )}
+      {!failed && list && !list.length && (
+        <p className="area-refs-empty">
+          Você ainda não indicou nenhum negócio. Conhece alguém que quer
+          comprar, vender ou alugar um imóvel? Toque em “Nova indicação”.
+        </p>
+      )}
+
+      {!failed && list && list.length > 0 && (
+        <div className="ref-list">
+          {list.map((r) => {
+            const st = statusInfo(r.status);
+            const closed = st.id === "encerrada";
+            const pos = STEPS.findIndex((s) => s.id === st.id);
+            return (
+              <article className={`ref-item${closed ? " closed" : ""}`} key={r.t}>
+                <div className="ref-item-top">
+                  <div>
+                    <div className="ref-nm">
+                      {r.indicado}
+                      {r.tipo && <span className="ref-tipo"> · {r.tipo}</span>}
+                    </div>
+                    <div className="ref-meta-line">
+                      {protocolo(r.t)} · registrada em {fmt(r.t)}
+                    </div>
+                  </div>
+                  <span className={`ref-badge s-${st.id}`}>{st.label}</span>
+                </div>
+                {!closed && (
+                  <ol className="ref-steps" aria-label={`Andamento: ${st.label}`}>
+                    {STEPS.map((s, i) => (
+                      <li
+                        key={s.id}
+                        className={i < pos ? "done" : i === pos ? "now" : ""}
+                      >
+                        <span className="dot" aria-hidden="true" />
+                        <span className="lbl">{s.label}</span>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+                <p className="ref-desc">{st.desc}</p>
+              </article>
+            );
+          })}
+        </div>
+      )}
+    </section>
+  );
+}

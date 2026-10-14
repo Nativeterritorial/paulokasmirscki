@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { protocolo } from "./referral-status";
+
+export { protocolo };
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const WA_FALLBACK = `${WHATSAPP}?text=${encodeURIComponent(
@@ -21,10 +24,10 @@ const EMPTY = {
   website: "", // honeypot (fica escondido)
 };
 
-// protocolo curto a partir do timestamp do registro (o mesmo aparece no painel)
-export const protocolo = (t) => `IND-${Number(t).toString(36).toUpperCase()}`;
-
-export default function ReferralForm() {
+// Formulário de indicação. No site público a pessoa informa nome e WhatsApp;
+// na Área de Membros (props `member` + `code`) quem indica já é conhecido, então
+// esses dois campos somem e a indicação fica ligada ao membro.
+export default function ReferralForm({ member = null, code = "", onDone }) {
   const [f, setF] = useState(EMPTY);
   const [sending, setSending] = useState(false);
   const [doneAt, setDoneAt] = useState(null);
@@ -38,13 +41,12 @@ export default function ReferralForm() {
     e.preventDefault();
     setErr("");
     setUnavailable(false);
-    if (
-      !f.nome.trim() ||
-      !f.whatsapp.trim() ||
-      !f.indicado.trim() ||
-      !f.indicadoContato.trim()
-    ) {
+    if (!member && (!f.nome.trim() || !f.whatsapp.trim())) {
       setErr("Preencha seu nome e WhatsApp, e o nome e contato de quem você indica.");
+      return;
+    }
+    if (!f.indicado.trim() || !f.indicadoContato.trim()) {
+      setErr("Preencha o nome e o contato de quem você indica.");
       return;
     }
     if (!f.autorizado || !f.aceite) {
@@ -56,11 +58,13 @@ export default function ReferralForm() {
       const r = await fetch("/api/referral", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(f),
+        body: JSON.stringify(member ? { ...f, code } : f),
       });
       const d = await r.json();
-      if (d.ok && d.t) setDoneAt(d.t);
-      else {
+      if (d.ok && d.t) {
+        setDoneAt(d.t);
+        if (onDone) onDone(d.t);
+      } else {
         setErr(d.error || "Não consegui registrar. Tente novamente.");
         setUnavailable(!!d.unavailable);
       }
@@ -84,7 +88,7 @@ export default function ReferralForm() {
             dateStyle: "short",
             timeStyle: "short",
           })}
-          . Guarde esse número: é ele que comprova a data da sua indicação.
+          . {member ? "Ela já aparece na sua lista de indicações." : "Guarde esse número: é ele que comprova a data da sua indicação."}
         </p>
         <p>O Paulo confirma com você pelo WhatsApp se a indicação é válida.</p>
         <button
@@ -103,27 +107,29 @@ export default function ReferralForm() {
 
   return (
     <form className="signup-form" onSubmit={submit}>
-      <div className="signup-row">
-        <label>
-          Seu nome *
-          <input
-            value={f.nome}
-            onChange={upd("nome")}
-            placeholder="Quem está indicando"
-            autoComplete="name"
-          />
-        </label>
-        <label>
-          Seu WhatsApp *
-          <input
-            value={f.whatsapp}
-            onChange={upd("whatsapp")}
-            placeholder="(54) 99999-9999"
-            inputMode="tel"
-            autoComplete="tel"
-          />
-        </label>
-      </div>
+      {!member && (
+        <div className="signup-row">
+          <label>
+            Seu nome *
+            <input
+              value={f.nome}
+              onChange={upd("nome")}
+              placeholder="Quem está indicando"
+              autoComplete="name"
+            />
+          </label>
+          <label>
+            Seu WhatsApp *
+            <input
+              value={f.whatsapp}
+              onChange={upd("whatsapp")}
+              placeholder="(54) 99999-9999"
+              inputMode="tel"
+              autoComplete="tel"
+            />
+          </label>
+        </div>
+      )}
       <div className="signup-row">
         <label>
           Quem você indica *
@@ -177,7 +183,17 @@ export default function ReferralForm() {
       </label>
       <label className="ref-check">
         <input type="checkbox" checked={f.aceite} onChange={chk("aceite")} />
-        <span>Li e aceito as regras da indicação descritas nesta página. *</span>
+        <span>
+          Li e aceito as{" "}
+          {member ? (
+            <a href="/parcerias#indicar" target="_blank" rel="noopener noreferrer">
+              regras da indicação
+            </a>
+          ) : (
+            "regras da indicação descritas nesta página"
+          )}
+          . *
+        </span>
       </label>
       {/* honeypot anti-bot: escondido pra humanos */}
       <input

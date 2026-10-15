@@ -195,7 +195,7 @@ export default function Parcerias() {
                 >
                   Indicar pelo WhatsApp
                 </a>
-                <a className="btn btn-outline" href="/ecossistema">
+                <a className="btn btn-outline" href="/ecossistema#cadastro">
                   Fazer meu cadastro
                 </a>
                 <a className="ind-cta-login" href="/area#indicacoes">

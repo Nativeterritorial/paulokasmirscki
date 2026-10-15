@@ -11,15 +11,6 @@ const WHATSAPP = "https://wa.me/5554996505799";
 const INSTAGRAM = "https://instagram.com/paulokasmirscki";
 
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
-const WA_RECEBER = wa(
-  "Olá Paulo! Tenho um negócio e quero fazer parte da sua rede para receber indicações de clientes."
-);
-const WA_INDICAR = wa(
-  "Olá Paulo! Quero entrar no ecossistema para indicar e ser indicado dentro da rede."
-);
-const WA_SOLUCAO = wa(
-  "Olá Paulo! Estou procurando uma solução/fornecedor de confiança. Pode me conectar com alguém da rede?"
-);
 
 const SEGMENTOS = [
   "Imóveis & Construção",
@@ -668,7 +659,7 @@ export default function Home() {
           </a>
           <nav className="nav-links">
             <a href="#sobre">Sobre</a>
-            <a href="#ecossistema">Ecossistema</a>
+            <a href="/ecossistema">Ecossistema</a>
             <a href="#rede">A Rede</a>
             <a href="#segmentos">Segmentos</a>
             <a href="/parcerias">Parcerias</a>
@@ -882,53 +873,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 02 — Ecossistema (flip) */}
-        <section id="ecossistema" className="flip">
-          <GhostMarquee word="Conecta" />
-          <div className="container">
-            <div className="section-head center">
-              <div className="section-num">
-                02 <span>/ O Ecossistema</span>
-              </div>
-              <h2>
-                Um só lugar para <em>conectar e resolver</em>
-              </h2>
-              <p>
-                Pessoas e marcas de segmentos diferentes, integradas numa rede
-                que gera oportunidade para todos os lados.
-              </p>
-            </div>
-
-            <div className="eco-grid fade-up">
-              <article className="eco-card">
-                <div className="num">01</div>
-                <h3>Conexões estratégicas</h3>
-                <p>
-                  Aproximo as pessoas certas no momento certo, unindo
-                  profissionais, empresas e clientes com interesses
-                  complementares.
-                </p>
-              </article>
-              <article className="eco-card">
-                <div className="num">02</div>
-                <h3>Soluções sob medida</h3>
-                <p>
-                  Entendo a necessidade de cada um e encontro, dentro da rede,
-                  quem tem exatamente a solução que aquele cliente precisa.
-                </p>
-              </article>
-              <article className="eco-card">
-                <div className="num">03</div>
-                <h3>Negócios que crescem</h3>
-                <p>
-                  Cada nova conexão fortalece o ecossistema — gerando
-                  indicações, parcerias e oportunidades que se multiplicam.
-                </p>
-              </article>
-            </div>
-          </div>
-        </section>
-
         {/* Marquee */}
         <div className="marquee-band" aria-hidden="true">
           <div className="marquee-track">
@@ -956,13 +900,13 @@ export default function Home() {
           </div>
         </div>
 
-        {/* 03 — A Rede (marcas) */}
+        {/* 02 — A Rede (marcas) */}
         <section id="rede">
           <GhostMarquee word="Rede" />
           <div className="container">
             <div className="section-head">
               <div className="section-num">
-                03 <span>/ A Rede</span>
+                02 <span>/ A Rede</span>
               </div>
               <h2>
                 Marcas que já fazem parte do <em>ecossistema</em>
@@ -977,18 +921,18 @@ export default function Home() {
 
             <p className="brands-note">
               <a href="/rede" style={{ color: "var(--gold-2)" }}>Ver todas as empresas →</a>
-              {"  ·  "}E a sua marca? <a href="#contato" style={{ color: "var(--gold-2)" }}>Faça parte da rede →</a>
+              {"  ·  "}E a sua marca? <a href="/ecossistema#faca-parte" style={{ color: "var(--gold-2)" }}>Faça parte da rede →</a>
             </p>
           </div>
         </section>
 
-        {/* 04 — Segmentos (editorial hover) */}
+        {/* 03 — Segmentos (editorial hover) */}
         <section id="segmentos">
           <GhostMarquee word="Mercados" />
           <div className="container">
             <div className="section-head">
               <div className="section-num">
-                04 <span>/ Segmentos atendidos</span>
+                03 <span>/ Segmentos atendidos</span>
               </div>
               <h2>
                 Uma rede que cruza <em>vários mercados</em>
@@ -1013,13 +957,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 05 — Depoimentos */}
+        {/* 04 — Depoimentos */}
         <section id="depoimentos">
           <GhostMarquee word="Confiança" />
           <div className="container">
             <div className="section-head center">
               <div className="section-num">
-                05 <span>/ Depoimentos</span>
+                04 <span>/ Depoimentos</span>
               </div>
               <h2>
                 Quem se conectou, <em>recomenda</em>
@@ -1080,87 +1024,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 06 — Faça parte */}
-        <section id="faca-parte" className="flip">
-          <GhostMarquee word="Junte-se" />
-          <div className="container">
-            <div className="section-head center">
-              <div className="section-num">
-                06 <span>/ Para a sua marca</span>
-              </div>
-              <h2>
-                Faça parte da <em>rede</em>
-              </h2>
-              <p>
-                Se você tem um negócio, entrar no ecossistema do Paulo abre
-                portas que sozinho levariam anos — clientes, parceiros e
-                indicações de quem já confia nele.
-              </p>
-            </div>
-
-            <div className="join-grid fade-up">
-              <article className="join-card">
-                <div className="join-num">01</div>
-                <h3>Quero receber indicações</h3>
-                <p>
-                  Seja apresentado a clientes e parceiros que precisam
-                  exatamente do que a sua empresa faz.
-                </p>
-                <a
-                  className="btn btn-primary"
-                  href={WA_RECEBER}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Quero receber indicações
-                </a>
-              </article>
-
-              <article className="join-card">
-                <div className="join-num">02</div>
-                <h3>Quero indicar e ser indicado</h3>
-                <p>
-                  Troque oportunidades com uma rede ativa de profissionais e
-                  empresas de vários segmentos.
-                </p>
-                <a
-                  className="btn btn-primary"
-                  href={WA_INDICAR}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Entrar na rede
-                </a>
-              </article>
-
-              <article className="join-card">
-                <div className="join-num">03</div>
-                <h3>Preciso de uma solução</h3>
-                <p>
-                  Procurando um fornecedor ou serviço de confiança? O Paulo te
-                  conecta com a pessoa certa da rede.
-                </p>
-                <a
-                  className="btn btn-primary"
-                  href={WA_SOLUCAO}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Buscar na rede
-                </a>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        {/* 07 — A Plataforma */}
+        {/* 05 — A Plataforma */}
         <section id="plataforma">
           <GhostMarquee word="Plataforma" />
           <div className="container">
             <div className="plat-grid">
               <div className="plat-text">
                 <div className="section-num">
-                  07 <span>/ A Plataforma</span>
+                  05 <span>/ A Plataforma</span>
                 </div>
                 <h2 style={{ marginTop: "16px" }}>
                   Uma plataforma <em>exclusiva</em> para a rede

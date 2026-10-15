@@ -6311,3 +6311,13 @@ body:has(.vt-theme) {
 .vt-theme .vt-gal-thumbs button.on {
   border-color: var(--vt-gold);
 }
+
+/* /ecossistema: pilares e caminhos (mesmos cartões que ficavam na página inicial) */
+.eco-page-block {
+  margin-top: 30px;
+}
+@media (max-width: 920px) {
+  .eco-page-block .eco-grid {
+    grid-template-columns: 1fr;
+  }
+}

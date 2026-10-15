@@ -4,12 +4,53 @@ import SignupForm from "./signup-form";
 // preencha (ex.: "R$ 97/mês" ou "R$ 497/ano") quando definirem.
 const PRECO = null;
 
+const WHATSAPP = "https://wa.me/5554996505799";
+const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+
 export const metadata = {
-  title: "Faça parte do Ecossistema — Paulo Kasmirscki",
+  title: "O Ecossistema — Paulo Kasmirscki",
   description:
-    "Entre para a rede de negócios do Paulo Kasmirscki: concierge de IA, diretório de empresas, indicações e conexões que viram negócio.",
+    "Um só lugar para conectar e resolver: a rede de negócios do Paulo Kasmirscki, com concierge de IA, diretório de empresas, indicações e conexões que viram negócio.",
   alternates: { canonical: "/ecossistema" },
 };
+
+// os três pilares (antes na seção 02 da página inicial)
+const PILARES = [
+  [
+    "Conexões estratégicas",
+    "Aproximo as pessoas certas no momento certo, unindo profissionais, empresas e clientes com interesses complementares.",
+  ],
+  [
+    "Soluções sob medida",
+    "Entendo a necessidade de cada um e encontro, dentro da rede, quem tem exatamente a solução que aquele cliente precisa.",
+  ],
+  [
+    "Negócios que crescem",
+    "Cada nova conexão fortalece o ecossistema, gerando indicações, parcerias e oportunidades que se multiplicam.",
+  ],
+];
+
+// os três caminhos para entrar (antes na seção 06 da página inicial)
+const CAMINHOS = [
+  {
+    t: "Quero receber indicações",
+    d: "Seja apresentado a clientes e parceiros que precisam exatamente do que a sua empresa faz.",
+    cta: "Quero receber indicações",
+    href: wa("Olá Paulo! Tenho um negócio e quero fazer parte da sua rede para receber indicações de clientes."),
+  },
+  {
+    t: "Quero indicar e ser indicado",
+    d: "Troque oportunidades com uma rede ativa de profissionais e empresas de vários segmentos.",
+    cta: "Entrar na rede",
+    href: wa("Olá Paulo! Quero entrar no ecossistema para indicar e ser indicado dentro da rede."),
+  },
+  {
+    t: "Preciso de uma solução",
+    d: "Procurando um fornecedor ou serviço de confiança? O Paulo te conecta com a pessoa certa da rede.",
+    cta: "Buscar na rede",
+    href: wa("Olá Paulo! Estou procurando uma solução/fornecedor de confiança. Pode me conectar com alguém da rede?"),
+  },
+];
 
 const BENEFICIOS = [
   {
@@ -51,70 +92,132 @@ export default function Ecossistema() {
             <span className="brand-name">Paulo Kasmirscki</span>
           </a>
           <div className="nav-actions">
-            <a className="nav-login" href="/area">
-              Já sou membro
+            <a className="nav-login" href="/area" aria-label="Área de Membros">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 5v1h14v-1c0-3-3-5-7-5z" />
+              </svg>
+              <span className="nav-login-txt">Área de Membros</span>
+            </a>
+            <a className="btn btn-primary" href="#cadastro">
+              Fazer cadastro
             </a>
           </div>
         </div>
       </header>
 
       <main className="container join-wrap">
+        {/* o que é */}
         <div className="join-hero">
-          <div className="eyebrow">Área de membros</div>
-          <h1>
-            Entre para o <em>Ecossistema</em>
+          <div className="eyebrow">O Ecossistema</div>
+          <h1 className="mdl-title">
+            Um só lugar para <em>conectar e resolver</em>
           </h1>
           <p className="join-lead">
-            Uma rede de empresas e pessoas que se indicam, se conectam e
-            crescem juntas — com um concierge de IA trabalhando pra você e o
-            Paulo fazendo as pontes.
+            Pessoas e marcas de segmentos diferentes, integradas numa rede que
+            gera oportunidade para todos os lados.
           </p>
         </div>
 
-        <div className="join-cols">
-          <div className="join-benefits">
-            {BENEFICIOS.map((b) => (
-              <div className="join-b" key={b.t}>
-                <div className="join-b-ic" aria-hidden="true">
-                  {b.ic}
+        <div className="flip eco-page-block">
+          <div className="eco-grid">
+            {PILARES.map(([t, d], i) => (
+              <article className="eco-card" key={t}>
+                <div className="num">{String(i + 1).padStart(2, "0")}</div>
+                <h3>{t}</h3>
+                <p>{d}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {/* como entrar */}
+        <section className="mdl-sec" id="faca-parte">
+          <div className="mdl-head">
+            <div className="kick">Para a sua marca</div>
+            <h2 className="mdl-title">
+              Faça parte da <em>rede</em>
+            </h2>
+            <p>
+              Se você tem um negócio, entrar no ecossistema abre portas que
+              sozinho levariam anos: clientes, parceiros e indicações de quem
+              já confia no Paulo.
+            </p>
+          </div>
+          <div className="flip eco-page-block">
+            <div className="join-grid">
+              {CAMINHOS.map((c, i) => (
+                <article className="join-card" key={c.t}>
+                  <div className="join-num">{String(i + 1).padStart(2, "0")}</div>
+                  <h3>{c.t}</h3>
+                  <p>{c.d}</p>
+                  <a className="btn btn-primary" href={c.href} target="_blank" rel="noopener noreferrer">
+                    {c.cta}
+                  </a>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* cadastro */}
+        <section className="mdl-sec" id="cadastro">
+          <div className="mdl-head">
+            <div className="kick">Área de membros</div>
+            <h2 className="mdl-title">
+              Entre para o <em>Ecossistema</em>
+            </h2>
+            <p>
+              Uma rede de empresas e pessoas que se indicam, se conectam e
+              crescem juntas, com um concierge de IA trabalhando para você e o
+              Paulo fazendo as pontes.
+            </p>
+          </div>
+
+          <div className="join-cols">
+            <div className="join-benefits">
+              {BENEFICIOS.map((b) => (
+                <div className="join-b" key={b.t}>
+                  <div className="join-b-ic" aria-hidden="true">
+                    {b.ic}
+                  </div>
+                  <div>
+                    <h3>{b.t}</h3>
+                    <p>{b.d}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3>{b.t}</h3>
-                  <p>{b.d}</p>
-                </div>
+              ))}
+            </div>
+
+            <aside className="join-buy">
+              <div className="join-buy-card">
+                <div className="kick">Cadastro</div>
+                {PRECO && (
+                  <div className="join-price">
+                    <span className="jp-val">{PRECO}</span>
+                    <span className="jp-sub">acesso completo à rede</span>
+                  </div>
+                )}
+                <ul className="join-checks">
+                  <li>✓ Concierge de IA ilimitado</li>
+                  <li>✓ Sua empresa no diretório</li>
+                  <li>✓ Página própria no site da rede</li>
+                  <li>✓ Indicações acompanhadas pelo Paulo</li>
+                </ul>
+                <SignupForm />
+              </div>
+            </aside>
+          </div>
+
+          <div className="join-steps">
+            {PASSOS.map(([n, t, d]) => (
+              <div className="join-step" key={n}>
+                <div className="js-n">{n}</div>
+                <h4>{t}</h4>
+                <p>{d}</p>
               </div>
             ))}
           </div>
-
-          <aside className="join-buy">
-            <div className="join-buy-card">
-              <div className="kick">Cadastro</div>
-              {PRECO && (
-                <div className="join-price">
-                  <span className="jp-val">{PRECO}</span>
-                  <span className="jp-sub">acesso completo à rede</span>
-                </div>
-              )}
-              <ul className="join-checks">
-                <li>✓ Concierge de IA ilimitado</li>
-                <li>✓ Sua empresa no diretório</li>
-                <li>✓ Página própria no site da rede</li>
-                <li>✓ Indicações acompanhadas pelo Paulo</li>
-              </ul>
-              <SignupForm />
-            </div>
-          </aside>
-        </div>
-
-        <div className="join-steps">
-          {PASSOS.map(([n, t, d]) => (
-            <div className="join-step" key={n}>
-              <div className="js-n">{n}</div>
-              <h4>{t}</h4>
-              <p>{d}</p>
-            </div>
-          ))}
-        </div>
+        </section>
       </main>
     </div>
   );

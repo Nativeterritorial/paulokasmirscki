@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const LINKS = [
   ["#sobre", "Sobre"],
-  ["#ecossistema", "Ecossistema"],
+  ["/ecossistema", "Ecossistema"],
   ["#rede", "A Rede"],
   ["#segmentos", "Segmentos"],
   ["/parcerias", "Parcerias"],

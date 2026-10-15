@@ -315,7 +315,7 @@ export default function Area() {
           {err && <div className="login-err">{err}</div>}
           <div className="login-hint">
             Ainda não tem acesso?
-            <a className="btn btn-outline login-signup" href="/ecossistema">
+            <a className="btn btn-outline login-signup" href="/ecossistema#cadastro">
               Cadastre-se
             </a>
           </div>

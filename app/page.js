@@ -29,29 +29,35 @@ const SEGMENTOS = [
   "Jurídico",
   "Tecnologia & IA",
   "Marketing & Digital",
+  "Mídia & Comunicação",
   "Saúde & Bem-estar",
   "Estética & Beleza",
   "Gastronomia",
   "Turismo & Hotelaria",
   "Esporte & Lazer",
   "Comércio & Varejo",
+  "Moda & Vestuário",
   "Serviços",
-  "Agro & Indústria",
+  "Transporte & Logística",
+  "Agro & Pecuária",
+  "Indústria & Móveis",
   "Sustentabilidade & Meio Ambiente",
   "Negócios & Empresas",
 ];
 
-// posições dos nós em volta do centro (50,50), raio 40 — 8 segmentos em destaque
-// (nomes curtos nas pontas esquerda/direita pra não cortar)
+// posições dos nós em volta do centro (50,50), raio 40 — 10 segmentos em destaque,
+// um a cada 36° (nomes curtos nas pontas esquerda/direita pra não cortar)
 const HUB_NODES = [
   { label: "Imóveis & Construção", x: 50, y: 10 },
-  { label: "Finanças & Investimentos", x: 78.28, y: 21.72 },
-  { label: "Negócios & Empresas", x: 90, y: 50 },
-  { label: "Marketing & Digital", x: 78.28, y: 78.28 },
+  { label: "Finanças & Investimentos", x: 73.51, y: 17.64 },
+  { label: "Negócios & Empresas", x: 88.04, y: 37.64 },
+  { label: "Marketing & Digital", x: 88.04, y: 62.36 },
+  { label: "Indústria & Móveis", x: 73.51, y: 82.36 },
   { label: "Saúde & Bem-estar", x: 50, y: 90 },
-  { label: "Agro & Indústria", x: 21.72, y: 78.28 },
-  { label: "Gastronomia", x: 10, y: 50 },
-  { label: "Tecnologia & IA", x: 21.72, y: 21.72 },
+  { label: "Transporte & Logística", x: 26.49, y: 82.36 },
+  { label: "Agro & Pecuária", x: 11.96, y: 62.36 },
+  { label: "Gastronomia", x: 11.96, y: 37.64 },
+  { label: "Tecnologia & IA", x: 26.49, y: 17.64 },
 ];
 
 const BRANDS = [

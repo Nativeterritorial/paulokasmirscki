@@ -42,7 +42,24 @@ export const SEG_ICONS = {
   "Serviços": [
     "M14.5 6.5a4 4 0 0 0-5 5L3 18l3 3 6.5-6.5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5 2.5-2.5z",
   ],
-  "Agro & Indústria": [
+  "Mídia & Comunicação": [
+    "M4 9h16v11H4z",
+    "M8 4l4 5 4-5",
+    "M15 13v3",
+  ],
+  "Moda & Vestuário": [
+    "M8 4l4 2 4-2 4 3-2 4-2-1v10H8V10l-2 1-2-4 4-3z",
+  ],
+  "Transporte & Logística": [
+    "M3 7h11v9H3z",
+    "M14 10h4l3 3v3h-7",
+    "M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM17 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z",
+  ],
+  "Indústria & Móveis": [
+    "M3 21V10l6 4V10l6 4V6l6 4v11H3z",
+    "M7 17h2M12 17h2M17 17h2",
+  ],
+  "Agro & Pecuária": [
     "M12 21v-9",
     "M12 12c0-4-3-6-7-6 0 4 3 6 7 6z",
     "M12 15c0-3 2.5-5 6-5 0 3-2.5 5-6 5z",
@@ -50,6 +67,12 @@ export const SEG_ICONS = {
   "Sustentabilidade & Meio Ambiente": [
     "M5 19c0-8 5-13 15-14 0 9-5 14-13 14",
     "M5 19c3-5 6-8 10-10",
+  ],
+  // o hub em volta do "PK" continua com "Agro & Indústria" (mesmo ícone)
+  "Agro & Indústria": [
+    "M12 21v-9",
+    "M12 12c0-4-3-6-7-6 0 4 3 6 7 6z",
+    "M12 15c0-3 2.5-5 6-5 0 3-2.5 5-6 5z",
   ],
   "Negócios & Empresas": ["M3 8h18v12H3z", "M9 8V5h6v3", "M3 13h18"],
 };

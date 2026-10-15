@@ -7,7 +7,8 @@ import MyReferrals from "./my-referrals";
 import MyProjects from "./my-projects";
 import MyGestao from "./my-gestao";
 import MyImoveis from "./my-imoveis";
-import { FirmActions, ChaveModal, MyChaves } from "./chave";
+import { FirmActions, ChaveModal } from "./chave";
+import MySolicitacoes from "./solicitacoes";
 import { useNaoLidas } from "./pedidos";
 
 const WHATSAPP = "https://wa.me/5554996505799";
@@ -342,11 +343,13 @@ export default function Area() {
           {member && (
             <span className="area-hello">Olá, {member.nome.split(" ")[0]}</span>
           )}
-          {naoLidas.total > 0 && (
-            <a className="area-refs-link area-msgs" href={`#pd-${naoLidas.primeiro}`}>
-              💬 {naoLidas.total} {naoLidas.total === 1 ? "resposta nova" : "respostas novas"}
-            </a>
-          )}
+          <a
+            className={`area-refs-link area-sol${naoLidas.total > 0 ? " area-msgs" : ""}`}
+            href={naoLidas.total > 0 ? `#pd-${naoLidas.primeiro}` : "#solicitacoes"}
+          >
+            Solicitações
+            {naoLidas.total > 0 && <span className="area-msgs-n">{naoLidas.total}</span>}
+          </a>
           <a className="area-refs-link" href="#indicacoes">
             {member ? "Minhas indicações" : "Indicar negócio"}
           </a>
@@ -565,7 +568,7 @@ export default function Area() {
         </aside>
       </div>
 
-      <MyChaves code={code} member={member} version={chaveVer} />
+      <MySolicitacoes code={code} member={member} version={chaveVer} />
       <MyReferrals code={code} member={member} />
       <MyImoveis code={code} member={member} />
       <MyProjects code={code} member={member} />

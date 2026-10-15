@@ -6701,3 +6701,52 @@ body:has(.vt-theme) {
 .pd-admin .pd-chat {
   margin-top: 12px;
 }
+
+/* Minhas solicitações */
+.pd-tipo {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3a2600;
+  background: #f5c04e;
+}
+.area-msgs-n {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  background: #e5484d;
+}
+/* itens da lista não estouram a largura no celular */
+.ref-list > * {
+  min-width: 0;
+}
+.pd-msg-txt {
+  overflow-wrap: anywhere;
+}
+/* no celular, "Solicitações" continua no topo (os outros atalhos somem) */
+@media (max-width: 760px) {
+  .area-top-actions .area-sol {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    font-size: 0.72rem;
+  }
+}
+@media (max-width: 560px) {
+  /* no celular o selo "Área de Membros" sai do topo para caber Solicitações e Sair */
+  .area-top .area-badge {
+    display: none;
+  }
+}

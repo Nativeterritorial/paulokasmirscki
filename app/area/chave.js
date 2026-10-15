@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePedidos, PedidosList } from "./pedidos";
 
 // Chave PK: a apresentação feita pelo Paulo ao responsável por uma empresa da
 // rede. Não é um contato direto — o pedido passa por análise e o Paulo faz a
@@ -182,26 +181,5 @@ export function ChaveModal({ company, code, member, onClose, onDone }) {
         )}
       </div>
     </div>
-  );
-}
-
-// "Minhas Chaves PK": aparece só para quem já pediu alguma
-export function MyChaves({ code, member, version }) {
-  const { list, load, cancel, apply } = usePedidos(code, member, "chave");
-  useEffect(() => {
-    if (version) load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [version]);
-  if (!member || !list.length) return null;
-  return (
-    <section className="area-refs area-projects" id="chaves">
-      <div className="area-refs-head">
-        <div>
-          <div className="kick">Minhas Chaves PK</div>
-          <h2>Apresentações que você pediu ao Paulo</h2>
-        </div>
-      </div>
-      <PedidosList list={list} onCancel={cancel} code={code} apply={apply} />
-    </section>
   );
 }

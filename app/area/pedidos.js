@@ -66,7 +66,7 @@ export function usePedidos(code, member, tipo) {
     if (!member) return;
     try {
       const d = await post(code, {});
-      if (d.ok) setList((d.pedidos || []).filter((p) => p.tipo === tipo));
+      if (d.ok) setList((d.pedidos || []).filter((p) => !tipo || p.tipo === tipo));
     } catch (e) {}
   }, [code, member, tipo]);
   useEffect(() => {
@@ -77,13 +77,13 @@ export function usePedidos(code, member, tipo) {
   }, [load]);
   // resultado de enviar mensagem / marcar como lido
   const apply = (d) => {
-    if (d?.ok) setList((d.pedidos || []).filter((x) => x.tipo === tipo));
+    if (d?.ok) setList((d.pedidos || []).filter((x) => !tipo || x.tipo === tipo));
   };
   const cancel = async (p) => {
     if (!window.confirm(`Cancelar o pedido “${p.titulo}”?`)) return;
     try {
       const d = await post(code, { action: "cancel", id: p.id });
-      if (d.ok) setList((d.pedidos || []).filter((x) => x.tipo === tipo));
+      if (d.ok) setList((d.pedidos || []).filter((x) => !tipo || x.tipo === tipo));
     } catch (e) {}
   };
   return { list, load, cancel, apply, code };
@@ -156,7 +156,14 @@ function Conversa({ p, code, apply }) {
   );
 }
 
-export function PedidosList({ list, onCancel, code, apply }) {
+const TIPO_LABEL = {
+  chave: "Chave PK",
+  projeto: "Novo projeto",
+  gestao: "Gestão",
+  imovel: "Imóvel",
+};
+
+export function PedidosList({ list, onCancel, code, apply, showTipo }) {
   const [aberta, setAberta] = useState("");
   if (!list.length) return null;
   return (
@@ -171,6 +178,7 @@ export function PedidosList({ list, onCancel, code, apply }) {
           >
             <div className="ref-item-top">
               <div>
+                {showTipo && <div className="pd-tipo">{TIPO_LABEL[p.tipo] || p.tipo}</div>}
                 <div className="ref-nm">
                   {p.titulo}
                   {p.onde && <span className="ref-tipo"> · {p.onde}</span>}

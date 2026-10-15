@@ -49,13 +49,34 @@ export async function toJpeg(file) {
 const fmt = (t) =>
   new Date(t).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric" });
 
-const post = async (code, extra) => {
+// pedidos feitos neste aparelho (id + chave secreta) — é o que permite
+// acompanhar sem link pessoal
+const MEUS_KEY = "pk_meus_pedidos";
+export const getMeus = () => {
+  try {
+    const v = JSON.parse(localStorage.getItem(MEUS_KEY) || "[]");
+    return Array.isArray(v) ? v : [];
+  } catch (e) {
+    return [];
+  }
+};
+const lembrar = (criado) => {
+  if (!criado?.id || !criado?.s) return;
+  try {
+    const meus = getMeus().filter((x) => x.id !== criado.id);
+    localStorage.setItem(MEUS_KEY, JSON.stringify([criado, ...meus].slice(0, 40)));
+  } catch (e) {}
+};
+
+export const post = async (code, extra) => {
   const r = await fetch("/api/my-requests", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ code, ...extra }),
+    body: JSON.stringify({ code, meus: getMeus(), ...extra }),
   });
-  return r.json();
+  const d = await r.json();
+  if (d?.criado) lembrar(d.criado);
+  return d;
 };
 
 // Lista de pedidos do membro de um tipo. Compartilhada entre Meu projeto e
@@ -63,7 +84,7 @@ const post = async (code, extra) => {
 export function usePedidos(code, member, tipo) {
   const [list, setList] = useState([]);
   const load = useCallback(async () => {
-    if (!member) return;
+    if (!member && !getMeus().length) return;
     try {
       const d = await post(code, {});
       if (d.ok) setList((d.pedidos || []).filter((p) => !tipo || p.tipo === tipo));
@@ -543,9 +564,11 @@ export function PedidoForm({ code, tipo, member, onDone }) {
 export function useNaoLidas(code, member) {
   const [info, setInfo] = useState({ total: 0, primeiro: "" });
   useEffect(() => {
-    if (!member) return;
+    if (!code) return;
     let alive = true;
     const load = async () => {
+      // sem link pessoal e sem pedidos neste aparelho: nada pra conferir
+      if (!member && !getMeus().length) return;
       try {
         const d = await post(code, {});
         if (!alive || !d.ok) return;

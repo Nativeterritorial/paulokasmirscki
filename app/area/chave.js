@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { post } from "./pedidos";
 
 // Chave PK: a apresentação feita pelo Paulo ao responsável por uma empresa da
 // rede. Não é um contato direto — o pedido passa por análise e o Paulo faz a
@@ -69,23 +70,17 @@ export function ChaveModal({ company, code, member, onClose, onDone }) {
     }
     setSending(true);
     try {
-      const r = await fetch("/api/my-requests", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          code,
-          action: "create",
-          pedido: {
-            tipo: "chave",
-            titulo: company.nome,
-            empresaId: company.id,
-            descricao: f.descricao,
-            nome: f.nome,
-            whatsapp: f.whatsapp,
-          },
-        }),
+      const d = await post(code, {
+        action: "create",
+        pedido: {
+          tipo: "chave",
+          titulo: company.nome,
+          empresaId: company.id,
+          descricao: f.descricao,
+          nome: f.nome,
+          whatsapp: f.whatsapp,
+        },
       });
-      const d = await r.json();
       if (d.ok) {
         setDone(true);
         if (onDone) onDone();
@@ -135,7 +130,7 @@ export function ChaveModal({ company, code, member, onClose, onDone }) {
             <p>
               O Paulo vai analisar e falar com você pelo WhatsApp sobre a
               apresentação.
-              {member ? " Você acompanha o andamento na sua área." : ""}
+              {" "}Você acompanha o andamento e as respostas em Solicitações.
             </p>
             <button type="button" className="btn btn-outline" onClick={onClose}>
               Fechar

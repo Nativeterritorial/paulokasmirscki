@@ -6775,3 +6775,21 @@ body:has(.vt-theme) {
   text-transform: none;
   letter-spacing: 0;
 }
+
+/* Minhas solicitações: lista com rolagem própria */
+.sol-scroll {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 6px;
+  scrollbar-width: thin;
+}
+.sol-scroll .ref-list {
+  grid-template-columns: 1fr;
+}
+.sol-count {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+}

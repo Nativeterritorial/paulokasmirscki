@@ -2008,10 +2008,38 @@ body {
 .brand-card:hover {
   background: rgba(255, 255, 255, 0.10);
 }
+/* botão flutuante na cor do WhatsApp, com aviso ao passar o mouse */
 .wa-float {
-  background: linear-gradient(135deg, #7cb3ff, #3f8ef5);
-  color: #0a285f;
-  box-shadow: 0 14px 34px rgba(63, 142, 245, 0.45);
+  background: #25d366;
+  color: #ffffff;
+  box-shadow: 0 14px 34px rgba(37, 211, 102, 0.4);
+}
+.wa-float:hover {
+  background: #1ebe5b;
+}
+.wa-float-tip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translate(6px, -50%);
+  padding: 8px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0b3d22;
+  background: #ffffff;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+@media (hover: hover) {
+  .wa-float:hover .wa-float-tip,
+  .wa-float:focus-visible .wa-float-tip {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
 }
 
 /* ===== Cookie banner ===== */

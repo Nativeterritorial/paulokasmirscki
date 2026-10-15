@@ -2,7 +2,7 @@
 // à abertura), "+ Nova gestão" (Gestor de negócios) e "+ Cadastrar imóvel"
 // (Quero vender meu imóvel). O Paulo vê nas abas Projetos, Gestão e Imóveis.
 
-export const PEDIDO_TIPOS = ["projeto", "gestao", "imovel"];
+export const PEDIDO_TIPOS = ["projeto", "gestao", "imovel", "chave"];
 
 export const PEDIDO_STATUS = [
   { id: "novo", label: "Recebido", desc: "O Paulo recebeu o seu pedido e vai entrar em contato pelo WhatsApp." },
@@ -16,10 +16,19 @@ const IMOVEL_DESC = {
   aceito: "Imóvel aprovado! O Paulo vai preparar o anúncio com você.",
   encerrado: "Esse cadastro foi encerrado. Fale com o Paulo se quiser retomar.",
 };
+// Chave PK: as etapas têm nomes próprios (Pedido → Análise → Apresentação)
+const CHAVE_STATUS = {
+  novo: { label: "Pedido recebido", desc: "O Paulo recebeu o pedido da sua Chave e vai analisar." },
+  conversa: { label: "Em análise", desc: "O Paulo está avaliando e combinando a apresentação." },
+  aceito: { label: "Apresentado", desc: "Apresentação feita! O Paulo conectou você com a empresa." },
+  encerrado: { label: "Encerrado", desc: "Esse pedido foi encerrado. Fale com o Paulo se quiser retomar." },
+};
 export const pedidoStatus = (id, tipo) => {
   const st = PEDIDO_STATUS.find((s) => s.id === id) || PEDIDO_STATUS[0];
+  if (tipo === "chave") return { ...st, ...CHAVE_STATUS[st.id] };
   return tipo === "imovel" && IMOVEL_DESC[st.id] ? { ...st, desc: IMOVEL_DESC[st.id] } : st;
 };
+export const statusLabel = (id, tipo) => pedidoStatus(id, tipo).label;
 
 // em que ponto está a ideia (pedido de projeto)
 export const FASES_PROJETO = [

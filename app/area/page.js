@@ -7,6 +7,7 @@ import MyReferrals from "./my-referrals";
 import MyProjects from "./my-projects";
 import MyGestao from "./my-gestao";
 import MyImoveis from "./my-imoveis";
+import { FirmActions, ChaveModal, MyChaves } from "./chave";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
@@ -68,6 +69,8 @@ export default function Area() {
   const [busca, setBusca] = useState("");
   // empresas combinadas (fixas + cadastradas pelo Paulo); começa com as fixas
   const [companies, setCompanies] = useState(COMPANIES);
+  const [chaveFor, setChaveFor] = useState(null); // empresa da Chave PK aberta
+  const [chaveVer, setChaveVer] = useState(0); // recarrega "Minhas Chaves PK"
   const chatRef = useRef(null);
 
   // busca a lista atualizada de empresas (inclui as que o Paulo cadastra)
@@ -390,18 +393,11 @@ export default function Area() {
                               <div className="rec-nm">{c.nome}</div>
                               <div className="rec-sg">{c.segmento}</div>
                             </div>
-                            <a
-                              className="firm-conn"
-                              href={wa(
-                                `Olá Paulo! Quero me conectar com a ${c.nome} do ecossistema.` +
-                                  (pedido ? ` Meu pedido: "${pedido}"` : "")
-                              )}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => trackConnect(c.id)}
-                            >
-                              Conectar
-                            </a>
+                            <FirmActions
+                              c={c}
+                              onChave={setChaveFor}
+                              onVisit={() => trackConnect(c.id)}
+                            />
                           </div>
                         ))}
                     </div>
@@ -506,17 +502,11 @@ export default function Area() {
                       <div className="firm-nm">{c.nome}</div>
                       <div className="firm-d">{c.descricao}</div>
                     </div>
-                    <a
-                      className="firm-conn"
-                      href={wa(
-                        `Olá Paulo! Quero me conectar com a ${c.nome} do ecossistema.`
-                      )}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => trackConnect(c.id)}
-                    >
-                      Conectar
-                    </a>
+                    <FirmActions
+                      c={c}
+                      onChave={setChaveFor}
+                      onVisit={() => trackConnect(c.id)}
+                    />
                   </div>
                 ));
               })()}
@@ -555,17 +545,11 @@ export default function Area() {
                         <div className="firm-nm">{c.nome}</div>
                         <div className="firm-d">{c.descricao}</div>
                       </div>
-                      <a
-                        className="firm-conn"
-                        href={wa(
-                          `Olá Paulo! Quero me conectar com a ${c.nome} do ecossistema.`
-                        )}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => trackConnect(c.id)}
-                      >
-                        Conectar
-                      </a>
+                      <FirmActions
+                        c={c}
+                        onChave={setChaveFor}
+                        onVisit={() => trackConnect(c.id)}
+                      />
                     </div>
                   ))}
                 </div>
@@ -574,10 +558,21 @@ export default function Area() {
         </aside>
       </div>
 
+      <MyChaves code={code} member={member} version={chaveVer} />
       <MyReferrals code={code} member={member} />
       <MyImoveis code={code} member={member} />
       <MyProjects code={code} member={member} />
       <MyGestao code={code} member={member} />
+
+      {chaveFor && (
+        <ChaveModal
+          company={chaveFor}
+          code={code}
+          member={member}
+          onClose={() => setChaveFor(null)}
+          onDone={() => setChaveVer((v) => v + 1)}
+        />
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PEDIDO_STATUS } from "../../parcerias/pedidos";
+import { PEDIDO_STATUS, statusLabel } from "../../parcerias/pedidos";
 
 const fmt = (t) =>
   new Date(t).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
@@ -19,6 +19,14 @@ const ROTULOS = {
     fase: "Ponto em que está",
     criar: "Criar projeto",
     msg: (p) => `Olá ${p.nome}! Aqui é o Paulo Kasmirscki. Recebi a sua ideia de ${p.titulo} pela área de membros. Vamos conversar?`,
+  },
+  chave: {
+    titulo: "🔑 Chaves PK — pedidos de apresentação",
+    vazio: "Nenhum pedido ainda. Eles chegam pelo botão “Chave PK” das empresas na área de membros.",
+    local: "",
+    fase: "",
+    criar: "",
+    msg: (p) => `Olá ${p.nome}! Aqui é o Paulo Kasmirscki. Recebi o seu pedido de Chave PK para a ${p.titulo}. Vamos conversar sobre a apresentação?`,
   },
   imovel: {
     titulo: "🏠 Imóveis para vender",
@@ -139,7 +147,7 @@ export default function PedidosAdmin({ code, tipo, pedidos, onData, onImovel }) 
                   >
                     {PEDIDO_STATUS.map((s) => (
                       <option key={s.id} value={s.id}>
-                        {s.label}
+                        {statusLabel(s.id, tipo)}
                       </option>
                     ))}
                   </select>

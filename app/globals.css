@@ -6585,3 +6585,119 @@ body:has(.vt-theme) {
   max-width: 100%;
   box-sizing: border-box;
 }
+
+/* ---------- Conversa dentro dos pedidos ---------- */
+.pd-item-acts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+.pd-item-acts .ref-del {
+  margin-top: 0;
+}
+.pd-chat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.pd-chat-btn:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.pd-new {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #06304a;
+  background: #6fffbf;
+}
+.ref-item.chat-open {
+  grid-column: 1 / -1;
+}
+.pd-chat {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.18);
+}
+.pd-chat-empty {
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+.pd-msg {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  justify-self: start;
+}
+.pd-msg.de-cliente {
+  justify-self: end;
+  background: rgba(70, 214, 255, 0.18);
+}
+.pd-msg.de-sistema {
+  justify-self: center;
+  max-width: 100%;
+  padding: 4px 12px;
+  background: none;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.pd-msg-txt {
+  white-space: pre-wrap;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.pd-msg.de-sistema .pd-msg-txt {
+  font-size: 0.78rem;
+}
+.pd-msg-meta {
+  margin-top: 3px;
+  font-size: 0.68rem;
+  color: var(--muted-2);
+}
+.pd-msg.de-sistema .pd-msg-meta {
+  display: none;
+}
+.pd-chat-form {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  margin-top: 4px;
+}
+.pd-chat-form textarea {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  resize: vertical;
+}
+.pd-chat-form .btn {
+  padding: 11px 20px;
+}
+.area-msgs {
+  background: #6fffbf !important;
+  color: #06304a !important;
+  border-color: #6fffbf !important;
+}
+/* no painel (fundo escuro), a conversa usa o mesmo visual */
+.pd-admin .pd-chat {
+  margin-top: 12px;
+}

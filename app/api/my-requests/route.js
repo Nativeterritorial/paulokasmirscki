@@ -1,6 +1,13 @@
 import { NextResponse } from "next/server";
 import { checkAccess } from "../../../lib/auth";
-import { savePedido, getPedidosFor, setPedidoStatus, saveFoto } from "../../../lib/store";
+import {
+  savePedido,
+  getPedidosFor,
+  setPedidoStatus,
+  saveFoto,
+  addPedidoMsg,
+  markPedidoRead,
+} from "../../../lib/store";
 
 export const runtime = "nodejs";
 
@@ -56,6 +63,22 @@ export async function POST(req) {
         { ok: false, error: ERROS[r.error] || "Não consegui enviar. Tente novamente." },
         { status: 400 }
       );
+    }
+  }
+
+  // conversa: só nos pedidos do próprio membro
+  if ((body.action === "msg" || body.action === "read") && body.id) {
+    const alvo = (await getPedidosFor(member)).find((p) => p.id === String(body.id));
+    if (!alvo) {
+      return NextResponse.json({ ok: false, error: "Pedido não encontrado." }, { status: 404 });
+    }
+    if (body.action === "msg") {
+      const ok2 = await addPedidoMsg(alvo.id, "cliente", body.texto);
+      if (!ok2) {
+        return NextResponse.json({ ok: false, error: "Escreva a sua mensagem." }, { status: 400 });
+      }
+    } else {
+      await markPedidoRead(alvo.id, "cliente");
     }
   }
 

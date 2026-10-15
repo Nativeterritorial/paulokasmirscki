@@ -1,7 +1,58 @@
 "use client";
 
 import { useState } from "react";
-import { PEDIDO_STATUS, statusLabel } from "../../parcerias/pedidos";
+import { PEDIDO_STATUS, statusLabel, naoLidas, MAX_MSG } from "../../parcerias/pedidos";
+
+const fmtMsg = (t) =>
+  new Date(t).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+
+// conversa com o cliente, dentro do cartão do pedido
+function ConversaAdmin({ p, call }) {
+  const [texto, setTexto] = useState("");
+  const [enviando, setEnviando] = useState(false);
+  const enviar = async (e) => {
+    e.preventDefault();
+    if (!texto.trim()) return;
+    setEnviando(true);
+    await call({ action: "pedidoMsg", id: p.id, texto });
+    setTexto("");
+    setEnviando(false);
+  };
+  return (
+    <div className="pd-chat">
+      {!(p.mensagens || []).length && (
+        <p className="pd-chat-empty">
+          Nenhuma mensagem ainda.{" "}
+          {p.memberId
+            ? "O cliente vê a sua resposta na área de membros dele."
+            : "Esse pedido veio pelo código geral: o cliente não acompanha pela área, responda pelo WhatsApp."}
+        </p>
+      )}
+      {(p.mensagens || []).map((m, i) => (
+        <div className={`pd-msg de-${m.de}`} key={i}>
+          <div className="pd-msg-txt">{m.texto}</div>
+          <div className="pd-msg-meta">
+            {m.de === "paulo" ? "Você" : m.de === "cliente" ? p.nome : "Aviso"} · {fmtMsg(m.t)}
+          </div>
+        </div>
+      ))}
+      {p.memberId && (
+        <form className="pd-chat-form" onSubmit={enviar}>
+          <textarea
+            rows={2}
+            maxLength={MAX_MSG}
+            value={texto}
+            onChange={(e) => setTexto(e.target.value)}
+            placeholder="Responder ao cliente (ele vê na área de membros)"
+          />
+          <button className="chip chip-add" disabled={enviando || !texto.trim()}>
+            {enviando ? "Enviando..." : "Enviar"}
+          </button>
+        </form>
+      )}
+    </div>
+  );
+}
 
 const fmt = (t) =>
   new Date(t).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
@@ -54,6 +105,7 @@ export default function PedidosAdmin({ code, tipo, pedidos, onData, onImovel }) 
   const R = ROTULOS[tipo];
   const [verTodos, setVerTodos] = useState(false);
   const [busy, setBusy] = useState("");
+  const [aberta, setAberta] = useState(""); // conversa aberta
 
   const call = async (payload) => {
     try {
@@ -101,7 +153,9 @@ export default function PedidosAdmin({ code, tipo, pedidos, onData, onImovel }) 
   };
 
   const doTipo = pedidos.filter((p) => p.tipo === tipo);
-  const abertos = doTipo.filter((p) => p.status === "novo" || p.status === "conversa");
+  const abertos = doTipo.filter(
+    (p) => p.status === "novo" || p.status === "conversa" || naoLidas(p, "paulo") > 0
+  );
   const lista = verTodos ? doTipo : abertos;
   const novos = doTipo.filter((p) => p.status === "novo").length;
 
@@ -238,10 +292,24 @@ export default function PedidosAdmin({ code, tipo, pedidos, onData, onImovel }) 
                       {busy === p.id ? "Criando..." : R.criar}
                     </button>
                   )}
+                  <button
+                    type="button"
+                    className="chip"
+                    onClick={() => {
+                      const abrir = aberta !== p.id;
+                      setAberta(abrir ? p.id : "");
+                      if (abrir && naoLidas(p, "paulo") > 0) call({ action: "pedidoRead", id: p.id });
+                    }}
+                  >
+                    💬 Conversa
+                    {(p.mensagens || []).length > 0 && ` (${(p.mensagens || []).length})`}
+                    {naoLidas(p, "paulo") > 0 && <span className="pd-new">nova</span>}
+                  </button>
                   <button type="button" className="chip chip-danger" onClick={() => excluir(p)}>
                     Excluir
                   </button>
                 </div>
+                {aberta === p.id && <ConversaAdmin p={p} call={call} />}
               </div>
             );
           })}

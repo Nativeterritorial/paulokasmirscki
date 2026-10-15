@@ -187,7 +187,7 @@ export function ChaveModal({ company, code, member, onClose, onDone }) {
 
 // "Minhas Chaves PK": aparece só para quem já pediu alguma
 export function MyChaves({ code, member, version }) {
-  const { list, load, cancel } = usePedidos(code, member, "chave");
+  const { list, load, cancel, apply } = usePedidos(code, member, "chave");
   useEffect(() => {
     if (version) load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -201,7 +201,7 @@ export function MyChaves({ code, member, version }) {
           <h2>Apresentações que você pediu ao Paulo</h2>
         </div>
       </div>
-      <PedidosList list={list} onCancel={cancel} />
+      <PedidosList list={list} onCancel={cancel} code={code} apply={apply} />
     </section>
   );
 }

@@ -23,6 +23,8 @@ import {
   getPedidos,
   setPedidoStatus,
   deletePedido,
+  addPedidoMsg,
+  markPedidoRead,
   saveFoto,
   getImoveis,
   saveImovel,
@@ -124,6 +126,13 @@ export async function POST(req) {
   }
   if (body.action === "pedidoDelete" && body.id) {
     await deletePedido(body.id);
+  }
+  // conversa com o cliente dentro do pedido
+  if (body.action === "pedidoMsg" && body.id) {
+    await addPedidoMsg(body.id, "paulo", body.texto);
+  }
+  if (body.action === "pedidoRead" && body.id) {
+    await markPedidoRead(body.id, "paulo");
   }
 
   // ações: vitrine de imóveis

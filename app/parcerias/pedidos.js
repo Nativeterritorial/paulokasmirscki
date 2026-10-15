@@ -75,3 +75,15 @@ export const SITUACAO_IMOVEL = [
 ];
 
 export const MAX_PEDIDOS_ABERTOS = 5;
+
+// Conversa dentro de cada pedido: mensagens do Paulo ("paulo"), do cliente
+// ("cliente") e avisos automáticos de mudança de situação ("sistema").
+export const MAX_MSG = 1000;
+// quantas mensagens a pessoa ainda não leu ("cliente" = o membro lendo;
+// "paulo" = o Paulo lendo no painel)
+export const naoLidas = (p, quem) => {
+  const visto = (quem === "paulo" ? p?.lidoPaulo : p?.lidoCliente) || 0;
+  return (p?.mensagens || []).filter((m) =>
+    quem === "paulo" ? m.de === "cliente" && m.t > visto : m.de !== "cliente" && m.t > visto
+  ).length;
+};

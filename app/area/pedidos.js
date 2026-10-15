@@ -8,6 +8,7 @@ import {
   TIPOS_IMOVEL,
   SITUACAO_IMOVEL,
   pedidoStatus,
+  MAX_MSG,
 } from "../parcerias/pedidos";
 
 const MAX_FOTOS = 10;
@@ -70,7 +71,14 @@ export function usePedidos(code, member, tipo) {
   }, [code, member, tipo]);
   useEffect(() => {
     load();
+    // atualiza de tempos em tempos pra respostas do Paulo aparecerem sozinhas
+    const id = setInterval(load, 90000);
+    return () => clearInterval(id);
   }, [load]);
+  // resultado de enviar mensagem / marcar como lido
+  const apply = (d) => {
+    if (d?.ok) setList((d.pedidos || []).filter((x) => x.tipo === tipo));
+  };
   const cancel = async (p) => {
     if (!window.confirm(`Cancelar o pedido “${p.titulo}”?`)) return;
     try {
@@ -78,17 +86,89 @@ export function usePedidos(code, member, tipo) {
       if (d.ok) setList((d.pedidos || []).filter((x) => x.tipo === tipo));
     } catch (e) {}
   };
-  return { list, load, cancel };
+  return { list, load, cancel, apply, code };
 }
 
-export function PedidosList({ list, onCancel }) {
+const fmtMsg = (t) =>
+  new Date(t).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+
+// conversa do membro com o Paulo dentro do pedido
+function Conversa({ p, code, apply }) {
+  const [texto, setTexto] = useState("");
+  const [enviando, setEnviando] = useState(false);
+  const [err, setErr] = useState("");
+  useEffect(() => {
+    if (p.naoLidas > 0)
+      post(code, { action: "read", id: p.id })
+        .then((d) => {
+          apply(d);
+          // avisa o topo da página para atualizar o contador de respostas novas
+          window.dispatchEvent(new Event("pk-lidas"));
+        })
+        .catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [p.id]);
+  const enviar = async (e) => {
+    e.preventDefault();
+    if (!texto.trim()) return;
+    setEnviando(true);
+    setErr("");
+    try {
+      const d = await post(code, { action: "msg", id: p.id, texto });
+      if (d.ok) {
+        setTexto("");
+        apply(d);
+      } else setErr(d.error || "Não consegui enviar.");
+    } catch (e2) {
+      setErr("Não consegui enviar.");
+    }
+    setEnviando(false);
+  };
+  return (
+    <div className="pd-chat">
+      {!(p.mensagens || []).length && (
+        <p className="pd-chat-empty">
+          Ainda não há mensagens. As respostas do Paulo aparecem aqui.
+        </p>
+      )}
+      {(p.mensagens || []).map((m, i) => (
+        <div className={`pd-msg de-${m.de}`} key={i}>
+          <div className="pd-msg-txt">{m.texto}</div>
+          <div className="pd-msg-meta">
+            {m.de === "paulo" ? "Paulo" : m.de === "cliente" ? "Você" : "Aviso"} · {fmtMsg(m.t)}
+          </div>
+        </div>
+      ))}
+      <form className="pd-chat-form" onSubmit={enviar}>
+        <textarea
+          rows={2}
+          maxLength={MAX_MSG}
+          value={texto}
+          onChange={(e) => setTexto(e.target.value)}
+          placeholder="Escreva para o Paulo"
+        />
+        <button className="btn btn-primary" disabled={enviando || !texto.trim()}>
+          {enviando ? "Enviando..." : "Enviar"}
+        </button>
+      </form>
+      {err && <p className="signup-err">{err}</p>}
+    </div>
+  );
+}
+
+export function PedidosList({ list, onCancel, code, apply }) {
+  const [aberta, setAberta] = useState("");
   if (!list.length) return null;
   return (
     <div className="ref-list">
       {list.map((p) => {
         const st = pedidoStatus(p.status, p.tipo);
         return (
-          <article className={`ref-item${st.id === "encerrado" ? " closed" : ""}`} key={p.id}>
+          <article
+            className={`ref-item${st.id === "encerrado" ? " closed" : ""}${aberta === p.id ? " chat-open" : ""}`}
+            key={p.id}
+            id={`pd-${p.id}`}
+          >
             <div className="ref-item-top">
               <div>
                 <div className="ref-nm">
@@ -102,11 +182,26 @@ export function PedidosList({ list, onCancel }) {
               <span className={`ref-badge pd-${st.id}`}>{st.label}</span>
             </div>
             <p className="ref-desc">{st.desc}</p>
-            {st.id === "novo" && (
-              <button type="button" className="ref-del" onClick={() => onCancel(p)}>
-                Cancelar pedido
-              </button>
-            )}
+            <div className="pd-item-acts">
+              {apply && (
+                <button
+                  type="button"
+                  className="pd-chat-btn"
+                  onClick={() => setAberta((a) => (a === p.id ? "" : p.id))}
+                >
+                  💬 {aberta === p.id ? "Fechar conversa" : "Conversa com o Paulo"}
+                  {p.naoLidas > 0 && aberta !== p.id && (
+                    <span className="pd-new">{p.naoLidas} nova{p.naoLidas > 1 ? "s" : ""}</span>
+                  )}
+                </button>
+              )}
+              {st.id === "novo" && (
+                <button type="button" className="ref-del" onClick={() => onCancel(p)}>
+                  Cancelar pedido
+                </button>
+              )}
+            </div>
+            {aberta === p.id && apply && <Conversa p={p} code={code} apply={apply} />}
           </article>
         );
       })}
@@ -434,4 +529,30 @@ export function PedidoForm({ code, tipo, member, onDone }) {
       </button>
     </form>
   );
+}
+
+// total de mensagens não lidas em todos os pedidos (aviso no topo da área)
+export function useNaoLidas(code, member) {
+  const [info, setInfo] = useState({ total: 0, primeiro: "" });
+  useEffect(() => {
+    if (!member) return;
+    let alive = true;
+    const load = async () => {
+      try {
+        const d = await post(code, {});
+        if (!alive || !d.ok) return;
+        const com = (d.pedidos || []).filter((p) => p.naoLidas > 0);
+        setInfo({ total: com.reduce((n, p) => n + p.naoLidas, 0), primeiro: com[0]?.id || "" });
+      } catch (e) {}
+    };
+    load();
+    const id = setInterval(load, 90000);
+    window.addEventListener("pk-lidas", load);
+    return () => {
+      alive = false;
+      clearInterval(id);
+      window.removeEventListener("pk-lidas", load);
+    };
+  }, [code, member]);
+  return info;
 }

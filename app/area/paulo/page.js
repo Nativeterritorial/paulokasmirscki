@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ProjectsAdmin from "./projects-admin";
 import GestaoAdmin from "./gestao-admin";
 import PedidosAdmin from "./pedidos-admin";
+import { naoLidas } from "../../parcerias/pedidos";
 import ImoveisAdmin from "./imoveis-admin";
 import {
   REFERRAL_STATUS,
@@ -488,7 +489,9 @@ export default function PauloAdmin() {
   const solPend = pendentes + signupsPend + gaps.length;
   // pedidos de projeto/gestão que ainda ninguém olhou
   const pedidosNovos = (tipo) =>
-    pedidos.filter((p) => p.tipo === tipo && p.status === "novo").length;
+    pedidos.filter(
+      (p) => p.tipo === tipo && (p.status === "novo" || naoLidas(p, "paulo") > 0)
+    ).length;
   const totalPend =
     solPend +
     referralsPend +

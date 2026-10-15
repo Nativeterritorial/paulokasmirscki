@@ -8,6 +8,7 @@ import MyProjects from "./my-projects";
 import MyGestao from "./my-gestao";
 import MyImoveis from "./my-imoveis";
 import { FirmActions, ChaveModal, MyChaves } from "./chave";
+import { useNaoLidas } from "./pedidos";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
@@ -71,6 +72,7 @@ export default function Area() {
   const [companies, setCompanies] = useState(COMPANIES);
   const [chaveFor, setChaveFor] = useState(null); // empresa da Chave PK aberta
   const [chaveVer, setChaveVer] = useState(0); // recarrega "Minhas Chaves PK"
+  const naoLidas = useNaoLidas(code, member);
   const chatRef = useRef(null);
 
   // busca a lista atualizada de empresas (inclui as que o Paulo cadastra)
@@ -339,6 +341,11 @@ export default function Area() {
         <div className="area-top-actions">
           {member && (
             <span className="area-hello">Olá, {member.nome.split(" ")[0]}</span>
+          )}
+          {naoLidas.total > 0 && (
+            <a className="area-refs-link area-msgs" href={`#pd-${naoLidas.primeiro}`}>
+              💬 {naoLidas.total} {naoLidas.total === 1 ? "resposta nova" : "respostas novas"}
+            </a>
           )}
           <a className="area-refs-link" href="#indicacoes">
             {member ? "Minhas indicações" : "Indicar negócio"}

@@ -7,7 +7,7 @@ import { usePedidos, PedidosList, PedidoForm } from "./pedidos";
 // situação do cadastro. O Paulo avalia, fecha a autorização de venda e depois
 // publica na vitrine do ecossistema.
 export default function MyImoveis({ code, member }) {
-  const { list, load, cancel } = usePedidos(code, member, "imovel");
+  const { list, load, cancel, apply } = usePedidos(code, member, "imovel");
   const [open, setOpen] = useState(false);
 
   return (
@@ -35,7 +35,7 @@ export default function MyImoveis({ code, member }) {
         </div>
       )}
 
-      <PedidosList list={list} onCancel={cancel} />
+      <PedidosList list={list} onCancel={cancel} code={code} apply={apply} />
     </section>
   );
 }

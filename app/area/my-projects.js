@@ -37,7 +37,7 @@ export default function MyProjects({ code, member }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code, member]);
 
-  const { list: pedidos, load: loadPedidos, cancel } = usePedidos(code, member, "projeto");
+  const { list: pedidos, load: loadPedidos, cancel, apply } = usePedidos(code, member, "projeto");
   const [open, setOpen] = useState(false);
 
   return (
@@ -59,7 +59,7 @@ export default function MyProjects({ code, member }) {
         </div>
       )}
 
-      <PedidosList list={pedidos} onCancel={cancel} />
+      <PedidosList list={pedidos} onCancel={cancel} code={code} apply={apply} />
       {projects.map((p) => {
         const done = projectProgress(p);
         const total = PROJECT_STAGES.length;

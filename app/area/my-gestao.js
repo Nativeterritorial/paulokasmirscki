@@ -69,7 +69,7 @@ export default function MyGestao({ code, member }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code, member]);
 
-  const { list: pedidos, load: loadPedidos, cancel } = usePedidos(code, member, "gestao");
+  const { list: pedidos, load: loadPedidos, cancel, apply } = usePedidos(code, member, "gestao");
   const [open, setOpen] = useState(false);
 
   return (
@@ -91,7 +91,7 @@ export default function MyGestao({ code, member }) {
         </div>
       )}
 
-      <PedidosList list={pedidos} onCancel={cancel} />
+      <PedidosList list={pedidos} onCancel={cancel} code={code} apply={apply} />
       {gestoes.map((g) => {
         const metas = g.metas || [];
         const done = goalsDone(g);

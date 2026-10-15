@@ -6750,3 +6750,28 @@ body:has(.vt-theme) {
     display: none;
   }
 }
+
+/* painel: quem vê a resposta + respostas prontas */
+.pd-chat-who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.pd-chat-who a {
+  color: #6fffbf;
+  text-decoration: underline;
+}
+.pd-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pd-quick .chip {
+  font-size: 0.76rem;
+  text-transform: none;
+  letter-spacing: 0;
+}

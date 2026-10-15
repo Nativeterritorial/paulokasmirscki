@@ -505,6 +505,7 @@ export default function PauloAdmin() {
     if (Array.isArray(d?.projects)) setProjects(d.projects);
     if (Array.isArray(d?.gestoes)) setGestoes(d.gestoes);
     if (Array.isArray(d?.imoveis)) setImoveis(d.imoveis);
+    if (Array.isArray(d?.members)) setMembers(d.members);
   };
 
   // gráfico: eventos por dia nos últimos 14 dias
@@ -1095,6 +1096,7 @@ export default function PauloAdmin() {
                 code={code}
                 tipo="chave"
                 pedidos={pedidos}
+                members={members}
                 onData={applyAdminData}
               />
             )}
@@ -1105,6 +1107,7 @@ export default function PauloAdmin() {
                 code={code}
                 tipo="imovel"
                 pedidos={pedidos}
+                members={members}
                 onData={applyAdminData}
                 onImovel={setImovelAberto}
               />
@@ -1124,6 +1127,7 @@ export default function PauloAdmin() {
                 code={code}
                 tipo="projeto"
                 pedidos={pedidos}
+                members={members}
                 onData={applyAdminData}
               />
               <ProjectsAdmin
@@ -1142,6 +1146,7 @@ export default function PauloAdmin() {
                 code={code}
                 tipo="gestao"
                 pedidos={pedidos}
+                members={members}
                 onData={applyAdminData}
               />
               <GestaoAdmin

@@ -6,10 +6,23 @@ import { PEDIDO_STATUS, statusLabel, naoLidas, MAX_MSG } from "../../parcerias/p
 const fmtMsg = (t) =>
   new Date(t).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
 
+// telefone só com dígitos, sem o 55 do Brasil (pra comparar cadastros)
+const phoneKey = (v) => {
+  const d = String(v || "").replace(/\D/g, "");
+  return d.length > 11 && d.startsWith("55") ? d.slice(2) : d;
+};
+
+const RESPOSTAS_PRONTAS = [
+  "Recebi o seu pedido! Vou analisar e te retorno por aqui.",
+  "Vou te chamar no WhatsApp para combinarmos os detalhes.",
+  "Apresentação feita! Já passei o seu contato para a empresa.",
+];
+
 // conversa com o cliente, dentro do cartão do pedido
-function ConversaAdmin({ p, call }) {
+function ConversaAdmin({ p, call, dono }) {
   const [texto, setTexto] = useState("");
   const [enviando, setEnviando] = useState(false);
+  const [criando, setCriando] = useState(false);
   const enviar = async (e) => {
     e.preventDefault();
     if (!texto.trim()) return;
@@ -18,15 +31,20 @@ function ConversaAdmin({ p, call }) {
     setTexto("");
     setEnviando(false);
   };
+  // cria o acesso pessoal do cliente (o mesmo WhatsApp passa a ver o pedido)
+  const criarAcesso = async () => {
+    setCriando(true);
+    await call({ action: "memberSave", member: { nome: p.nome, whatsapp: p.whatsapp } });
+    setCriando(false);
+  };
+  const wa = phoneKey(p.whatsapp);
+  const linkMsg =
+    dono &&
+    `Olá ${dono.nome}! Aqui é o Paulo Kasmirscki. Respondi a sua solicitação na área de membros. Entre pelo seu link pessoal e veja em "Solicitações": ${dono.link}`;
   return (
     <div className="pd-chat">
       {!(p.mensagens || []).length && (
-        <p className="pd-chat-empty">
-          Nenhuma mensagem ainda.{" "}
-          {p.memberId
-            ? "O cliente vê a sua resposta na área de membros dele."
-            : "Esse pedido veio pelo código geral: o cliente não acompanha pela área, responda pelo WhatsApp."}
-        </p>
+        <p className="pd-chat-empty">Nenhuma mensagem ainda.</p>
       )}
       {(p.mensagens || []).map((m, i) => (
         <div className={`pd-msg de-${m.de}`} key={i}>
@@ -36,20 +54,53 @@ function ConversaAdmin({ p, call }) {
           </div>
         </div>
       ))}
-      {p.memberId && (
-        <form className="pd-chat-form" onSubmit={enviar}>
-          <textarea
-            rows={2}
-            maxLength={MAX_MSG}
-            value={texto}
-            onChange={(e) => setTexto(e.target.value)}
-            placeholder="Responder ao cliente (ele vê na área de membros)"
-          />
-          <button className="chip chip-add" disabled={enviando || !texto.trim()}>
-            {enviando ? "Enviando..." : "Enviar"}
+
+      <div className="pd-chat-who">
+        {dono ? (
+          <>
+            {dono.nome} vê a resposta em <strong>Solicitações</strong>, na área de membros.
+            {dono.link && wa.length >= 10 && (
+              <a
+                href={`https://wa.me/55${wa}?text=${encodeURIComponent(linkMsg)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Avisar no WhatsApp com o link
+              </a>
+            )}
+          </>
+        ) : wa.length >= 10 ? (
+          <>
+            {p.nome} ainda não tem link pessoal: a resposta fica guardada e aparece
+            assim que o acesso for criado e usado.
+            <button type="button" className="chip chip-add" onClick={criarAcesso} disabled={criando}>
+              {criando ? "Criando..." : "Criar acesso para este cliente"}
+            </button>
+          </>
+        ) : (
+          <>Pedido sem WhatsApp: o cliente não consegue acompanhar pela área.</>
+        )}
+      </div>
+
+      <div className="pd-quick">
+        {RESPOSTAS_PRONTAS.map((r) => (
+          <button type="button" className="chip" key={r} onClick={() => setTexto(r)}>
+            {r}
           </button>
-        </form>
-      )}
+        ))}
+      </div>
+      <form className="pd-chat-form" onSubmit={enviar}>
+        <textarea
+          rows={2}
+          maxLength={MAX_MSG}
+          value={texto}
+          onChange={(e) => setTexto(e.target.value)}
+          placeholder="Responder ao cliente (aparece em Solicitações, na área dele)"
+        />
+        <button className="chip chip-add" disabled={enviando || !texto.trim()}>
+          {enviando ? "Enviando..." : "Enviar"}
+        </button>
+      </form>
     </div>
   );
 }
@@ -101,7 +152,7 @@ const ROTULOS = {
 // alto das abas Projetos e Gestão. "Criar" já monta o projeto/gestão ligado ao
 // membro e marca o pedido como aprovado. Pedido feito pelo código geral fica sem
 // membro: crie o acesso dele em Membros (mesmo WhatsApp) para ele acompanhar.
-export default function PedidosAdmin({ code, tipo, pedidos, onData, onImovel }) {
+export default function PedidosAdmin({ code, tipo, pedidos, members = [], onData, onImovel }) {
   const R = ROTULOS[tipo];
   const [verTodos, setVerTodos] = useState(false);
   const [busy, setBusy] = useState("");
@@ -152,6 +203,11 @@ export default function PedidosAdmin({ code, tipo, pedidos, onData, onImovel }) 
     await call({ action: "pedidoDelete", id: p.id });
   };
 
+  const donoDe = (p) =>
+    (p.memberId && members.find((m) => m.id === p.memberId)) ||
+    (phoneKey(p.whatsapp).length >= 10 &&
+      members.find((m) => phoneKey(m.whatsapp) === phoneKey(p.whatsapp))) ||
+    null;
   const doTipo = pedidos.filter((p) => p.tipo === tipo);
   const abertos = doTipo.filter(
     (p) => p.status === "novo" || p.status === "conversa" || naoLidas(p, "paulo") > 0
@@ -190,7 +246,10 @@ export default function PedidosAdmin({ code, tipo, pedidos, onData, onImovel }) 
                     <div className="lead-ct">
                       {fmt(p.t)}
                       {p.whatsapp ? ` · ${p.whatsapp}` : " · sem WhatsApp no cadastro"}
-                      {!p.memberId && " · pelo código geral (sem link pessoal)"}
+                      {!p.memberId &&
+                        (donoDe(p)
+                          ? ` · pelo código geral · acompanha pelo acesso de ${donoDe(p).nome}`
+                          : " · pelo código geral (sem link pessoal)")}
                     </div>
                   </div>
                   <select
@@ -309,7 +368,7 @@ export default function PedidosAdmin({ code, tipo, pedidos, onData, onImovel }) 
                     Excluir
                   </button>
                 </div>
-                {aberta === p.id && <ConversaAdmin p={p} call={call} />}
+                {aberta === p.id && <ConversaAdmin p={p} call={call} dono={donoDe(p)} />}
               </div>
             );
           })}

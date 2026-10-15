@@ -114,9 +114,9 @@ export function ChaveModal({ company, code, member, onClose, onDone }) {
         </div>
         <h3>{company.nome}</h3>
         <p className="chave-lead">
-          A Chave PK é a apresentação feita pelo Paulo ao responsável pela
-          empresa. O pedido passa por uma análise e, quando faz sentido, o Paulo
-          faz a ponte pessoalmente.
+          A Chave PK é a sua conexão com o responsável pela empresa: o pedido
+          passa por uma análise e, quando faz sentido, o Paulo faz a
+          apresentação pessoalmente.
         </p>
         <ol className="chave-steps">
           {ETAPAS.map((e, i) => (

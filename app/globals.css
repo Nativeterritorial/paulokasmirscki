@@ -6570,3 +6570,18 @@ body:has(.vt-theme) {
 .firm .firm-acts > * {
   flex: 1;
 }
+/* janela da Chave PK: sem rolagem lateral (campos encolhem junto) */
+.chave-box {
+  overflow-x: hidden;
+}
+.chave-box > *,
+.chave-box .signup-form,
+.chave-box .signup-row > * {
+  min-width: 0;
+}
+.chave-box input,
+.chave-box textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}

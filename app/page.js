@@ -9,6 +9,15 @@ import MobileMenu from "./mobile-menu";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const INSTAGRAM = "https://instagram.com/paulokasmirscki";
+// redes do rodapé: deixe "" para não mostrar o botão
+const FACEBOOK = "https://www.facebook.com/paulo.kasmirscki";
+const LINKEDIN = "https://www.linkedin.com/in/paulo-kasmirscki-72719796/";
+const TELEFONE = "(54) 99650-5799";
+const EMAIL = "paulokasmirscki@gmail.com";
+const ENDERECO = "Centro, Veranópolis - RS";
+const MAPS = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  "Centro, Veranópolis - RS"
+)}`;
 
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
@@ -1192,7 +1201,7 @@ export default function Home() {
       {/* Footer multi-coluna */}
       <footer className="footer-rich">
         <div className="container">
-          <div className="footer-card">
+          <div className="footer-card fc-grid">
             <div className="fc-brand">
               <div className="fc-id">
                 <img src="/logo-mark.svg" alt="" />
@@ -1203,24 +1212,67 @@ export default function Home() {
                 <br />
                 Conectando pessoas e gerando negócios.
               </p>
-              <span className="fc-loc">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z" /><path d="M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" /></svg>
-                Veranópolis - RS
-              </span>
-            </div>
-            <div className="fc-actions">
-              <a className="fc-btn wa" href={WHATSAPP} target="_blank" rel="noopener noreferrer">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.7 7.4L3 20l1.2-5A8.5 8.5 0 1 1 21 11.5z" /><path d="M9 10a4 4 0 0 0 5 5" /></svg>
-                WhatsApp
-              </a>
-              <a className="fc-btn" href={INSTAGRAM} target="_blank" rel="noopener noreferrer">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" /></svg>
-                Instagram
-              </a>
-              <a className="fc-btn" href="/area">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" /><path d="M4 21a8 8 0 0 1 16 0" /></svg>
+              <a className="fc-btn fc-member" href="/area">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" /><path d="M4 21a8 8 0 0 1 16 0" /></svg>
                 Área de Membros
               </a>
+            </div>
+
+            <div className="fc-contact">
+              <div className="kick">Contato</div>
+              <ul className="fc-list">
+                <li>
+                  <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+                    <span className="fc-ic">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.7 7.4L3 20l1.2-5A8.5 8.5 0 1 1 21 11.5z" /><path d="M9 10a4 4 0 0 0 5 5" /></svg>
+                    </span>
+                    <span>
+                      <small>Telefone e WhatsApp</small>
+                      {TELEFONE}
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href={`mailto:${EMAIL}`}>
+                    <span className="fc-ic">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></svg>
+                    </span>
+                    <span>
+                      <small>E-mail</small>
+                      {EMAIL}
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href={MAPS} target="_blank" rel="noopener noreferrer">
+                    <span className="fc-ic">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z" /><path d="M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" /></svg>
+                    </span>
+                    <span>
+                      <small>Localização</small>
+                      {ENDERECO}
+                    </span>
+                  </a>
+                </li>
+              </ul>
+              <div className="fc-social">
+                <a className="fc-btn" href={INSTAGRAM} target="_blank" rel="noopener noreferrer">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" /></svg>
+                  Instagram
+                </a>
+                {FACEBOOK && (
+                  <a className="fc-btn" href={FACEBOOK} target="_blank" rel="noopener noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+                    Facebook
+                  </a>
+                )}
+                {LINKEDIN && (
+                  <a className="fc-btn" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" /><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7" /></svg>
+                    LinkedIn
+                  </a>
+                )}
+              </div>
             </div>
           </div>
           <div className="footer-base">

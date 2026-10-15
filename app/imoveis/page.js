@@ -17,7 +17,7 @@ export const metadata = {
 export default async function Imoveis() {
   const imoveis = await getVitrine();
   return (
-    <div className="rede-page">
+    <div className="rede-page vt-theme">
       <header className="site-header">
         <div className="container nav">
           <a className="brand" href="/" aria-label="Paulo Kasmirscki">
@@ -25,6 +25,12 @@ export default async function Imoveis() {
             <span className="brand-name">Paulo Kasmirscki</span>
           </a>
           <div className="nav-actions">
+            <a className="nav-login" href="/area" aria-label="Área de Membros">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 5v1h14v-1c0-3-3-5-7-5z" />
+              </svg>
+              <span className="nav-login-txt">Área de Membros</span>
+            </a>
             <a
               className="btn btn-primary"
               href={wa("Olá Paulo! Vi a vitrine de imóveis e quero conversar.")}

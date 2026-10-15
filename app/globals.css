@@ -6133,3 +6133,181 @@ body:has(.area-login) {
     min-width: 0;
   }
 }
+
+/* ============================================================
+   VITRINE DE IMÓVEIS — tema navy e dourado (fundo claro)
+   Vale só dentro de .vt-theme (/imoveis e /imoveis/[id]).
+   ============================================================ */
+body:has(.vt-theme) {
+  background: #f7f4ee;
+}
+.vt-theme {
+  --vt-navy: #0a205f;
+  --vt-gold: #b08d57;
+  --vt-gold-dark: #8c6a35;
+  --vt-sand: #f7f4ee;
+  --vt-line: #e3dccd;
+  --text: #14213d;
+  --muted: #5b6275;
+  --muted-2: #868a98;
+  --border: var(--vt-line);
+  --border-strong: #cfc5b1;
+  --gold-1: var(--vt-gold);
+  --gold-2: var(--vt-gold-dark);
+  --vt-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  background: var(--vt-sand);
+  color: var(--text);
+}
+/* topo navy, com textos claros */
+.vt-theme .site-header {
+  background: var(--vt-navy);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.82);
+  --border: rgba(255, 255, 255, 0.25);
+  --border-strong: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+.vt-theme .site-header .btn-outline {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+/* botão Área de Membros: pílula com contorno dourado */
+.vt-theme .site-header .nav-login {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--vt-gold);
+  color: #e7d3ae;
+}
+.vt-theme .site-header .nav-login:hover {
+  background: rgba(176, 141, 87, 0.15);
+  color: #fff;
+}
+@media (max-width: 560px) {
+  .vt-theme .site-header .nav-login {
+    padding: 0;
+  }
+}
+/* títulos em serifa */
+.vt-theme .mdl-title,
+.vt-theme .vt-info h1,
+.vt-theme .vt-card h2,
+.vt-theme .vt-empty h2,
+.vt-theme .vt-sell h2,
+.vt-theme .vt-desc h2 {
+  font-family: var(--vt-serif);
+  color: var(--vt-navy);
+  letter-spacing: 0;
+}
+.vt-theme .mdl-title {
+  text-transform: none;
+  font-weight: 600;
+}
+.vt-theme .mdl-title em {
+  font-style: italic;
+  color: var(--vt-gold);
+}
+.vt-theme .vt-card h2 {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+/* botões no conteúdo: navy cheio e contorno */
+.vt-theme main .btn-primary {
+  background: var(--vt-navy);
+  color: #fff;
+}
+.vt-theme main .btn-primary:hover {
+  background: #13307f;
+}
+.vt-theme main .btn-outline {
+  color: var(--vt-navy);
+  border-color: var(--border-strong);
+}
+.vt-theme main .btn-outline:hover {
+  border-color: var(--vt-gold);
+  color: var(--vt-gold-dark);
+}
+/* filtros */
+.vt-theme .vt-filters select,
+.vt-theme .vt-search {
+  background: #fff;
+  border-color: var(--vt-line);
+  color: var(--text);
+}
+.vt-theme .vt-search svg {
+  fill: var(--muted-2);
+}
+/* cartões */
+.vt-theme .vt-card {
+  background: #fff;
+  border-color: var(--vt-line);
+  box-shadow: 0 1px 2px rgba(20, 33, 61, 0.04), 0 8px 24px rgba(20, 33, 61, 0.06);
+}
+.vt-theme .vt-card:hover {
+  border-color: var(--vt-gold);
+}
+.vt-theme .vt-card-img,
+.vt-theme .vt-gal-main {
+  background: #e9e3d7;
+}
+.vt-theme .vt-loc {
+  color: #7a7468;
+}
+.vt-theme .vt-preco {
+  color: var(--vt-gold-dark);
+}
+.vt-theme .vt-tipo {
+  background: rgba(10, 32, 95, 0.82);
+}
+.vt-theme .vt-empty {
+  background: #fff;
+  border-color: var(--border-strong);
+}
+/* bloco "Quer vender": navy, como o topo */
+.vt-theme .vt-sell {
+  background: var(--vt-navy);
+  border: none;
+}
+.vt-theme .vt-sell .kick {
+  color: #e7d3ae;
+}
+.vt-theme .vt-sell h2 {
+  color: #fff;
+}
+.vt-theme .vt-sell p {
+  color: rgba(255, 255, 255, 0.82);
+}
+.vt-theme .vt-sell .btn-primary {
+  background: #fff;
+  color: var(--vt-navy);
+}
+.vt-theme .vt-sell .btn-primary:hover {
+  background: #f1ebdf;
+}
+.vt-theme .vt-sell .btn-outline {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+.vt-theme .vt-sell .btn-outline:hover {
+  border-color: var(--vt-gold);
+  color: #e7d3ae;
+}
+/* página do imóvel */
+.vt-theme .vt-info {
+  background: #fff;
+  border-color: var(--vt-line);
+  box-shadow: 0 8px 24px rgba(20, 33, 61, 0.06);
+}
+.vt-theme .vt-spec-grid div {
+  background: var(--vt-sand);
+}
+.vt-theme .vt-spec-grid strong {
+  color: var(--vt-navy);
+}
+.vt-theme .vt-reservado {
+  color: #6b4a12;
+  background: #fbefd3;
+}
+.vt-theme .vt-gal-thumbs button.on {
+  border-color: var(--vt-gold);
+}

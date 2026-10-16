@@ -7567,3 +7567,209 @@ body:has(.vt-theme) {
   font-size: 1.22rem;
   max-width: 640px;
 }
+
+
+/* ---------- Sua rede gera negócios ou só contatos? ---------- */
+.rp-head {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 30px;
+}
+.rp-head .eyebrow {
+  justify-content: center;
+}
+.rp-head .eyebrow::before {
+  display: none;
+}
+.rp-title {
+  font-family: "Sora", "Space Grotesk", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  margin: 10px 0 18px;
+}
+.rp-title em {
+  font-style: normal;
+  color: #6fffbf;
+}
+.rp-lead {
+  color: var(--muted);
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.rp-diagram {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+.rp-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.rp-svg-v {
+  display: none;
+  max-width: 440px;
+  margin: 0 auto;
+}
+@media (max-width: 720px) {
+  .rp-svg-h {
+    display: none;
+  }
+  .rp-svg-v {
+    display: block;
+  }
+}
+.rp-zona {
+  fill: rgba(255, 255, 255, 0.04);
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 7;
+}
+.rp-zona-nova {
+  fill: rgba(111, 255, 191, 0.06);
+  stroke: #6fffbf;
+  animation: rp-gira 40s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.rp-zona-t {
+  fill: #fff;
+  font: 800 15px "Sora", "Space Grotesk", sans-serif;
+  letter-spacing: 0.08em;
+}
+.rp-meio-t {
+  fill: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+}
+.rp-linha {
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 1.5;
+  fill: none;
+}
+.rp-fluxo-base {
+  stroke: var(--c);
+  stroke-opacity: 0.35;
+  stroke-width: 2;
+  fill: none;
+}
+.rp-fluxo {
+  stroke: var(--c);
+  stroke-width: 3;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: 4 14;
+  animation: rp-flui 1.4s linear infinite;
+  animation-delay: var(--d);
+}
+.rp-no circle {
+  fill: #0d1f6e;
+  stroke: rgba(255, 255, 255, 0.7);
+  stroke-width: 1.5;
+}
+.rp-ic {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.rp-centro circle {
+  fill: #fff;
+  stroke: none;
+}
+.rp-centro .rp-ic {
+  stroke: #0d1f6e;
+}
+.rp-ponte circle {
+  fill: var(--c);
+  stroke: none;
+  filter: drop-shadow(0 0 12px var(--c));
+}
+.rp-ponte .rp-ic {
+  stroke: #0a1640;
+  stroke-width: 2;
+}
+.rp-alvo circle {
+  fill: #6fffbf;
+  stroke: none;
+  animation: rp-pulsa 2.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.rp-alvo .rp-ic {
+  stroke: #0a1640;
+  stroke-width: 2.2;
+}
+.rp-novo circle {
+  stroke: #6fffbf;
+}
+.rp-lbl {
+  fill: #fff;
+  font: 500 14px "Inter", sans-serif;
+}
+.rp-ponte .rp-lbl {
+  fill: var(--c);
+  font: 700 15px "Sora", "Space Grotesk", sans-serif;
+}
+.rp-centro .rp-lbl {
+  font-weight: 700;
+}
+@keyframes rp-flui {
+  to {
+    stroke-dashoffset: -36;
+  }
+}
+@keyframes rp-pulsa {
+  50% {
+    transform: scale(1.12);
+  }
+}
+@keyframes rp-gira {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rp-fluxo,
+  .rp-alvo circle,
+  .rp-zona-nova {
+    animation: none;
+  }
+}
+.rp-pontes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 1040px;
+  margin: 30px auto 0;
+}
+@media (max-width: 820px) {
+  .rp-pontes {
+    grid-template-columns: 1fr;
+  }
+}
+.rp-card {
+  padding: 20px 22px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-top: 3px solid var(--c);
+}
+.rp-card h3 {
+  font: 800 1.15rem "Sora", "Space Grotesk", sans-serif;
+  color: var(--c);
+  margin-bottom: 6px;
+}
+.rp-card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.rp-cta {
+  text-align: center;
+  margin-top: 30px;
+}

@@ -7773,3 +7773,14 @@ body:has(.vt-theme) {
   text-align: center;
   margin-top: 30px;
 }
+
+.rp-alvo .rp-lbl {
+  fill: #6fffbf;
+  font: 800 15px "Sora", "Space Grotesk", sans-serif;
+}
+.rp-lbl {
+  paint-order: stroke;
+  stroke: rgba(14, 40, 140, 0.85);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}

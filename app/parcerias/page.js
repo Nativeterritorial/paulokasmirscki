@@ -135,15 +135,32 @@ export default function Parcerias() {
       </header>
 
       <main className="container join-wrap">
-        <div className="join-hero">
-          <div className="eyebrow">Parcerias</div>
-          <h1 className="mdl-title">
-            Quatro formas de fazer <em>negócio</em> comigo
-          </h1>
-          <p className="join-lead">
-            Além de conectar as empresas da rede, trabalho com quatro modelos
-            de parceria. Escolha o que faz sentido para você.
-          </p>
+        <div className="pc-hero">
+          <div className="join-hero">
+            <div className="eyebrow">Ecossistema PK · Conector de Negócios</div>
+            <h1 className="mdl-title">
+              O conector de <em>negócios</em>
+            </h1>
+            <p className="join-lead">
+              Do primeiro contato ao negócio fechado: indicações, obras,
+              empresas novas e gestão. Você traz o objetivo, eu conecto as
+              pessoas e conduzo o caminho.
+            </p>
+          </div>
+          {/* o que dá pra fazer, cada palavra na cor do seu serviço */}
+          <nav className="pc-keys" aria-label="O que você pode fazer">
+            {[
+              ["Indicar", "#indicar", "svc-ind"],
+              ["Construir", "#obra", "svc-obra"],
+              ["Abrir", "#abrir", "svc-proj"],
+              ["Gerir", "#gestor", "svc-gest"],
+              ["Conectar", "/ecossistema", "svc-sol"],
+            ].map(([t, href, cls]) => (
+              <a key={t} className={`pc-key svc ${cls}`} href={href}>
+                {t}
+              </a>
+            ))}
+          </nav>
         </div>
 
         <div className="mdl-cards">

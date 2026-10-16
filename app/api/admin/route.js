@@ -14,6 +14,9 @@ import {
   saveMember,
   resetMemberToken,
   deleteMember,
+  resetMemberSenha,
+  getSenhaPedidos,
+  dropSenhaPedido,
   getProjects,
   saveProject,
   deleteProject,
@@ -101,7 +104,17 @@ export async function POST(req) {
     await resetMemberToken(body.id);
   }
   if (body.action === "memberDelete" && body.id) {
+    await dropSenhaPedido(String(body.id));
     await deleteMember(body.id);
+  }
+  // senha provisória (pedido "Esqueci minha senha"): volta só nesta resposta
+  let novaSenha = null;
+  if (body.action === "senhaReset" && body.id) {
+    const senha = await resetMemberSenha(String(body.id));
+    if (senha) novaSenha = { id: String(body.id), senha };
+  }
+  if (body.action === "senhaPedidoDrop" && body.id) {
+    await dropSenhaPedido(String(body.id));
   }
 
   // ações: projetos "Da ideia à abertura"
@@ -189,6 +202,7 @@ export async function POST(req) {
     whatsapp: m.whatsapp,
     t: m.t,
     visto: m.visto,
+    temSenha: !!m.senha,
     link: `https://www.paulokasmirscki.com.br/area?convite=${encodeURIComponent(
       m.token
     )}`,
@@ -198,9 +212,12 @@ export async function POST(req) {
   const gestoes = await getGestoes();
   const pedidos = await getPedidos();
   const imoveis = await getImoveis();
+  const senhaPedidos = await getSenhaPedidos();
 
   return NextResponse.json({
     ok: true,
+    senhaPedidos,
+    novaSenha,
     imoveis,
     novoImovel,
     pedidos,

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { logSignup, selfSignupMember } from "../../../lib/store";
+import { logSignup, selfSignupMember, senhaValida, SENHA_MIN } from "../../../lib/store";
 
 export const runtime = "nodejs";
 
@@ -26,6 +26,14 @@ export async function POST(req) {
     );
   }
 
+  const senha = String(body.senha || "");
+  if (!senhaValida(senha)) {
+    return NextResponse.json(
+      { ok: false, error: `Crie uma senha com pelo menos ${SENHA_MIN} caracteres.` },
+      { status: 400 }
+    );
+  }
+
   await logSignup({
     nome,
     empresa: body.empresa,
@@ -35,7 +43,7 @@ export async function POST(req) {
     whatsapp,
   });
 
-  const r = await selfSignupMember({ nome, whatsapp });
+  const r = await selfSignupMember({ nome, whatsapp, senha });
   if (r.token) return NextResponse.json({ ok: true, token: r.token });
   if (r.exists) return NextResponse.json({ ok: true, exists: true });
   // se não deu pra criar o acesso agora, o cadastro chegou ao Paulo mesmo assim

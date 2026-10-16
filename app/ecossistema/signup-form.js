@@ -6,6 +6,7 @@ const EMPTY = {
   nome: "",
   empresa: "",
   whatsapp: "",
+  senha: "",
   email: "",
   site: "",
   instagram: "",
@@ -35,6 +36,10 @@ export default function SignupForm() {
     setErr("");
     if (!f.nome.trim() || f.whatsapp.replace(/\D/g, "").length < 10) {
       setErr("Preencha o seu nome e um WhatsApp com DDD.");
+      return;
+    }
+    if (f.senha.length < 6) {
+      setErr("Crie uma senha com pelo menos 6 caracteres.");
       return;
     }
     setSending(true);
@@ -75,15 +80,14 @@ export default function SignupForm() {
           </>
         ) : done === "existe" ? (
           <>
-            <h3>Você já faz parte!</h3>
+            <h3>Você já tem conta!</h3>
             <p>
-              Já existe um acesso com esse WhatsApp. Entre pelo seu link pessoal
-              ou{" "}
-              <a href="/area" style={{ textDecoration: "underline" }}>
-                pela Área de Membros
-              </a>
-              . Se perdeu o link, o Paulo envia de novo.
+              Já existe um acesso com esse WhatsApp. Entre com o seu WhatsApp e
+              a sua senha. Se esqueceu, use “Esqueci minha senha” na entrada.
             </p>
+            <a className="btn btn-primary" href="/area">
+              Entrar na Área de Membros
+            </a>
           </>
         ) : (
           <>
@@ -136,6 +140,19 @@ export default function SignupForm() {
           />
         </label>
       </div>
+      <label>
+        Crie uma senha *
+        <input
+          type="password"
+          value={f.senha}
+          onChange={upd("senha")}
+          placeholder="Pelo menos 6 caracteres"
+          autoComplete="new-password"
+        />
+        <span className="signup-sub">
+          Com o seu WhatsApp e esta senha você entra de qualquer aparelho.
+        </span>
+      </label>
       <div className="signup-row">
         <label>
           Site

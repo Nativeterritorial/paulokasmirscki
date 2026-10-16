@@ -12,6 +12,7 @@ import MySolicitacoes from "./solicitacoes";
 import { useNaoLidas } from "./pedidos";
 import { SegIcon } from "../segment-icons";
 import { abrirServico } from "./abrir";
+import { LoginForm, SenhaAviso } from "./login";
 
 // serviços que o concierge pode oferecer (marcador @@SERV:tipo@@ na resposta)
 const SERVICOS = {
@@ -98,9 +99,6 @@ function formatMsg(text) {
 export default function Area() {
   const [authed, setAuthed] = useState(false);
   const [code, setCode] = useState("");
-  const [codeInput, setCodeInput] = useState("");
-  const [err, setErr] = useState("");
-  const [loadingLogin, setLoadingLogin] = useState(false);
   const [member, setMember] = useState(null); // { id, nome } quando entrou por link pessoal
 
   const GREETING = [
@@ -210,31 +208,14 @@ export default function Area() {
     if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight;
   }, [messages, sending]);
 
-  const login = async (e) => {
-    e.preventDefault();
-    setErr("");
-    setLoadingLogin(true);
+  // entrou (WhatsApp + senha ou código): guarda o acesso neste aparelho
+  const login = (acesso, m) => {
+    setCode(acesso);
+    setMember(m);
+    setAuthed(true);
     try {
-      const r = await fetch("/api/area-login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: codeInput }),
-      });
-      const d = await r.json();
-      if (d.ok) {
-        setCode(codeInput);
-        setMember(d.member || null);
-        setAuthed(true);
-        try {
-          localStorage.setItem("area_code", codeInput);
-        } catch (e) {}
-      } else {
-        setErr("Código incorreto.");
-      }
-    } catch (e) {
-      setErr("Erro ao entrar. Tente novamente.");
-    }
-    setLoadingLogin(false);
+      localStorage.setItem("area_code", acesso);
+    } catch (e) {}
   };
 
   const trackConnect = (companyId) => {
@@ -363,22 +344,10 @@ export default function Area() {
             Acesse o <em>ecossistema</em>
           </h1>
           <p style={{ color: "var(--muted)", fontSize: "0.95rem", marginBottom: 22 }}>
-            Entre com o seu código de acesso para conversar com o concierge e se
-            conectar às empresas da rede.
+            Entre com o seu WhatsApp e a sua senha para conversar com o
+            concierge e se conectar às empresas da rede.
           </p>
-          <form onSubmit={login} className="login-form">
-            <input
-              type="password"
-              placeholder="Código de acesso"
-              value={codeInput}
-              onChange={(e) => setCodeInput(e.target.value)}
-              autoFocus
-            />
-            <button className="btn btn-primary" disabled={loadingLogin}>
-              {loadingLogin ? "Entrando..." : "Entrar"}
-            </button>
-          </form>
-          {err && <div className="login-err">{err}</div>}
+          <LoginForm onLogin={login} />
           <div className="login-hint">
             Ainda não tem acesso?
             <a className="btn btn-outline login-signup" href="/ecossistema#cadastro">
@@ -431,6 +400,12 @@ export default function Area() {
           </button>
         </div>
       </header>
+
+      <SenhaAviso
+        code={code}
+        member={member}
+        onSalva={() => setMember((m) => (m ? { ...m, temSenha: true, senhaTemp: false } : m))}
+      />
 
       <div className="area-wrap">
         {/* CHAT */}

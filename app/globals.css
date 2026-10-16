@@ -7353,3 +7353,198 @@ body:has(.vt-theme) {
     font-size: 0.8rem;
   }
 }
+
+/* ---------- entrada com WhatsApp + senha ---------- */
+.login-form.login-form-col {
+  flex-direction: column;
+  gap: 12px;
+}
+.login-form-col input {
+  width: 100%;
+  flex: none;
+}
+.login-lbl {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.login-form-col .btn {
+  margin-top: 4px;
+  justify-content: center;
+}
+.login-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+}
+.login-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin-top: 14px;
+  color: var(--gold-2);
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+.login-links .login-link {
+  margin-top: 0;
+}
+.login-link:hover {
+  text-decoration: underline;
+}
+.login-link-mute {
+  color: var(--muted);
+}
+.login-ok {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(111, 255, 191, 0.1);
+  border: 1px solid rgba(111, 255, 191, 0.35);
+  color: #bfffe3;
+  font-size: 0.88rem;
+}
+.signup-sub {
+  font-size: 0.76rem;
+  color: var(--muted-2);
+}
+
+/* aviso "Crie a sua senha" dentro da área */
+.senha-aviso {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 22px;
+  max-width: 1224px;
+  margin: 22px auto 0;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: linear-gradient(120deg, rgba(154, 123, 255, 0.16), rgba(91, 155, 255, 0.12));
+  border: 1px solid rgba(154, 123, 255, 0.45);
+}
+@media (max-width: 1280px) {
+  .senha-aviso {
+    margin: 22px 28px 0;
+  }
+}
+@media (max-width: 640px) {
+  .senha-aviso {
+    margin: 16px 16px 0;
+  }
+}
+.senha-aviso-txt {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1 1 320px;
+}
+.senha-aviso-txt strong {
+  font-size: 1rem;
+}
+.senha-aviso-txt span {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.senha-aviso-acts {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.senha-aviso-acts .login-link {
+  margin-top: 0;
+}
+.senha-aviso-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex: 1 1 420px;
+}
+.senha-aviso-form input {
+  flex: 1 1 150px;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 11px 18px;
+  color: var(--text);
+  font-size: 0.92rem;
+  outline: none;
+}
+.senha-aviso-form input:focus {
+  border-color: var(--ia, #9a7bff);
+}
+.senha-aviso-form .login-err {
+  flex-basis: 100%;
+  margin-top: 0;
+}
+.senha-aviso.senha-ok {
+  background: rgba(111, 255, 191, 0.1);
+  border-color: rgba(111, 255, 191, 0.4);
+  color: #bfffe3;
+  font-size: 0.92rem;
+}
+.senha-ok .login-link {
+  margin-top: 0;
+}
+.signup-done .btn {
+  margin-top: 14px;
+}
+
+/* painel: pedidos de nova senha */
+.senha-pedidos {
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(245, 192, 78, 0.45);
+  background: rgba(245, 192, 78, 0.08);
+}
+.senha-pedidos-h {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.senha-pedido {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+.senha-nova {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(111, 255, 191, 0.1);
+  border: 1px solid rgba(111, 255, 191, 0.4);
+  font-size: 0.92rem;
+}
+.senha-nova strong {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+}
+.senha-nova small {
+  color: var(--muted);
+}
+
+.signup-form .signup-sub {
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+}

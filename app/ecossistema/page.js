@@ -73,9 +73,9 @@ const BENEFICIOS = [
 ];
 
 const PASSOS = [
-  ["1", "Cadastro", "Você garante sua vaga e conta sobre o seu negócio."],
-  ["2", "Boas-vindas", "O Paulo te recebe e sua empresa entra no diretório."],
-  ["3", "Acesso", "Você recebe o link da área de membros e do concierge de IA."],
+  ["1", "Cadastro", "Você conta sobre o seu negócio e cria a sua senha."],
+  ["2", "Acesso na hora", "Entra direto na Área de Membros, com o concierge de IA."],
+  ["3", "Na rede", "Sua empresa entra no diretório e o Paulo faz as pontes."],
   ["4", "Conexões", "Começa a indicar, ser indicado e fechar negócio."],
 ];
 

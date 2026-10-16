@@ -42,6 +42,8 @@ export default function PauloAdmin() {
   const [editing, setEditing] = useState(null); // empresa em edição (ou nova)
   const [savingCo, setSavingCo] = useState(false);
   const [members, setMembers] = useState([]);
+  const [senhaPedidos, setSenhaPedidos] = useState([]); // "Esqueci minha senha"
+  const [novaSenha, setNovaSenha] = useState(null); // { id, senha } recém-gerada
   const [projects, setProjects] = useState([]);
   const [gestoes, setGestoes] = useState([]);
   const [pedidos, setPedidos] = useState([]);
@@ -87,6 +89,7 @@ export default function PauloAdmin() {
       if (Array.isArray(d.customCompanies)) setCustomCompanies(d.customCompanies);
       if (Array.isArray(d.fixedCompanies)) setFixedCompanies(d.fixedCompanies);
       if (Array.isArray(d.members)) setMembers(d.members);
+      if (Array.isArray(d.senhaPedidos)) setSenhaPedidos(d.senhaPedidos);
       if (Array.isArray(d.projects)) setProjects(d.projects);
       if (Array.isArray(d.gestoes)) setGestoes(d.gestoes);
       if (Array.isArray(d.pedidos)) setPedidos(d.pedidos);
@@ -276,7 +279,20 @@ export default function PauloAdmin() {
       });
       const d = await r.json();
       if (Array.isArray(d.members)) setMembers(d.members);
+      if (Array.isArray(d.senhaPedidos)) setSenhaPedidos(d.senhaPedidos);
+      if (d.novaSenha) setNovaSenha(d.novaSenha);
     } catch (e) {}
+  };
+  // senha provisória pro membro que esqueceu (vai pelo WhatsApp)
+  const gerarSenha = (m) => {
+    if (
+      !window.confirm(
+        `Gerar uma senha provisória para ${m.nome}? A senha atual dele para de funcionar.`
+      )
+    )
+      return;
+    setNovaSenha(null);
+    memberAction({ action: "senhaReset", id: m.id });
   };
   const addMember = async (e) => {
     e.preventDefault();
@@ -486,7 +502,8 @@ export default function PauloAdmin() {
   const isDone = (l) => (stats?.leadsDone || []).includes(String(l.t));
   const pendentes = (stats?.leads || []).filter((l) => !isDone(l)).length;
   // tudo que espera uma ação do Paulo (mostrado na saudação e na aba)
-  const solPend = pendentes + signupsPend + gaps.length;
+  // cadastros do site já viram membros sozinhos: não contam como pendência
+  const solPend = pendentes + gaps.length;
   // pedidos de projeto/gestão que ainda ninguém olhou
   const pedidosNovos = (tipo) =>
     pedidos.filter(
@@ -494,6 +511,7 @@ export default function PauloAdmin() {
     ).length;
   const totalPend =
     solPend +
+    senhaPedidos.length +
     referralsPend +
     pedidosNovos("projeto") +
     pedidosNovos("gestao") +
@@ -507,6 +525,7 @@ export default function PauloAdmin() {
     if (Array.isArray(d?.gestoes)) setGestoes(d.gestoes);
     if (Array.isArray(d?.imoveis)) setImoveis(d.imoveis);
     if (Array.isArray(d?.members)) setMembers(d.members);
+    if (Array.isArray(d?.senhaPedidos)) setSenhaPedidos(d.senhaPedidos);
   };
 
   // gráfico: eventos por dia nos últimos 14 dias
@@ -600,7 +619,7 @@ export default function PauloAdmin() {
                 ["imo", "Imóveis", pedidosNovos("imovel")],
                 ["proj", "Projetos", pedidosNovos("projeto") + pedidosNovos("obra")],
                 ["gest", "Gestão", pedidosNovos("gestao")],
-                ["mem", "Membros", 0],
+                ["mem", "Membros", senhaPedidos.length],
                 ["emp", "Empresas", 0],
                 ["num", "Números", 0],
               ].map(([id, lbl, n]) => (
@@ -661,7 +680,6 @@ export default function PauloAdmin() {
                 <div className="admin-todo">
                   {[
                     ["sec-leads", pendentes, "Leads do site", "a responder"],
-                    ["sec-signups", signupsPend, "Cadastros de empresas", "novos"],
                     ["sec-radar", gaps.length, "Pedidos sem empresa", "pra buscar"],
                   ].map(([id, n, lbl, sub]) => (
                     <a
@@ -745,15 +763,15 @@ export default function PauloAdmin() {
             {/* CADASTROS DE EMPRESAS (form do /ecossistema) */}
             <section className="admin-panel admin-signups" id="sec-signups">
               <h3>
-                📨 Cadastros de empresas
+                👋 Novos membros
                 {signupsPend > 0 && (
-                  <span className="lg-tag">{signupsPend} novo(s)</span>
+                  <span className="lg-tag">{signupsPend} chegaram</span>
                 )}
               </h3>
               <p className="admin-hint">
-                Empresas que pediram pra entrar na rede pelo site (página
-                “Entre para o Ecossistema”). Fale com elas e marque como
-                atendido.
+                Quem se cadastra pelo site já entra sozinho, com WhatsApp e
+                senha: não precisa de nada seu. Esta lista é só pra você saber
+                quem chegou e, se quiser, dar as boas-vindas.
               </p>
               {!(stats.signups || []).length ? (
                 <p className="admin-empty">
@@ -794,12 +812,12 @@ export default function PauloAdmin() {
                                 <a
                                   className="firm-conn"
                                   href={`https://wa.me/${waFull}?text=${encodeURIComponent(
-                                    `Olá ${s.nome}! Aqui é o Paulo Kasmirscki. Recebi seu cadastro pra entrar na rede. Vamos conversar?`
+                                    `Olá ${s.nome}! Aqui é o Paulo Kasmirscki. Seja bem-vindo ao Ecossistema PK! Qualquer coisa, estou por aqui.`
                                   )}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
-                                  WhatsApp
+                                  Dar boas-vindas
                                 </a>
                               )}
                               {!done && !waFull && s.email && (
@@ -825,18 +843,7 @@ export default function PauloAdmin() {
                                       + Criar acesso
                                     </button>
                                   );
-                                return waFull ? (
-                                  <a
-                                    className="chip"
-                                    href={`https://wa.me/${waFull}?text=${encodeURIComponent(
-                                      `Olá ${s.nome}! Aqui é o Paulo Kasmirscki. Este é o seu link pessoal de acesso ao ecossistema: ${m.link}`
-                                    )}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    Enviar link de acesso
-                                  </a>
-                                ) : (
+                                return waFull ? null : (
                                   <button
                                     type="button"
                                     className="chip"
@@ -853,7 +860,7 @@ export default function PauloAdmin() {
                                 className={`lead-check${done ? " on" : ""}`}
                                 onClick={() => toggleSignupDone(s.t, !done)}
                               >
-                                ✓ {done ? "Atendido" : "Atender"}
+                                ✓ {done ? "Visto" : "Marcar visto"}
                               </button>
                             </div>
                           </div>
@@ -1175,11 +1182,43 @@ export default function PauloAdmin() {
                 <span className="lg-tag">{members.length}</span>
               </h3>
               <p className="admin-hint">
-                Cada membro tem um link pessoal de acesso. Cadastre a pessoa,
-                envie o link pelo WhatsApp e ela entra direto, sem digitar
-                código. Se o link vazar, clique em “Novo link”: o antigo para de
-                funcionar na hora.
+                Os membros entram sozinhos com WhatsApp e senha (criada no
+                cadastro). Se alguém esquecer, o pedido aparece aqui: clique em
+                “Gerar nova senha” e envie pelo WhatsApp. O link pessoal continua
+                valendo; se ele vazar, clique em “Novo link”.
               </p>
+              {senhaPedidos.length > 0 && (
+                <div className="senha-pedidos">
+                  <div className="senha-pedidos-h">
+                    🔑 Pedidos de nova senha
+                    <span className="lg-tag">{senhaPedidos.length}</span>
+                  </div>
+                  {senhaPedidos.map((p) => {
+                    const m = members.find((x) => x.id === p.memberId);
+                    return (
+                      <div className="senha-pedido" key={p.memberId}>
+                        <span>
+                          <strong>{p.nome}</strong> · {p.whatsapp} · {fmtDate(p.t)}
+                        </span>
+                        <span className="lead-actions">
+                          {m && (
+                            <button type="button" className="chip chip-add" onClick={() => gerarSenha(m)}>
+                              Gerar nova senha
+                            </button>
+                          )}
+                          <button
+                            type="button"
+                            className="chip"
+                            onClick={() => memberAction({ action: "senhaPedidoDrop", id: p.memberId })}
+                          >
+                            Dispensar
+                          </button>
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
               <form className="member-form" onSubmit={addMember}>
                 <input
                   placeholder="Nome do membro"
@@ -1226,6 +1265,7 @@ export default function PauloAdmin() {
                                   ? `Último acesso: ${fmtDate(m.visto)}`
                                   : "Ainda não acessou"}
                                 {m.whatsapp ? ` · ${m.whatsapp}` : ""}
+                                {m.temSenha ? " · 🔑 com senha" : " · sem senha (entra pelo link)"}
                               </div>
                             </div>
                             <div className="lead-actions">
@@ -1248,6 +1288,15 @@ export default function PauloAdmin() {
                               >
                                 {copiedMember === m.id ? "✓ Copiado!" : "🔗 Copiar link"}
                               </button>
+                              {wa && (
+                                <button
+                                  type="button"
+                                  className="chip"
+                                  onClick={() => gerarSenha(m)}
+                                >
+                                  Gerar nova senha
+                                </button>
+                              )}
                               <button
                                 type="button"
                                 className="chip"
@@ -1264,6 +1313,27 @@ export default function PauloAdmin() {
                               </button>
                             </div>
                           </div>
+                          {novaSenha?.id === m.id && (
+                            <div className="senha-nova">
+                              <span>
+                                Senha provisória: <strong>{novaSenha.senha}</strong>
+                                <small> (só aparece agora)</small>
+                              </span>
+                              {wa && (
+                                <a
+                                  className="firm-conn"
+                                  href={`https://wa.me/${wa}?text=${encodeURIComponent(
+                                    `Olá ${m.nome}! Aqui é o Paulo Kasmirscki. Sua senha provisória da Área de Membros é: ${novaSenha.senha}\nEntre em https://www.paulokasmirscki.com.br/area com o seu WhatsApp e essa senha. Lá dentro você troca por uma senha sua.`
+                                  )}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={() => setTimeout(() => setNovaSenha(null), 500)}
+                                >
+                                  Enviar por WhatsApp
+                                </a>
+                              )}
+                            </div>
+                          )}
                         </div>
                       );
                     })}

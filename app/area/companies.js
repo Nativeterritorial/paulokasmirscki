@@ -465,7 +465,7 @@ export const COMPANIES = [
     nome: "Serrana Consórcios",
     segmento: "Consórcios & Investimentos",
     descricao:
-      "Administradora de consórcios — planejamento para conquistar veículo, imóvel e outros bens sem juros, com orientação sobre taxas e contemplação.",
+      "Serrana Administradora de Consórcios, na Av. Osvaldo Aranha, 1170, Centro de Veranópolis — consórcio para conquistar veículo, imóvel e outros bens sem juros, com orientação sobre taxas e contemplação.",
     atende: ["Finanças & Investimentos", "Imóveis & Construção", "Negócios & Empresas"],
     link: "https://www.instagram.com/serranaconsorcios/",
     linkLabel: "@serranaconsorcios",
@@ -475,7 +475,7 @@ export const COMPANIES = [
     nome: "Restaurante Pratos e Espetos",
     segmento: "Restaurante & Lancheria",
     descricao:
-      "Café da manhã, almoço e jantar — buffet variado ao quilo e livre, marmitas e espeto corrido em domingos especiais.",
+      "Restaurante em Vila Flores (RS) — café da manhã, almoço e jantar, buffet variado ao quilo e livre, marmitas e espeto corrido em domingos especiais.",
     atende: ["Gastronomia", "Turismo & Hotelaria"],
     link: "https://www.instagram.com/pratoseespetos/",
     linkLabel: "@pratoseespetos",

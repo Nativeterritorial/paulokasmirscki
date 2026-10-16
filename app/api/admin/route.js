@@ -163,10 +163,8 @@ export async function POST(req) {
   const stats = await getStats();
   const customCompanies = await getCustomCompanies();
 
-  // link-convite pronto pra copiar (o servidor conhece o código de acesso)
-  const inviteLink = `https://www.paulokasmirscki.com.br/area?convite=${encodeURIComponent(
-    process.env.AREA_CODE || "teste123"
-  )}`;
+  // o código geral foi desligado: não há mais link-convite geral
+  const inviteLink = "";
 
   // adiciona o nome das empresas aos rankings (que guardam só o id)
   const allForName = [...COMPANIES, ...customCompanies];

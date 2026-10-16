@@ -11,14 +11,12 @@ const post = async (url, body) => {
   return r.json();
 };
 
-// Tela de entrada da Área de Membros: WhatsApp + senha (qualquer aparelho),
-// "Esqueci minha senha" (o pedido vai pro painel do Paulo) e, por baixo,
-// o código de acesso antigo.
+// Tela de entrada da Área de Membros: WhatsApp + senha (qualquer aparelho)
+// e "Esqueci minha senha" (o pedido vai pro painel do Paulo).
 export function LoginForm({ onLogin }) {
-  const [modo, setModo] = useState("senha"); // senha | esqueci | codigo
+  const [modo, setModo] = useState("senha"); // senha | esqueci
   const [whatsapp, setWhatsapp] = useState("");
   const [senha, setSenha] = useState("");
-  const [codigo, setCodigo] = useState("");
   const [err, setErr] = useState("");
   const [ok, setOk] = useState("");
   const [loading, setLoading] = useState(false);
@@ -32,18 +30,15 @@ export function LoginForm({ onLogin }) {
   const entrar = async (e) => {
     e.preventDefault();
     setErr("");
-    if (modo === "senha" && (whatsapp.replace(/\D/g, "").length < 10 || !senha)) {
+    if (whatsapp.replace(/\D/g, "").length < 10 || !senha) {
       setErr("Informe o seu WhatsApp com DDD e a sua senha.");
       return;
     }
     setLoading(true);
     try {
-      const d = await post(
-        "/api/area-login",
-        modo === "senha" ? { whatsapp, senha } : { code: codigo.trim() }
-      );
-      if (d.ok) onLogin(modo === "senha" ? d.token : codigo.trim(), d.member || null);
-      else setErr(d.error || "Código incorreto.");
+      const d = await post("/api/area-login", { whatsapp, senha });
+      if (d.ok && d.token) onLogin(d.token, d.member || null);
+      else setErr(d.error || "WhatsApp ou senha não conferem.");
     } catch (e2) {
       setErr("Erro ao entrar. Tente novamente.");
     }
@@ -104,62 +99,36 @@ export function LoginForm({ onLogin }) {
   return (
     <>
       <form onSubmit={entrar} className="login-form login-form-col">
-        {modo === "senha" ? (
-          <>
-            <label className="login-lbl">
-              WhatsApp
-              <input
-                value={whatsapp}
-                onChange={(e) => setWhatsapp(e.target.value)}
-                placeholder="(54) 99999-9999"
-                inputMode="tel"
-                autoComplete="username"
-                autoFocus
-              />
-            </label>
-            <label className="login-lbl">
-              Senha
-              <input
-                type="password"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                placeholder="Sua senha"
-                autoComplete="current-password"
-              />
-            </label>
-          </>
-        ) : (
-          <label className="login-lbl">
-            Código de acesso
-            <input
-              type="password"
-              value={codigo}
-              onChange={(e) => setCodigo(e.target.value)}
-              placeholder="Código de acesso"
-              autoFocus
-            />
-          </label>
-        )}
+        <label className="login-lbl">
+          WhatsApp
+          <input
+            value={whatsapp}
+            onChange={(e) => setWhatsapp(e.target.value)}
+            placeholder="(54) 99999-9999"
+            inputMode="tel"
+            autoComplete="username"
+            autoFocus
+          />
+        </label>
+        <label className="login-lbl">
+          Senha
+          <input
+            type="password"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            placeholder="Sua senha"
+            autoComplete="current-password"
+          />
+        </label>
         <button className="btn btn-primary" disabled={loading}>
           {loading ? "Entrando..." : "Entrar"}
         </button>
       </form>
       {err && <div className="login-err">{err}</div>}
       <div className="login-links">
-        {modo === "senha" ? (
-          <>
-            <button type="button" className="login-link" onClick={() => trocar("esqueci")}>
-              Esqueci minha senha
-            </button>
-            <button type="button" className="login-link login-link-mute" onClick={() => trocar("codigo")}>
-              Tenho um código de acesso
-            </button>
-          </>
-        ) : (
-          <button type="button" className="login-link" onClick={() => trocar("senha")}>
-            ← Entrar com WhatsApp e senha
-          </button>
-        )}
+        <button type="button" className="login-link" onClick={() => trocar("esqueci")}>
+          Esqueci minha senha
+        </button>
       </div>
     </>
   );

@@ -12,10 +12,20 @@ const EMPTY = {
   website: "", // honeypot (fica escondido)
 };
 
+// para onde levar depois do cadastro, conforme o botão que trouxe a pessoa
+// (ex.: /ecossistema?servico=obra#cadastro abre a seção da obra)
+const DESTINO = {
+  obra: "#obra",
+  projeto: "#projeto",
+  gestao: "#gestao",
+  imovel: "#vender",
+  indicacoes: "#indicacoes",
+};
+
 export default function SignupForm() {
   const [f, setF] = useState(EMPTY);
   const [sending, setSending] = useState(false);
-  const [done, setDone] = useState(false);
+  const [done, setDone] = useState(false); // false | "entrando" | "existe" | "enviado"
   const [err, setErr] = useState("");
 
   const upd = (k) => (e) => setF((s) => ({ ...s, [k]: e.target.value }));
@@ -23,8 +33,8 @@ export default function SignupForm() {
   const submit = async (e) => {
     e.preventDefault();
     setErr("");
-    if (!f.nome.trim() || (!f.whatsapp.trim() && !f.email.trim())) {
-      setErr("Preencha seu nome e ao menos WhatsApp ou e-mail.");
+    if (!f.nome.trim() || f.whatsapp.replace(/\D/g, "").length < 10) {
+      setErr("Preencha o seu nome e um WhatsApp com DDD.");
       return;
     }
     setSending(true);
@@ -35,7 +45,16 @@ export default function SignupForm() {
         body: JSON.stringify(f),
       });
       const d = await r.json();
-      if (d.ok) setDone(true);
+      if (d.ok && d.token) {
+        // acesso imediato: entra direto na Área de Membros
+        setDone("entrando");
+        const servico = new URLSearchParams(window.location.search).get("servico");
+        setTimeout(() => {
+          window.location.href =
+            `/area?convite=${encodeURIComponent(d.token)}${DESTINO[servico] || ""}`;
+        }, 1200);
+      } else if (d.ok && d.exists) setDone("existe");
+      else if (d.ok) setDone("enviado");
       else setErr(d.error || "Não consegui enviar. Tente novamente.");
     } catch (e2) {
       setErr("Não consegui enviar. Tente novamente.");
@@ -49,11 +68,29 @@ export default function SignupForm() {
         <div className="signup-done-ic" aria-hidden="true">
           ✓
         </div>
-        <h3>Cadastro enviado!</h3>
-        <p>
-          O Paulo recebeu seus dados e vai entrar em contato em breve pra te dar
-          as boas-vindas à rede.
-        </p>
+        {done === "entrando" ? (
+          <>
+            <h3>Bem-vindo ao Ecossistema PK!</h3>
+            <p>Seu acesso foi criado. Entrando na Área de Membros…</p>
+          </>
+        ) : done === "existe" ? (
+          <>
+            <h3>Você já faz parte!</h3>
+            <p>
+              Já existe um acesso com esse WhatsApp. Entre pelo seu link pessoal
+              ou{" "}
+              <a href="/area" style={{ textDecoration: "underline" }}>
+                pela Área de Membros
+              </a>
+              . Se perdeu o link, o Paulo envia de novo.
+            </p>
+          </>
+        ) : (
+          <>
+            <h3>Cadastro enviado!</h3>
+            <p>O Paulo recebeu seus dados e vai enviar o seu acesso em breve.</p>
+          </>
+        )}
       </div>
     );
   }
@@ -127,11 +164,11 @@ export default function SignupForm() {
         aria-hidden="true"
       />
       <button className="btn btn-primary join-cta" disabled={sending}>
-        {sending ? "Enviando..." : "Quero me cadastrar"}
+        {sending ? "Criando seu acesso..." : "Quero fazer parte"}
       </button>
       {err && <div className="signup-err">{err}</div>}
       <div className="join-hint">
-        Sem compromisso — o Paulo recebe seus dados e fala com você.
+        Sem compromisso: seu acesso é criado na hora e você já entra na Área de Membros.
       </div>
     </form>
   );

@@ -1,8 +1,5 @@
 import { PROJECT_STAGES, OBRA_STAGES, stageNum } from "./project-stages";
 
-const WHATSAPP = "https://wa.me/5554996505799";
-const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
-
 // Bonificação por indicação. Deixe null enquanto não estiver definida (a página
 // diz "combinada com o Paulo"); preencha (ex.: "15% da comissão do Paulo")
 // quando as regras estiverem fechadas com o jurídico.
@@ -122,13 +119,8 @@ export default function Parcerias() {
               </svg>
               <span className="nav-login-txt">Área de Membros</span>
             </a>
-            <a
-              className="btn btn-primary"
-              href={wa("Olá Paulo! Vi a página de parcerias e quero conversar.")}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Falar com o Paulo
+            <a className="btn btn-primary" href="/ecossistema#cadastro">
+              Faça parte
             </a>
           </div>
         </div>
@@ -210,22 +202,14 @@ export default function Parcerias() {
             <aside className="join-buy">
               <div className="join-buy-card ind-cta">
                 <div className="kick">Quer indicar alguém?</div>
-                <h3>Fale comigo ou indique pela Área de Membros</h3>
+                <h3>Indique pela Área de Membros</h3>
                 <p>
-                  Me mande pelo WhatsApp o nome e o contato de quem você quer
-                  indicar. Se preferir registrar e acompanhar cada indicação,
-                  faça o seu cadastro no ecossistema.
+                  Faça o seu cadastro: o acesso é criado na hora e você registra
+                  e acompanha cada indicação, com data e hora de quem indicou
+                  primeiro.
                 </p>
-                <a
-                  className="btn btn-primary"
-                  href={wa("Olá Paulo! Quero indicar um negócio imobiliário. Quem eu indico: ")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Indicar pelo WhatsApp
-                </a>
-                <a className="btn btn-outline" href="/ecossistema#cadastro">
-                  Fazer meu cadastro
+                <a className="btn btn-primary" href="/ecossistema?servico=indicacoes#cadastro">
+                  Quero indicar
                 </a>
                 <a className="ind-cta-login" href="/area#indicacoes">
                   Já é membro? Entrar na Área de Membros →
@@ -264,16 +248,11 @@ export default function Parcerias() {
             <li>Cada profissional responde pelo serviço que presta, com ART e RRT quando exigidas; eu coordeno.</li>
           </ul>
           <div className="mdl-ctas">
-            <a
-              className="btn btn-primary"
-              href={wa("Olá Paulo! Quero construir e gostaria de conversar sobre a trilha Do Terreno às Chaves.")}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a className="btn btn-primary" href="/ecossistema?servico=obra#cadastro">
               Quero construir
             </a>
             <a className="btn btn-outline" href="/area#obra">
-              Iniciar pela Área de Membros
+              Já sou membro
             </a>
           </div>
         </section>
@@ -306,16 +285,11 @@ export default function Parcerias() {
             <li>Contabilidade e jurídico são feitos pelos profissionais habilitados.</li>
           </ul>
           <div className="mdl-ctas">
-            <a
-              className="btn btn-primary"
-              href={wa("Olá Paulo! Quero abrir um negócio e gostaria de conversar sobre o modelo Da ideia à abertura.")}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a className="btn btn-primary" href="/ecossistema?servico=projeto#cadastro">
               Quero abrir um negócio
             </a>
             <a className="btn btn-outline" href="/area#projeto">
-              Iniciar pela Área de Membros
+              Já sou membro
             </a>
           </div>
         </section>
@@ -342,14 +316,14 @@ export default function Parcerias() {
               </div>
             ))}
           </div>
-          <a
-            className="btn btn-primary mdl-cta"
-            href={wa("Olá Paulo! Quero saber mais sobre o modelo Gestor de negócios.")}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Quero um gestor
-          </a>
+          <div className="mdl-ctas">
+            <a className="btn btn-primary" href="/ecossistema?servico=gestao#cadastro">
+              Quero um gestor
+            </a>
+            <a className="btn btn-outline" href="/area#gestao">
+              Já sou membro
+            </a>
+          </div>
         </section>
       </main>
     </div>

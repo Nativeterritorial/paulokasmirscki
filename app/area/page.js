@@ -140,7 +140,9 @@ export default function Area() {
         "convite"
       );
       if (convite) {
-        window.history.replaceState({}, "", "/area");
+        // mantém o destino (#obra, #projeto…) de quem acabou de se cadastrar
+        const destino = window.location.hash;
+        window.history.replaceState({}, "", "/area" + destino);
         fetch("/api/area-login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -155,6 +157,14 @@ export default function Area() {
               try {
                 localStorage.setItem("area_code", convite);
               } catch (e) {}
+              // chegou por um serviço: abre o formulário dele (ou só rola até a seção)
+              const TIPO = { "#obra": "obra", "#projeto": "projeto", "#gestao": "gestao", "#vender": "imovel" };
+              if (destino) {
+                setTimeout(() => {
+                  if (TIPO[destino]) abrirServico(TIPO[destino]);
+                  else document.querySelector(destino)?.scrollIntoView({ behavior: "smooth" });
+                }, 900);
+              }
             }
           })
           .catch(() => {});

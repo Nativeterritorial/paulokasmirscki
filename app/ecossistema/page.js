@@ -4,9 +4,6 @@ import SignupForm from "./signup-form";
 // preencha (ex.: "R$ 97/mês" ou "R$ 497/ano") quando definirem.
 const PRECO = null;
 
-const WHATSAPP = "https://wa.me/5554996505799";
-const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
-
 export const metadata = {
   title: "O Ecossistema — Paulo Kasmirscki",
   description:
@@ -36,19 +33,19 @@ const CAMINHOS = [
     t: "Quero receber indicações",
     d: "Seja apresentado a clientes e parceiros que precisam exatamente do que a sua empresa faz.",
     cta: "Quero receber indicações",
-    href: wa("Olá Paulo! Tenho um negócio e quero fazer parte da sua rede para receber indicações de clientes."),
+    href: "#cadastro",
   },
   {
     t: "Quero indicar e ser indicado",
     d: "Troque oportunidades com uma rede ativa de profissionais e empresas de vários segmentos.",
     cta: "Entrar na rede",
-    href: wa("Olá Paulo! Quero entrar no ecossistema para indicar e ser indicado dentro da rede."),
+    href: "#cadastro",
   },
   {
     t: "Preciso de uma solução",
     d: "Procurando um fornecedor ou serviço de confiança? O Paulo te conecta com a pessoa certa da rede.",
     cta: "Buscar na rede",
-    href: wa("Olá Paulo! Estou procurando uma solução/fornecedor de confiança. Pode me conectar com alguém da rede?"),
+    href: "#cadastro",
   },
 ];
 
@@ -150,7 +147,7 @@ export default function Ecossistema() {
                   <div className="join-num">{String(i + 1).padStart(2, "0")}</div>
                   <h3>{c.t}</h3>
                   <p>{c.d}</p>
-                  <a className="btn btn-primary" href={c.href} target="_blank" rel="noopener noreferrer">
+                  <a className="btn btn-primary" href={c.href}>
                     {c.cta}
                   </a>
                 </article>

@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
-import { logSignup } from "../../../lib/store";
+import { logSignup, selfSignupMember } from "../../../lib/store";
 
 export const runtime = "nodejs";
 
-// Recebe o cadastro de uma empresa que quer entrar na rede (form do /ecossistema)
+// Cadastro no Ecossistema PK (página /ecossistema e página inicial).
+// A pessoa já recebe o acesso pessoal na hora e entra na Área de Membros;
+// o cadastro também aparece no painel do Paulo.
 export async function POST(req) {
   let body = {};
   try {
@@ -17,10 +19,9 @@ export async function POST(req) {
   const whatsapp = String(body.whatsapp || "").trim();
   const email = String(body.email || "").trim();
 
-  // exige ao menos nome + uma forma de contato
-  if (!nome || (!whatsapp && !email)) {
+  if (!nome || String(whatsapp).replace(/\D/g, "").length < 10) {
     return NextResponse.json(
-      { ok: false, error: "Preencha o nome e ao menos WhatsApp ou e-mail." },
+      { ok: false, error: "Preencha o seu nome e um WhatsApp com DDD." },
       { status: 400 }
     );
   }
@@ -34,5 +35,9 @@ export async function POST(req) {
     whatsapp,
   });
 
+  const r = await selfSignupMember({ nome, whatsapp });
+  if (r.token) return NextResponse.json({ ok: true, token: r.token });
+  if (r.exists) return NextResponse.json({ ok: true, exists: true });
+  // se não deu pra criar o acesso agora, o cadastro chegou ao Paulo mesmo assim
   return NextResponse.json({ ok: true });
 }

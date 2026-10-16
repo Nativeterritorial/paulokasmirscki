@@ -62,8 +62,8 @@ export default function MobileMenu() {
                 </a>
               ))}
             </div>
-            <a className="btn btn-primary mm-cta" href="#contato" onClick={() => setOpen(false)}>
-              Vamos conversar
+            <a className="btn btn-primary mm-cta" href="#faca-parte" onClick={() => setOpen(false)}>
+              Faça parte
             </a>
           </nav>
         </>

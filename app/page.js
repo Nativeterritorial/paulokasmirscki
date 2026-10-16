@@ -1169,12 +1169,13 @@ export default function Home() {
           <GhostMarquee word="Conecte" />
           <div className="container">
             <div className="eyebrow">Faça parte</div>
-            <h2>
+            <h2 className="fp-title">
               Entre para o <em>Ecossistema PK</em>
             </h2>
             <p>
-              Uma rede de empresas e profissionais de confiança, com o Paulo
-              conduzindo cada conexão. Cadastre-se e use a plataforma hoje mesmo.
+              Uma rede de empresas e profissionais de confiança, com uma pessoa
+              conduzindo cada passo. Veja como podemos crescer juntos.
+              Cadastre-se e use a plataforma hoje mesmo.
             </p>
             <ol className="fp-steps">
               <li>

@@ -7548,3 +7548,22 @@ body:has(.vt-theme) {
   letter-spacing: normal;
   font-weight: 400;
 }
+
+/* Faça parte: título em destaque (Sora extra-negrito) */
+.cta h2.fp-title {
+  font-family: "Sora", "Space Grotesk", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  max-width: 980px;
+  text-shadow: 0 6px 40px rgba(8, 20, 70, 0.35);
+}
+.cta h2.fp-title em {
+  font-style: normal;
+  color: #bcd6ff;
+}
+#faca-parte > .container > p {
+  font-size: 1.22rem;
+  max-width: 640px;
+}

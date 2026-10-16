@@ -1,4 +1,4 @@
-import { PROJECT_STAGES } from "./project-stages";
+import { PROJECT_STAGES, OBRA_STAGES, stageNum } from "./project-stages";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
@@ -13,7 +13,7 @@ const VALIDADE_MESES = 12;
 export const metadata = {
   title: "Parcerias — Paulo Kasmirscki",
   description:
-    "Três formas de fazer negócio com o Paulo Kasmirscki: indicar um negócio imobiliário, abrir uma empresa da ideia à inauguração e ter um gestor ao lado do seu negócio.",
+    "Quatro formas de fazer negócio com o Paulo Kasmirscki: indicar um negócio imobiliário, construir do terreno às chaves, abrir uma empresa da ideia à inauguração e ter um gestor ao seu lado.",
   alternates: { canonical: "/parcerias" },
 };
 
@@ -38,6 +38,7 @@ const ico = (paths) => (
 const MODELOS = [
   {
     id: "indicar",
+    cls: "svc-ind",
     n: "01",
     ic: ["M3 11l9-7 9 7", "M5 10v10h14V10", "M10 20v-6h4v6"],
     t: "Indique um negócio imobiliário",
@@ -45,8 +46,18 @@ const MODELOS = [
     p: "Para quem quer uma renda extra sem precisar entender de imóveis.",
   },
   {
-    id: "abrir",
+    id: "obra",
+    cls: "svc-obra",
     n: "02",
+    ic: ["M3 21h18", "M5 21V9l7-5 7 5v12", "M9 21v-6h6v6", "M12 4V2"],
+    t: "Do Terreno às Chaves",
+    d: "Casa, pavilhão ou comercial: do terreno à entrega das chaves, eu conduzo as 11 fases da obra com os parceiros certos da rede.",
+    p: "Para quem vai construir e quer um único ponto de confiança, do começo ao fim.",
+  },
+  {
+    id: "abrir",
+    cls: "svc-proj",
+    n: "03",
     ic: [
       "M12 3c3 2 5 5.5 5 9.5L15 16H9l-2-3.5C7 8.5 9 5 12 3z",
       "M12 11.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z",
@@ -58,7 +69,8 @@ const MODELOS = [
   },
   {
     id: "gestor",
-    n: "03",
+    cls: "svc-gest",
+    n: "04",
     ic: ["M3 8h18v12H3z", "M9 8V5h6v3", "M3 13h18"],
     t: "Gestor de negócios",
     d: "Eu atuo ao seu lado, como pessoa física ou dono de empresa, mês a mês, no planejamento, nos números, nos processos e nas negociações.",
@@ -126,17 +138,17 @@ export default function Parcerias() {
         <div className="join-hero">
           <div className="eyebrow">Parcerias</div>
           <h1 className="mdl-title">
-            Três formas de fazer <em>negócio</em> comigo
+            Quatro formas de fazer <em>negócio</em> comigo
           </h1>
           <p className="join-lead">
-            Além de conectar as empresas da rede, trabalho com três modelos de
-            parceria. Escolha o que faz sentido para você.
+            Além de conectar as empresas da rede, trabalho com quatro modelos
+            de parceria. Escolha o que faz sentido para você.
           </p>
         </div>
 
         <div className="mdl-cards">
           {MODELOS.map((m) => (
-            <a className="mdl-card" href={`#${m.id}`} key={m.id}>
+            <a className={`mdl-card svc ${m.cls}`} href={`#${m.id}`} key={m.id}>
               <div className="mdl-top">
                 <span className="mdl-ico">{ico(m.ic)}</span>
                 <span className="mdl-n">{m.n}</span>
@@ -150,7 +162,7 @@ export default function Parcerias() {
         </div>
 
         {/* 01 — Indicação imobiliária */}
-        <section className="mdl-sec" id="indicar">
+        <section className="mdl-sec svc svc-ind" id="indicar">
           <div className="mdl-head">
             <div className="kick">Modelo 01</div>
             <h2 className="mdl-title">
@@ -206,10 +218,53 @@ export default function Parcerias() {
           </div>
         </section>
 
-        {/* 02 — Da ideia à abertura */}
-        <section className="mdl-sec" id="abrir">
+        {/* 02 — Do Terreno às Chaves */}
+        <section className="mdl-sec svc svc-obra" id="obra">
           <div className="mdl-head">
             <div className="kick">Modelo 02</div>
+            <h2 className="mdl-title">
+              Do terreno às <em>chaves</em>
+            </h2>
+            <p>
+              Construir envolve terreno, topografia, projetos, alvará,
+              construtora, instalações e acabamentos. Eu conduzo as 11 fases
+              com os parceiros da rede e você acompanha tudo por um contato só,
+              do primeiro metro quadrado até as chaves na mão.
+            </p>
+          </div>
+          <div className="mdl-stages mdl-stages-obra">
+            {OBRA_STAGES.map((s, i) => (
+              <div className="join-step" key={s.id}>
+                <div className="js-n">{stageNum(s, i)}</div>
+                <h4>{s.nome}</h4>
+                <p>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+          <ul className="mdl-list mdl-list-inline">
+            <li>Em cada fase entra um parceiro da rede: contabilidade, topografia, jurídico, construtora e especialistas.</li>
+            <li>Você acompanha cada fase na Área de Membros: quem cuida, o que já foi feito e o próximo passo.</li>
+            <li>Cada profissional responde pelo serviço que presta, com ART e RRT quando exigidas; eu coordeno.</li>
+          </ul>
+          <div className="mdl-ctas">
+            <a
+              className="btn btn-primary"
+              href={wa("Olá Paulo! Quero construir e gostaria de conversar sobre a trilha Do Terreno às Chaves.")}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Quero construir
+            </a>
+            <a className="btn btn-outline" href="/area#obra">
+              Iniciar pela Área de Membros
+            </a>
+          </div>
+        </section>
+
+        {/* 03 — Da ideia à abertura */}
+        <section className="mdl-sec svc svc-proj" id="abrir">
+          <div className="mdl-head">
+            <div className="kick">Modelo 03</div>
             <h2 className="mdl-title">
               Da ideia à <em>abertura</em>
             </h2>
@@ -233,20 +288,25 @@ export default function Parcerias() {
             <li>Cada empresa responde pelo serviço que presta; eu coordeno.</li>
             <li>Contabilidade e jurídico são feitos pelos profissionais habilitados.</li>
           </ul>
-          <a
-            className="btn btn-primary"
-            href={wa("Olá Paulo! Quero abrir um negócio e gostaria de conversar sobre o modelo Da ideia à abertura.")}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Quero abrir um negócio
-          </a>
+          <div className="mdl-ctas">
+            <a
+              className="btn btn-primary"
+              href={wa("Olá Paulo! Quero abrir um negócio e gostaria de conversar sobre o modelo Da ideia à abertura.")}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Quero abrir um negócio
+            </a>
+            <a className="btn btn-outline" href="/area#projeto">
+              Iniciar pela Área de Membros
+            </a>
+          </div>
         </section>
 
-        {/* 03 — Gestor de negócios */}
-        <section className="mdl-sec" id="gestor">
+        {/* 04 — Gestor de negócios */}
+        <section className="mdl-sec svc svc-gest" id="gestor">
           <div className="mdl-head">
-            <div className="kick">Modelo 03</div>
+            <div className="kick">Modelo 04</div>
             <h2 className="mdl-title">
               Gestor de <em>negócios</em>
             </h2>

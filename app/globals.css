@@ -7111,3 +7111,86 @@ body:has(.vt-theme) {
     width: 100%;
   }
 }
+
+/* ---------- Parcerias: quatro modelos com as cores da área de membros ---------- */
+/* tons um pouco mais claros: o fundo desta página é azul */
+.rede-page .svc-proj {
+  --svc: #a9cbff;
+  --svc-ink: #0a205f;
+  --svc-soft: rgba(169, 203, 255, 0.2);
+}
+.rede-page .svc-gest {
+  --svc: #d2b6ff;
+  --svc-soft: rgba(210, 182, 255, 0.2);
+}
+.mdl-cards {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 1100px) {
+  .mdl-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .mdl-cards {
+    grid-template-columns: 1fr;
+  }
+}
+.mdl-card.svc {
+  border-top: 3px solid var(--svc);
+}
+.mdl-card.svc .mdl-ico {
+  color: var(--svc-ink);
+  background: var(--svc);
+}
+.mdl-card.svc:hover {
+  border-color: var(--svc);
+  box-shadow: 0 14px 36px var(--svc-soft);
+}
+.mdl-card.svc .mdl-more {
+  color: var(--svc);
+}
+.mdl-sec.svc .mdl-head .kick {
+  color: var(--svc);
+}
+.mdl-sec.svc .mdl-title em {
+  color: var(--svc);
+}
+.mdl-sec.svc .js-n {
+  color: var(--svc-ink);
+  background: var(--svc);
+}
+.mdl-sec.svc .mdl-list li::before {
+  background: var(--svc);
+}
+.mdl-sec.svc .btn-primary {
+  color: var(--svc-ink);
+  background: var(--svc);
+}
+.mdl-sec.svc .btn-primary:hover {
+  filter: brightness(1.06);
+}
+.mdl-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.mdl-stages-obra {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 1100px) {
+  .mdl-stages-obra {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .mdl-stages-obra {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* área de membros: topo sólido ao rolar (o conteúdo não aparece por trás) */
+.area-top {
+  background: rgba(8, 13, 40, 0.94);
+  backdrop-filter: blur(12px);
+}

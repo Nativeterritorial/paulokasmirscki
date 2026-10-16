@@ -65,9 +65,17 @@ export default function MyReferrals({ code, member }) {
   };
 
   return (
-    <section className="area-refs area-projects" id="indicacoes">
+    <section className="area-refs area-projects svc svc-ind" id="indicacoes">
       <div className="area-refs-head">
-        <div>
+        <div className="svc-ic" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 11l9-7 9 7" />
+            <path d="M5 10v10h14V10" />
+            <path d="M12 12v6" />
+            <path d="M9 15h6" />
+          </svg>
+        </div>
+        <div className="svc-txt">
           <div className="kick">Minhas indicações</div>
           <h2>
             {member

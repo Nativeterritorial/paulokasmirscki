@@ -41,9 +41,16 @@ export default function MyProjects({ code, member }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="area-refs area-projects" id="projeto">
+    <section className="area-refs area-projects svc svc-proj" id="projeto">
       <div className="area-refs-head">
-        <div>
+        <div className="svc-ic" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 3c3 2 5 5.5 5 9.5L15 16H9l-2-3.5C7 8.5 9 5 12 3z" />
+            <path d="M12 11.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+            <path d="M9 16l-2 4 4-1.5M15 16l2 4-4-1.5" />
+          </svg>
+        </div>
+        <div className="svc-txt">
           <div className="kick">Meu projeto · Da ideia à abertura</div>
           <h2>Tem a ideia de um negócio?</h2>
           <p>O Paulo ajuda a tirar a sua ideia do papel e reúne os parceiros certos para cada etapa. Você foca no seu sonho, e ele cuida do caminho até a inauguração.</p>

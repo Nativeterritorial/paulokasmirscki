@@ -11,9 +11,15 @@ export default function MyImoveis({ code, member }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="area-refs area-projects" id="vender">
+    <section className="area-refs area-projects svc svc-imo" id="vender">
       <div className="area-refs-head">
-        <div>
+        <div className="svc-ic" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 12V4h8l10 10-8 8z" />
+            <path d="M7.5 7.5h.01" />
+          </svg>
+        </div>
+        <div className="svc-txt">
           <div className="kick">Quero vender meu imóvel</div>
           <h2>Tem um imóvel para vender?</h2>
           <p>

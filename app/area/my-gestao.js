@@ -73,9 +73,15 @@ export default function MyGestao({ code, member }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="area-refs area-projects" id="gestao">
+    <section className="area-refs area-projects svc svc-gest" id="gestao">
       <div className="area-refs-head">
-        <div>
+        <div className="svc-ic" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 17l6-6 4 4 8-8" />
+            <path d="M15 7h6v6" />
+          </svg>
+        </div>
+        <div className="svc-txt">
           <div className="kick">Minha gestão · Gestor de negócios</div>
           <h2>Quer um gestor para você ou sua empresa?</h2>
           <p>Conte o seu momento ou o da sua empresa: o Paulo atua com você, mês a mês, no planejamento, nos números, nos processos e nas negociações.</p>

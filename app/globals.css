@@ -6793,3 +6793,89 @@ body:has(.vt-theme) {
   font-weight: 600;
   border: 1px solid var(--border);
 }
+
+/* ---------- Área de membros: cartões de serviço com cor e ícone ---------- */
+.svc-ind {
+  --svc: #6fffbf;
+  --svc-ink: #06304a;
+  --svc-soft: rgba(111, 255, 191, 0.14);
+}
+.svc-imo {
+  --svc: #f5c04e;
+  --svc-ink: #3a2600;
+  --svc-soft: rgba(245, 192, 78, 0.16);
+}
+.svc-proj {
+  --svc: #5b9bff;
+  --svc-ink: #ffffff;
+  --svc-soft: rgba(91, 155, 255, 0.18);
+}
+.svc-gest {
+  --svc: #b88cff;
+  --svc-ink: #22104a;
+  --svc-soft: rgba(184, 140, 255, 0.18);
+}
+.svc > .area-refs-head {
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 22px;
+  border-left: 5px solid var(--svc);
+  background: linear-gradient(90deg, var(--svc-soft), rgba(255, 255, 255, 0.03) 70%);
+}
+.svc-ic {
+  flex: none;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  color: var(--svc-ink);
+  background: var(--svc);
+  box-shadow: 0 10px 26px var(--svc-soft);
+}
+.svc-ic svg {
+  width: 28px;
+  height: 28px;
+}
+.svc-txt {
+  flex: 1;
+  min-width: 0;
+}
+.svc > .area-refs-head .kick {
+  color: var(--svc);
+  font-weight: 600;
+}
+.svc > .area-refs-head h2 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+  letter-spacing: -0.01em;
+  margin-top: 6px;
+}
+.svc > .area-refs-head .btn-primary {
+  flex: none;
+  color: var(--svc-ink);
+  background: var(--svc);
+  border-color: var(--svc);
+}
+.svc > .area-refs-head .btn-primary:hover {
+  filter: brightness(1.06);
+}
+.svc > .area-refs-head .vt-link {
+  color: var(--svc);
+}
+@media (max-width: 760px) {
+  .svc > .area-refs-head {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .svc-ic {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+  .svc > .area-refs-head .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+}

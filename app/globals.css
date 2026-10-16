@@ -7328,3 +7328,28 @@ body:has(.vt-theme) {
     padding: 12px 18px;
   }
 }
+
+/* botão "Faça parte" do topo: violeta com ícone (o flutuante voltou a ser o WhatsApp) */
+.fp-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  color: #fff;
+  background: linear-gradient(135deg, #9a7bff, #5b9bff);
+  box-shadow: 0 10px 26px rgba(91, 80, 220, 0.4);
+  transition: transform 0.2s ease;
+}
+.fp-top:hover {
+  transform: translateY(-2px);
+}
+@media (max-width: 560px) {
+  .fp-top {
+    padding: 10px 14px;
+    font-size: 0.8rem;
+  }
+}

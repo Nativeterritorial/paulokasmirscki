@@ -460,4 +460,34 @@ export const COMPANIES = [
     link: "https://www.instagram.com/coenegocios/",
     linkLabel: "@coenegocios",
   },
+  {
+    id: "serranaconsorcios",
+    nome: "Serrana Consórcios",
+    segmento: "Consórcios & Investimentos",
+    descricao:
+      "Administradora de consórcios — planejamento para conquistar veículo, imóvel e outros bens sem juros, com orientação sobre taxas e contemplação.",
+    atende: ["Finanças & Investimentos", "Imóveis & Construção", "Negócios & Empresas"],
+    link: "https://www.instagram.com/serranaconsorcios/",
+    linkLabel: "@serranaconsorcios",
+  },
+  {
+    id: "pratoseespetos",
+    nome: "Restaurante Pratos e Espetos",
+    segmento: "Restaurante & Lancheria",
+    descricao:
+      "Café da manhã, almoço e jantar — buffet variado ao quilo e livre, marmitas e espeto corrido em domingos especiais.",
+    atende: ["Gastronomia", "Turismo & Hotelaria"],
+    link: "https://www.instagram.com/pratoseespetos/",
+    linkLabel: "@pratoseespetos",
+  },
+  {
+    id: "suculentasiva",
+    nome: "Suculentas da Iva Kasmirscki",
+    segmento: "Floricultura",
+    descricao:
+      "Paixão por suculentas em Veranópolis — plantas, mudas e arranjos de suculentas, com encomendas pelo WhatsApp.",
+    atende: ["Flores & Presentes", "Comércio & Varejo", "Sustentabilidade & Meio Ambiente"],
+    link: "https://www.instagram.com/suculentasdaivakasmirscki/",
+    linkLabel: "@suculentasdaivakasmirscki",
+  },
 ];

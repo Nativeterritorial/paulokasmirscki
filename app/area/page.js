@@ -344,22 +344,22 @@ export default function Area() {
             <span className="area-hello">Olá, {member.nome.split(" ")[0]}</span>
           )}
           <a
-            className={`area-refs-link area-sol${naoLidas.total > 0 ? " area-msgs" : ""}`}
+            className={`area-refs-link area-sol top-svc svc-sol${naoLidas.total > 0 ? " area-msgs" : ""}`}
             href={naoLidas.total > 0 ? `#pd-${naoLidas.primeiro}` : "#solicitacoes"}
           >
             Solicitações
             {naoLidas.total > 0 && <span className="area-msgs-n">{naoLidas.total}</span>}
           </a>
-          <a className="area-refs-link" href="#indicacoes">
+          <a className="area-refs-link top-svc svc-ind" href="#indicacoes">
             {member ? "Minhas indicações" : "Indicar negócio"}
           </a>
-          <a className="area-refs-link" href="#vender">
+          <a className="area-refs-link top-svc svc-imo" href="#vender">
             Vender imóvel
           </a>
-          <a className="area-refs-link" href="#projeto">
+          <a className="area-refs-link top-svc svc-proj" href="#projeto">
             Meu projeto
           </a>
-          <a className="area-refs-link" href="#gestao">
+          <a className="area-refs-link top-svc svc-gest" href="#gestao">
             Minha gestão
           </a>
           <InstallApp />

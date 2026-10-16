@@ -16,9 +16,15 @@ export default function MySolicitacoes({ code, member, version }) {
   }, [version]);
 
   return (
-    <section className="area-refs area-projects" id="solicitacoes">
+    <section className="area-refs area-projects svc svc-sol" id="solicitacoes">
       <div className="area-refs-head">
-        <div>
+        <div className="svc-ic" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" />
+            <path d="M8.5 11h.01M12 11h.01M15.5 11h.01" />
+          </svg>
+        </div>
+        <div className="svc-txt">
           <div className="kick">Minhas solicitações</div>
           <h2>Acompanhe tudo o que você pediu ao Paulo</h2>
           <p>

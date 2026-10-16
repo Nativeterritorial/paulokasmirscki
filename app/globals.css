@@ -6693,9 +6693,9 @@ body:has(.vt-theme) {
   padding: 11px 20px;
 }
 .area-msgs {
-  background: #6fffbf !important;
+  background: #46d6ff !important;
   color: #06304a !important;
-  border-color: #6fffbf !important;
+  border-color: #46d6ff !important;
 }
 /* no painel (fundo escuro), a conversa usa o mesmo visual */
 .pd-admin .pd-chat {
@@ -6877,5 +6877,62 @@ body:has(.vt-theme) {
   .svc > .area-refs-head .btn-primary {
     width: 100%;
     justify-content: center;
+  }
+}
+
+/* Minhas solicitações: mesma linha visual, em turquesa */
+.svc-sol {
+  --svc: #46d6ff;
+  --svc-ink: #06304a;
+  --svc-soft: rgba(70, 214, 255, 0.16);
+}
+.svc-sol > .area-refs-head .sol-count {
+  border-color: var(--svc);
+  color: var(--svc);
+}
+/* topo: contorno e bolinha na cor de cada serviço (sem preencher) */
+.top-svc {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-color: color-mix(in srgb, var(--svc) 55%, transparent);
+}
+.top-svc::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--svc);
+  flex: none;
+}
+.top-svc:hover {
+  border-color: var(--svc);
+  background: var(--svc-soft);
+}
+.top-svc.area-msgs::before {
+  background: var(--svc-ink);
+}
+
+/* topo da área de membros: compacto, o nome não quebra e nada estoura a largura */
+.area-top .brand-name {
+  white-space: nowrap;
+}
+.area-top-actions {
+  gap: 8px;
+}
+.area-top-actions .top-svc {
+  padding: 8px 13px;
+  font-size: 0.74rem;
+}
+@media (max-width: 1400px) {
+  .area-top .area-badge,
+  .area-top .area-hello {
+    display: none;
+  }
+}
+@media (max-width: 1180px) {
+  /* os atalhos das seções saem; Solicitações continua */
+  .area-top-actions .top-svc:not(.svc-sol) {
+    display: none;
   }
 }

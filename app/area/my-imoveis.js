@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { usePedidos, PedidosList, PedidoForm } from "./pedidos";
+import { useAbrir } from "./abrir";
 
 // "Quero vender meu imóvel": o proprietário cadastra o imóvel e acompanha a
 // situação do cadastro. O Paulo avalia, fecha a autorização de venda e depois
@@ -9,6 +10,7 @@ import { usePedidos, PedidosList, PedidoForm } from "./pedidos";
 export default function MyImoveis({ code, member }) {
   const { list, load, cancel, apply } = usePedidos(code, member, "imovel");
   const [open, setOpen] = useState(false);
+  useAbrir("imovel", "vender", () => setOpen(true));
 
   return (
     <section className="area-refs area-projects svc svc-imo" id="vender">

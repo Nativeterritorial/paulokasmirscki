@@ -130,6 +130,14 @@ const ROTULOS = {
     criar: "",
     msg: (p) => `Olá ${p.nome}! Aqui é o Paulo Kasmirscki. Recebi o seu pedido de Chave PK para a ${p.titulo}. Vamos conversar sobre a apresentação?`,
   },
+  obra: {
+    titulo: "🏗️ Pedidos Do Terreno às Chaves",
+    vazio: "Nenhum pedido ainda. Eles chegam pelo botão “+ Iniciar minha obra” da área de membros e pelo concierge.",
+    local: "Cidade",
+    fase: "Terreno",
+    criar: "Criar projeto da obra",
+    msg: (p) => `Olá ${p.nome}! Aqui é o Paulo Kasmirscki. Recebi o seu pedido Do Terreno às Chaves (${p.titulo}${p.local ? " em " + p.local : ""}). Vamos conversar?`,
+  },
   imovel: {
     titulo: "🏠 Imóveis para vender",
     vazio: "Nenhum imóvel ainda. Eles chegam pelo botão “+ Cadastrar imóvel” da área de membros.",
@@ -183,10 +191,15 @@ export default function PedidosAdmin({ code, tipo, pedidos, members = [], onData
       if (d?.novoImovel && onImovel) onImovel(d.novoImovel);
       return;
     }
-    if (tipo === "projeto") {
+    if (tipo === "projeto" || tipo === "obra") {
       await call({
         action: "projectSave",
-        project: { nome: p.titulo, cliente: p.nome, memberId: p.memberId },
+        project: {
+          nome: tipo === "obra" ? [p.titulo, p.local].filter(Boolean).join(" em ") : p.titulo,
+          cliente: p.nome,
+          memberId: p.memberId,
+          trilha: tipo === "obra" ? "obra" : "abertura",
+        },
       });
     } else {
       await call({
@@ -291,6 +304,11 @@ export default function PedidosAdmin({ code, tipo, pedidos, members = [], onData
                     {p.fase && (
                       <span>
                         {R.fase}: <strong>{p.fase}</strong>
+                      </span>
+                    )}
+                    {p.prazo && (
+                      <span>
+                        Começar: <strong>{p.prazo}</strong>
                       </span>
                     )}
                     {p.valor && (

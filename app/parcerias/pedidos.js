@@ -2,7 +2,7 @@
 // à abertura), "+ Nova gestão" (Gestor de negócios) e "+ Cadastrar imóvel"
 // (Quero vender meu imóvel). O Paulo vê nas abas Projetos, Gestão e Imóveis.
 
-export const PEDIDO_TIPOS = ["projeto", "gestao", "imovel", "chave"];
+export const PEDIDO_TIPOS = ["projeto", "gestao", "imovel", "chave", "obra"];
 
 export const PEDIDO_STATUS = [
   { id: "novo", label: "Recebido", desc: "O Paulo recebeu o seu pedido e vai entrar em contato pelo WhatsApp." },
@@ -72,6 +72,20 @@ export const SITUACAO_IMOVEL = [
   "Em inventário",
   "Precisa regularizar",
   "Não sei",
+];
+
+// Do Terreno às Chaves: tipo de obra e situação do terreno
+export const TIPOS_OBRA = [
+  "Casa",
+  "Pavilhão",
+  "Prédio ou comercial",
+  "Reforma ou ampliação",
+  "Outro",
+];
+export const TERRENO_SITUACAO = [
+  "Já tenho o terreno",
+  "Estou negociando um terreno",
+  "Ainda preciso encontrar",
 ];
 
 export const MAX_PEDIDOS_ABERTOS = 5;

@@ -7,6 +7,8 @@ import {
   AREAS_GESTAO,
   TIPOS_IMOVEL,
   SITUACAO_IMOVEL,
+  TIPOS_OBRA,
+  TERRENO_SITUACAO,
   pedidoStatus,
   MAX_MSG,
 } from "../parcerias/pedidos";
@@ -178,6 +180,7 @@ function Conversa({ p, code, apply }) {
 }
 
 const TIPO_LABEL = {
+  obra: "Do Terreno às Chaves",
   chave: "Chave PK",
   projeto: "Novo projeto",
   gestao: "Gestão",
@@ -255,6 +258,14 @@ const TEXTOS = {
     enviar: "Solicitar gestão",
     ok: "Pedido enviado!",
   },
+  obra: {
+    titulo: ["O que você quer construir? *", TIPOS_OBRA],
+    local: ["Cidade da obra", "Ex.: Veranópolis"],
+    fase: ["E o terreno?", TERRENO_SITUACAO],
+    descricao: ["Conte a sua ideia *", "Ex.: pavilhão de 600 m² para a minha empresa, com escritório e doca"],
+    enviar: "Iniciar minha obra",
+    ok: "Pedido enviado!",
+  },
   imovel: {
     titulo: ["Tipo de imóvel *", TIPOS_IMOVEL],
     local: ["Cidade", "Ex.: Veranópolis"],
@@ -281,6 +292,7 @@ export function PedidoForm({ code, tipo, member, onDone }) {
     metragem: "",
     quartos: "",
     proprietario: false,
+    prazo: "",
     valorVisivel: true,
     origem: "proprietario",
     creci: "",
@@ -410,7 +422,7 @@ export function PedidoForm({ code, tipo, member, onDone }) {
       <div className="signup-row">
         <label>
           {T.titulo[0]}
-          {imovel ? (
+          {imovel || tipo === "obra" ? (
             <select value={f.titulo} onChange={upd("titulo")}>
               <option value="">Selecione</option>
               {T.titulo[1].map((o) => (
@@ -428,6 +440,18 @@ export function PedidoForm({ code, tipo, member, onDone }) {
           <input value={f.local} onChange={upd("local")} placeholder={T.local[1]} />
         </label>
       </div>
+      {tipo === "obra" && (
+        <div className="signup-row">
+          <label>
+            Tamanho aproximado (m²)
+            <input value={f.metragem} onChange={upd("metragem")} placeholder="Ex.: 600" inputMode="numeric" />
+          </label>
+          <label>
+            Quando quer começar?
+            <input value={f.prazo} onChange={upd("prazo")} placeholder="Ex.: no início de 2027" />
+          </label>
+        </div>
+      )}
       {imovel && (
         <>
           <div className="signup-row">

@@ -11,6 +11,15 @@ import { FirmActions, ChaveModal } from "./chave";
 import MySolicitacoes from "./solicitacoes";
 import { useNaoLidas } from "./pedidos";
 import { SegIcon } from "../segment-icons";
+import { abrirServico } from "./abrir";
+
+// serviços que o concierge pode oferecer (marcador @@SERV:tipo@@ na resposta)
+const SERVICOS = {
+  obra: { nome: "Do Terreno às Chaves", desc: "As 11 fases da obra, do terreno à entrega das chaves, com o Paulo conduzindo.", btn: "Iniciar minha obra", cls: "svc-obra" },
+  projeto: { nome: "Da ideia à abertura", desc: "Para abrir o seu negócio com os parceiros certos em cada etapa.", btn: "Iniciar meu projeto", cls: "svc-proj" },
+  gestao: { nome: "Gestor de negócios", desc: "O Paulo ao seu lado, mês a mês, nos números e nas decisões.", btn: "Pedir gestão", cls: "svc-gest" },
+  imovel: { nome: "Quero vender meu imóvel", desc: "Cadastre o imóvel: o Paulo avalia e leva até os compradores.", btn: "Cadastrar imóvel", cls: "svc-imo" },
+};
 
 // sugestões do concierge, cada uma com o ícone do segmento mais próximo
 const SUGESTOES = [
@@ -281,11 +290,14 @@ export default function Area() {
             ? recMatch[1].split(",").filter(Boolean)
             : undefined;
           // esconde marcadores completos (@@REC / @@GAP) e qualquer parcial no fim
+          const servMatch = buf.match(/@@SERV:(\w+)@@/);
+          const serv = servMatch && SERVICOS[servMatch[1]] ? servMatch[1] : undefined;
           const visible = buf
+            .replace(/@@SERV:[^@]*@@/g, "")
             .replace(/@@REC:[^@]*@@/g, "")
             .replace(/@@GAP:[^@]*@@/g, "")
             .replace(
-              /@@(?:R(?:E(?:C(?::[^@]*)?)?)?|G(?:A(?:P(?::[^@]*)?)?)?)?$/,
+              /@@(?:R(?:E(?:C(?::[^@]*)?)?)?|G(?:A(?:P(?::[^@]*)?)?)?|S(?:E(?:R(?:V(?::[^@]*)?)?)?)?)?$/,
               ""
             )
             .trimEnd();
@@ -295,6 +307,7 @@ export default function Area() {
               role: "assistant",
               content: visible,
               recs,
+              serv,
             };
             return next;
           });
@@ -393,6 +406,9 @@ export default function Area() {
           <a className="area-refs-link top-svc svc-imo" href="#vender">
             Vender imóvel
           </a>
+          <a className="area-refs-link top-svc svc-obra" href="#obra">
+            Minha obra
+          </a>
           <a className="area-refs-link top-svc svc-proj" href="#projeto">
             Meu projeto
           </a>
@@ -436,6 +452,18 @@ export default function Area() {
                     className="bubble assistant"
                     dangerouslySetInnerHTML={{ __html: formatMsg(m.content) }}
                   />
+                  {m.serv && SERVICOS[m.serv] && (
+                    <div className={`serv-card svc ${SERVICOS[m.serv].cls}`}>
+                      <div className="serv-txt">
+                        <div className="serv-kick">Serviço do ecossistema</div>
+                        <div className="serv-nm">{SERVICOS[m.serv].nome}</div>
+                        <div className="serv-d">{SERVICOS[m.serv].desc}</div>
+                      </div>
+                      <button type="button" className="serv-btn" onClick={() => abrirServico(m.serv)}>
+                        {SERVICOS[m.serv].btn}
+                      </button>
+                    </div>
+                  )}
                   {m.recs?.length > 0 && (
                     <div className="bubble-recs">
                       {m.recs
@@ -620,6 +648,7 @@ export default function Area() {
       <MySolicitacoes code={code} member={member} version={chaveVer} />
       <MyReferrals code={code} member={member} />
       <MyImoveis code={code} member={member} />
+      <MyProjects code={code} member={member} trilha="obra" />
       <MyProjects code={code} member={member} />
       <MyGestao code={code} member={member} />
 

@@ -498,7 +498,8 @@ export default function PauloAdmin() {
     pedidosNovos("projeto") +
     pedidosNovos("gestao") +
     pedidosNovos("imovel") +
-    pedidosNovos("chave");
+    pedidosNovos("chave") +
+    pedidosNovos("obra");
   // o painel de pedidos atualiza projetos/gestões/pedidos de uma vez
   const applyAdminData = (d) => {
     if (Array.isArray(d?.pedidos)) setPedidos(d.pedidos);
@@ -597,7 +598,7 @@ export default function PauloAdmin() {
                 ["ind", "Indicações", referralsPend],
                 ["chv", "Chaves PK", pedidosNovos("chave")],
                 ["imo", "Imóveis", pedidosNovos("imovel")],
-                ["proj", "Projetos", pedidosNovos("projeto")],
+                ["proj", "Projetos", pedidosNovos("projeto") + pedidosNovos("obra")],
                 ["gest", "Gestão", pedidosNovos("gestao")],
                 ["mem", "Membros", 0],
                 ["emp", "Empresas", 0],
@@ -1123,6 +1124,13 @@ export default function PauloAdmin() {
 
             {tab === "proj" && (
               <>
+              <PedidosAdmin
+                code={code}
+                tipo="obra"
+                pedidos={pedidos}
+                members={members}
+                onData={applyAdminData}
+              />
               <PedidosAdmin
                 code={code}
                 tipo="projeto"

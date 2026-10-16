@@ -2,12 +2,15 @@
 
 import { useEffect, useState } from "react";
 import {
-  PROJECT_STAGES,
   STAGE_STATUS,
   projectProgress,
+  stagesOf,
+  stageNum,
+  trilhaOf,
+  TRILHAS,
 } from "../../parcerias/project-stages";
 
-const EMPTY_NEW = { nome: "", cliente: "", memberId: "" };
+const EMPTY_NEW = { nome: "", cliente: "", memberId: "", trilha: "abertura" };
 
 // nome + WhatsApp (ou data de criação) pra não confundir dois membros de mesmo nome
 const memberLabel = (m) =>
@@ -92,13 +95,14 @@ export default function ProjectsAdmin({ code, projects, members, companies, onCh
   return (
     <section className="admin-panel admin-signups">
       <h3>
-        🚀 Projetos — Da ideia à abertura
+        🚀 Projetos — Da ideia à abertura e Do Terreno às Chaves
         <span className="lg-tag">{projects.length}</span>
       </h3>
       <p className="admin-hint">
-        Acompanhe cada negócio que você está ajudando a abrir. Ligue o projeto a
-        um membro e ele vê as seis etapas na área dele, com o que você salvar
-        aqui.
+        Acompanhe cada negócio que você está ajudando a abrir e cada obra Do
+        Terreno às Chaves (11 fases, já com os parceiros da rede). Ligue o
+        projeto a um membro e ele vê as etapas na área dele, com o que você
+        salvar aqui.
       </p>
 
       <form className="member-form" onSubmit={create}>
@@ -112,6 +116,18 @@ export default function ProjectsAdmin({ code, projects, members, companies, onCh
           value={novo.cliente}
           onChange={(e) => setNovo((f) => ({ ...f, cliente: e.target.value }))}
         />
+        <select
+          className="ref-status-select"
+          aria-label="Trilha do projeto"
+          value={novo.trilha}
+          onChange={(e) => setNovo((f) => ({ ...f, trilha: e.target.value }))}
+        >
+          {Object.entries(TRILHAS).map(([id, t]) => (
+            <option key={id} value={id}>
+              {t.nome}
+            </option>
+          ))}
+        </select>
         <select
           className="ref-status-select"
           aria-label="Membro que acompanha o projeto"
@@ -151,7 +167,7 @@ export default function ProjectsAdmin({ code, projects, members, companies, onCh
                       {p.cliente && <span className="su-emp"> · {p.cliente}</span>}
                     </div>
                     <div className="lead-ct">
-                      {done}/{PROJECT_STAGES.length} etapas concluídas
+                      {TRILHAS[trilhaOf(p)].nome} · {done}/{stagesOf(p).length} etapas concluídas
                       {p.memberId
                         ? ` · visível para ${memberName(p.memberId) || "membro removido"}`
                         : " · só você vê"}
@@ -228,12 +244,12 @@ export default function ProjectsAdmin({ code, projects, members, companies, onCh
                       />
                     </label>
 
-                    {PROJECT_STAGES.map((s, i) => {
+                    {stagesOf(draft).map((s, i) => {
                       const e = draft.etapas?.[s.id] || {};
                       return (
                         <div className="proj-edit-row" key={s.id}>
                           <div className="proj-edit-name">
-                            <span className="js-n">{i + 1}</span>
+                            <span className="js-n">{stageNum(s, i)}</span>
                             {s.nome}
                           </div>
                           <label>

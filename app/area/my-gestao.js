@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePedidos, PedidosList, PedidoForm } from "./pedidos";
+import { useAbrir } from "./abrir";
 import {
   GOAL_TERMS,
   goalStatusLabel,
@@ -71,6 +72,7 @@ export default function MyGestao({ code, member }) {
 
   const { list: pedidos, load: loadPedidos, cancel, apply } = usePedidos(code, member, "gestao");
   const [open, setOpen] = useState(false);
+  useAbrir("gestao", "gestao", () => setOpen(true));
 
   return (
     <section className="area-refs area-projects svc svc-gest" id="gestao">

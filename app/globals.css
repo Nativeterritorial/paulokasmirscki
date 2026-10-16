@@ -6924,13 +6924,13 @@ body:has(.vt-theme) {
   padding: 8px 13px;
   font-size: 0.74rem;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1620px) {
   .area-top .area-badge,
   .area-top .area-hello {
     display: none;
   }
 }
-@media (max-width: 1180px) {
+@media (max-width: 1280px) {
   /* os atalhos das seções saem; Solicitações continua */
   .area-top-actions .top-svc:not(.svc-sol) {
     display: none;
@@ -7049,5 +7049,65 @@ body:has(.vt-theme) {
 @media (max-width: 480px) {
   .login-card {
     padding: 30px 22px;
+  }
+}
+
+/* Do Terreno às Chaves: laranja-tijolo */
+.svc-obra {
+  --svc: #ff9a5c;
+  --svc-ink: #3d1600;
+  --svc-soft: rgba(255, 154, 92, 0.16);
+}
+/* cartão de serviço sugerido pelo concierge */
+.serv-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 8px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--svc);
+  border-left-width: 5px;
+  background: linear-gradient(90deg, var(--svc-soft), rgba(255, 255, 255, 0.03) 75%);
+}
+.serv-txt {
+  flex: 1;
+  min-width: 0;
+}
+.serv-kick {
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--svc);
+}
+.serv-nm {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-top: 2px;
+}
+.serv-d {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.serv-btn {
+  flex: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--svc-ink);
+  background: var(--svc);
+}
+@media (max-width: 560px) {
+  .serv-card {
+    flex-wrap: wrap;
+  }
+  .serv-btn {
+    width: 100%;
   }
 }

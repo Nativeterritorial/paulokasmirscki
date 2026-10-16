@@ -10,6 +10,43 @@ import MyImoveis from "./my-imoveis";
 import { FirmActions, ChaveModal } from "./chave";
 import MySolicitacoes from "./solicitacoes";
 import { useNaoLidas } from "./pedidos";
+import { SegIcon } from "../segment-icons";
+
+// sugestões do concierge, cada uma com o ícone do segmento mais próximo
+const SUGESTOES = [
+  ["Preciso de um site pro meu negócio", "Marketing & Digital"],
+  ["Procuro um contador", "Contabilidade"],
+  ["Quero comprar ou vender um imóvel", "Imóveis & Construção"],
+  ["Preciso de material gráfico", "Mídia & Comunicação"],
+  ["Busco consultoria pra minha empresa", "Negócios & Empresas"],
+];
+
+// segmento de cada empresa -> categoria com ícone (e cor) no diretório
+const SEG_MAP = [
+  [/academia|fitness|esporte/i, "Esporte & Lazer", "#5b9bff"],
+  [/agro|pecu|fertiliz|agríc/i, "Agro & Pecuária", "#6fffbf"],
+  [/barbearia|estética|beleza/i, "Estética & Beleza", "#ff9bd2"],
+  [/cafeteria|restaurante|lancheria|padaria|gastronomia/i, "Gastronomia", "#ffb27a"],
+  [/vidro|válvula|(^|[^\p{L}])móve|indústr/iu, "Indústria & Móveis", "#9fb6d9"],
+  [/comunicação|mídia|gráfica|fotografia/i, "Mídia & Comunicação", "#ff8a8a"],
+  [/consórcio|investimento|seguro|finan/i, "Finanças & Investimentos", "#f5c04e"],
+  [/construção|materiais|imóve|territorial/i, "Imóveis & Construção", "#f5c04e"],
+  [/contabil/i, "Contabilidade", "#46d6ff"],
+  [/jurídic/i, "Jurídico", "#c9a8ff"],
+  [/marketing/i, "Marketing & Digital", "#b88cff"],
+  [/informática|internet|telecom|sistemas|tecnologia/i, "Tecnologia & IA", "#46d6ff"],
+  [/logística|transporte/i, "Transporte & Logística", "#9fb6d9"],
+  [/moda|vestuário|joalheria|ótica/i, "Moda & Vestuário", "#ff9bd2"],
+  [/saúde|odonto|medicina|genética|suplemento/i, "Saúde & Bem-estar", "#6fffbf"],
+  [/hotel|turismo/i, "Turismo & Hotelaria", "#ffb27a"],
+  [/floricultura|flores/i, "Sustentabilidade & Meio Ambiente", "#6fffbf"],
+  [/mercado|atacado|comércio|varejo/i, "Comércio & Varejo", "#ffb27a"],
+  [/desenvolvimento|gestão|consultoria|público/i, "Negócios & Empresas", "#c9a8ff"],
+];
+const segInfo = (segmento) => {
+  const hit = SEG_MAP.find(([re]) => re.test(segmento));
+  return hit ? { icon: hit[1], cor: hit[2] } : { icon: "Serviços", cor: "#9fb6d9" };
+};
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
@@ -371,12 +408,19 @@ export default function Area() {
 
       <div className="area-wrap">
         {/* CHAT */}
-        <section className="area-panel">
-          <div className="area-panel-head">
-            <div className="kick" style={{ marginBottom: 8 }}>
-              Concierge do Ecossistema · IA
+        <section className="area-panel ia-panel">
+          <div className="area-panel-head ia-head">
+            <div className="ia-avatar" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" />
+                <path d="M19 15v4M17 17h4" />
+              </svg>
+              <span className="ia-online" />
             </div>
-            <h2 style={{ fontSize: "1.35rem" }}>Como posso te conectar hoje?</h2>
+            <div>
+              <div className="kick ia-kick">Concierge de IA · Online</div>
+              <h2 style={{ fontSize: "1.35rem" }}>Como posso te conectar hoje?</h2>
+            </div>
           </div>
           <div className="area-chat" ref={chatRef}>
             {messages.map((m, i) => {
@@ -425,20 +469,15 @@ export default function Area() {
           </div>
           {!messages.some((m) => m.role === "user") && (
             <div className="chat-chips">
-              {[
-                "Preciso de um site pro meu negócio",
-                "Procuro um contador",
-                "Quero comprar ou vender um imóvel",
-                "Preciso de material gráfico",
-                "Busco consultoria pra minha empresa",
-              ].map((s) => (
+              {SUGESTOES.map(([s, ic]) => (
                 <button
                   key={s}
                   type="button"
-                  className="chip"
+                  className="chip ia-chip"
                   onClick={() => send(s)}
                   disabled={sending}
                 >
+                  <SegIcon label={ic} size={14} />
                   {s}
                 </button>
               ))}
@@ -457,7 +496,10 @@ export default function Area() {
               onChange={(e) => setInput(e.target.value)}
             />
             <button className="send" disabled={sending} aria-label="Enviar">
-              ↑
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M22 2L11 13" />
+                <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+              </svg>
             </button>
           </form>
         </section>
@@ -540,7 +582,14 @@ export default function Area() {
                     }
                     aria-expanded={openSeg === segmento}
                   >
-                    <span>{segmento}</span>
+                    <span
+                      className="seg-ico"
+                      style={{ "--seg": segInfo(segmento).cor }}
+                      aria-hidden="true"
+                    >
+                      <SegIcon label={segInfo(segmento).icon} size={15} />
+                    </span>
+                    <span className="seg-nm">{segmento}</span>
                     <span className="firm-group-meta">
                       {firms.length}
                       <span className="chev" aria-hidden="true">

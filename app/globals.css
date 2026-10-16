@@ -6936,3 +6936,118 @@ body:has(.vt-theme) {
     display: none;
   }
 }
+
+/* ---------- Concierge de IA: identidade violeta ---------- */
+.ia-panel {
+  --ia: #9a7bff;
+  --ia-2: #5b9bff;
+  border-color: rgba(154, 123, 255, 0.55);
+  box-shadow: 0 0 0 1px rgba(154, 123, 255, 0.12), 0 20px 50px rgba(60, 40, 160, 0.18);
+}
+.ia-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(90deg, rgba(154, 123, 255, 0.16), transparent 70%);
+}
+.ia-avatar {
+  position: relative;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--ia), var(--ia-2));
+  box-shadow: 0 8px 22px rgba(154, 123, 255, 0.35);
+}
+.ia-online {
+  position: absolute;
+  right: -3px;
+  bottom: -3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #6fffbf;
+  border: 2px solid #0d1640;
+  animation: ia-pulse 2.4s ease-in-out infinite;
+}
+@keyframes ia-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(111, 255, 191, 0.6); }
+  50% { box-shadow: 0 0 0 6px rgba(111, 255, 191, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ia-online { animation: none; }
+}
+.ia-kick {
+  color: #c3b2ff;
+  margin-bottom: 6px;
+}
+.ia-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border-color: rgba(154, 123, 255, 0.5);
+}
+.ia-chip svg {
+  color: #c3b2ff;
+  flex: none;
+}
+.ia-chip:hover {
+  border-color: var(--ia);
+  background: rgba(154, 123, 255, 0.14);
+}
+.ia-panel .area-chat-input .send {
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--ia), var(--ia-2));
+  box-shadow: 0 8px 20px rgba(154, 123, 255, 0.35);
+}
+.ia-panel .area-chat-input input:focus {
+  border-color: var(--ia);
+}
+
+/* ---------- Diretório: segmentos com ícone e nome legível ---------- */
+.firm-group-title {
+  justify-content: flex-start;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text);
+}
+.firm-group-title .seg-nm {
+  flex: 1;
+  min-width: 0;
+}
+.seg-ico {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  color: var(--seg);
+  background: color-mix(in srgb, var(--seg) 18%, transparent);
+}
+.firm-group-meta {
+  font-size: 0.72rem;
+}
+
+/* tela de entrada: o campo encolhe e o cartão cabe no celular */
+.area-login {
+  grid-template-columns: minmax(0, 440px);
+  justify-content: center;
+}
+.login-form input {
+  width: 0;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+@media (max-width: 480px) {
+  .login-card {
+    padding: 30px 22px;
+  }
+}

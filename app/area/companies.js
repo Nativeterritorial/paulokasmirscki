@@ -820,4 +820,64 @@ export const COMPANIES = [
     link: "https://www.lentesprime.com.br/",
     linkLabel: "lentesprime.com.br",
   },
+  {
+    id: "lazzeri",
+    nome: "Lazzeri Brasil",
+    segmento: "Mudas & Plantas Ornamentais",
+    descricao:
+      "Matriz em Vacaria (RS) e filial no Ceaflor, em Holambra (SP) — mudas e plantas ornamentais de genética própria (dipladênias, catarantos, gerânios), plugs, adubos e mudas de morango Lazzeri Campeiro, com laboratório e logística próprios.",
+    atende: ["Flores & Presentes", "Sustentabilidade & Meio Ambiente", "Agro & Indústria"],
+    link: "https://lazzeri.com.br/",
+    linkLabel: "lazzeri.com.br",
+  },
+  {
+    id: "marciomodelski",
+    nome: "Márcio Modelski Paisagista",
+    segmento: "Paisagismo",
+    descricao:
+      "Paisagista em Veranópolis com dez anos de experiência, transformando espaços e inspirando vidas — proprietário da Floricultura Alma.",
+    atende: ["Arquitetura", "Imóveis & Construção", "Flores & Presentes"],
+    link: "https://www.instagram.com/marciomodelskipaisagista/",
+    linkLabel: "@marciomodelskipaisagista",
+  },
+  {
+    id: "feijoadagrill",
+    nome: "Feijoada Grill",
+    segmento: "Restaurante & Lancheria",
+    descricao:
+      "Em Portão (RS), desde 1982 servindo tradição e sabor — à la carte e lancheria 24h, junto ao Posto Hoff (fecha sábado às 16h e volta domingo às 17h). Fone 3562-9625.",
+    atende: ["Gastronomia", "Transporte & Logística"],
+    link: "https://www.instagram.com/feijoadagrill/",
+    linkLabel: "@feijoadagrill",
+  },
+  {
+    id: "bellagio",
+    nome: "Bellagio Estofados & Móveis",
+    segmento: "Fábrica de Estofados & Móveis",
+    descricao:
+      "Fábrica de estofados e móveis em Veranópolis. Fone (54) 99111-8079.",
+    atende: ["Imóveis & Construção", "Arquitetura", "Comércio & Varejo"],
+    link: "https://www.instagram.com/bellagioestofadosemoveis/",
+    linkLabel: "@bellagioestofadosemoveis",
+  },
+  {
+    id: "aryelbikes",
+    nome: "Aryel Bikes",
+    segmento: "Bicicletas & Oficina",
+    descricao:
+      "Bicicletas, oficina especializada, acessórios e vestuário de ciclismo na Rua Getúlio Vargas, 181, bairro Renovação, em Veranópolis.",
+    atende: ["Esporte & Lazer", "Comércio & Varejo", "Saúde & Bem-estar"],
+    link: "https://www.instagram.com/aryelbikes/",
+    linkLabel: "@aryelbikes",
+  },
+  {
+    id: "okacrossfit",
+    nome: "Oka CrossFit",
+    segmento: "CrossFit",
+    descricao:
+      "Box de CrossFit® em Veranópolis, com o head coach Eduardo Mattiello (Level 2 Trainer) — agende uma aula experimental.",
+    atende: ["Esporte & Lazer", "Saúde & Bem-estar"],
+    link: "https://www.instagram.com/okacrossfit/",
+    linkLabel: "@okacrossfit",
+  },
 ];

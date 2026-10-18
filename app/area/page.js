@@ -33,7 +33,7 @@ const SUGESTOES = [
 
 // segmento de cada empresa -> categoria com ícone (e cor) no diretório
 const SEG_MAP = [
-  [/academia|fitness|esporte|música|shows/i, "Esporte & Lazer", "#5b9bff"],
+  [/academia|fitness|esporte|crossfit|bicicleta|bike|música|shows/i, "Esporte & Lazer", "#5b9bff"],
   [/agro|pecu|fertiliz|agríc/i, "Agro & Pecuária", "#6fffbf"],
   [/barbearia|estética|beleza/i, "Estética & Beleza", "#ff9bd2"],
   [/cafeteria|restaurante|lancheria|padaria|gastronomia|pizzaria|gastropub|cervejaria/i, "Gastronomia", "#ffb27a"],
@@ -51,7 +51,7 @@ const SEG_MAP = [
   [/moda|vestuário|joalheria|ótica/i, "Moda & Vestuário", "#ff9bd2"],
   [/saúde|odonto|medicina|genética|suplemento/i, "Saúde & Bem-estar", "#6fffbf"],
   [/hotel|turismo|viage/i, "Turismo & Hotelaria", "#ffb27a"],
-  [/floricultura|flores|solar|energia/i, "Sustentabilidade & Meio Ambiente", "#6fffbf"],
+  [/floricultura|flores|plantas|mudas|paisag|solar|energia/i, "Sustentabilidade & Meio Ambiente", "#6fffbf"],
   [/mercado|atacado|comércio|varejo/i, "Comércio & Varejo", "#ffb27a"],
   [/desenvolvimento|gestão|consultoria|público|associação|entidade/i, "Negócios & Empresas", "#c9a8ff"],
 ];

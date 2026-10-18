@@ -49,7 +49,7 @@ const SEG_MAP = [
   [/veículo|automóve|automotiv|concession/i, "Veículos", "#46d6ff"],
   [/educação|ensino|escola/i, "Educação", "#5b9bff"],
   [/logística|transporte/i, "Transporte & Logística", "#9fb6d9"],
-  [/moda|vestuário|uniforme|fardamento|etiqueta|têxt|joalheria|ótica/i, "Moda & Vestuário", "#ff9bd2"],
+  [/moda|vestuário|boné|uniforme|fardamento|etiqueta|têxt|joalheria|ótica/i, "Moda & Vestuário", "#ff9bd2"],
   [/saúde|nutri|fisioterap|pilates|odonto|medicina|genética|suplemento/i, "Saúde & Bem-estar", "#6fffbf"],
   [/hotel|turismo|turíst|pousada|viage|balão|balões/i, "Turismo & Hotelaria", "#ffb27a"],
   [/floricultura|flores|plantas|mudas|paisag|jardin|solar|energia|elétric/i, "Sustentabilidade & Meio Ambiente", "#6fffbf"],

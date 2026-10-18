@@ -1250,4 +1250,74 @@ export const COMPANIES = [
     link: "https://florescerparqueresidencial.com.br/",
     linkLabel: "florescerparqueresidencial.com.br",
   },
+  {
+    id: "drrafaelfranco",
+    nome: "Dr. Rafael Franco Moreira",
+    segmento: "Medicina Fetal & Ultrassonografia",
+    descricao:
+      "Médico ultrassonografista em Veranópolis, especialista em ecocardiografia fetal e medicina fetal (CRM 25643 | RQE 36916) — diagnóstico precoce e preciso, com mais de 5 mil exames realizados e atendimento em 5 cidades do RS.",
+    atende: ["Saúde & Bem-estar"],
+    link: "https://drrafaelfrancomoreira.com.br/",
+    linkLabel: "drrafaelfrancomoreira.com.br",
+  },
+  {
+    id: "atitudeesportes",
+    nome: "Atitude Esportes",
+    segmento: "Artigos Esportivos",
+    descricao:
+      "A loja que veste os campeões, no Shopping Bento, em Bento Gonçalves — artigos esportivos, associada à Rede Brasil Esportes, com envio para todo o Brasil. WhatsApp (54) 99917-1300.",
+    atende: ["Esporte & Lazer", "Moda & Vestuário", "Comércio & Varejo"],
+    link: "https://www.instagram.com/atitudeesportes/",
+    linkLabel: "@atitudeesportes",
+  },
+  {
+    id: "bigcap",
+    nome: "Big Cap Original",
+    segmento: "Fábrica de Bonés Personalizados",
+    descricao:
+      "Fábrica de bonés de alto padrão em Bento Gonçalves — personalize do seu jeito e coloque a sua marca na cabeça da galera.",
+    atende: ["Moda & Vestuário", "Marketing & Digital", "Negócios & Empresas"],
+    link: "https://www.instagram.com/bigcap_original/",
+    linkLabel: "@bigcap_original",
+  },
+  {
+    id: "nicolasrossi",
+    nome: "Nicolas Rossi",
+    segmento: "Fotografia & Filmagem",
+    descricao:
+      "Videomaker, filmmaker e fotógrafo de Veranópolis — vídeos e fotos para marcas, empresas e eventos.",
+    atende: ["Fotografia & Filmagem", "Marketing & Digital", "Mídia & Comunicação"],
+    link: "https://www.instagram.com/nicolasrossii/",
+    linkLabel: "@nicolasrossii",
+  },
+  {
+    id: "perondi",
+    nome: "Construtora Perondi",
+    segmento: "Construtora — Casas de Alto Padrão",
+    descricao:
+      "Construtora em Veranópolis especializada em casas de alto padrão e reformas em geral.",
+    atende: ["Imóveis & Construção", "Arquitetura"],
+    link: "https://www.instagram.com/perondiconstrutora_oficial_/",
+    linkLabel: "@perondiconstrutora_oficial_",
+  },
+  {
+    id: "sanasports",
+    nome: "Sana Sports",
+    segmento: "Esporte & Lazer — Padel",
+    descricao:
+      "Espaço esportivo em Veranópolis aberto todos os dias, inclusive sábado e domingo — 2 quadras de padel, 2 de areia e 1 de futebol society, com agendamento pelo Instagram.",
+    atende: ["Esporte & Lazer", "Saúde & Bem-estar"],
+    link: "https://www.instagram.com/sanasports_/",
+    linkLabel: "@sanasports_",
+  },
+  {
+    id: "ruditec",
+    nome: "Ruditec",
+    segmento: "Ar-condicionado & Eletro",
+    descricao:
+      "Em Veranópolis, instalação, manutenção e venda de ar-condicionado — além de eletrodomésticos e eletrônicos na loja on-line, em até 10x. Fones (54) 3441-8283 e (54) 99112-5195.",
+    atende: ["Serviços", "Comércio & Varejo", "Imóveis & Construção"],
+    link: "https://www.climaeletro.com.br/",
+    linkLabel: "climaeletro.com.br",
+  },
 ];

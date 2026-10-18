@@ -530,4 +530,44 @@ export const COMPANIES = [
     link: "https://www.vcarveiculos.com.br/estoque",
     linkLabel: "vcarveiculos.com.br",
   },
+  {
+    id: "mmconsulting",
+    nome: "MM Consulting",
+    segmento: "Veículos & Consultoria Automotiva",
+    descricao:
+      "Curadoria automotiva em Veranópolis, para quem exige mais: compra, venda e consultoria de veículos, atendendo toda a Serra Gaúcha.",
+    atende: ["Comércio & Varejo", "Finanças & Investimentos", "Gestão & Consultoria"],
+    link: "https://www.instagram.com/mmconsultingr/",
+    linkLabel: "@mmconsultingr",
+  },
+  {
+    id: "alfredogastropub",
+    nome: "Alfredo Gastropub",
+    segmento: "Restaurante, Gastropub & Eventos",
+    descricao:
+      "Gastropub e espaço para eventos em Veranópolis — gastronomia, bebidas e ambiente para bons encontros, comemorações e eventos. Fone (54) 99901-6253.",
+    atende: ["Gastronomia", "Turismo & Hotelaria", "Esporte & Lazer"],
+    link: "https://www.instagram.com/alfredogastropub/",
+    linkLabel: "@alfredogastropub",
+  },
+  {
+    id: "avaec",
+    nome: "AVAEC — Unidades Educacionais",
+    segmento: "Educação & Ensino",
+    descricao:
+      "Escola em Veranópolis da educação infantil ao ensino médio e técnico, unindo o melhor dos métodos tradicionais e modernos.",
+    atende: ["Educação & Capacitação", "Serviços"],
+    link: "https://www.instagram.com/avaecunidadeseducacionais/",
+    linkLabel: "@avaecunidadeseducacionais",
+  },
+  {
+    id: "artichoke",
+    nome: "Artichoke Pizzaria",
+    segmento: "Pizzaria & Delivery",
+    descricao:
+      "Pizzaria tradicional em Veranópolis, aberta de quarta a sábado a partir das 18h30, com entrega rápida.",
+    atende: ["Gastronomia"],
+    link: "https://www.instagram.com/nossoartichoke/",
+    linkLabel: "@nossoartichoke",
+  },
 ];

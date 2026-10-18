@@ -50,6 +50,11 @@ export const SEG_ICONS = {
   "Moda & Vestuário": [
     "M8 4l4 2 4-2 4 3-2 4-2-1v10H8V10l-2 1-2-4 4-3z",
   ],
+  "Educação": [
+    "M2 9l10-5 10 5-10 5-10-5z",
+    "M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5",
+    "M22 9v6",
+  ],
   "Veículos": [
     "M5 17h14v-5l-2-5H7l-2 5v5z",
     "M5 12h14",

@@ -610,4 +610,44 @@ export const COMPANIES = [
     link: "https://www.instagram.com/audacia_oficial_79/",
     linkLabel: "@audacia_oficial_79",
   },
+  {
+    id: "davinanoivas",
+    nome: "Davina Noivas",
+    segmento: "Moda Festa & Noivas",
+    descricao:
+      "Em Veranópolis, vestidos de noiva, madrinhas e festas, primeira eucaristia, ternos, smokings e pajens — qualidade e competência no dia mais importante da sua vida.",
+    atende: ["Moda & Vestuário", "Estética & Beleza", "Turismo & Hotelaria"],
+    link: "https://www.instagram.com/davinanoivas/",
+    linkLabel: "@davinanoivas",
+  },
+  {
+    id: "ctchumbinho",
+    nome: "CT Chumbinho e CR12",
+    segmento: "Academia & Treino Funcional",
+    descricao:
+      "Centro de treino funcional e esportivo em Veranópolis, com o Prof. Chumbinho — funcional, treino técnico e o Vertimax V8, único na cidade.",
+    atende: ["Esporte & Lazer", "Saúde & Bem-estar"],
+    link: "https://www.instagram.com/ctchumbinhocr12/",
+    linkLabel: "@ctchumbinhocr12",
+  },
+  {
+    id: "hiloboutique",
+    nome: "HI-LO Boutique",
+    segmento: "Moda & Vestuário — Boutique",
+    descricao:
+      "Boutique em Veranópolis com curadoria de marcas como Animale, John John, Lança Perfume, Forum, Colcci e Nati Vozza — compra também online.",
+    atende: ["Moda & Vestuário", "Comércio & Varejo"],
+    link: "https://www.instagram.com/hilo.boutique/",
+    linkLabel: "@hilo.boutique",
+  },
+  {
+    id: "dgronco",
+    nome: "DG Ronco e Apneia do Sono",
+    segmento: "Saúde & Medicina do Sono",
+    descricao:
+      "Em Veranópolis, exames, diagnóstico e tratamento de ronco e apneia do sono, para noites melhores e mais disposição. Parte do Centro Clínico Clivitare.",
+    atende: ["Saúde & Bem-estar"],
+    link: "https://www.instagram.com/dgroncoeapneiadosono/",
+    linkLabel: "@dgroncoeapneiadosono",
+  },
 ];

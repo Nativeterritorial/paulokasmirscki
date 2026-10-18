@@ -700,4 +700,24 @@ export const COMPANIES = [
     link: "https://www.instagram.com/dezfuteboleclube/",
     linkLabel: "@dezfuteboleclube",
   },
+  {
+    id: "sqdmeninodeus",
+    nome: "SQD Menino Deus",
+    segmento: "Esporte & Lazer — Futevôlei",
+    descricao:
+      "Escola de futevôlei no Menino Deus, em Porto Alegre, da maior rede de escolas de futevôlei do país e líder em formação de treinadores — treinos personalizados das 6h à meia-noite, no Menino Deus Beach Club.",
+    atende: ["Esporte & Lazer", "Saúde & Bem-estar", "Educação & Capacitação"],
+    link: "https://www.instagram.com/sqdmeninodeus/",
+    linkLabel: "@sqdmeninodeus",
+  },
+  {
+    id: "mdbeachclub",
+    nome: "Menino Deus Beach Club",
+    segmento: "Esporte & Lazer — Futevôlei",
+    descricao:
+      "Beach club de futevôlei no Menino Deus, em Porto Alegre — quadras de areia focadas no futevôlei, sede da escola SQD, com agendamentos pelo Instagram.",
+    atende: ["Esporte & Lazer", "Saúde & Bem-estar"],
+    link: "https://www.instagram.com/mdbeachclub/",
+    linkLabel: "@mdbeachclub",
+  },
 ];

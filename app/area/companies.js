@@ -1180,4 +1180,74 @@ export const COMPANIES = [
     link: "https://www.zetauno.com.br/",
     linkLabel: "zetauno.com.br",
   },
+  {
+    id: "vilacapuchinhos",
+    nome: "Vila Capuchinhos",
+    segmento: "Complexo Turístico & Pousada",
+    descricao:
+      "Complexo turístico em Vila Flores (Rua do Seminário, 290), administrado pelos freis capuchinhos — pousada, piscinas termais, gastronomia regional, vinhos dos freis, capela e centro de eventos para famílias e empresas. Fone (54) 3447-4700.",
+    atende: ["Turismo & Hotelaria", "Gastronomia", "Negócios & Empresas"],
+    link: "https://www.vilacapuchinhos.com.br/",
+    linkLabel: "vilacapuchinhos.com.br",
+  },
+  {
+    id: "vinhosnacionais",
+    nome: "Vinhos Nacionais",
+    segmento: "Clube de Vinhos",
+    descricao:
+      "Em Caxias do Sul, o primeiro e maior clube de vinhos brasileiros.",
+    atende: ["Gastronomia", "Flores & Presentes", "Comércio & Varejo"],
+    link: "https://www.instagram.com/vinhos.nacionais/",
+    linkLabel: "@vinhos.nacionais",
+  },
+  {
+    id: "adilsonchaves",
+    nome: "Adilson Chaves Fotografia",
+    segmento: "Fotografia de Eventos",
+    descricao:
+      "Fotógrafo de eventos em Veranópolis, especialista em festa infantil — também casamentos, 15 anos, família e formaturas, da Serra Gaúcha para o mundo.",
+    atende: ["Fotografia & Filmagem", "Esporte & Lazer"],
+    link: "https://www.instagram.com/adilsonchavesfotografia/",
+    linkLabel: "@adilsonchavesfotografia",
+  },
+  {
+    id: "visionnet",
+    nome: "Vision Net",
+    segmento: "Sistemas de Segurança & Redes",
+    descricao:
+      "Em Veranópolis (Av. Pinheiro Machado, 375), soluções em segurança e automação para casas, empresas e indústrias — monitoramento 24h, controle de acesso com biometria e reconhecimento facial, portaria eletrônica e redes. Fone (54) 3441-4500.",
+    atende: ["Segurança", "Tecnologia & IA", "Imóveis & Construção"],
+    link: "https://www.visionnet.com.br/",
+    linkLabel: "visionnet.com.br",
+  },
+  {
+    id: "micromazza",
+    nome: "Micromazza",
+    segmento: "Válvulas Industriais",
+    descricao:
+      "Indústria de válvulas em Vila Flores, fundada em 1993 — uma das principais fabricantes de válvulas esfera com certificação INMETRO, eleita melhor fornecedora da Petrobras em 2018, 2019, 2022 e 2024. Fone (54) 3447-2700.",
+    atende: ["Agro & Indústria", "Comércio Exterior"],
+    link: "https://micromazza.com.br/",
+    linkLabel: "micromazza.com.br",
+  },
+  {
+    id: "polibra",
+    nome: "Polibra",
+    segmento: "Materiais para Polimento — Indústria",
+    descricao:
+      "Fábrica em Fagundes Varela de produtos para polimento automotivo e de metais de alta performance — discos, massas, lixas e compostos.",
+    atende: ["Agro & Indústria", "Comércio & Varejo"],
+    link: "https://www.polibra.com.br/",
+    linkLabel: "polibra.com.br",
+  },
+  {
+    id: "florescer",
+    nome: "Florescer Parque Residencial",
+    segmento: "Loteamento Residencial",
+    descricao:
+      "Parque residencial planejado em Vila Flores, em área alta com vista ampla — lotes pensados pela posição solar e topografia, perto de vinícolas, gastronomia e escolas. Fone (54) 99671-6637.",
+    atende: ["Imóveis & Construção", "Finanças & Investimentos"],
+    link: "https://florescerparqueresidencial.com.br/",
+    linkLabel: "florescerparqueresidencial.com.br",
+  },
 ];

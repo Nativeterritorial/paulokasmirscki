@@ -770,4 +770,54 @@ export const COMPANIES = [
     link: "https://www.instagram.com/aaveranopolis/",
     linkLabel: "@aaveranopolis",
   },
+  {
+    id: "cacaepesca",
+    nome: "Clube Caça e Pesca Veranópolis",
+    segmento: "Esporte & Lazer — Clube",
+    descricao:
+      "Clube em Veranópolis para momentos de lazer em família — recreação ao ar livre, quadras de esportes e piscinas. Reservas pelo (54) 3441-1892.",
+    atende: ["Esporte & Lazer", "Turismo & Hotelaria"],
+    link: "https://www.instagram.com/clubecacaepescaveranopolis/",
+    linkLabel: "@clubecacaepescaveranopolis",
+  },
+  {
+    id: "mganet",
+    nome: "MGA Net",
+    segmento: "Internet & Telecom",
+    descricao:
+      "Provedor de internet de Nova Prata (RS) — planos de fibra óptica para você e sua empresa, telefonia VoIP, Wi-Fi Plus e suporte especializado. Fone (54) 3242-1050.",
+    atende: ["Internet & Telecom", "Tecnologia & IA", "Negócios & Empresas"],
+    link: "https://mganet.com.br/",
+    linkLabel: "mganet.com.br",
+  },
+  {
+    id: "boffempreendimentos",
+    nome: "Boff Empreendimentos",
+    segmento: "Imóveis Comerciais & Industriais",
+    descricao:
+      "Em Veranópolis (Rua Tiradentes, 190), desenvolve, constrói e aluga imóveis comerciais e industriais — do terreno à entrega da obra, com mais de 8 anos de experiência. WhatsApp (54) 99643-4300.",
+    atende: ["Imóveis & Construção", "Negócios & Empresas", "Agro & Indústria"],
+    link: "https://boffempreendimentos.com.br/",
+    linkLabel: "boffempreendimentos.com.br",
+  },
+  {
+    id: "alfyacessorios",
+    nome: "Alfy Acessórios",
+    segmento: "Acessórios Automotivos",
+    descricao:
+      "Há 30 anos no mercado automotivo em Veranópolis — som, alarmes, películas, conserto de para-brisas, capotas marítimas e tudo para o seu veículo. Fone (54) 3441-6949.",
+    atende: ["Comércio & Varejo", "Serviços"],
+    link: "https://www.instagram.com/alfyacessorios/",
+    linkLabel: "@alfyacessorios",
+  },
+  {
+    id: "lentesprime",
+    nome: "Prime UltraForm — Lentes Prime",
+    segmento: "Lentes Oftálmicas — Indústria",
+    descricao:
+      "Fabricante de lentes oftálmicas em Vila Flores (RS) — lentes multifocais e ocupacionais com tecnologia A.I., pedidos online para óticas e foco em sustentabilidade.",
+    atende: ["Saúde & Bem-estar", "Agro & Indústria", "Comércio & Varejo"],
+    link: "https://www.lentesprime.com.br/",
+    linkLabel: "lentesprime.com.br",
+  },
 ];

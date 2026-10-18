@@ -50,9 +50,9 @@ const SEG_MAP = [
   [/educação|ensino|escola/i, "Educação", "#5b9bff"],
   [/logística|transporte/i, "Transporte & Logística", "#9fb6d9"],
   [/moda|vestuário|uniforme|fardamento|etiqueta|têxt|joalheria|ótica/i, "Moda & Vestuário", "#ff9bd2"],
-  [/saúde|nutri|odonto|medicina|genética|suplemento/i, "Saúde & Bem-estar", "#6fffbf"],
+  [/saúde|nutri|fisioterap|pilates|odonto|medicina|genética|suplemento/i, "Saúde & Bem-estar", "#6fffbf"],
   [/hotel|turismo|viage|balão|balões/i, "Turismo & Hotelaria", "#ffb27a"],
-  [/floricultura|flores|plantas|mudas|paisag|jardin|solar|energia/i, "Sustentabilidade & Meio Ambiente", "#6fffbf"],
+  [/floricultura|flores|plantas|mudas|paisag|jardin|solar|energia|elétric/i, "Sustentabilidade & Meio Ambiente", "#6fffbf"],
   [/mercado|atacado|comércio|varejo|bazar|utilidades|livraria|papelaria/i, "Comércio & Varejo", "#ffb27a"],
   [/desenvolvimento|gestão|consultoria|público|associação|entidade/i, "Negócios & Empresas", "#c9a8ff"],
 ];

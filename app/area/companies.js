@@ -1120,4 +1120,64 @@ export const COMPANIES = [
     link: "https://www.instagram.com/livrariareuna/",
     linkLabel: "@livrariareuna",
   },
+  {
+    id: "reabilitar",
+    nome: "Clínica Reabilitar",
+    segmento: "Fisioterapia & Pilates",
+    descricao:
+      "Há 20 anos em Veranópolis (Rua Fabiano Reschke, 216) — fisioterapia, pilates, atividades aquáticas e estética. Fone (54) 3441-4669.",
+    atende: ["Saúde & Bem-estar", "Esporte & Lazer", "Estética & Beleza"],
+    link: "https://www.instagram.com/clinicareabilitarrs/",
+    linkLabel: "@clinicareabilitarrs",
+  },
+  {
+    id: "vuelma",
+    nome: "Vuelma Construtora",
+    segmento: "Construtora & Incorporadora",
+    descricao:
+      "Desde 2005 em Veranópolis, com incorporação e projetos de arquitetura e engenharia — empreendimentos como Edifício Vila Flora, Edifício Reinaldo Vuelma, Deodoro 470 e The One.",
+    atende: ["Imóveis & Construção", "Arquitetura", "Finanças & Investimentos"],
+    link: "https://www.vuelma.com.br/",
+    linkLabel: "vuelma.com.br",
+  },
+  {
+    id: "comiotto",
+    nome: "Comiotto Construções",
+    segmento: "Construtora & Incorporadora",
+    descricao:
+      "Construtora de Veranópolis (Rua Vinte e Quatro de Maio, 708) com empreendimentos na Serra Gaúcha e no litoral, em Torres — imóveis para morar na serra ou na beira do mar. Fones (54) 3441-5239 e (54) 99192-0927.",
+    atende: ["Imóveis & Construção", "Finanças & Investimentos", "Turismo & Hotelaria"],
+    link: "https://comiottoconstrucoes.com.br/",
+    linkLabel: "comiottoconstrucoes.com.br",
+  },
+  {
+    id: "ascincorporacoes",
+    nome: "ASC Incorporações",
+    segmento: "Incorporadora",
+    descricao:
+      "Incorporadora em Veranópolis (Av. Osvaldo Aranha, 618) — empreendimentos como o Upper Residence, com apartamentos de 1 e 2 quartos na Av. Pinheiro Machado. Fones (54) 99972-2980 e (54) 99977-3535.",
+    atende: ["Imóveis & Construção", "Finanças & Investimentos"],
+    link: "https://www.ascincorporacoes.com.br/",
+    linkLabel: "ascincorporacoes.com.br",
+  },
+  {
+    id: "vinuta",
+    nome: "Vinuta Vino Atelier",
+    segmento: "Vinícola",
+    descricao:
+      "Mais que uma vinícola, um atelier do vinho em Veranópolis — vinhos autorais como Gran Marselan, Merlot Avant Premiere, Pária Pinot Noir, Gran Malbec e espumante Nature.",
+    atende: ["Gastronomia", "Turismo & Hotelaria", "Flores & Presentes"],
+    link: "https://vinuta.com.br/",
+    linkLabel: "vinuta.com.br",
+  },
+  {
+    id: "zetauno",
+    nome: "ZetaUno",
+    segmento: "Mobilidade Elétrica & Carregadores",
+    descricao:
+      "Em Vacaria (RS), desenvolve e fabrica carregadores para veículos elétricos — para casas, empreendimentos e frotas, com mais de mil carregadores vendidos, entrega em todo o Brasil e exportação.",
+    atende: ["Sustentabilidade & Meio Ambiente", "Imóveis & Construção", "Transporte & Logística"],
+    link: "https://www.zetauno.com.br/",
+    linkLabel: "zetauno.com.br",
+  },
 ];

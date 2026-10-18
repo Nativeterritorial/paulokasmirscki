@@ -720,4 +720,54 @@ export const COMPANIES = [
     link: "https://www.instagram.com/mdbeachclub/",
     linkLabel: "@mdbeachclub",
   },
+  {
+    id: "winbeer",
+    nome: "Win Beer Cervejaria",
+    segmento: "Cervejaria & Beer Garden",
+    descricao:
+      "Cervejaria turística em Vila Flores (RS), com Beer Garden aos sábados e domingos, das 14h30 às 20h — chope para festas e eventos e locação do espaço para eventos particulares.",
+    atende: ["Gastronomia", "Turismo & Hotelaria", "Esporte & Lazer"],
+    link: "https://www.instagram.com/winbeercervejaria/",
+    linkLabel: "@winbeercervejaria",
+  },
+  {
+    id: "e4engenharia",
+    nome: "E4 Engenharia e Soluções Metálicas",
+    segmento: "Engenharia & Estruturas Metálicas",
+    descricao:
+      "Engenharia em Veranópolis especializada em soluções metálicas, com projetos residenciais, industriais e comerciais.",
+    atende: ["Imóveis & Construção", "Agro & Indústria", "Arquitetura"],
+    link: "https://www.instagram.com/e4_engenharia/",
+    linkLabel: "@e4_engenharia",
+  },
+  {
+    id: "waldemarca",
+    nome: "Waldemarca Empreendimentos",
+    segmento: "Construção & Incorporação",
+    descricao:
+      "Desde 1983 em Veranópolis, com mais de 100 mil m² de edificações construídas — serviços de engenharia, construção e compra e venda de imóveis. Fone (54) 99653-7559.",
+    atende: ["Imóveis & Construção", "Finanças & Investimentos", "Arquitetura"],
+    link: "https://www.instagram.com/waldemarca.empreendimentos/",
+    linkLabel: "@waldemarca.empreendimentos",
+  },
+  {
+    id: "verasol",
+    nome: "Verasol Energia Solar",
+    segmento: "Energia Solar",
+    descricao:
+      "Energia solar na Serra Gaúcha, com mais de 5 mil módulos instalados — sistemas fotovoltaicos para casas e empresas e carregadores para veículos elétricos.",
+    atende: ["Sustentabilidade & Meio Ambiente", "Imóveis & Construção", "Agro & Indústria"],
+    link: "https://www.instagram.com/verasol.energiasolar/",
+    linkLabel: "@verasol.energiasolar",
+  },
+  {
+    id: "aaveranopolis",
+    nome: "AAV — Associação Veranópolis",
+    segmento: "Esporte & Projeto Social",
+    descricao:
+      "Projeto Sociedade Esportiva Educar, em Veranópolis — mudando o mundo pelo esporte com futsal, voleibol, futebol, ginástica rítmica, capoeira e jogos educativos.",
+    atende: ["Esporte & Lazer", "Educação & Capacitação", "Saúde & Bem-estar"],
+    link: "https://www.instagram.com/aaveranopolis/",
+    linkLabel: "@aaveranopolis",
+  },
 ];

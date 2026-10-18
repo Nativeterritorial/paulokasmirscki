@@ -33,7 +33,7 @@ const SUGESTOES = [
 
 // segmento de cada empresa -> categoria com ícone (e cor) no diretório
 const SEG_MAP = [
-  [/academia|fitness|esporte/i, "Esporte & Lazer", "#5b9bff"],
+  [/academia|fitness|esporte|música|shows/i, "Esporte & Lazer", "#5b9bff"],
   [/agro|pecu|fertiliz|agríc/i, "Agro & Pecuária", "#6fffbf"],
   [/barbearia|estética|beleza/i, "Estética & Beleza", "#ff9bd2"],
   [/cafeteria|restaurante|lancheria|padaria|gastronomia|pizzaria|gastropub/i, "Gastronomia", "#ffb27a"],

@@ -570,4 +570,44 @@ export const COMPANIES = [
     link: "https://www.instagram.com/nossoartichoke/",
     linkLabel: "@nossoartichoke",
   },
+  {
+    id: "tonmuller",
+    nome: "Ton Müller Fotografia",
+    segmento: "Fotografia",
+    descricao:
+      "Fotógrafo em Veranópolis — fotografia profissional para pessoas, marcas e eventos, com mais de mil trabalhos publicados.",
+    atende: ["Fotografia & Filmagem", "Marketing & Digital", "Mídia & Comunicação"],
+    link: "https://www.instagram.com/tonmullerphoto/",
+    linkLabel: "@tonmullerphoto",
+  },
+  {
+    id: "pokainocencia",
+    nome: "Poka Inocência",
+    segmento: "Música & Shows — Pagode",
+    descricao:
+      "Grupo de pagode de Veranópolis — shows ao vivo para festas, comemorações e eventos em toda a Serra Gaúcha.",
+    atende: ["Esporte & Lazer", "Gastronomia", "Turismo & Hotelaria"],
+    link: "https://www.instagram.com/pokainocencia/",
+    linkLabel: "@pokainocencia",
+  },
+  {
+    id: "buratti",
+    nome: "Refrigeração e Climatização Buratti",
+    segmento: "Refrigeração & Climatização",
+    descricao:
+      "Mais de 20 anos de experiência em refrigeração e climatização, atendendo de Fagundes Varela para toda a região. Fone (54) 99982-5463.",
+    atende: ["Serviços", "Imóveis & Construção", "Comércio & Varejo"],
+    link: "https://www.instagram.com/refrigeracao_buratti_/",
+    linkLabel: "@refrigeracao_buratti_",
+  },
+  {
+    id: "audacia",
+    nome: "Audácia Street",
+    segmento: "Moda & Vestuário — Streetwear",
+    descricao:
+      "Loja de roupas em Veranópolis — streetwear e sneakers com qualidade que se destaca, pra quem tem presença. Na Galeria Inácio Frainer, com atendimento também pelo WhatsApp.",
+    atende: ["Moda & Vestuário", "Comércio & Varejo"],
+    link: "https://www.instagram.com/audacia_oficial_79/",
+    linkLabel: "@audacia_oficial_79",
+  },
 ];

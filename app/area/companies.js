@@ -940,4 +940,64 @@ export const COMPANIES = [
     link: "https://www.instagram.com/dalmoro.piscinas/",
     linkLabel: "@dalmoro.piscinas",
   },
+  {
+    id: "radarsports",
+    nome: "Radar Sports",
+    segmento: "Complexo Esportivo",
+    descricao:
+      "Complexo esportivo em Gravataí (RS) — 8 quadras de areia, 4 de padel e 2 de futebol 7, com sport bar, churrasqueiras e salão de festas. Agendamentos pelo Instagram.",
+    atende: ["Esporte & Lazer", "Gastronomia", "Saúde & Bem-estar"],
+    link: "https://www.instagram.com/radarsportsrs/",
+    linkLabel: "@radarsportsrs",
+  },
+  {
+    id: "powerfit",
+    nome: "Powerfit Academia",
+    segmento: "Academia & Fitness",
+    descricao:
+      "Academia em Veranópolis que transforma vidas através do movimento — musculação, cross, Hyrox e muay thai. Agende sua aula experimental.",
+    atende: ["Esporte & Lazer", "Saúde & Bem-estar"],
+    link: "https://www.instagram.com/powerfit_academiavera/",
+    linkLabel: "@powerfit_academiavera",
+  },
+  {
+    id: "guinastudio",
+    nome: "Guina — Studio3D + Arquitetura",
+    segmento: "Arquitetura & Urbanismo",
+    descricao:
+      "Arquiteto e urbanista Guinatar Baratieri, em Veranópolis — projetos de arquitetura e visualização 3D.",
+    atende: ["Arquitetura", "Imóveis & Construção"],
+    link: "https://www.instagram.com/guina_studio3d_arquitetura/",
+    linkLabel: "@guina_studio3d_arquitetura",
+  },
+  {
+    id: "gabrielasachini",
+    nome: "Studio Gabriela Sachini",
+    segmento: "Arquitetura & Interiores",
+    descricao:
+      "Arquiteta em Veranópolis, profissional Casa Vogue 2025 — arquitetura atemporal e elegante, sem modismos, com projetos arquitetônicos e de interiores. Fone (54) 99256-3203.",
+    atende: ["Arquitetura", "Imóveis & Construção"],
+    link: "https://www.instagram.com/studiogabrielasachini/",
+    linkLabel: "@studiogabrielasachini",
+  },
+  {
+    id: "iamaranorling",
+    nome: "Iamara Norling",
+    segmento: "Arquitetura, Design de Mobiliário & Branding",
+    descricao:
+      "Arquiteta e designer de mobiliário em Veranópolis — arquitetura, design de móveis (Norling Design) e branding (Norling Branding), também à frente da Mapah Incorporadora.",
+    atende: ["Arquitetura", "Imóveis & Construção", "Marketing & Digital"],
+    link: "https://www.instagram.com/iamaranorling/",
+    linkLabel: "@iamaranorling",
+  },
+  {
+    id: "dreschsport",
+    nome: "Dresch Sport",
+    segmento: "Uniformes & Fardamentos",
+    descricao:
+      "Em São Leopoldo (RS), 40 anos vestindo histórias — especialista em fardamentos esportivos e referência em uniformes corporativos.",
+    atende: ["Moda & Vestuário", "Esporte & Lazer", "Negócios & Empresas"],
+    link: "https://www.instagram.com/dreschsportoficial/",
+    linkLabel: "@dreschsportoficial",
+  },
 ];

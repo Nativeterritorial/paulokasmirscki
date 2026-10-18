@@ -33,13 +33,14 @@ const SUGESTOES = [
 
 // segmento de cada empresa -> categoria com ícone (e cor) no diretório
 const SEG_MAP = [
-  [/academia|fitness|esporte|crossfit|bicicleta|bike|música|shows/i, "Esporte & Lazer", "#5b9bff"],
+  [/academia|fitness|esporte|esportivo|crossfit|bicicleta|bike|música|shows/i, "Esporte & Lazer", "#5b9bff"],
   [/agro|pecu|fertiliz|agríc/i, "Agro & Pecuária", "#6fffbf"],
   [/barbearia|estética|beleza/i, "Estética & Beleza", "#ff9bd2"],
   [/cafeteria|restaurante|lancheria|padaria|gastronomia|pizzaria|gastropub|cervejaria/i, "Gastronomia", "#ffb27a"],
   [/vidro|válvula|(^|[^\p{L}])móve|indústr/iu, "Indústria & Móveis", "#9fb6d9"],
   [/comunicação|mídia|gráfica|fotografia/i, "Mídia & Comunicação", "#ff8a8a"],
   [/consórcio|investimento|seguro|finan/i, "Finanças & Investimentos", "#f5c04e"],
+  [/arquitet|urbanis|interiores/i, "Arquitetura", "#c9a8ff"],
   [/construção|engenharia|materiais|hidráulic|imóve|territorial/i, "Imóveis & Construção", "#f5c04e"],
   [/contabil/i, "Contabilidade", "#46d6ff"],
   [/jurídic/i, "Jurídico", "#c9a8ff"],
@@ -48,7 +49,7 @@ const SEG_MAP = [
   [/veículo|automóve|automotiv|concession/i, "Veículos", "#46d6ff"],
   [/educação|ensino|escola/i, "Educação", "#5b9bff"],
   [/logística|transporte/i, "Transporte & Logística", "#9fb6d9"],
-  [/moda|vestuário|etiqueta|têxt|joalheria|ótica/i, "Moda & Vestuário", "#ff9bd2"],
+  [/moda|vestuário|uniforme|fardamento|etiqueta|têxt|joalheria|ótica/i, "Moda & Vestuário", "#ff9bd2"],
   [/saúde|odonto|medicina|genética|suplemento/i, "Saúde & Bem-estar", "#6fffbf"],
   [/hotel|turismo|viage/i, "Turismo & Hotelaria", "#ffb27a"],
   [/floricultura|flores|plantas|mudas|paisag|jardin|solar|energia/i, "Sustentabilidade & Meio Ambiente", "#6fffbf"],

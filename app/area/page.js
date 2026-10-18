@@ -50,7 +50,7 @@ const SEG_MAP = [
   [/logística|transporte/i, "Transporte & Logística", "#9fb6d9"],
   [/moda|vestuário|joalheria|ótica/i, "Moda & Vestuário", "#ff9bd2"],
   [/saúde|odonto|medicina|genética|suplemento/i, "Saúde & Bem-estar", "#6fffbf"],
-  [/hotel|turismo/i, "Turismo & Hotelaria", "#ffb27a"],
+  [/hotel|turismo|viage/i, "Turismo & Hotelaria", "#ffb27a"],
   [/floricultura|flores/i, "Sustentabilidade & Meio Ambiente", "#6fffbf"],
   [/mercado|atacado|comércio|varejo/i, "Comércio & Varejo", "#ffb27a"],
   [/desenvolvimento|gestão|consultoria|público|associação|entidade/i, "Negócios & Empresas", "#c9a8ff"],

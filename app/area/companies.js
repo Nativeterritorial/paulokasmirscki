@@ -650,4 +650,54 @@ export const COMPANIES = [
     link: "https://www.instagram.com/dgroncoeapneiadosono/",
     linkLabel: "@dgroncoeapneiadosono",
   },
+  {
+    id: "teamvilleroy",
+    nome: "Team Villeroy",
+    segmento: "Academia & Treino Funcional",
+    descricao:
+      "Academia de treinamento funcional no Menino Deus, em Porto Alegre (Rua Múcio Teixeira, 371) — referência em HYROX Training Club na capital, com loja oficial própria.",
+    atende: ["Esporte & Lazer", "Saúde & Bem-estar"],
+    link: "https://www.instagram.com/teamvilleroy/",
+    linkLabel: "@teamvilleroy",
+  },
+  {
+    id: "flytourserra",
+    nome: "Flytour Serra Gaúcha",
+    segmento: "Turismo & Viagens",
+    descricao:
+      "Agência de viagens na Serra Gaúcha da Flytour, com 50 anos de mercado e líder em viagens a negócios no país — gestão de viagens corporativas, lazer e eventos.",
+    atende: ["Turismo & Hotelaria", "Negócios & Empresas", "Esporte & Lazer"],
+    link: "https://www.instagram.com/flytour.serragaucha/",
+    linkLabel: "@flytour.serragaucha",
+  },
+  {
+    id: "restaurantefarina",
+    nome: "Restaurante Farina",
+    segmento: "Restaurante Italiano",
+    descricao:
+      "Comida típica italiana todos os dias em Veranópolis. Fones (54) 3441-1142 e (54) 99949-1142.",
+    atende: ["Gastronomia", "Turismo & Hotelaria"],
+    link: "https://www.instagram.com/restaurante_farina/",
+    linkLabel: "@restaurante_farina",
+  },
+  {
+    id: "impactopadel",
+    nome: "Impacto Padel",
+    segmento: "Esporte & Lazer — Padel",
+    descricao:
+      "Espaço de padel em Veranópolis com 4 quadras, aberto todos os dias — reservas pelo Instagram, para jogar e se divertir.",
+    atende: ["Esporte & Lazer", "Saúde & Bem-estar"],
+    link: "https://www.instagram.com/impactopadelveranopolis/",
+    linkLabel: "@impactopadelveranopolis",
+  },
+  {
+    id: "dezfutebol",
+    nome: "Dez Futebol e Clube",
+    segmento: "Esporte & Lazer — Clube",
+    descricao:
+      "Clube esportivo no Recreio dos Bandeirantes, no Rio de Janeiro — beach tennis, padel, futevôlei, futsal, PSG Academy, centro de treinamento e performance.",
+    atende: ["Esporte & Lazer", "Saúde & Bem-estar", "Educação & Capacitação"],
+    link: "https://www.instagram.com/dezfuteboleclube/",
+    linkLabel: "@dezfuteboleclube",
+  },
 ];

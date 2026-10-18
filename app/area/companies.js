@@ -880,4 +880,64 @@ export const COMPANIES = [
     link: "https://www.instagram.com/okacrossfit/",
     linkLabel: "@okacrossfit",
   },
+  {
+    id: "jardimtec",
+    nome: "Jardimtec — Ronei Nunes",
+    segmento: "Jardinagem & Corte de Árvores",
+    descricao:
+      "Em Veranópolis, com Ronei Nunes — corte, poda e limpeza de árvores.",
+    atende: ["Sustentabilidade & Meio Ambiente", "Imóveis & Construção", "Serviços"],
+    link: "https://www.instagram.com/jardimtec.rs/",
+    linkLabel: "@jardimtec.rs",
+  },
+  {
+    id: "brengenharia",
+    nome: "BR Engenharia",
+    segmento: "Engenharia & Construção",
+    descricao:
+      "Engenharia em Canoas (RS) — execução de obra do projeto à entrega das chaves, com financiamento para a sua construção. Fones (54) 99181-1668 e (54) 99971-4979.",
+    atende: ["Imóveis & Construção", "Arquitetura", "Finanças & Investimentos"],
+    link: "https://www.instagram.com/br.engenharia/",
+    linkLabel: "@br.engenharia",
+  },
+  {
+    id: "tuaradio",
+    nome: "Tua Rádio Veranense",
+    segmento: "Mídia & Comunicação — Rádio",
+    descricao:
+      "Rádio de Veranópolis com conteúdo de qualidade, informação e entretenimento — espaço para divulgar marcas, eventos e negócios da cidade.",
+    atende: ["Mídia & Comunicação", "Marketing & Digital", "Negócios & Empresas"],
+    link: "https://www.instagram.com/tuaradioveranense/",
+    linkLabel: "@tuaradioveranense",
+  },
+  {
+    id: "clipveranopolis",
+    nome: "Clip Veranópolis",
+    segmento: "Bazar & Utilidades",
+    descricao:
+      "Loja de bazar e utilidades na Av. Osvaldo Aranha, 1499, Centro de Veranópolis — Simplifique, é Clip! Atendimento pelo WhatsApp (54) 99611-9946.",
+    atende: ["Comércio & Varejo", "Serviços"],
+    link: "https://www.instagram.com/clip.veranopolis/",
+    linkLabel: "@clip.veranopolis",
+  },
+  {
+    id: "stalodesign",
+    nome: "STALO Design",
+    segmento: "Etiquetas Têxteis & Termocolantes",
+    descricao:
+      "Em Caxias do Sul, soluções criativas em etiquetas — etiquetas termocolantes que valorizam sua marca, unindo tradição e inovação no embelezamento têxtil. Atende todo o Brasil.",
+    atende: ["Moda & Vestuário", "Agro & Indústria", "Marketing & Digital"],
+    link: "https://www.instagram.com/stalo_design/",
+    linkLabel: "@stalo_design",
+  },
+  {
+    id: "dalmoropiscinas",
+    nome: "Dalmoro Piscinas",
+    segmento: "Limpeza & Manutenção de Piscinas",
+    descricao:
+      "Limpeza e manutenção de piscinas em Veranópolis — o Mestre das Piscinas, com atendimento pelo WhatsApp.",
+    atende: ["Serviços", "Imóveis & Construção", "Esporte & Lazer"],
+    link: "https://www.instagram.com/dalmoro.piscinas/",
+    linkLabel: "@dalmoro.piscinas",
+  },
 ];

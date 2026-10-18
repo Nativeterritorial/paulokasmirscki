@@ -48,11 +48,11 @@ const SEG_MAP = [
   [/veículo|automóve|automotiv|concession/i, "Veículos", "#46d6ff"],
   [/educação|ensino|escola/i, "Educação", "#5b9bff"],
   [/logística|transporte/i, "Transporte & Logística", "#9fb6d9"],
-  [/moda|vestuário|joalheria|ótica/i, "Moda & Vestuário", "#ff9bd2"],
+  [/moda|vestuário|etiqueta|têxt|joalheria|ótica/i, "Moda & Vestuário", "#ff9bd2"],
   [/saúde|odonto|medicina|genética|suplemento/i, "Saúde & Bem-estar", "#6fffbf"],
   [/hotel|turismo|viage/i, "Turismo & Hotelaria", "#ffb27a"],
-  [/floricultura|flores|plantas|mudas|paisag|solar|energia/i, "Sustentabilidade & Meio Ambiente", "#6fffbf"],
-  [/mercado|atacado|comércio|varejo/i, "Comércio & Varejo", "#ffb27a"],
+  [/floricultura|flores|plantas|mudas|paisag|jardin|solar|energia/i, "Sustentabilidade & Meio Ambiente", "#6fffbf"],
+  [/mercado|atacado|comércio|varejo|bazar|utilidades/i, "Comércio & Varejo", "#ffb27a"],
   [/desenvolvimento|gestão|consultoria|público|associação|entidade/i, "Negócios & Empresas", "#c9a8ff"],
 ];
 const segInfo = (segmento) => {

@@ -1000,4 +1000,64 @@ export const COMPANIES = [
     link: "https://www.instagram.com/dreschsportoficial/",
     linkLabel: "@dreschsportoficial",
   },
+  {
+    id: "vinhoszardo",
+    nome: "Vinhos Zardo",
+    segmento: "Vinícola",
+    descricao:
+      "Vinícola familiar em Cotiporã, na Serra Gaúcha — vinhos com a tradição da família, com atendimento pelo WhatsApp.",
+    atende: ["Gastronomia", "Turismo & Hotelaria", "Agro & Indústria"],
+    link: "https://www.instagram.com/vinhoszardo/",
+    linkLabel: "@vinhoszardo",
+  },
+  {
+    id: "kom961",
+    nome: "KOM 96.1 FM",
+    segmento: "Mídia & Comunicação — Rádio e TV",
+    descricao:
+      "Rádio e TV de Veranópolis com informação e música para a região Nordeste do RS — espaço para a sua marca. WhatsApp (54) 99610-0961.",
+    atende: ["Mídia & Comunicação", "Marketing & Digital", "Negócios & Empresas"],
+    link: "https://www.instagram.com/kom961fm/",
+    linkLabel: "@kom961fm",
+  },
+  {
+    id: "dafazenda",
+    nome: "Da Fazenda — Empório de Carnes",
+    segmento: "Empório de Carnes",
+    descricao:
+      "Empório em Veranópolis especializado em carnes nobres com procedência garantida e acompanhamentos para o seu churrasco.",
+    atende: ["Gastronomia", "Comércio & Varejo"],
+    link: "https://www.instagram.com/dafazendaemporiodecarnes/",
+    linkLabel: "@dafazendaemporiodecarnes",
+  },
+  {
+    id: "connectionco",
+    nome: "Connection Co.",
+    segmento: "Marketing & Vendas",
+    descricao:
+      "Em Bento Gonçalves, gera demanda e estrutura as vendas da sua empresa — tráfego pago, CRM e performance comercial.",
+    atende: ["Marketing & Digital", "Negócios & Empresas", "Tecnologia & IA"],
+    link: "https://www.instagram.com/connection.ia/",
+    linkLabel: "@connection.ia",
+  },
+  {
+    id: "bertotto",
+    nome: "Bertotto Cogumelos",
+    segmento: "Produção de Cogumelos",
+    descricao:
+      "Desde 2005 produzindo cogumelos frescos de qualidade, com entrega gratuita em Porto Alegre e cidades próximas.",
+    atende: ["Gastronomia", "Agro & Indústria", "Saúde & Bem-estar"],
+    link: "https://www.instagram.com/bertotto.cogumelos/",
+    linkLabel: "@bertotto.cogumelos",
+  },
+  {
+    id: "frigorificorz",
+    nome: "Frigorífico RZ La Delizia",
+    segmento: "Frigorífico & Varejo de Carnes",
+    descricao:
+      "Frigorífico e varejo em Cotiporã (RS 359, nº 2900) — defumados, frescais, cozidos e curados: bacon, salames, linguiças, calabresa, costela defumada e kit feijoada. Fones (54) 3446-1150 e (54) 99709-2156.",
+    atende: ["Gastronomia", "Agro & Indústria", "Comércio & Varejo"],
+    link: "https://www.frigorificorz.com.br/",
+    linkLabel: "frigorificorz.com.br",
+  },
 ];

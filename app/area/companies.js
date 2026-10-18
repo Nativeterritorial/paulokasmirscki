@@ -1320,4 +1320,74 @@ export const COMPANIES = [
     link: "https://www.climaeletro.com.br/",
     linkLabel: "climaeletro.com.br",
   },
+  {
+    id: "kazalla",
+    nome: "Kazalla Móveis e Ambientes",
+    segmento: "Móveis Sob Medida & Decoração",
+    descricao:
+      "53 anos de história, qualidade e confiança em Veranópolis — móveis sob medida, decoração e ambientes completos.",
+    atende: ["Arquitetura", "Imóveis & Construção", "Comércio & Varejo"],
+    link: "https://www.instagram.com/kazallamoveis/",
+    linkLabel: "@kazallamoveis",
+  },
+  {
+    id: "pagodeclassea",
+    nome: "Pagode ClasseA",
+    segmento: "Música & Shows — Pagode",
+    descricao:
+      "Grupo de pagode de Nova Prata — shows para festas e eventos, com a música \"Perdeu\" no YouTube e nos apps digitais. Contatos para show: (54) 99983-0202 e (54) 99708-2804.",
+    atende: ["Esporte & Lazer", "Gastronomia", "Turismo & Hotelaria"],
+    link: "https://www.instagram.com/segueoclasse/",
+    linkLabel: "@segueoclasse",
+  },
+  {
+    id: "gasparetto",
+    nome: "Leandro Gasparetto",
+    segmento: "Estética Automotiva",
+    descricao:
+      "Em Veranópolis, empresa especializada em estética automotiva, com mais de 30 anos no ramo automotivo.",
+    atende: ["Serviços", "Comércio & Varejo"],
+    link: "https://www.instagram.com/gasparettoleandro/",
+    linkLabel: "@gasparettoleandro",
+  },
+  {
+    id: "01motos",
+    nome: "01 Motos",
+    segmento: "Motos Novas e Seminovas",
+    descricao:
+      "Loja multimarcas de motos novas e seminovas em Veranópolis — mais que vender motos, realiza conquistas.",
+    atende: ["Comércio & Varejo", "Finanças & Investimentos", "Transporte & Logística"],
+    link: "https://www.instagram.com/_01motos_/",
+    linkLabel: "@_01motos_",
+  },
+  {
+    id: "riocomplex",
+    nome: "Rio Complex Beach Sports",
+    segmento: "Esporte & Lazer — Beach Sports",
+    descricao:
+      "Um pedaço do Rio de Janeiro em Porto Alegre — futevôlei, beach tennis e treino funcional.",
+    atende: ["Esporte & Lazer", "Saúde & Bem-estar"],
+    link: "https://www.instagram.com/riocomplex/",
+    linkLabel: "@riocomplex",
+  },
+  {
+    id: "ridsat",
+    nome: "Ridsat Smart",
+    segmento: "Eletrônicos & Apple",
+    descricao:
+      "Em Nova Prata, produtos Apple em destaque, linha Joog com representação Ridsat e eletrônicos selecionados, com atendimento local.",
+    atende: ["Tecnologia & IA", "Comércio & Varejo"],
+    link: "https://www.ridsat.com.br/",
+    linkLabel: "ridsat.com.br",
+  },
+  {
+    id: "bavaresco",
+    nome: "Bavaresco Supermercado",
+    segmento: "Supermercado",
+    descricao:
+      "Supermercado em Veranópolis com qualidade, variedade e economia em um só lugar — sua família merece o melhor.",
+    atende: ["Comércio & Varejo", "Gastronomia"],
+    link: "https://www.instagram.com/bavarescosupermercado/",
+    linkLabel: "@bavarescosupermercado",
+  },
 ];

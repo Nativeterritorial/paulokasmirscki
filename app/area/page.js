@@ -33,6 +33,8 @@ const SUGESTOES = [
 
 // segmento de cada empresa -> categoria com ícone (e cor) no diretório
 const SEG_MAP = [
+  // veículos primeiro: "Estética Automotiva" é carro, não salão de beleza
+  [/veículo|automóve|automotiv|concession|motos/i, "Veículos", "#46d6ff"],
   [/academia|fitness|esporte|esportivo|crossfit|bicicleta|bike|música|shows/i, "Esporte & Lazer", "#5b9bff"],
   [/agro|pecu|fertiliz|agríc|cogumelo/i, "Agro & Pecuária", "#6fffbf"],
   [/barbearia|estética|beleza/i, "Estética & Beleza", "#ff9bd2"],
@@ -45,8 +47,7 @@ const SEG_MAP = [
   [/contabil/i, "Contabilidade", "#46d6ff"],
   [/jurídic/i, "Jurídico", "#c9a8ff"],
   [/marketing/i, "Marketing & Digital", "#b88cff"],
-  [/informática|internet|telecom|sistemas|tecnologia/i, "Tecnologia & IA", "#46d6ff"],
-  [/veículo|automóve|automotiv|concession/i, "Veículos", "#46d6ff"],
+  [/informática|internet|telecom|sistemas|tecnologia|eletrônic|apple/i, "Tecnologia & IA", "#46d6ff"],
   [/educação|ensino|escola/i, "Educação", "#5b9bff"],
   [/logística|transporte/i, "Transporte & Logística", "#9fb6d9"],
   [/moda|vestuário|boné|uniforme|fardamento|etiqueta|têxt|joalheria|ótica/i, "Moda & Vestuário", "#ff9bd2"],

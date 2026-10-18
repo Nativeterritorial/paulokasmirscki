@@ -40,18 +40,19 @@ const SEG_MAP = [
   [/vidro|válvula|(^|[^\p{L}])móve|indústr/iu, "Indústria & Móveis", "#9fb6d9"],
   [/comunicação|mídia|gráfica|fotografia/i, "Mídia & Comunicação", "#ff8a8a"],
   [/consórcio|investimento|seguro|finan/i, "Finanças & Investimentos", "#f5c04e"],
-  [/construção|materiais|imóve|territorial/i, "Imóveis & Construção", "#f5c04e"],
+  [/construção|materiais|hidráulic|imóve|territorial/i, "Imóveis & Construção", "#f5c04e"],
   [/contabil/i, "Contabilidade", "#46d6ff"],
   [/jurídic/i, "Jurídico", "#c9a8ff"],
   [/marketing/i, "Marketing & Digital", "#b88cff"],
   [/informática|internet|telecom|sistemas|tecnologia/i, "Tecnologia & IA", "#46d6ff"],
+  [/veículo|automóve|concession/i, "Veículos", "#46d6ff"],
   [/logística|transporte/i, "Transporte & Logística", "#9fb6d9"],
   [/moda|vestuário|joalheria|ótica/i, "Moda & Vestuário", "#ff9bd2"],
   [/saúde|odonto|medicina|genética|suplemento/i, "Saúde & Bem-estar", "#6fffbf"],
   [/hotel|turismo/i, "Turismo & Hotelaria", "#ffb27a"],
   [/floricultura|flores/i, "Sustentabilidade & Meio Ambiente", "#6fffbf"],
   [/mercado|atacado|comércio|varejo/i, "Comércio & Varejo", "#ffb27a"],
-  [/desenvolvimento|gestão|consultoria|público/i, "Negócios & Empresas", "#c9a8ff"],
+  [/desenvolvimento|gestão|consultoria|público|associação|entidade/i, "Negócios & Empresas", "#c9a8ff"],
 ];
 const segInfo = (segmento) => {
   const hit = SEG_MAP.find(([re]) => re.test(segmento));

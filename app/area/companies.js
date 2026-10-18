@@ -490,4 +490,44 @@ export const COMPANIES = [
     link: "https://www.instagram.com/suculentasdaivakasmirscki/",
     linkLabel: "@suculentasdaivakasmirscki",
   },
+  {
+    id: "estafeta",
+    nome: "Estafeta",
+    segmento: "Mídia & Comunicação",
+    descricao:
+      "Jornal Estafeta, de Veranópolis — há mais de 30 anos contando as histórias da cidade e da região, com notícias, fotos da comunidade e espaço para divulgar marcas, eventos e negócios.",
+    atende: ["Mídia & Comunicação", "Marketing & Digital", "Negócios & Empresas"],
+    link: "https://www.instagram.com/oestafeta/",
+    linkLabel: "@oestafeta",
+  },
+  {
+    id: "aciv",
+    nome: "ACIV — Associação Comercial de Veranópolis",
+    segmento: "Associação Empresarial",
+    descricao:
+      "Associação Comercial, Cultural e Industrial de Veranópolis — representa e fortalece o comércio, a indústria e os serviços da cidade; seja associado e impulsione o seu negócio.",
+    atende: ["Negócios & Empresas", "Comércio & Varejo", "Educação & Capacitação"],
+    link: "https://www.instagram.com/acivrs/",
+    linkLabel: "@acivrs",
+  },
+  {
+    id: "encanadorlocatelli",
+    nome: "Casa do Encanador Locatelli",
+    segmento: "Materiais Hidráulicos & Aquecedores",
+    descricao:
+      "Tradição e profissionalismo há mais de 30 anos: aquecedores, materiais hidráulicos e metais para obras, reformas e manutenção.",
+    atende: ["Imóveis & Construção", "Arquitetura", "Comércio & Varejo"],
+    link: "https://www.instagram.com/casaencanadorlocatelli/",
+    linkLabel: "@casaencanadorlocatelli",
+  },
+  {
+    id: "vcarveiculos",
+    nome: "VCAR Veículos",
+    segmento: "Veículos Seminovos",
+    descricao:
+      "Loja de veículos seminovos na Rua Cel. Manoel Pontes Filho, 2437, Centro de Veranópolis — carros, SUVs e caminhonetes com estoque atualizado no site. Fone (54) 3441-8308.",
+    atende: ["Comércio & Varejo", "Finanças & Investimentos", "Transporte & Logística"],
+    link: "https://www.vcarveiculos.com.br/estoque",
+    linkLabel: "vcarveiculos.com.br",
+  },
 ];

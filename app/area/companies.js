@@ -1060,4 +1060,64 @@ export const COMPANIES = [
     link: "https://www.frigorificorz.com.br/",
     linkLabel: "frigorificorz.com.br",
   },
+  {
+    id: "tanarapastore",
+    nome: "Nutricionista Tanara Pastore",
+    segmento: "Nutrição",
+    descricao:
+      "Nutricionista de Veranópolis — nutrição aplicada à sua rotina, com resultados de verdade. Atendimentos em Veranópolis, Porto Alegre e on-line; mentora na comunidade Do Nutrição.",
+    atende: ["Saúde & Bem-estar", "Esporte & Lazer"],
+    link: "https://www.instagram.com/tanarapastorenutri/",
+    linkLabel: "@tanarapastorenutri",
+  },
+  {
+    id: "grandper",
+    nome: "Grandper Supermercado",
+    segmento: "Supermercado & Hortifrúti",
+    descricao:
+      "Supermercado em Veranópolis com o melhor hortifrúti da região — tudo para o seu dia ser mais completo, com qualidade e tradição desde 2010.",
+    atende: ["Comércio & Varejo", "Gastronomia"],
+    link: "https://www.instagram.com/ograndper/",
+    linkLabel: "@ograndper",
+  },
+  {
+    id: "macrosul",
+    nome: "Macrosul Móveis",
+    segmento: "Fábrica e Loja de Móveis",
+    descricao:
+      "Fábrica e loja de móveis em Veranópolis — design autoral brasileiro desde 1993.",
+    atende: ["Arquitetura", "Imóveis & Construção", "Comércio & Varejo"],
+    link: "https://www.instagram.com/macrosulmoveis/",
+    linkLabel: "@macrosulmoveis",
+  },
+  {
+    id: "tomasetto",
+    nome: "Tomasetto Engenharia",
+    segmento: "Construtora & Incorporadora",
+    descricao:
+      "Construtora nascida em Veranópolis, com prédios construídos na cidade, e há mais de 40 anos na construção civil — hoje com empreendimentos residenciais de alto padrão em Porto Alegre e Gravataí, como Veríssimo, Bordini 1595, Tribeca e Soul República.",
+    atende: ["Imóveis & Construção", "Arquitetura", "Finanças & Investimentos"],
+    link: "https://tomasettoengenharia.com.br/",
+    linkLabel: "tomasettoengenharia.com.br",
+  },
+  {
+    id: "magnusballoons",
+    nome: "Magnus Balloons",
+    segmento: "Fábrica de Balões de Ar Quente",
+    descricao:
+      "Fábrica de balões de ar quente em Torres (RS), com o piloto Magnus Jaime — balões personalizados para marcas, como o balão do Grupo ALSUS, da nossa rede, e o do Eu Amo Mundo Animal.",
+    atende: ["Turismo & Hotelaria", "Marketing & Digital", "Esporte & Lazer"],
+    link: "https://www.instagram.com/magnusballoons/",
+    linkLabel: "@magnusballoons",
+  },
+  {
+    id: "livrariareuna",
+    nome: "Livraria Reúna",
+    segmento: "Livraria & Papelaria",
+    descricao:
+      "Livraria em Veranópolis com material escolar e de escritório. Fone e WhatsApp (54) 3441-5747.",
+    atende: ["Comércio & Varejo", "Educação & Capacitação"],
+    link: "https://www.instagram.com/livrariareuna/",
+    linkLabel: "@livrariareuna",
+  },
 ];

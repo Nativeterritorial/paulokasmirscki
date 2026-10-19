@@ -1510,4 +1510,14 @@ export const COMPANIES = [
     link: "https://www.instagram.com/registroveranopolis/",
     linkLabel: "@registroveranopolis",
   },
+  {
+    id: "rivacci",
+    nome: "Rivacci Pré-Moldados",
+    segmento: "Construção — Pavilhões Pré-Moldados",
+    descricao:
+      "Em Veranópolis (BR 470, km 173), produção e montagem de pavilhões em concreto pré-fabricado, seguindo as normas técnicas e adaptados a cada cliente — obras para empresas como Rometal e Macromix. Fones (54) 99905-9512 e (54) 3698-4101.",
+    atende: ["Imóveis & Construção", "Agro & Indústria", "Negócios & Empresas"],
+    link: "https://www.rivaccipremoldados.com.br/",
+    linkLabel: "rivaccipremoldados.com.br",
+  },
 ];

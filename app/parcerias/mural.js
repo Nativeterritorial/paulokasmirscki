@@ -4,6 +4,8 @@
 // - Ofereço: condição especial, capacidade disponível, parceria (só Plano)
 // - Vaga: vaga de emprego (só Plano para publicar; candidatar-se é livre e
 //   aparece também na página pública /vagas)
+// - Recomendo: o membro recomenda um profissional ou empresa de confiança
+//   (grátis; só entra no ar depois da aprovação do Paulo)
 
 export const MURAL_TIPOS = {
   procuro: {
@@ -27,6 +29,13 @@ export const MURAL_TIPOS = {
     desc: "Vaga na sua empresa: aparece também na página pública de vagas.",
     acao: "Quero me candidatar",
   },
+  recomendo: {
+    label: "Recomendo",
+    titulo: "Quem você recomenda?",
+    exemplo: "Ex.: Eletricista João Silva",
+    desc: "Profissional ou empresa de confiança. Passa pela aprovação do Paulo.",
+    acao: "",
+  },
 };
 export const MURAL_TIPO_IDS = Object.keys(MURAL_TIPOS);
 
@@ -35,6 +44,9 @@ export const REGIMES = ["CLT", "Estágio", "PJ", "Freelancer", "Temporário", "J
 export const MURAL_DIAS = 30; // cada publicação fica no ar por 30 dias
 export const MURAL_MAX_ATIVOS = 5; // publicações no ar ao mesmo tempo, por membro
 export const MURAL_MAX_INTERESSES = 60;
+export const RECOMENDO_DIAS = 90; // recomendação aprovada fica 90 dias no ar
+// precisa da aprovação do Paulo antes de aparecer
+export const pedeAprovacao = (tipo) => tipo === "recomendo";
 
 // o que pede o Plano Ecossistema
 export const publicarPedePlano = (tipo) => tipo === "ofereco" || tipo === "vaga";

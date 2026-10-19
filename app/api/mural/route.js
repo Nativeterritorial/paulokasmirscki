@@ -19,6 +19,7 @@ const ERROS = {
   proprio: "Essa publicação é sua.",
   contato: "Preencha seu nome e WhatsApp.",
   repetido: "Você já demonstrou interesse nessa publicação.",
+  tipo: "Essa publicação não recebe respostas.",
   cheio: "Essa publicação já recebeu muitos interessados.",
   indisponivel: "Não consegui agora. Tente de novo em instantes.",
   falha: "Não consegui agora. Tente de novo em instantes.",

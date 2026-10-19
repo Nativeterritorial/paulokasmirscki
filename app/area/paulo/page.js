@@ -516,6 +516,7 @@ export default function PauloAdmin() {
   const totalPend =
     solPend +
     senhaPedidos.length +
+    mural.filter((m) => m.status === "analise").length +
     referralsPend +
     pedidosNovos("projeto") +
     pedidosNovos("gestao") +
@@ -626,7 +627,7 @@ export default function PauloAdmin() {
                 ["proj", "Projetos", pedidosNovos("projeto") + pedidosNovos("obra")],
                 ["gest", "Gestão", pedidosNovos("gestao")],
                 // publicações dos últimos 3 dias (só aviso; não pedem ação)
-                ["mur", "Mural", mural.filter((m) => Date.now() - (m.t || 0) < 3 * 864e5).length],
+                ["mur", "Mural", mural.filter((m) => m.status === "analise").length],
                 ["mem", "Membros", senhaPedidos.length],
                 ["emp", "Empresas", 0],
                 ["num", "Números", 0],
@@ -1192,7 +1193,12 @@ export default function PauloAdmin() {
             )}
 
             {tab === "mur" && (
-              <MuralAdmin code={code} mural={mural} onData={applyAdminData} />
+              <MuralAdmin
+                code={code}
+                mural={mural}
+                companies={[...fixedCompanies, ...customCompanies]}
+                onData={applyAdminData}
+              />
             )}
 
             {tab === "mem" && (

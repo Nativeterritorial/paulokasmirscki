@@ -13,7 +13,14 @@ const noAr = (m) => m.status === "ativo" && (m.expira || 0) > Date.now();
 
 // Aba "Mural" do painel: tudo o que foi publicado, quem respondeu, e o
 // controle de tirar do ar. As publicações entram no ar na hora (sem aprovação).
-export default function MuralAdmin({ code, mural, onData }) {
+const normNome = (v) =>
+  String(v || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+
+export default function MuralAdmin({ code, mural, companies = [], onData }) {
   const [filtro, setFiltro] = useState("ar");
   const [aberto, setAberto] = useState("");
 
@@ -32,6 +39,17 @@ export default function MuralAdmin({ code, mural, onData }) {
     filtro === "ar" ? noAr(m) : filtro === "fora" ? !noAr(m) : m.tipo === filtro
   );
   const respostas = mural.reduce((n, m) => n + (m.interesses || []).length, 0);
+  const analise = mural.filter((m) => m.status === "analise");
+  // a empresa recomendada já está na rede? (pelo nome ou pelo link)
+  const naRede = (m) => {
+    const n = normNome(m.titulo);
+    const l = normNome(m.link).replace(/^(https?)?(www)?/, "");
+    return companies.find(
+      (c) =>
+        (n.length > 3 && (normNome(c.nome).includes(n) || n.includes(normNome(c.nome)))) ||
+        (l.length > 5 && normNome(c.link).includes(l))
+    );
+  };
 
   return (
     <section className="admin-panel admin-signups pd-admin">
@@ -46,12 +64,54 @@ export default function MuralAdmin({ code, mural, onData }) {
         fizer sentido. As vagas também aparecem na página pública{" "}
         <a href="/vagas" target="_blank" rel="noopener noreferrer">/vagas</a>.
       </p>
+      {analise.length > 0 && (
+        <div className="mur-analise">
+          <div className="senha-pedidos-h">
+            ⭐ Recomendações para aprovar
+            <span className="lg-tag">{analise.length}</span>
+          </div>
+          {analise.map((m) => {
+            const rede = naRede(m);
+            return (
+              <div className="mur-int" key={m.id}>
+                <div>
+                  <strong>{m.titulo}</strong>
+                  {m.area && <span> · {m.area}</span>}
+                  {m.cidade && <span> · {m.cidade}</span>}
+                  <span className="mur-meta"> · recomendado por {m.nome} em {fmt(m.t)}</span>
+                  <p>“{m.descricao}”</p>
+                  {m.link && (
+                    <a href={/^https?:/i.test(m.link) ? m.link : `https://${m.link.replace(/^@/, "instagram.com/")}`} target="_blank" rel="noopener noreferrer">
+                      {m.link}
+                    </a>
+                  )}
+                  <p className="mur-rede">
+                    {rede
+                      ? `✓ Já está na rede: ${rede.nome}`
+                      : `Ainda não está na rede — convide! Argumento: “${m.nome.split(" ")[0]} te recomendou”.`}
+                  </p>
+                </div>
+                <span className="lead-actions">
+                  <button type="button" className="chip chip-add" onClick={() => call({ action: "muralStatus", id: m.id, status: "ativo" })}>
+                    Aprovar
+                  </button>
+                  <button type="button" className="chip" onClick={() => call({ action: "muralStatus", id: m.id, status: "recusado" })}>
+                    Recusar
+                  </button>
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
       <div className="admin-periods" style={{ marginBottom: 14 }}>
         {[
           ["ar", "No ar"],
           ["procuro", "Procuro"],
           ["ofereco", "Ofereço"],
           ["vaga", "Vagas"],
+          ["recomendo", "Recomendo"],
           ["fora", "Fora do ar"],
         ].map(([id, lbl]) => (
           <button
@@ -87,7 +147,15 @@ export default function MuralAdmin({ code, mural, onData }) {
                       {m.empresa ? ` · ${m.empresa}` : ""}
                       {m.cidade ? ` · ${m.cidade}` : ""}
                       {m.regime ? ` · ${m.regime}` : ""} · publicado {fmt(m.t)} ·{" "}
-                      {noAr(m) ? `no ar até ${fmt(m.expira)}` : m.status === "oculto" ? "tirado do ar por você" : "fora do ar"}
+                      {noAr(m)
+                        ? `no ar até ${fmt(m.expira)}`
+                        : m.status === "oculto"
+                        ? "tirado do ar por você"
+                        : m.status === "analise"
+                        ? "aguardando a sua aprovação"
+                        : m.status === "recusado"
+                        ? "recusada"
+                        : "fora do ar"}
                     </div>
                   </div>
                   <div className="lead-actions">

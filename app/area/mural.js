@@ -7,6 +7,7 @@ import {
   MURAL_DIAS,
   publicarPedePlano,
   responderPedePlano,
+  pedeAprovacao,
   PLANO,
 } from "../parcerias/mural";
 import { useAbrir } from "./abrir";
@@ -23,7 +24,18 @@ const waLink = (v, txt) => {
   return n ? `https://wa.me/${n}?text=${encodeURIComponent(txt)}` : "";
 };
 
-const EMPTY = { tipo: "procuro", titulo: "", descricao: "", area: "", cidade: "", empresa: "", regime: "CLT" };
+const EMPTY = { tipo: "procuro", titulo: "", descricao: "", area: "", cidade: "", empresa: "", regime: "CLT", link: "" };
+const linkHref = (v) => (/^https?:\/\//i.test(v) ? v : `https://${String(v).replace(/^@/, "instagram.com/")}`);
+const linkTxt = (v) => (/instagram\.com|^@/i.test(v) ? "Ver Instagram" : "Ver site");
+// situação das minhas publicações
+const situacao = (m) =>
+  m.status === "analise"
+    ? "em análise pelo Paulo"
+    : m.status === "recusado"
+    ? "não aprovada"
+    : m.noAr
+    ? `no ar · mais ${diasRestantes(m.expira)} dia(s)`
+    : "fora do ar";
 
 const call = async (code, payload) => {
   const r = await fetch("/api/mural", {
@@ -162,6 +174,7 @@ export default function MyMural({ code, member }) {
   const [planoMotivo, setPlanoMotivo] = useState(undefined); // undefined = fechado
   const [interesse, setInteresse] = useState(null);
   const [verMeu, setVerMeu] = useState("");
+  const [aviso, setAviso] = useState("");
 
   const load = useCallback(async (payload = {}) => {
     try {
@@ -207,6 +220,7 @@ export default function MyMural({ code, member }) {
         setData(d);
         setF(EMPTY);
         setAberto(false);
+        if (pedeAprovacao(f.tipo)) setAviso("Recomendação enviada! Ela aparece no Mural assim que o Paulo aprovar.");
       } else if (d.code === "plano") pedirPlano(d.error);
       else setErr(d.error || "Não consegui publicar. Tente novamente.");
     } catch (e2) {
@@ -318,7 +332,7 @@ export default function MyMural({ code, member }) {
             <input value={f.titulo} onChange={upd("titulo")} placeholder={T.exemplo} maxLength={100} />
           </label>
           <label>
-            Detalhes *
+            {f.tipo === "recomendo" ? "Por que você recomenda? *" : "Detalhes *"}
             <textarea
               rows={4}
               value={f.descricao}
@@ -326,17 +340,23 @@ export default function MyMural({ code, member }) {
               placeholder={
                 f.tipo === "vaga"
                   ? "Atividades, requisitos, horário, salário/benefícios se quiser informar."
+                  : f.tipo === "recomendo"
+                  ? "Ex.: fez a elétrica da minha casa, caprichoso e cumpriu o prazo."
                   : "Quantidade, prazo, frequência, o que é importante para você."
               }
             />
           </label>
           <div className="signup-row">
             <label>
-              {f.tipo === "vaga" ? "Empresa" : "Área / segmento"}
+              {f.tipo === "vaga" ? "Empresa" : f.tipo === "recomendo" ? "Qual serviço faz?" : "Área / segmento"}
               {f.tipo === "vaga" ? (
                 <input value={f.empresa} onChange={upd("empresa")} placeholder="Nome da empresa" />
               ) : (
-                <input value={f.area} onChange={upd("area")} placeholder="Ex.: embalagens, marketing, obra" />
+                <input
+                  value={f.area}
+                  onChange={upd("area")}
+                  placeholder={f.tipo === "recomendo" ? "Ex.: elétrica residencial" : "Ex.: embalagens, marketing, obra"}
+                />
               )}
             </label>
             <label>
@@ -344,6 +364,12 @@ export default function MyMural({ code, member }) {
               <input value={f.cidade} onChange={upd("cidade")} placeholder="Ex.: Veranópolis" />
             </label>
           </div>
+          {f.tipo === "recomendo" && (
+            <label>
+              Instagram ou site
+              <input value={f.link} onChange={upd("link")} placeholder="Ex.: @eletricajoao ou eletricajoao.com.br" />
+            </label>
+          )}
           {f.tipo === "vaga" && (
             <label>
               Tipo de contratação
@@ -355,10 +381,19 @@ export default function MyMural({ code, member }) {
             </label>
           )}
           <button className="btn btn-primary join-cta" disabled={sending}>
-            {sending ? "Publicando..." : "Publicar"}
+            {sending ? "Enviando..." : pedeAprovacao(f.tipo) ? "Enviar para aprovação" : "Publicar"}
           </button>
           {err && <div className="signup-err">{err}</div>}
         </form>
+      )}
+
+      {aviso && (
+        <div className="senha-aviso senha-ok mur-aviso-ok">
+          <span>✓ {aviso}</span>
+          <button type="button" className="login-link" onClick={() => setAviso("")}>
+            Fechar
+          </button>
+        </div>
       )}
 
       {data.meus.length > 0 && (
@@ -368,15 +403,15 @@ export default function MyMural({ code, member }) {
             <article className={`mur-card meu${m.noAr ? "" : " off"}`} key={m.id}>
               <div className="mur-card-top">
                 <span className={`mur-tag t-${m.tipo}`}>{MURAL_TIPOS[m.tipo]?.label}</span>
-                <span className="mur-meta">
-                  {m.noAr ? `no ar · mais ${diasRestantes(m.expira)} dia(s)` : "fora do ar"}
-                </span>
+                <span className="mur-meta">{situacao(m)}</span>
               </div>
               <h3>{m.titulo}</h3>
               <div className="mur-acts">
-                <button type="button" className="chip" onClick={() => setVerMeu(verMeu === m.id ? "" : m.id)}>
-                  {(m.interesses || []).length} interessado(s) {verMeu === m.id ? "▴" : "▾"}
-                </button>
+                {m.tipo !== "recomendo" && (
+                  <button type="button" className="chip" onClick={() => setVerMeu(verMeu === m.id ? "" : m.id)}>
+                    {(m.interesses || []).length} interessado(s) {verMeu === m.id ? "▴" : "▾"}
+                  </button>
+                )}
                 {m.noAr && (
                   <button type="button" className="chip" onClick={() => load({ action: "encerrar", id: m.id })}>
                     Encerrar
@@ -437,10 +472,19 @@ export default function MyMural({ code, member }) {
                 {p.regime && <span>{p.regime}</span>}
                 {p.area && <span>{p.area}</span>}
                 {p.cidade && <span>📍 {p.cidade}</span>}
-                <span>por {p.nome?.split(" ")[0]}</span>
+                {p.tipo !== "recomendo" && <span>por {p.nome?.split(" ")[0]}</span>}
               </div>
+              {p.tipo === "recomendo" && (
+                <div className="mur-selo">⭐ Recomendado por {p.nome?.split(" ")[0]}</div>
+              )}
               <div className="mur-acts">
-                {p.jaInteressei ? (
+                {p.tipo === "recomendo" ? (
+                  p.link && (
+                    <a className="firm-conn" href={linkHref(p.link)} target="_blank" rel="noopener noreferrer">
+                      {linkTxt(p.link)}
+                    </a>
+                  )
+                ) : p.jaInteressei ? (
                   <span className="mur-ok">✓ Você já respondeu</span>
                 ) : (
                   <button type="button" className="time-btn" onClick={() => clicarInteresse(p)}>

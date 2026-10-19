@@ -16,10 +16,16 @@ export default function sitemap() {
       priority: 0.9,
     },
     {
-      url: `${base}/parcerias`,
+      url: `${base}/imoveis`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${base}/vagas`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
     },
     {
       url: `${base}/rede`,

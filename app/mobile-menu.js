@@ -7,7 +7,6 @@ const LINKS = [
   ["/ecossistema", "Ecossistema"],
   ["#rede", "A Rede"],
   ["#segmentos", "Segmentos"],
-  ["/parcerias", "Parcerias"],
   ["/imoveis", "Imóveis"],
   ["/vagas", "Vagas"],
   ["#contato", "Contato"],

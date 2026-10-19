@@ -1107,6 +1107,7 @@ export default function PauloAdmin() {
                 tipo="time"
                 pedidos={pedidos}
                 members={members}
+                companies={[...fixedCompanies, ...customCompanies]}
                 onData={applyAdminData}
               />
               <PedidosAdmin

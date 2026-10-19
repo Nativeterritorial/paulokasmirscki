@@ -7926,3 +7926,97 @@ body:has(.vt-theme) {
 .time-chip {
   border-color: rgba(154, 123, 255, 0.5);
 }
+
+/* Monte meu time: serviços (o cliente marca o que precisa) */
+.time-row.sv {
+  cursor: pointer;
+  user-select: none;
+}
+.time-row.sv input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--ia, #9a7bff);
+  flex: none;
+}
+.time-row.sv.off {
+  opacity: 0.5;
+}
+.time-row.sv .time-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.time-sv {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.time-cob {
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.time-cob.rede {
+  color: #bfffe3;
+  background: rgba(111, 255, 191, 0.12);
+  border: 1px solid rgba(111, 255, 191, 0.35);
+}
+.time-cob.busca {
+  color: #ffe2a8;
+  background: rgba(245, 192, 78, 0.12);
+  border: 1px solid rgba(245, 192, 78, 0.35);
+}
+.time-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* painel: empresas de cada serviço e vagas na rede */
+.pd-time {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 8px 0;
+}
+.pd-time-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  font-size: 0.86rem;
+}
+.pd-time-row.vaga {
+  border-color: rgba(245, 192, 78, 0.5);
+  background: rgba(245, 192, 78, 0.08);
+}
+.pd-time-emps {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pd-time-emps span {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(154, 123, 255, 0.16);
+  border: 1px solid rgba(154, 123, 255, 0.35);
+  font-size: 0.8rem;
+}
+.pd-time-vaga {
+  color: #ffe2a8;
+  font-weight: 600;
+}
+.pd-vagas {
+  margin: 10px 0 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(245, 192, 78, 0.45);
+  background: rgba(245, 192, 78, 0.08);
+  font-size: 0.88rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}

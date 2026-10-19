@@ -2,33 +2,30 @@
 
 import { useEffect, useState } from "react";
 import { post } from "./pedidos";
-import { FirmActions } from "./chave";
 
-// "Monte meu time": para projetos que pedem várias empresas (casamento, obra,
-// abrir empresa...), o concierge monta um time da rede — um papel para cada
-// empresa — e a pessoa pode pedir ao Paulo que coordene todas as conexões.
-// O concierge manda o marcador @@TIME:Título|Papel=id;Papel=id@@ no fim da resposta.
+// "Monte meu time": para projetos que pedem vários serviços (casamento, obra,
+// abrir empresa...), o concierge monta o roteiro de SERVIÇOS — sem citar
+// empresas. A pessoa marca o que precisa e o Paulo escolhe as opções de
+// parceiros para cada serviço (e descobre onde a rede ainda tem vaga).
+// Marcador no fim da resposta: @@TIME:Título|Serviço=id,id;Serviço=@@
+// (os ids são das empresas que fazem o serviço — só o Paulo vê os nomes).
 
 export function parseTime(buf) {
   const m = String(buf || "").match(/@@TIME:([^@]*)@@/);
   if (!m) return undefined;
   const [titulo, ...resto] = m[1].split("|");
-  const papeis = resto
+  const servicos = resto
     .join("|")
     .split(";")
     .map((par) => {
       const i = par.indexOf("=");
-      return i > 0 ? { papel: par.slice(0, i).trim(), id: par.slice(i + 1).trim() } : null;
+      const nome = (i >= 0 ? par.slice(0, i) : par).trim();
+      const ids = i >= 0 ? par.slice(i + 1).split(",").map((x) => x.trim()).filter(Boolean) : [];
+      return nome ? { nome, ids } : null;
     })
-    .filter((x) => x && x.id);
-  return papeis.length ? { titulo: titulo.trim() || "Seu time", papeis } : undefined;
+    .filter(Boolean);
+  return servicos.length ? { titulo: titulo.trim() || "Seu time", servicos } : undefined;
 }
-
-// só as empresas que existem no diretório (a IA pode errar um id)
-const membrosDoTime = (time, companies) =>
-  time.papeis
-    .map((p) => ({ ...p, c: companies.find((c) => c.id === p.id) }))
-    .filter((p) => p.c);
 
 const Puzzle = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -36,9 +33,15 @@ const Puzzle = () => (
   </svg>
 );
 
-export function TimeCard({ time, companies, onChave, onVisit, onPedir }) {
-  const lista = membrosDoTime(time, companies);
-  if (!lista.length) return null;
+export function TimeCard({ time, companies = [], onPedir }) {
+  // todos marcados no começo; a pessoa desmarca o que já tem
+  const [off, setOff] = useState([]);
+  // só conta como "na rede" se o id existe mesmo no diretório
+  const temParceiro = (sv) => sv.ids.some((id) => companies.some((c) => c.id === id));
+  const marcados = time.servicos.filter((sv) => !off.includes(sv.nome));
+  const alternar = (nome) =>
+    setOff((o) => (o.includes(nome) ? o.filter((x) => x !== nome) : [...o, nome]));
+
   return (
     <div className="time-card">
       <div className="time-head">
@@ -46,25 +49,37 @@ export function TimeCard({ time, companies, onChave, onVisit, onPedir }) {
           <Puzzle />
         </span>
         <div>
-          <div className="time-kick">Seu time na rede</div>
+          <div className="time-kick">Monte meu time</div>
           <div className="time-nm">{time.titulo}</div>
         </div>
       </div>
       <ol className="time-list">
-        {lista.map((p) => (
-          <li className="time-row" key={p.papel + p.id}>
-            <div className="time-info">
-              <div className="time-papel">{p.papel}</div>
-              <div className="time-emp">{p.c.nome}</div>
-              <div className="time-sg">{p.c.segmento}</div>
-            </div>
-            <FirmActions c={p.c} onChave={onChave} onVisit={() => onVisit?.(p.c.id)} />
-          </li>
-        ))}
+        {time.servicos.map((sv) => {
+          const on = !off.includes(sv.nome);
+          const rede = temParceiro(sv);
+          return (
+            <li key={sv.nome}>
+              <label className={`time-row sv${on ? "" : " off"}`}>
+                <span className="time-info">
+                  <input type="checkbox" checked={on} onChange={() => alternar(sv.nome)} />
+                  <span className="time-sv">{sv.nome}</span>
+                </span>
+                <span className={`time-cob ${rede ? "rede" : "busca"}`}>
+                  {rede ? "Parceiros na rede" : "O Paulo busca para você"}
+                </span>
+              </label>
+            </li>
+          );
+        })}
       </ol>
       <div className="time-foot">
-        <p>O Paulo pode coordenar todas as conexões do seu time de uma vez.</p>
-        <button type="button" className="time-btn" onClick={onPedir}>
+        <p>Marque o que você precisa: o Paulo seleciona as melhores opções de parceiros para cada serviço.</p>
+        <button
+          type="button"
+          className="time-btn"
+          disabled={!marcados.length}
+          onClick={() => onPedir({ ...time, servicos: marcados })}
+        >
           Quero esse time
         </button>
       </div>
@@ -72,12 +87,11 @@ export function TimeCard({ time, companies, onChave, onVisit, onPedir }) {
   );
 }
 
-export function TimeModal({ time, companies, code, member, onClose, onDone }) {
+export function TimeModal({ time, code, member, onClose, onDone }) {
   const [f, setF] = useState({ descricao: "", nome: "", whatsapp: "" });
   const [sending, setSending] = useState(false);
   const [err, setErr] = useState("");
   const [done, setDone] = useState(false);
-  const lista = membrosDoTime(time, companies);
 
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -100,14 +114,15 @@ export function TimeModal({ time, companies, code, member, onClose, onDone }) {
     }
     setSending(true);
     try {
-      const timeTxt = lista.map((p) => `- ${p.papel}: ${p.c.nome}`).join("\n");
       const d = await post(code, {
         action: "create",
         pedido: {
           tipo: "time",
           titulo: time.titulo,
-          descricao: `${f.descricao.trim()}\n\nTime sugerido pelo concierge:\n${timeTxt}`,
-          empresas: lista.map((p) => ({ papel: p.papel, id: p.id })),
+          descricao: `${f.descricao.trim()}\n\nServiços que preciso: ${time.servicos
+            .map((sv) => sv.nome)
+            .join(", ")}.`,
+          servicos: time.servicos,
           nome: f.nome,
           whatsapp: f.whatsapp,
         },
@@ -139,14 +154,13 @@ export function TimeModal({ time, companies, code, member, onClose, onDone }) {
         </div>
         <h3>{time.titulo}</h3>
         <p className="chave-lead">
-          O Paulo analisa o seu projeto, conversa com cada empresa do time e faz
-          as apresentações. Você acompanha tudo em Solicitações.
+          O Paulo analisa o seu projeto, seleciona as melhores opções de
+          parceiros para cada serviço e faz as apresentações. Você acompanha
+          tudo em Solicitações.
         </p>
         <ul className="time-mini">
-          {lista.map((p) => (
-            <li key={p.papel + p.id}>
-              <span>{p.papel}</span> {p.c.nome}
-            </li>
+          {time.servicos.map((sv) => (
+            <li key={sv.nome}>{sv.nome}</li>
           ))}
         </ul>
 
@@ -194,7 +208,7 @@ export function TimeModal({ time, companies, code, member, onClose, onDone }) {
               />
             </label>
             <button className="btn btn-primary join-cta" disabled={sending}>
-              {sending ? "Enviando..." : "Pedir para o Paulo coordenar"}
+              {sending ? "Enviando..." : "Pedir para o Paulo montar"}
             </button>
             {err && <div className="signup-err">{err}</div>}
           </form>

@@ -168,7 +168,35 @@ const ROTULOS = {
 // alto das abas Projetos e Gestão. "Criar" já monta o projeto/gestão ligado ao
 // membro e marca o pedido como aprovado. Pedido feito pelo código geral fica sem
 // membro: crie o acesso dele em Membros (mesmo WhatsApp) para ele acompanhar.
-export default function PedidosAdmin({ code, tipo, pedidos, members = [], onData, onImovel }) {
+// Monte meu time: cada serviço marcado pelo cliente, com as empresas da rede
+// que fazem aquele serviço (o Paulo escolhe as opções). Sem empresa = vaga na rede.
+function TimeServicos({ p, companies }) {
+  const nome = (id) => companies.find((c) => c.id === id)?.nome;
+  if (!p.servicos?.length) return null;
+  return (
+    <div className="pd-time">
+      {p.servicos.map((sv) => {
+        const emps = sv.ids.map(nome).filter(Boolean);
+        return (
+          <div className={`pd-time-row${emps.length ? "" : " vaga"}`} key={sv.nome}>
+            <strong>{sv.nome}</strong>
+            {emps.length ? (
+              <span className="pd-time-emps">
+                {emps.map((n) => (
+                  <span key={n}>{n}</span>
+                ))}
+              </span>
+            ) : (
+              <span className="pd-time-vaga">Vaga na rede — buscar parceiro</span>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export default function PedidosAdmin({ code, tipo, pedidos, members = [], companies = [], onData, onImovel }) {
   const R = ROTULOS[tipo];
   const [verTodos, setVerTodos] = useState(false);
   const [busy, setBusy] = useState("");
@@ -235,6 +263,19 @@ export default function PedidosAdmin({ code, tipo, pedidos, members = [], onData
   );
   const lista = verTodos ? doTipo : abertos;
   const novos = doTipo.filter((p) => p.status === "novo").length;
+  // serviços pedidos nos times que ainda não têm parceiro na rede
+  const vagas =
+    tipo === "time"
+      ? Object.entries(
+          doTipo.reduce((acc, p) => {
+            (p.servicos || []).forEach((sv) => {
+              const tem = sv.ids.some((id) => companies.some((c) => c.id === id));
+              if (!tem) acc[sv.nome] = (acc[sv.nome] || 0) + 1;
+            });
+            return acc;
+          }, {})
+        ).sort((a, b) => b[1] - a[1])
+      : [];
 
   return (
     <section className="admin-panel admin-signups pd-admin">
@@ -246,6 +287,21 @@ export default function PedidosAdmin({ code, tipo, pedidos, members = [], onData
         <button type="button" className="chip" onClick={() => setVerTodos((v) => !v)}>
           {verTodos ? "Ver só os em aberto" : `Ver todos (${doTipo.length})`}
         </button>
+      )}
+
+      {vagas.length > 0 && (
+        <div className="pd-vagas">
+          <strong>Vagas na rede</strong> — serviços que os clientes pediram e
+          ainda não têm parceiro:
+          <span className="pd-time-emps">
+            {vagas.map(([n, q]) => (
+              <span key={n}>
+                {n}
+                {q > 1 ? ` (${q})` : ""}
+              </span>
+            ))}
+          </span>
+        </div>
       )}
 
       {!lista.length ? (
@@ -338,6 +394,7 @@ export default function PedidosAdmin({ code, tipo, pedidos, members = [], onData
                   </div>
                 )}
                 <p className="lead-msg">{p.descricao}</p>
+                {tipo === "time" && <TimeServicos p={p} companies={companies} />}
                 {p.fotos?.length > 0 && (
                   <div className="pd-fotos-grid pd-fotos-admin">
                     {p.fotos.map((f) => (

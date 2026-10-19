@@ -457,13 +457,7 @@ export default function Area() {
                     dangerouslySetInnerHTML={{ __html: formatMsg(m.content) }}
                   />
                   {m.time && (
-                    <TimeCard
-                      time={m.time}
-                      companies={companies}
-                      onChave={setChaveFor}
-                      onVisit={trackConnect}
-                      onPedir={() => setTimeFor(m.time)}
-                    />
+                    <TimeCard time={m.time} companies={companies} onPedir={(sel) => setTimeFor(sel)} />
                   )}
                   {m.serv && SERVICOS[m.serv] && (
                     <div className={`serv-card svc ${SERVICOS[m.serv].cls}`}>
@@ -529,7 +523,7 @@ export default function Area() {
                     key={t}
                     type="button"
                     className="chip ia-chip time-chip"
-                    onClick={() => send(`${t}. Monte meu time com as empresas da rede.`)}
+                    onClick={() => send(`${t}. Monte meu time.`)}
                     disabled={sending}
                   >
                     {t}
@@ -682,7 +676,6 @@ export default function Area() {
       {timeFor && (
         <TimeModal
           time={timeFor}
-          companies={companies}
           code={code}
           member={member}
           onClose={() => setTimeFor(null)}

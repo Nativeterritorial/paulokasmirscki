@@ -1590,4 +1590,94 @@ export const COMPANIES = [
     link: "https://www.instagram.com/pasteldovinti/",
     linkLabel: "@pasteldovinti",
   },
+  {
+    id: "alicekas",
+    nome: "Alice Kasmirscki Fotografia",
+    segmento: "Fotografia — Estúdio",
+    descricao:
+      "Fotógrafa em Veranópolis, especialista em sessões em estúdio, corporativas, gestantes, bebês e famílias. Agendamento pelo Instagram.",
+    atende: ["Fotografia & Filmagem", "Marketing & Digital"],
+    link: "https://www.instagram.com/alicekasfotografia/",
+    linkLabel: "@alicekasfotografia",
+  },
+  {
+    id: "evelinkasmirscki",
+    nome: "Évelin Kasmirscki — Nutrição Clínica",
+    segmento: "Nutrição Clínica",
+    descricao:
+      "Nutricionista em Veranópolis (CRN2 10678), especialista em nutrição clínica, pós-graduada em nutrição enteral e parenteral, com experiência em nutrição hospitalar.",
+    atende: ["Saúde & Bem-estar"],
+    link: "https://www.instagram.com/evelinkasmirsckinutri/",
+    linkLabel: "@evelinkasmirsckinutri",
+  },
+  {
+    id: "neurosentir",
+    nome: "NeuroSentir",
+    segmento: "Saúde — Atendimento Multidisciplinar",
+    descricao:
+      "Centro de atendimento multidisciplinar em Veranópolis: terapia ABA, psicologia, psicopedagogia, fonoaudiologia, musicoterapia, fisioterapia, PediaSuit e terapia ocupacional.",
+    atende: ["Saúde & Bem-estar", "Educação & Capacitação"],
+    link: "https://www.instagram.com/neuro_sentir/",
+    linkLabel: "@neuro_sentir",
+  },
+  {
+    id: "termaselongevidade",
+    nome: "Destino Termas e Longevidade",
+    segmento: "Turismo — Destino Regional",
+    descricao:
+      "Destino turístico da região de Veranópolis com cenários de tirar o fôlego, gastronomia farta, cultura e espiritualidade — monte o seu passeio pelo Instagram.",
+    atende: ["Turismo & Hotelaria", "Gastronomia", "Esporte & Lazer"],
+    link: "https://www.instagram.com/termaselongevidade/",
+    linkLabel: "@termaselongevidade",
+  },
+  {
+    id: "pepperspub",
+    nome: "Peppers Pub",
+    segmento: "Gastronomia — Bar & Pub",
+    descricao:
+      "Bar em Veranópolis com música ao vivo.",
+    atende: ["Gastronomia", "Esporte & Lazer"],
+    link: "https://www.instagram.com/peppers_pub/",
+    linkLabel: "@peppers_pub",
+  },
+  {
+    id: "recordare",
+    nome: "Recordare Estúdio Fotográfico",
+    segmento: "Fotografia — Estúdio",
+    descricao:
+      "Estúdio fotográfico em Veranópolis para gestante, família e bebê, com atendimento pelo WhatsApp.",
+    atende: ["Fotografia & Filmagem"],
+    link: "https://www.instagram.com/recordare_estudio_fotografico/",
+    linkLabel: "@recordare_estudio_fotografico",
+  },
+  {
+    id: "pamultieventos",
+    nome: "P.A Multieventos",
+    segmento: "Eventos — Festas & Decoração",
+    descricao:
+      "Em Veranópolis, seu evento começa aqui: festas e decorações, eventos sociais e corporativos e espaço completo, com Aline Mattiello e Sabrina Rzago.",
+    atende: ["Turismo & Hotelaria", "Gastronomia", "Negócios & Empresas"],
+    link: "https://www.instagram.com/p.amultieventos/",
+    linkLabel: "@p.amultieventos",
+  },
+  {
+    id: "vestire",
+    nome: "Vestire Uniformes",
+    segmento: "Uniformes Corporativos",
+    descricao:
+      "Uniformes corporativos com qualidade e estilo, com produção própria em Veranópolis — valorize a imagem da sua empresa.",
+    atende: ["Moda & Vestuário", "Negócios & Empresas"],
+    link: "https://www.instagram.com/vestireuniformes/",
+    linkLabel: "@vestireuniformes",
+  },
+  {
+    id: "verauto",
+    nome: "Verauto Automóveis",
+    segmento: "Concessionária Volkswagen",
+    descricao:
+      "Concessionária Volkswagen para Veranópolis e região, no trevo de acesso da BR 470. Fones (54) 3441-8800 e (54) 98129-0062.",
+    atende: ["Comércio & Varejo", "Finanças & Investimentos", "Transporte & Logística"],
+    link: "https://www.instagram.com/verauto_veranopolis/",
+    linkLabel: "@verauto_veranopolis",
+  },
 ];

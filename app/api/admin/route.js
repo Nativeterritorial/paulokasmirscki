@@ -119,7 +119,7 @@ export async function POST(req) {
   }
   // Plano Ecossistema: o Paulo libera depois de receber o pagamento
   if (body.action === "memberPlano" && body.id) {
-    await setMemberPlano(String(body.id), body.ativo === true);
+    await setMemberPlano(String(body.id), body.nivel ?? (body.ativo === true ? "basico" : ""));
   }
   // Mural de Oportunidades: tirar do ar, voltar, excluir
   if (body.action === "muralStatus" && body.id && body.status) {
@@ -218,7 +218,7 @@ export async function POST(req) {
     t: m.t,
     visto: m.visto,
     temSenha: !!m.senha,
-    plano: !!m.plano,
+    plano: m.plano === true ? "basico" : m.plano || "",
     planoDesde: m.planoDesde || 0,
     link: `https://www.paulokasmirscki.com.br/area?convite=${encodeURIComponent(
       m.token

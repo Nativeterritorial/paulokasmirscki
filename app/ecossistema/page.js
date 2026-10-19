@@ -1,6 +1,7 @@
 import SignupForm from "./signup-form";
 import { PROJECT_STAGES, OBRA_STAGES, stageNum } from "../parcerias/project-stages";
-import { PLANO, MURAL_DIAS } from "../parcerias/mural";
+import { MURAL_DIAS } from "../parcerias/mural";
+import Planos from "./planos";
 
 // Página única do Ecossistema PK (a antiga /parcerias redireciona para cá):
 // o que é, o que dá pra fazer (cada serviço leva à aba certa da Área de
@@ -12,7 +13,6 @@ import { PLANO, MURAL_DIAS } from "../parcerias/mural";
 const BONIFICACAO = null;
 const VALIDADE_MESES = 12;
 
-const WHATSAPP = "https://wa.me/5554996505799";
 
 export const metadata = {
   title: "O Ecossistema — Paulo Kasmirscki",
@@ -219,14 +219,6 @@ const SERVICOS = [
   },
 ];
 
-const PLANO_GRATIS = [
-  "Concierge de IA e Monte meu time",
-  "Diretório completo da rede, com Chave PK",
-  "Publicar o que você procura no Mural",
-  "Recomendar profissionais de confiança",
-  "Indicar negócios e receber bonificação",
-  "Pedir obra, projeto, gestão e venda de imóvel",
-];
 
 const BENEFICIOS = [
   {
@@ -259,7 +251,6 @@ const PASSOS = [
 ];
 
 export default function Ecossistema() {
-  const assinar = `${WHATSAPP}?text=${encodeURIComponent(`Olá Paulo! Quero assinar o ${PLANO.nome}.`)}`;
   return (
     <div className="rede-page">
       <header className="site-header">
@@ -369,49 +360,15 @@ export default function Ecossistema() {
           <div className="mdl-head">
             <div className="kick">Planos</div>
             <h2 className="mdl-title">
-              Comece grátis. <em>Feche negócios</em> com o plano.
+              Comece grátis. <em>Feche negócios</em> com os planos.
             </h2>
             <p>
-              Entrar no Ecossistema é gratuito. Para quem quer vender mais
-              dentro da rede, o {PLANO.nome} libera o que gera negócio.
+              Entrar no Ecossistema é gratuito. O Básico libera o que gera
+              negócio dentro da rede; o Premium coloca a sua empresa em
+              destaque e abre os extras de vendas e gestão com o Paulo.
             </p>
           </div>
-          <div className="eco-planos">
-            <article className="eco-plano">
-              <div className="kick">Membro</div>
-              <h3>Grátis</h3>
-              <p className="eco-plano-sub">Para entrar na rede e resolver o que você precisa.</p>
-              <ul className="join-checks">
-                {PLANO_GRATIS.map((b) => (
-                  <li key={b}>✓ {b}</li>
-                ))}
-              </ul>
-              <a className="btn btn-outline" href="#cadastro">
-                Criar meu acesso
-              </a>
-            </article>
-            <article className="eco-plano destaque">
-              <div className="eco-plano-selo">★ Para quem quer vender</div>
-              <div className="kick">Plano pago</div>
-              <h3>{PLANO.nome}</h3>
-              <p className="eco-plano-sub">{PLANO.preco || "Valores e condições com o Paulo"}</p>
-              <ul className="join-checks">
-                <li>✓ Tudo do plano grátis</li>
-                {PLANO.beneficios.map((b) => (
-                  <li key={b}>✓ {b}</li>
-                ))}
-              </ul>
-              <a className="mur-plano-btn eco-plano-btn" href={assinar} target="_blank" rel="noopener noreferrer">
-                <span className="mur-plano-star" aria-hidden="true">
-                  ★
-                </span>
-                <span>
-                  <small>Feche negócios no Mural</small>
-                  Quero assinar
-                </span>
-              </a>
-            </article>
-          </div>
+          <Planos />
         </section>
 
         {/* cadastro */}

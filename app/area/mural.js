@@ -9,6 +9,7 @@ import {
   responderPedePlano,
   pedeAprovacao,
   PLANO,
+  PLANOS,
 } from "../parcerias/mural";
 import { useAbrir } from "./abrir";
 
@@ -53,22 +54,31 @@ function PlanoModal({ motivo, member, onClose }) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
-  const msg = `Olá Paulo! ${member?.nome ? `Aqui é ${member.nome}. ` : ""}Quero assinar o ${PLANO.nome} para usar o Mural de Oportunidades.`;
+  const msg = `Olá Paulo! ${member?.nome ? `Aqui é ${member.nome}. ` : ""}Quero assinar um plano do Ecossistema PK para usar o Mural de Oportunidades.`;
   return (
     <div className="chave-overlay" onClick={onClose}>
       <div className="chave-box plano-box" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="chave-x" aria-label="Fechar" onClick={onClose}>
           ✕
         </button>
-        <div className="kick">Plano pago</div>
-        <h3>{PLANO.nome}</h3>
+        <div className="kick">Planos do Ecossistema PK</div>
+        <h3>Feche negócios na rede</h3>
         {motivo && <p className="chave-lead">{motivo}</p>}
-        <ul className="join-checks">
-          {PLANO.beneficios.map((b) => (
-            <li key={b}>✓ {b}</li>
+        <div className="plano-mini">
+          {["basico", "premium"].map((id) => (
+            <div className={`plano-mini-card ${id}`} key={id}>
+              <strong>{PLANOS[id].nome}</strong>
+              <span className="plano-mini-preco">
+                {PLANOS[id].preco}
+                <small>/mês</small>
+              </span>
+              <span>{PLANOS[id].sub}</span>
+            </div>
           ))}
-        </ul>
-        <div className="plano-preco">{PLANO.preco || "Valores e condições com o Paulo"}</div>
+        </div>
+        <a className="btn btn-outline join-cta" href="/ecossistema#planos" target="_blank" rel="noopener noreferrer">
+          Ver tudo o que cada plano inclui
+        </a>
         <a className="btn btn-primary join-cta" href={`${WHATSAPP}?text=${encodeURIComponent(msg)}`} target="_blank" rel="noopener noreferrer">
           Quero assinar
         </a>
@@ -280,13 +290,15 @@ export default function MyMural({ code, member }) {
           </p>
         </div>
         {data.plano ? (
-          <span className="sol-count mur-plano">✓ {PLANO.nome}</span>
+          <span className="sol-count mur-plano">
+            {data.plano === "premium" ? "⭐ Plano Premium" : "✓ Plano Básico"}
+          </span>
         ) : (
           <button type="button" className="mur-plano-btn" onClick={() => pedirPlano(null)}>
             <span className="mur-plano-star" aria-hidden="true">★</span>
             <span>
-              <small>Feche negócios no Mural</small>
-              Conhecer o {PLANO.nome}
+              <small>Básico {PLANOS.basico.preco} · Premium {PLANOS.premium.preco}</small>
+              Conhecer os planos
             </span>
           </button>
         )}

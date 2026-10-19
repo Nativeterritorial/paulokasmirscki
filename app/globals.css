@@ -8651,3 +8651,104 @@ body:has(.vt-theme) {
   padding: 0;
   margin: 0;
 }
+
+/* Planos: Grátis · Básico · Premium */
+.eco-planos-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1180px;
+  align-items: stretch;
+}
+@media (max-width: 1000px) {
+  .eco-planos-3 {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+  }
+}
+.eco-preco {
+  font: 800 2.2rem "Sora", "Space Grotesk", sans-serif;
+  letter-spacing: -0.02em;
+}
+.eco-preco small {
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 0.75;
+  margin-left: 2px;
+}
+.eco-plano.basico {
+  border-color: rgba(111, 255, 191, 0.55);
+}
+.eco-plano.basico .kick {
+  color: #6fffbf;
+}
+.eco-plano.basico .btn-primary {
+  color: #06304a;
+  background: #6fffbf;
+  border-color: #6fffbf;
+}
+.eco-abas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 4px 0 2px;
+}
+.eco-aba {
+  border: 1px solid rgba(255, 210, 122, 0.5);
+  background: transparent;
+  color: #ffe2a8;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: 600 0.8rem "Inter", sans-serif;
+  cursor: pointer;
+}
+.eco-aba.on {
+  background: linear-gradient(100deg, #ffd27a, #ff8fc8);
+  color: #3d0a26;
+  border-color: transparent;
+}
+.eco-extra {
+  flex: 1;
+}
+.eco-extra-valor {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.eco-extra-valor span {
+  color: #ffd27a;
+}
+.plano-mini {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 4px 0 14px;
+}
+.plano-mini-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.plano-mini-card strong {
+  color: var(--text);
+  font-size: 1rem;
+}
+.plano-mini-card.premium {
+  border-color: #ffd27a;
+}
+.plano-mini-preco {
+  font: 800 1.4rem "Sora", "Space Grotesk", sans-serif;
+  color: var(--text);
+}
+.plano-mini-preco small {
+  font-size: 0.8rem;
+}
+.plano-box .join-cta + .join-cta {
+  margin-top: 8px;
+}
+.ref-status-select.plano-on {
+  border-color: #ffd27a;
+  color: #ffd27a;
+}

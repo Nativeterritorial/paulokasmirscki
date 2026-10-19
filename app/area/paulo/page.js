@@ -1294,7 +1294,7 @@ export default function PauloAdmin() {
                                   : "Ainda não acessou"}
                                 {m.whatsapp ? ` · ${m.whatsapp}` : ""}
                                 {m.temSenha ? " · 🔑 com senha" : " · sem senha (entra pelo link)"}
-                                {m.plano ? " · ⭐ Plano Ecossistema" : ""}
+                                {m.plano === "premium" ? " · ⭐ Premium" : m.plano ? " · ★ Básico" : ""}
                               </div>
                             </div>
                             <div className="lead-actions">
@@ -1326,19 +1326,21 @@ export default function PauloAdmin() {
                                   Gerar nova senha
                                 </button>
                               )}
-                              <button
-                                type="button"
-                                className={`chip${m.plano ? " chip-on" : ""}`}
-                                onClick={() =>
-                                  window.confirm(
-                                    m.plano
-                                      ? `Desligar o Plano Ecossistema de ${m.nome}?`
-                                      : `Liberar o Plano Ecossistema para ${m.nome}? (depois de receber o pagamento)`
-                                  ) && memberAction({ action: "memberPlano", id: m.id, ativo: !m.plano })
-                                }
+                              <select
+                                className={`ref-status-select${m.plano ? " plano-on" : ""}`}
+                                aria-label={`Plano de ${m.nome}`}
+                                value={m.plano || ""}
+                                onChange={(e) => {
+                                  const nivel = e.target.value;
+                                  const nome = { "": "sem plano", basico: "Básico", premium: "Premium" }[nivel];
+                                  if (window.confirm(`Mudar ${m.nome} para ${nome}?${nivel ? " (depois de receber o pagamento)" : ""}`))
+                                    memberAction({ action: "memberPlano", id: m.id, nivel });
+                                }}
                               >
-                                {m.plano ? "⭐ Plano ativo" : "Liberar plano"}
-                              </button>
+                                <option value="">Sem plano</option>
+                                <option value="basico">★ Básico</option>
+                                <option value="premium">⭐ Premium</option>
+                              </select>
                               <button
                                 type="button"
                                 className="chip"

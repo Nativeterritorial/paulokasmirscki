@@ -52,14 +52,82 @@ export const pedeAprovacao = (tipo) => tipo === "recomendo";
 export const publicarPedePlano = (tipo) => tipo === "ofereco" || tipo === "vaga";
 export const responderPedePlano = (tipo) => tipo === "procuro";
 
-// nome e preço do plano (ajuste quando decidirem: o resto do site lê daqui)
-export const PLANO = {
-  nome: "Plano Ecossistema PK",
-  preco: "", // ex.: "R$ 97/mês" — vazio mostra "condições com o Paulo"
-  beneficios: [
-    "Responder a quem procura fornecedor ou serviço",
-    "Publicar ofertas e condições para a rede",
-    "Publicar vagas de emprego (também na página pública)",
-    "Ver quem se interessou e falar direto",
-  ],
+// ---------- PLANOS ----------
+// grátis (cadastro) · Básico · Premium. O Paulo libera o plano de cada membro no
+// painel depois do pagamento; o membro guarda "basico" ou "premium" em plano.
+// (Para trocar nome ou preço, é só mudar aqui: o site e a área leem daqui.)
+export const PLANOS = {
+  gratis: {
+    nome: "Grátis",
+    preco: "R$ 0",
+    sub: "Para entrar na rede e resolver o que você precisa.",
+    beneficios: [
+      "Concierge de IA e Monte meu time",
+      "Diretório da rede, com Chave PK",
+      "Publicar o que você procura no Mural",
+      "Recomendar profissionais de confiança",
+      "Pedir obra, projeto, gestão e venda de imóvel",
+    ],
+  },
+  basico: {
+    nome: "Básico",
+    preco: "R$ 37",
+    sub: "Para quem quer fazer negócio dentro da rede.",
+    beneficios: [
+      "Tudo do plano Grátis",
+      "Publicar vagas de emprego (também na página pública /vagas)",
+      "Indicar negócios e receber bonificação",
+      "Responder a quem procura fornecedor ou serviço",
+      "Publicar ofertas e condições para a rede",
+      "Ver quem se interessou e falar direto",
+    ],
+  },
+  premium: {
+    nome: "Premium",
+    preco: "R$ 97",
+    sub: "Para empresas que querem aparecer e vender mais.",
+    beneficios: [
+      "Tudo do plano Básico",
+      "Topo da sua categoria no diretório, com selo Premium",
+      "Prioridade quando o Paulo monta os times do concierge",
+      "Divulgação da empresa no Instagram do Paulo",
+      "Acesso aos extras: Destaque, Plano de Vendas e Gestão",
+    ],
+  },
 };
+// extras do Premium (abas): somam ao valor do plano, combinados com o Paulo
+export const EXTRAS_PREMIUM = [
+  {
+    id: "destaque",
+    nome: "Destaque",
+    valor: "a combinar",
+    itens: [
+      "Empresa em destaque na página inicial e no Mural",
+      "Parceiro do Mês: post e stories no Instagram do Paulo",
+      "Presença no Café do Ecossistema",
+    ],
+  },
+  {
+    id: "vendas",
+    nome: "Plano de Vendas",
+    valor: "comissão sobre as vendas",
+    itens: [
+      "O Paulo representa a sua empresa e leva os seus produtos e serviços para a rede e os contatos dele",
+      "Indicação da sua empresa nos times e nos projetos do Paulo",
+      "Comissão sobre as vendas, combinada direto com o Paulo",
+    ],
+  },
+  {
+    id: "gestao",
+    nome: "Gestão",
+    valor: "mensalidade a combinar",
+    itens: [
+      "O Paulo ao seu lado, mês a mês, no planejamento e nos números",
+      "Processos, custos, metas e negociações da empresa",
+      "Para a empresa ou para a sua vida financeira",
+    ],
+  },
+];
+export const PLANO_NIVEIS = ["basico", "premium"];
+// compatível com o que já existia: o plano pago "de entrada" é o Básico
+export const PLANO = { ...PLANOS.basico, nome: "Plano Básico" };

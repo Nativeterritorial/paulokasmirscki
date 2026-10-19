@@ -55,7 +55,7 @@ export async function POST(req) {
   return NextResponse.json({
     ok: true,
     conta: !!member?.id,
-    plano: !!member?.plano,
+    plano: member?.plano || "",
     posts,
     meus,
   });

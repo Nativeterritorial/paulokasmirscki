@@ -8960,3 +8960,18 @@ body:has(.vt-theme) {
 .chave-tag.premium {
   color: #ffb6dc;
 }
+
+/* celular: sugestões do concierge em linhas, pequenas como as do "Monte meu time" */
+@media (max-width: 900px) {
+  .chat-chips {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    align-items: flex-start;
+    max-height: 38vh;
+    overflow-y: auto;
+  }
+  .chat-chips .chip {
+    white-space: normal;
+    text-align: left;
+  }
+}

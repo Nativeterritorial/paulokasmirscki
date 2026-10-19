@@ -1390,4 +1390,54 @@ export const COMPANIES = [
     link: "https://www.instagram.com/bavarescosupermercado/",
     linkLabel: "@bavarescosupermercado",
   },
+  {
+    id: "favero",
+    nome: "Favero Urbanizadora",
+    segmento: "Urbanizadora & Loteamentos",
+    descricao:
+      "Em Veranópolis, há mais de 45 anos criando espaços para bem viver — mais de 1.000 lotes urbanizados. Descubra o seu próximo lar.",
+    atende: ["Imóveis & Construção", "Finanças & Investimentos"],
+    link: "https://www.instagram.com/faverourbanizadora/",
+    linkLabel: "@faverourbanizadora",
+  },
+  {
+    id: "remocamisetas",
+    nome: "Remo Camisetas",
+    segmento: "Camisetas Personalizadas",
+    descricao:
+      "Em Veranópolis, produção de camisetas personalizadas para corridas, maratonas, eventos e uniformes de empresas — pedido mínimo de 100 unidades e entrega em todo o Brasil. Já atendeu Sicredi, Tramontina, Master Power e Corrida pela Vida. Fones (54) 3441-1990 e (54) 99988-4649.",
+    atende: ["Moda & Vestuário", "Esporte & Lazer", "Marketing & Digital"],
+    link: "https://www.remocamisetas.com.br/",
+    linkLabel: "remocamisetas.com.br",
+  },
+  {
+    id: "eletromegaluz",
+    nome: "Eletromegaluz",
+    segmento: "Materiais Elétricos & Automação",
+    descricao:
+      "Há 30 anos em Veranópolis fornecendo componentes elétricos para indústria, automação e construção civil.",
+    atende: ["Imóveis & Construção", "Agro & Indústria", "Comércio & Varejo"],
+    link: "https://www.instagram.com/eletromegaluz/",
+    linkLabel: "@eletromegaluz",
+  },
+  {
+    id: "unotreinamento",
+    nome: "Uno Treinamento Personalizado",
+    segmento: "Treinamento Personalizado",
+    descricao:
+      "Estúdio de treinamento personalizado em Veranópolis — cada treino é uma jornada rumo à sua melhor versão. Vem ser #Uno.",
+    atende: ["Esporte & Lazer", "Saúde & Bem-estar"],
+    link: "https://www.instagram.com/unotreinamento/",
+    linkLabel: "@unotreinamento",
+  },
+  {
+    id: "alumivar",
+    nome: "Alumivar Esquadrias",
+    segmento: "Esquadrias de Alumínio",
+    descricao:
+      "Esquadrias de alumínio e vidro em Cotiporã e região, com Ivar Bessega. Fone (54) 99998-3205.",
+    atende: ["Imóveis & Construção", "Arquitetura"],
+    link: "https://www.instagram.com/alumivar_esquadrias/",
+    linkLabel: "@alumivar_esquadrias",
+  },
 ];

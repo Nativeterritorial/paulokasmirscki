@@ -8,6 +8,7 @@ import MyProjects from "./my-projects";
 import MyGestao from "./my-gestao";
 import MyImoveis from "./my-imoveis";
 import { FirmActions, ChaveModal } from "./chave";
+import { TimeCard, TimeModal, parseTime } from "./time";
 import MySolicitacoes from "./solicitacoes";
 import { useNaoLidas } from "./pedidos";
 import { SegIcon } from "../segment-icons";
@@ -29,6 +30,15 @@ const SUGESTOES = [
   ["Quero comprar ou vender um imóvel", "Imóveis & Construção"],
   ["Preciso de material gráfico", "Mídia & Comunicação"],
   ["Busco consultoria pra minha empresa", "Negócios & Empresas"],
+];
+
+// "Monte meu time": momentos que pedem várias empresas da rede de uma vez
+const TIMES = [
+  "Vou casar",
+  "Vou construir minha casa",
+  "Vou abrir uma empresa",
+  "Vou fazer um evento da empresa",
+  "Festa de aniversário do meu filho",
 ];
 
 // segmento de cada empresa -> categoria com ícone (e cor) no diretório
@@ -120,6 +130,7 @@ export default function Area() {
   // empresas combinadas (fixas + cadastradas pelo Paulo); começa com as fixas
   const [companies, setCompanies] = useState(COMPANIES);
   const [chaveFor, setChaveFor] = useState(null); // empresa da Chave PK aberta
+  const [timeFor, setTimeFor] = useState(null); // time do concierge a pedir
   const [chaveVer, setChaveVer] = useState(0); // recarrega "Minhas Chaves PK"
   const naoLidas = useNaoLidas(code, member);
   const chatRef = useRef(null);
@@ -287,12 +298,15 @@ export default function Area() {
           // esconde marcadores completos (@@REC / @@GAP) e qualquer parcial no fim
           const servMatch = buf.match(/@@SERV:(\w+)@@/);
           const serv = servMatch && SERVICOS[servMatch[1]] ? servMatch[1] : undefined;
+          const time = parseTime(buf);
           const visible = buf
+            .replace(/@@TIME:[^@]*@@/g, "")
+            .replace(/@@TIME:[^@]*$/, "")
             .replace(/@@SERV:[^@]*@@/g, "")
             .replace(/@@REC:[^@]*@@/g, "")
             .replace(/@@GAP:[^@]*@@/g, "")
             .replace(
-              /@@(?:R(?:E(?:C(?::[^@]*)?)?)?|G(?:A(?:P(?::[^@]*)?)?)?|S(?:E(?:R(?:V(?::[^@]*)?)?)?)?)?$/,
+              /@@(?:R(?:E(?:C(?::[^@]*)?)?)?|G(?:A(?:P(?::[^@]*)?)?)?|S(?:E(?:R(?:V(?::[^@]*)?)?)?)?|T(?:I(?:M(?:E)?)?)?)?$/,
               ""
             )
             .trimEnd();
@@ -303,6 +317,7 @@ export default function Area() {
               content: visible,
               recs,
               serv,
+              time,
             };
             return next;
           });
@@ -441,6 +456,15 @@ export default function Area() {
                     className="bubble assistant"
                     dangerouslySetInnerHTML={{ __html: formatMsg(m.content) }}
                   />
+                  {m.time && (
+                    <TimeCard
+                      time={m.time}
+                      companies={companies}
+                      onChave={setChaveFor}
+                      onVisit={trackConnect}
+                      onPedir={() => setTimeFor(m.time)}
+                    />
+                  )}
                   {m.serv && SERVICOS[m.serv] && (
                     <div className={`serv-card svc ${SERVICOS[m.serv].cls}`}>
                       <div className="serv-txt">
@@ -498,6 +522,20 @@ export default function Area() {
                   {s}
                 </button>
               ))}
+              <div className="time-chips">
+                <span className="time-chips-lbl">Monte meu time:</span>
+                {TIMES.map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    className="chip ia-chip time-chip"
+                    onClick={() => send(`${t}. Monte meu time com as empresas da rede.`)}
+                    disabled={sending}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
           <form
@@ -641,6 +679,16 @@ export default function Area() {
       <MyProjects code={code} member={member} />
       <MyGestao code={code} member={member} />
 
+      {timeFor && (
+        <TimeModal
+          time={timeFor}
+          companies={companies}
+          code={code}
+          member={member}
+          onClose={() => setTimeFor(null)}
+          onDone={() => setChaveVer((v) => v + 1)}
+        />
+      )}
       {chaveFor && (
         <ChaveModal
           company={chaveFor}

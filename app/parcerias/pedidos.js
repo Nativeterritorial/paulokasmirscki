@@ -2,7 +2,9 @@
 // à abertura), "+ Nova gestão" (Gestor de negócios) e "+ Cadastrar imóvel"
 // (Quero vender meu imóvel). O Paulo vê nas abas Projetos, Gestão e Imóveis.
 
-export const PEDIDO_TIPOS = ["projeto", "gestao", "imovel", "chave", "obra"];
+export const PEDIDO_TIPOS = ["projeto", "gestao", "imovel", "chave", "obra", "time"];
+// "Monte meu time": quantas empresas um time sugerido pelo concierge pode ter
+export const MAX_TIME = 10;
 
 export const PEDIDO_STATUS = [
   { id: "novo", label: "Recebido", desc: "O Paulo recebeu o seu pedido e vai entrar em contato pelo WhatsApp." },
@@ -23,9 +25,17 @@ const CHAVE_STATUS = {
   aceito: { label: "Apresentado", desc: "Apresentação feita! O Paulo conectou você com a empresa." },
   encerrado: { label: "Encerrado", desc: "Esse pedido foi encerrado. Fale com o Paulo se quiser retomar." },
 };
+// Monte meu time: o Paulo coordena a conexão com todas as empresas do time
+const TIME_STATUS = {
+  novo: { label: "Pedido recebido", desc: "O Paulo recebeu o seu time e vai analisar cada conexão." },
+  conversa: { label: "Montando o time", desc: "O Paulo está falando com as empresas e combinando os detalhes com você." },
+  aceito: { label: "Time conectado", desc: "Pronto! O Paulo conectou você com as empresas do seu time." },
+  encerrado: { label: "Encerrado", desc: "Esse pedido foi encerrado. Fale com o Paulo se quiser retomar." },
+};
 export const pedidoStatus = (id, tipo) => {
   const st = PEDIDO_STATUS.find((s) => s.id === id) || PEDIDO_STATUS[0];
   if (tipo === "chave") return { ...st, ...CHAVE_STATUS[st.id] };
+  if (tipo === "time") return { ...st, ...TIME_STATUS[st.id] };
   return tipo === "imovel" && IMOVEL_DESC[st.id] ? { ...st, desc: IMOVEL_DESC[st.id] } : st;
 };
 export const statusLabel = (id, tipo) => pedidoStatus(id, tipo).label;

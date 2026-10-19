@@ -17,7 +17,7 @@ function detectRecommended(reply, companies) {
 function buildSystem(companies) {
   const dir = companies.map(
     (c) =>
-      `- ${c.nome} | Segmento: ${c.segmento} | Atende: ${c.atende.join(
+      `- [${c.id}] ${c.nome} | Segmento: ${c.segmento} | Atende: ${c.atende.join(
         ", "
       )} | ${c.descricao} | Contato: ${c.linkLabel} (${c.link})`
   ).join("\n");
@@ -43,6 +43,7 @@ REGRAS:
   · organizar a empresa, gestão, finanças do negócio, crescer com planejamento → "Gestor de negócios" → @@SERV:gestao@@
   Você pode também recomendar empresas da rede que atuam nesse caminho (com o marcador de recomendação normal).
 - CHAVE PK: o acesso livre a uma empresa é pelo site ou Instagram dela (botão no cartão). O contato com o dono/responsável NÃO é passado direto: ele é feito pela "Chave PK", uma apresentação pessoal do Paulo, que passa por análise (Pedido → Análise do Paulo → Apresentação → Conexão). Se o cliente pedir telefone, WhatsApp ou contato pessoal do dono, nunca informe: explique com simpatia que esse acesso é pela Chave PK e que ele pode solicitar pelo botão com o cadeado no cartão da empresa. Ao recomendar uma empresa, você pode mencionar que, além do site/Instagram, existe a Chave PK para uma apresentação feita pelo Paulo.
+- MONTE MEU TIME: quando o pedido for um projeto ou momento que envolve VÁRIOS tipos de fornecedor (ex.: casamento, festa, aniversário, evento da empresa, construir ou reformar, mobiliar a casa nova, abrir uma empresa, mudar de cidade, cuidar da saúde e do corpo), monte um TIME com as empresas da rede: escolha de 3 a 8 papéis e UMA empresa para cada papel, só do diretório. Na resposta, escreva 1 ou 2 frases curtas apresentando o time (sem listar as empresas uma a uma — o sistema mostra o time num cartão) e diga que o Paulo pode coordenar todas as conexões de uma vez. NO FINAL, em linha separada, acrescente UM marcador exatamente neste formato (use os ids entre colchetes do diretório): @@TIME:Título curto do time|Papel=id;Papel=id;Papel=id@@ — ex.: @@TIME:Seu casamento|Vestido e trajes=davinanoivas;Assessoria do evento=sofiamazzarollo;Fotografia=adilsonchaves@@. Os papéis são curtos (até 3 palavras). Se faltar um papel importante que nenhuma empresa da rede cobre, diga isso em 1 frase (sem marcador de demanda). Pode usar junto o marcador de serviço (@@SERV:...@@) quando o caminho for obra ou abertura de empresa. Não use o marcador de time para pedidos de uma única empresa.
 - IMPORTANTE: escreva em TEXTO SIMPLES. NÃO use markdown — nada de asteriscos (**) nem links em colchetes [texto](url). Cite o nome da empresa normalmente e, se mencionar um site, escreva o endereço direto (ex.: visaradigital.com.br).
 
 REGISTRO DE DEMANDA (uso interno):
@@ -123,15 +124,31 @@ export async function POST(req) {
         // separa o marcador de demanda @@GAP:...@@ do texto
         const gapMatch = full.match(/@@GAP:([^@]*)@@/);
         const gapText = gapMatch ? gapMatch[1].trim() : "";
-        const visibleFull = full.replace(/@@GAP:[^@]*@@/g, "").trim();
+        const visibleFull = full
+          .replace(/@@GAP:[^@]*@@/g, "")
+          .replace(/@@TIME:[^@]*@@/g, "")
+          .trim();
 
-        const recs = detectRecommended(visibleFull, companies);
+        // empresas do time (se houver) não viram cartões soltos: aparecem no cartão do time
+        const timeMatch = full.match(/@@TIME:([^@]*)@@/);
+        const timeIds = timeMatch
+          ? timeMatch[1]
+              .split("|")
+              .slice(1)
+              .join("|")
+              .split(";")
+              .map((x) => x.split("=")[1]?.trim())
+              .filter(Boolean)
+          : [];
+        const recs = detectRecommended(visibleFull, companies).filter(
+          (id) => !timeIds.includes(id)
+        );
         if (recs.length) {
           controller.enqueue(encoder.encode(`@@REC:${recs.join(",")}@@`));
         }
         // registra a pergunta + empresas recomendadas (não bloqueia a resposta)
         const lastUser = [...clean].reverse().find((m) => m.role === "user");
-        logQuery(lastUser?.content || "", recs).catch(() => {});
+        logQuery(lastUser?.content || "", [...new Set([...recs, ...timeIds])]).catch(() => {});
         // registra a DEMANDA resumida pela IA, se houver (radar do Paulo)
         if (gapText && recs.length === 0) {
           logDemand(gapText).catch(() => {});

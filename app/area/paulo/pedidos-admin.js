@@ -130,6 +130,14 @@ const ROTULOS = {
     criar: "",
     msg: (p) => `Olá ${p.nome}! Aqui é o Paulo Kasmirscki. Recebi o seu pedido de Chave PK para a ${p.titulo}. Vamos conversar sobre a apresentação?`,
   },
+  time: {
+    titulo: "🧩 Monte meu time — times montados pelo concierge",
+    vazio: "Nenhum time ainda. Eles chegam pelo botão “Quero esse time” do concierge, quando a pessoa precisa de várias empresas para um mesmo projeto.",
+    local: "",
+    fase: "",
+    criar: "",
+    msg: (p) => `Olá ${p.nome}! Aqui é o Paulo Kasmirscki. Recebi o seu pedido de time para ${p.titulo}. Vamos conversar sobre as conexões?`,
+  },
   obra: {
     titulo: "🏗️ Pedidos Do Terreno às Chaves",
     vazio: "Nenhum pedido ainda. Eles chegam pelo botão “+ Iniciar minha obra” da área de membros e pelo concierge.",

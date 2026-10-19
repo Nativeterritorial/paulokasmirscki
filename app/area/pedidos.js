@@ -182,6 +182,7 @@ function Conversa({ p, code, apply }) {
 const TIPO_LABEL = {
   obra: "Do Terreno às Chaves",
   chave: "Chave PK",
+  time: "Monte meu time",
   projeto: "Novo projeto",
   gestao: "Gestão",
   imovel: "Imóvel",

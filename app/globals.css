@@ -8320,3 +8320,58 @@ body:has(.vt-theme) {
   color: var(--muted);
   margin-bottom: 14px;
 }
+
+/* ---------- Área de membros: abas ---------- */
+.svc-ia {
+  --svc: #b89cff;
+  --svc-ink: #1d1046;
+  --svc-soft: rgba(184, 156, 255, 0.18);
+}
+.area-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.top-svc.on {
+  background: var(--svc-soft);
+  border-color: var(--svc);
+  color: #fff;
+}
+.area-aba[hidden],
+.area-wrap[hidden] {
+  display: none !important;
+}
+/* celular e telas médias: faixa de abas rolável abaixo do topo */
+.area-tabs-m {
+  display: none;
+}
+@media (max-width: 1480px) {
+  .area-tabs {
+    display: none;
+  }
+  .area-tabs-m {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 16px;
+    position: sticky;
+    top: var(--area-top-h, 74px);
+    z-index: 20;
+    background: rgba(8, 13, 40, 0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    scrollbar-width: none;
+  }
+  .area-tabs-m::-webkit-scrollbar {
+    display: none;
+  }
+  .area-tabs-m .top-svc {
+    display: inline-flex !important;
+    flex: none;
+    white-space: nowrap;
+  }
+}
+
+.area-aba > section {
+  scroll-margin-top: 140px;
+}

@@ -34,6 +34,16 @@ const SUGESTOES = [
   ["Busco consultoria pra minha empresa", "Negócios & Empresas"],
 ];
 
+// abas da área de membros (o endereço #aba abre direto cada uma)
+const ABAS = ["inicio", "solicitacoes", "mural", "indicacoes", "vender", "obra", "projeto", "gestao"];
+const abaDoHash = (h) => {
+  const id = String(h || "").replace(/^#/, "");
+  if (id.startsWith("pd-")) return "solicitacoes"; // conversa de um pedido
+  return ABAS.includes(id) ? id : "inicio";
+};
+// serviço pedido pelo concierge (evento "pk-abrir") -> aba onde ele fica
+const ABA_DO_SERVICO = { obra: "obra", projeto: "projeto", gestao: "gestao", imovel: "vender", mural: "mural" };
+
 // "Monte meu time": momentos que pedem várias empresas da rede de uma vez
 const TIMES = [
   "Vou casar",
@@ -112,6 +122,35 @@ function formatMsg(text) {
   return s;
 }
 
+// abas no topo (computador) e faixa rolável logo abaixo (celular)
+function AreaTabs({ aba, member, naoLidas, mobile }) {
+  const tabs = [
+    ["inicio", "svc-ia", "Início"],
+    ["solicitacoes", "svc-sol", "Solicitações"],
+    ["mural", "svc-mur", "Mural"],
+    ["indicacoes", "svc-ind", member ? "Minhas indicações" : "Indicar negócio"],
+    ["vender", "svc-imo", "Vender imóvel"],
+    ["obra", "svc-obra", "Minha obra"],
+    ["projeto", "svc-proj", "Meu projeto"],
+    ["gestao", "svc-gest", "Minha gestão"],
+  ];
+  return (
+    <nav className={mobile ? "area-tabs-m" : "area-tabs"} aria-label="Seções da área de membros">
+      {tabs.map(([id, cls, lbl]) => (
+        <a
+          key={id}
+          className={`area-refs-link top-svc ${cls}${aba === id ? " on" : ""}${id === "solicitacoes" && naoLidas.total > 0 ? " area-msgs" : ""}`}
+          href={id === "solicitacoes" && naoLidas.total > 0 ? `#pd-${naoLidas.primeiro}` : `#${id}`}
+          aria-current={aba === id ? "page" : undefined}
+        >
+          {lbl}
+          {id === "solicitacoes" && naoLidas.total > 0 && <span className="area-msgs-n">{naoLidas.total}</span>}
+        </a>
+      ))}
+    </nav>
+  );
+}
+
 export default function Area() {
   const [authed, setAuthed] = useState(false);
   const [code, setCode] = useState("");
@@ -128,6 +167,56 @@ export default function Area() {
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [openSeg, setOpenSeg] = useState(null);
+  const [aba, setAba] = useState("inicio");
+
+  // depois de entrar, mede a altura do topo para a faixa de abas grudar embaixo dele
+  useEffect(() => {
+    if (!authed) return;
+    const t = setTimeout(() => {
+      const h = document.querySelector(".area-top")?.offsetHeight;
+      if (h) document.documentElement.style.setProperty("--area-top-h", h + "px");
+    }, 50);
+    return () => clearTimeout(t);
+  }, [authed]);
+
+  // a aba segue o endereço (#mural, #obra...): links, botões e o voltar do navegador
+  useEffect(() => {
+    const sync = () => {
+      const h = window.location.hash;
+      setAba(abaDoHash(h));
+      // conversa de um pedido: rola até ela depois de mostrar a aba
+      if (h.startsWith("#pd-")) {
+        setTimeout(() => document.querySelector(h)?.scrollIntoView({ behavior: "smooth", block: "center" }), 120);
+      } else {
+        window.scrollTo({ top: 0 });
+      }
+    };
+    sync();
+    window.addEventListener("hashchange", sync);
+    // o concierge abriu um serviço ("Iniciar minha obra", "Publicar no Mural"...)
+    const onAbrir = (e) => {
+      const alvo = ABA_DO_SERVICO[e.detail];
+      if (alvo) {
+        setAba(alvo);
+        window.history.replaceState(null, "", "#" + alvo);
+      }
+    };
+    window.addEventListener("pk-abrir", onAbrir);
+    // a faixa de abas (celular) gruda logo abaixo do topo, seja qual for a altura dele
+    const medirTopo = () => {
+      const h = document.querySelector(".area-top")?.offsetHeight;
+      if (h) document.documentElement.style.setProperty("--area-top-h", h + "px");
+    };
+    medirTopo();
+    const t = setTimeout(medirTopo, 600);
+    window.addEventListener("resize", medirTopo);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("resize", medirTopo);
+      window.removeEventListener("hashchange", sync);
+      window.removeEventListener("pk-abrir", onAbrir);
+    };
+  }, []);
   const [busca, setBusca] = useState("");
   // empresas combinadas (fixas + cadastradas pelo Paulo); começa com as fixas
   const [companies, setCompanies] = useState(COMPANIES);
@@ -177,7 +266,7 @@ export default function Area() {
               if (destino) {
                 setTimeout(() => {
                   if (TIPO[destino]) abrirServico(TIPO[destino]);
-                  else document.querySelector(destino)?.scrollIntoView({ behavior: "smooth" });
+                  else setAba(abaDoHash(destino));
                 }, 900);
               }
             }
@@ -393,31 +482,7 @@ export default function Area() {
           {member && (
             <span className="area-hello">Olá, {member.nome.split(" ")[0]}</span>
           )}
-          <a
-            className={`area-refs-link area-sol top-svc svc-sol${naoLidas.total > 0 ? " area-msgs" : ""}`}
-            href={naoLidas.total > 0 ? `#pd-${naoLidas.primeiro}` : "#solicitacoes"}
-          >
-            Solicitações
-            {naoLidas.total > 0 && <span className="area-msgs-n">{naoLidas.total}</span>}
-          </a>
-          <a className="area-refs-link top-svc svc-mur" href="#mural">
-            Mural
-          </a>
-          <a className="area-refs-link top-svc svc-ind" href="#indicacoes">
-            {member ? "Minhas indicações" : "Indicar negócio"}
-          </a>
-          <a className="area-refs-link top-svc svc-imo" href="#vender">
-            Vender imóvel
-          </a>
-          <a className="area-refs-link top-svc svc-obra" href="#obra">
-            Minha obra
-          </a>
-          <a className="area-refs-link top-svc svc-proj" href="#projeto">
-            Meu projeto
-          </a>
-          <a className="area-refs-link top-svc svc-gest" href="#gestao">
-            Minha gestão
-          </a>
+          <AreaTabs aba={aba} member={member} naoLidas={naoLidas} />
           <InstallApp />
           <button className="area-logout" onClick={logout}>
             Sair
@@ -425,13 +490,15 @@ export default function Area() {
         </div>
       </header>
 
+      <AreaTabs aba={aba} member={member} naoLidas={naoLidas} mobile />
+
       <SenhaAviso
         code={code}
         member={member}
         onSalva={() => setMember((m) => (m ? { ...m, temSenha: true, senhaTemp: false } : m))}
       />
 
-      <div className="area-wrap">
+      <div className="area-wrap" hidden={aba !== "inicio"}>
         {/* CHAT */}
         <section className="area-panel ia-panel">
           <div className="area-panel-head ia-head">
@@ -618,7 +685,8 @@ export default function Area() {
               })()}
             {!norm(busca) && Object.entries(
               companies.reduce((acc, c) => {
-                (acc[c.segmento] = acc[c.segmento] || []).push(c);
+                const cat = segInfo(c.segmento).icon;
+                (acc[cat] = acc[cat] || []).push(c);
                 return acc;
               }, {})
             )
@@ -638,10 +706,10 @@ export default function Area() {
                   >
                     <span
                       className="seg-ico"
-                      style={{ "--seg": segInfo(segmento).cor }}
+                      style={{ "--seg": segInfo(firms[0].segmento).cor }}
                       aria-hidden="true"
                     >
-                      <SegIcon label={segInfo(segmento).icon} size={15} />
+                      <SegIcon label={segmento} size={15} />
                     </span>
                     <span className="seg-nm">{segmento}</span>
                     <span className="firm-group-meta">
@@ -652,9 +720,10 @@ export default function Area() {
                     </span>
                   </button>
                   {openSeg === segmento &&
-                    firms.map((c) => (
+                    [...firms].sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR")).map((c) => (
                     <div className="firm" key={c.id}>
                       <div className="firm-info">
+                        <div className="firm-seg">{c.segmento}</div>
                         <div className="firm-nm">{c.nome}</div>
                         <div className="firm-d">{c.descricao}</div>
                       </div>
@@ -671,13 +740,27 @@ export default function Area() {
         </aside>
       </div>
 
-      <MySolicitacoes code={code} member={member} version={chaveVer} />
-      <MyMural code={code} member={member} />
-      <MyReferrals code={code} member={member} />
-      <MyImoveis code={code} member={member} />
-      <MyProjects code={code} member={member} trilha="obra" />
-      <MyProjects code={code} member={member} />
-      <MyGestao code={code} member={member} />
+      <div className="area-aba" hidden={aba !== "solicitacoes"}>
+        <MySolicitacoes code={code} member={member} version={chaveVer} />
+      </div>
+      <div className="area-aba" hidden={aba !== "mural"}>
+        <MyMural code={code} member={member} />
+      </div>
+      <div className="area-aba" hidden={aba !== "indicacoes"}>
+        <MyReferrals code={code} member={member} />
+      </div>
+      <div className="area-aba" hidden={aba !== "vender"}>
+        <MyImoveis code={code} member={member} />
+      </div>
+      <div className="area-aba" hidden={aba !== "obra"}>
+        <MyProjects code={code} member={member} trilha="obra" />
+      </div>
+      <div className="area-aba" hidden={aba !== "projeto"}>
+        <MyProjects code={code} member={member} />
+      </div>
+      <div className="area-aba" hidden={aba !== "gestao"}>
+        <MyGestao code={code} member={member} />
+      </div>
 
       {timeFor && (
         <TimeModal

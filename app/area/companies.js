@@ -1520,4 +1520,74 @@ export const COMPANIES = [
     link: "https://www.rivaccipremoldados.com.br/",
     linkLabel: "rivaccipremoldados.com.br",
   },
+  {
+    id: "fiduciaseg",
+    nome: "FiduciaSeg",
+    segmento: "Corretora de Seguros",
+    descricao:
+      "Corretora de seguros em Veranópolis, sempre ao seu lado na Serra Gaúcha — mais de 30 anos de atuação, trabalhando com as melhores seguradoras.",
+    atende: ["Finanças & Investimentos", "Seguros", "Negócios & Empresas"],
+    link: "https://www.instagram.com/fiduciaseg/",
+    linkLabel: "@fiduciaseg",
+  },
+  {
+    id: "vebauer",
+    nome: "Vebauer — Loja Stihl",
+    segmento: "Máquinas & Ferramentas — Stihl",
+    descricao:
+      "Sua loja Stihl em Veranópolis — motosserras, roçadeiras e ferramentas para o campo, o jardim e a construção.",
+    atende: ["Agro & Indústria", "Comércio & Varejo", "Imóveis & Construção"],
+    link: "https://www.instagram.com/vebauerconcessionaria/",
+    linkLabel: "@vebauerconcessionaria",
+  },
+  {
+    id: "alinnepostal",
+    nome: "Alinne Postal Clothing",
+    segmento: "Moda & Vestuário — Loja",
+    descricao:
+      "Loja de roupas em Veranópolis com estilo e personalidade — compra também on-line, com frete grátis acima de R$ 500.",
+    atende: ["Moda & Vestuário", "Comércio & Varejo"],
+    link: "https://www.instagram.com/alinnepostal.clothing/",
+    linkLabel: "@alinnepostal.clothing",
+  },
+  {
+    id: "stellabeauty",
+    nome: "Stella Beauty Salon",
+    segmento: "Salão de Beleza",
+    descricao:
+      "Salão de beleza em Veranópolis (Av. Dr. José Montaury, 595/103) — beleza como forma de expressão e conexão; cabelo é só o começo. Agendamentos pelo Instagram.",
+    atende: ["Estética & Beleza"],
+    link: "https://www.instagram.com/stellabeautyofficial/",
+    linkLabel: "@stellabeautyofficial",
+  },
+  {
+    id: "generali",
+    nome: "Generali Colchões",
+    segmento: "Colchões, Cama, Mesa & Banho",
+    descricao:
+      "Loja em Veranópolis de colchões e produtos de cama, mesa e banho, com compra on-line pelo WhatsApp.",
+    atende: ["Comércio & Varejo", "Imóveis & Construção", "Turismo & Hotelaria"],
+    link: "https://www.instagram.com/generalicolchoes/",
+    linkLabel: "@generalicolchoes",
+  },
+  {
+    id: "drbrunoalcantara",
+    nome: "Dr. Bruno Alcantara — Cirurgia Plástica",
+    segmento: "Saúde & Medicina — Cirurgia Plástica",
+    descricao:
+      "Cirurgião plástico em Veranópolis (CREMERS 32399), membro titular da Sociedade Brasileira de Cirurgia Plástica e membro da Sociedade Brasileira de Queimaduras. Agendamento de consultas pelo Instagram.",
+    atende: ["Saúde & Bem-estar", "Estética & Beleza"],
+    link: "https://www.instagram.com/drbrunoalcantara/",
+    linkLabel: "@drbrunoalcantara",
+  },
+  {
+    id: "pasteldovinti",
+    nome: "Pastel do Vinti",
+    segmento: "Pastelaria & Bar",
+    descricao:
+      "Pastel e bar do Vinti, em Veranópolis. WhatsApp (54) 99256-5130.",
+    atende: ["Gastronomia"],
+    link: "https://www.instagram.com/pasteldovinti/",
+    linkLabel: "@pasteldovinti",
+  },
 ];

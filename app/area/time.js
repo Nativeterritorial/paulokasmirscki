@@ -36,6 +36,8 @@ const Puzzle = () => (
 export function TimeCard({ time, companies = [], onPedir }) {
   // todos marcados no começo; a pessoa desmarca o que já tem
   const [off, setOff] = useState([]);
+  // conversa antiga guardada no aparelho (versão com empresas): não mostra
+  if (!Array.isArray(time?.servicos) || !time.servicos.length) return null;
   // só conta como "na rede" se o id existe mesmo no diretório
   const temParceiro = (sv) => sv.ids.some((id) => companies.some((c) => c.id === id));
   const marcados = time.servicos.filter((sv) => !off.includes(sv.nome));

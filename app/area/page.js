@@ -10,6 +10,7 @@ import MyImoveis from "./my-imoveis";
 import { FirmActions, ChaveModal } from "./chave";
 import { TimeCard, TimeModal, parseTime } from "./time";
 import MySolicitacoes from "./solicitacoes";
+import MyMural from "./mural";
 import { useNaoLidas } from "./pedidos";
 import { SegIcon } from "../segment-icons";
 import { abrirServico } from "./abrir";
@@ -20,6 +21,7 @@ const SERVICOS = {
   obra: { nome: "Do Terreno às Chaves", desc: "As 11 fases da obra, do terreno à entrega das chaves, com o Paulo conduzindo.", btn: "Iniciar minha obra", cls: "svc-obra" },
   projeto: { nome: "Da ideia à abertura", desc: "Para abrir o seu negócio com os parceiros certos em cada etapa.", btn: "Iniciar meu projeto", cls: "svc-proj" },
   gestao: { nome: "Gestor de negócios", desc: "O Paulo ao seu lado, mês a mês, nos números e nas decisões.", btn: "Pedir gestão", cls: "svc-gest" },
+  mural: { nome: "Mural de Oportunidades", desc: "Publique o que você procura: as empresas da rede veem e respondem.", btn: "Publicar no Mural", cls: "svc-mur" },
   imovel: { nome: "Quero vender meu imóvel", desc: "Cadastre o imóvel: o Paulo avalia e leva até os compradores.", btn: "Cadastrar imóvel", cls: "svc-imo" },
 };
 
@@ -398,6 +400,9 @@ export default function Area() {
             Solicitações
             {naoLidas.total > 0 && <span className="area-msgs-n">{naoLidas.total}</span>}
           </a>
+          <a className="area-refs-link top-svc svc-mur" href="#mural">
+            Mural
+          </a>
           <a className="area-refs-link top-svc svc-ind" href="#indicacoes">
             {member ? "Minhas indicações" : "Indicar negócio"}
           </a>
@@ -667,6 +672,7 @@ export default function Area() {
       </div>
 
       <MySolicitacoes code={code} member={member} version={chaveVer} />
+      <MyMural code={code} member={member} />
       <MyReferrals code={code} member={member} />
       <MyImoveis code={code} member={member} />
       <MyProjects code={code} member={member} trilha="obra" />

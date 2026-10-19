@@ -9,6 +9,7 @@ const LINKS = [
   ["#segmentos", "Segmentos"],
   ["/parcerias", "Parcerias"],
   ["/imoveis", "Imóveis"],
+  ["/vagas", "Vagas"],
   ["#contato", "Contato"],
 ];
 

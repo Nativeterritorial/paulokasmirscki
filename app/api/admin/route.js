@@ -15,6 +15,10 @@ import {
   resetMemberToken,
   deleteMember,
   resetMemberSenha,
+  setMemberPlano,
+  getMural,
+  setMuralStatus,
+  deleteMuralPost,
   getSenhaPedidos,
   dropSenhaPedido,
   getProjects,
@@ -113,6 +117,17 @@ export async function POST(req) {
     const senha = await resetMemberSenha(String(body.id));
     if (senha) novaSenha = { id: String(body.id), senha };
   }
+  // Plano Ecossistema: o Paulo libera depois de receber o pagamento
+  if (body.action === "memberPlano" && body.id) {
+    await setMemberPlano(String(body.id), body.ativo === true);
+  }
+  // Mural de Oportunidades: tirar do ar, voltar, excluir
+  if (body.action === "muralStatus" && body.id && body.status) {
+    await setMuralStatus(String(body.id), String(body.status));
+  }
+  if (body.action === "muralDelete" && body.id) {
+    await deleteMuralPost(String(body.id));
+  }
   if (body.action === "senhaPedidoDrop" && body.id) {
     await dropSenhaPedido(String(body.id));
   }
@@ -203,6 +218,8 @@ export async function POST(req) {
     t: m.t,
     visto: m.visto,
     temSenha: !!m.senha,
+    plano: !!m.plano,
+    planoDesde: m.planoDesde || 0,
     link: `https://www.paulokasmirscki.com.br/area?convite=${encodeURIComponent(
       m.token
     )}`,
@@ -213,11 +230,13 @@ export async function POST(req) {
   const pedidos = await getPedidos();
   const imoveis = await getImoveis();
   const senhaPedidos = await getSenhaPedidos();
+  const mural = await getMural();
 
   return NextResponse.json({
     ok: true,
     senhaPedidos,
     novaSenha,
+    mural,
     imoveis,
     novoImovel,
     pedidos,

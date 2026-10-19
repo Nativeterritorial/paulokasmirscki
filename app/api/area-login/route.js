@@ -35,6 +35,6 @@ export async function POST(req) {
   return NextResponse.json({
     ok,
     token: ok && body.whatsapp ? code : undefined,
-    member: member ? { id: member.id, nome: member.nome, ...senha } : null,
+    member: member ? { id: member.id, nome: member.nome, plano: !!member.plano, ...senha } : null,
   });
 }

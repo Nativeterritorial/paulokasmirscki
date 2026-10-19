@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ProjectsAdmin from "./projects-admin";
 import GestaoAdmin from "./gestao-admin";
 import PedidosAdmin from "./pedidos-admin";
+import MuralAdmin from "./mural-admin";
 import { naoLidas } from "../../parcerias/pedidos";
 import ImoveisAdmin from "./imoveis-admin";
 import {
@@ -43,6 +44,7 @@ export default function PauloAdmin() {
   const [savingCo, setSavingCo] = useState(false);
   const [members, setMembers] = useState([]);
   const [senhaPedidos, setSenhaPedidos] = useState([]); // "Esqueci minha senha"
+  const [mural, setMural] = useState([]); // Mural de Oportunidades
   const [novaSenha, setNovaSenha] = useState(null); // { id, senha } recém-gerada
   const [projects, setProjects] = useState([]);
   const [gestoes, setGestoes] = useState([]);
@@ -90,6 +92,7 @@ export default function PauloAdmin() {
       if (Array.isArray(d.fixedCompanies)) setFixedCompanies(d.fixedCompanies);
       if (Array.isArray(d.members)) setMembers(d.members);
       if (Array.isArray(d.senhaPedidos)) setSenhaPedidos(d.senhaPedidos);
+      if (Array.isArray(d.mural)) setMural(d.mural);
       if (Array.isArray(d.projects)) setProjects(d.projects);
       if (Array.isArray(d.gestoes)) setGestoes(d.gestoes);
       if (Array.isArray(d.pedidos)) setPedidos(d.pedidos);
@@ -280,6 +283,7 @@ export default function PauloAdmin() {
       const d = await r.json();
       if (Array.isArray(d.members)) setMembers(d.members);
       if (Array.isArray(d.senhaPedidos)) setSenhaPedidos(d.senhaPedidos);
+      if (Array.isArray(d.mural)) setMural(d.mural);
       if (d.novaSenha) setNovaSenha(d.novaSenha);
     } catch (e) {}
   };
@@ -527,6 +531,7 @@ export default function PauloAdmin() {
     if (Array.isArray(d?.imoveis)) setImoveis(d.imoveis);
     if (Array.isArray(d?.members)) setMembers(d.members);
     if (Array.isArray(d?.senhaPedidos)) setSenhaPedidos(d.senhaPedidos);
+    if (Array.isArray(d?.mural)) setMural(d.mural);
   };
 
   // gráfico: eventos por dia nos últimos 14 dias
@@ -620,6 +625,8 @@ export default function PauloAdmin() {
                 ["imo", "Imóveis", pedidosNovos("imovel")],
                 ["proj", "Projetos", pedidosNovos("projeto") + pedidosNovos("obra")],
                 ["gest", "Gestão", pedidosNovos("gestao")],
+                // publicações dos últimos 3 dias (só aviso; não pedem ação)
+                ["mur", "Mural", mural.filter((m) => Date.now() - (m.t || 0) < 3 * 864e5).length],
                 ["mem", "Membros", senhaPedidos.length],
                 ["emp", "Empresas", 0],
                 ["num", "Números", 0],
@@ -1184,6 +1191,10 @@ export default function PauloAdmin() {
               </>
             )}
 
+            {tab === "mur" && (
+              <MuralAdmin code={code} mural={mural} onData={applyAdminData} />
+            )}
+
             {tab === "mem" && (
               <>
             {/* MEMBROS — acesso individual (link pessoal) */}
@@ -1277,6 +1288,7 @@ export default function PauloAdmin() {
                                   : "Ainda não acessou"}
                                 {m.whatsapp ? ` · ${m.whatsapp}` : ""}
                                 {m.temSenha ? " · 🔑 com senha" : " · sem senha (entra pelo link)"}
+                                {m.plano ? " · ⭐ Plano Ecossistema" : ""}
                               </div>
                             </div>
                             <div className="lead-actions">
@@ -1308,6 +1320,19 @@ export default function PauloAdmin() {
                                   Gerar nova senha
                                 </button>
                               )}
+                              <button
+                                type="button"
+                                className={`chip${m.plano ? " chip-on" : ""}`}
+                                onClick={() =>
+                                  window.confirm(
+                                    m.plano
+                                      ? `Desligar o Plano Ecossistema de ${m.nome}?`
+                                      : `Liberar o Plano Ecossistema para ${m.nome}? (depois de receber o pagamento)`
+                                  ) && memberAction({ action: "memberPlano", id: m.id, ativo: !m.plano })
+                                }
+                              >
+                                {m.plano ? "⭐ Plano ativo" : "Liberar plano"}
+                              </button>
                               <button
                                 type="button"
                                 className="chip"

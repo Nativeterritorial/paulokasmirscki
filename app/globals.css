@@ -8020,3 +8020,303 @@ body:has(.vt-theme) {
   align-items: center;
   gap: 8px;
 }
+
+/* ---------- Mural de Oportunidades (rosa) ---------- */
+.svc-mur {
+  --svc: #ff8fc8;
+  --svc-ink: #3d0a26;
+  --svc-soft: rgba(255, 143, 200, 0.16);
+}
+.svc-mur > .area-refs-head .sol-count {
+  border-color: var(--svc);
+  color: var(--svc);
+}
+.mur-plano-btn {
+  cursor: pointer;
+  background: transparent;
+  font: inherit;
+}
+.mur-plano-btn:hover {
+  background: var(--svc-soft);
+}
+.mur-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 4px 0 16px;
+}
+.mur-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.mur-aviso {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.mur-form {
+  margin: 0 0 18px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--svc-soft);
+  background: rgba(255, 255, 255, 0.04);
+}
+.mur-tipos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+@media (max-width: 720px) {
+  .mur-tipos {
+    grid-template-columns: 1fr;
+  }
+}
+.mur-tipo {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+}
+.mur-tipo span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.mur-tipo.on {
+  border-color: var(--svc);
+  background: var(--svc-soft);
+}
+.mur-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.mur-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  min-width: 0;
+}
+.mur-card.meu {
+  border-color: var(--svc-soft);
+}
+.mur-card.off {
+  opacity: 0.6;
+}
+.mur-card h3 {
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.mur-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.mur-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+}
+.mur-tag.t-procuro {
+  color: #7fd9ff;
+}
+.mur-tag.t-ofereco {
+  color: #6fffbf;
+}
+.mur-tag.t-vaga {
+  color: #ffd27a;
+}
+.mur-meta {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.mur-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  white-space: pre-line;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.mur-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.78rem;
+}
+.mur-facts span {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}
+.mur-acts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+.mur-acts .time-btn {
+  background: linear-gradient(100deg, #ffc2e2, #ff8fc8);
+  color: #3d0a26;
+}
+.mur-ok {
+  font-size: 0.85rem;
+  color: #6fffbf;
+}
+.mur-meus {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.mur-sub {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--svc, #ff8fc8);
+}
+.mur-ints {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+.mur-int {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+.mur-int p {
+  margin-top: 4px;
+  color: var(--muted);
+  white-space: pre-line;
+}
+.mur-int a {
+  font-size: 0.82rem;
+}
+.plano-preco {
+  margin: 12px 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.plano-nota {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ---------- página pública de vagas ---------- */
+.vg-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.vg-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 22px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.vg-card .btn {
+  align-self: flex-start;
+}
+.vg-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.vg-top h3 {
+  font-family: "Sora", "Space Grotesk", sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+.vg-emp {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.vg-regime {
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid #ffd27a;
+  color: #ffd27a;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.vg-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.vg-desc {
+  white-space: pre-line;
+  line-height: 1.6;
+}
+.vg-form {
+  margin-top: 4px;
+}
+.vg-form-acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.vg-vazio {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 30px 20px;
+  border-radius: 16px;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  color: var(--muted);
+}
+.vg-empresa {
+  max-width: 860px;
+  margin: 36px auto 0;
+  text-align: center;
+  padding: 26px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.vg-empresa h2 {
+  font-family: "Sora", "Space Grotesk", sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+.vg-empresa p {
+  color: var(--muted);
+  margin-bottom: 14px;
+}

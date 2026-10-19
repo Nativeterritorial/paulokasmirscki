@@ -44,6 +44,7 @@ REGRAS:
   Você pode também recomendar empresas da rede que atuam nesse caminho (com o marcador de recomendação normal).
 - CHAVE PK: o acesso livre a uma empresa é pelo site ou Instagram dela (botão no cartão). O contato com o dono/responsável NÃO é passado direto: ele é feito pela "Chave PK", uma apresentação pessoal do Paulo, que passa por análise (Pedido → Análise do Paulo → Apresentação → Conexão). Se o cliente pedir telefone, WhatsApp ou contato pessoal do dono, nunca informe: explique com simpatia que esse acesso é pela Chave PK e que ele pode solicitar pelo botão com o cadeado no cartão da empresa. Ao recomendar uma empresa, você pode mencionar que, além do site/Instagram, existe a Chave PK para uma apresentação feita pelo Paulo.
 - MONTE MEU TIME: quando o pedido for um projeto ou momento que envolve VÁRIOS tipos de serviço (ex.: casamento, festa, aniversário, evento da empresa, construir ou reformar, mobiliar a casa nova, abrir uma empresa, mudar de cidade, cuidar da saúde e do corpo), monte um ROTEIRO DE SERVIÇOS: de 4 a 8 serviços que esse projeto costuma precisar, na ordem em que acontecem. NESSA resposta NÃO cite nomes de empresas: escreva 1 ou 2 frases curtas dizendo que montou o roteiro, que a pessoa marca os serviços que precisa e que o Paulo seleciona as melhores opções de parceiros para cada um. NO FINAL, em linha separada, acrescente UM marcador exatamente neste formato: @@TIME:Título curto|Serviço=id,id;Serviço=id;Serviço=@@ — depois de cada serviço, liste os ids (entre colchetes no diretório) das empresas da rede que fazem aquele serviço, separados por vírgula, ou deixe vazio se nenhuma faz. Ex.: @@TIME:Seu casamento|Vestido e trajes=davinanoivas;Fotografia e filmagem=adilsonchaves,tonmuller;Buffet=@@. Os nomes dos serviços são curtos (até 4 palavras). Os ids são só para o Paulo (o cliente não vê). Pode usar junto o marcador de serviço (@@SERV:...@@) quando o caminho for obra ou abertura de empresa. Não use o marcador de time para pedidos de uma única empresa.
+- BUSCA NA INTERNET: você tem a ferramenta de busca na web. Use-a SOMENTE para perguntas de INFORMAÇÃO que dependem de dados atuais ou que você não sabe com segurança — por exemplo: documentos e etapas para abrir uma empresa ou MEI, alvarás e licenças em Veranópolis/RS, financiamento imobiliário, impostos, normas, prazos, preços médios de mercado, eventos e notícias da região. Responda de forma curta e prática, em até ~6 linhas, e diga de onde veio a informação citando só o nome do site (ex.: segundo o site da Receita Federal). NUNCA use a busca para indicar empresas, profissionais ou fornecedores de fora da rede: para quem faz o serviço, recomende só empresas do diretório (ou registre a demanda e sugira o Mural, como nas regras acima). Não busque para saudações, para perguntas sobre a rede ou sobre os serviços do Paulo. Quando a informação levar a um serviço do Paulo (ex.: abrir empresa, construir), ofereça também o serviço com o marcador correspondente.
 - IMPORTANTE: escreva em TEXTO SIMPLES. NÃO use markdown — nada de asteriscos (**) nem links em colchetes [texto](url). Cite o nome da empresa normalmente e, se mencionar um site, escreva o endereço direto (ex.: visaradigital.com.br).
 
 REGISTRO DE DEMANDA (uso interno):
@@ -100,26 +101,60 @@ export async function POST(req) {
     async start(controller) {
       let full = "";
       try {
-        const stream = client.messages.stream({
-          model: "claude-sonnet-4-6",
-          max_tokens: 1024,
-          system: [
-            {
-              type: "text",
-              text: buildSystem(companies),
-              cache_control: { type: "ephemeral" },
-            },
-          ],
-          messages: clean,
-        });
-        for await (const ev of stream) {
-          if (
-            ev.type === "content_block_delta" &&
-            ev.delta?.type === "text_delta"
-          ) {
-            full += ev.delta.text;
-            controller.enqueue(encoder.encode(ev.delta.text));
+        // conversa enviada à IA nesta resposta (cresce se a busca pausar a resposta)
+        const conversa = [...clean];
+        let final = null;
+        // a busca na web roda no servidor da Anthropic; se a resposta pausar no
+        // meio (pause_turn), continua de onde parou (no máximo 3 rodadas)
+        for (let rodada = 0; rodada < 3; rodada++) {
+          const stream = client.beta.messages.stream({
+            model: "claude-opus-5-5",
+            max_tokens: 16000,
+            // chat: respostas rápidas e diretas
+            output_config: { effort: "low" },
+            // se o modelo recusar por segurança, outro modelo assume na mesma chamada
+            betas: ["server-side-fallback-2026-07-01"],
+            fallbacks: "default",
+            tools: [
+              {
+                type: "web_search_20260209",
+                name: "web_search",
+                max_uses: 3,
+                user_location: {
+                  type: "approximate",
+                  city: "Veranópolis",
+                  region: "Rio Grande do Sul",
+                  country: "BR",
+                  timezone: "America/Sao_Paulo",
+                },
+              },
+            ],
+            system: [
+              {
+                type: "text",
+                text: buildSystem(companies),
+                cache_control: { type: "ephemeral" },
+              },
+            ],
+            messages: conversa,
+          });
+          for await (const ev of stream) {
+            if (
+              ev.type === "content_block_delta" &&
+              ev.delta?.type === "text_delta"
+            ) {
+              full += ev.delta.text;
+              controller.enqueue(encoder.encode(ev.delta.text));
+            }
           }
+          final = await stream.finalMessage();
+          if (final.stop_reason !== "pause_turn") break;
+          conversa.push({ role: "assistant", content: final.content });
+        }
+        if (final?.stop_reason === "refusal" && !full.trim()) {
+          const aviso = "Não consigo ajudar com isso por aqui. Me conte de outro jeito o que você precisa que eu procuro na rede.";
+          full = aviso;
+          controller.enqueue(encoder.encode(aviso));
         }
         // separa o marcador de demanda @@GAP:...@@ do texto
         const gapMatch = full.match(/@@GAP:([^@]*)@@/);

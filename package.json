@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.102.0",
+    "@anthropic-ai/sdk": "^0.135.0",
     "@upstash/redis": "^1.38.0",
     "globe.gl": "^2.46.1",
     "next": "^15.5.19",

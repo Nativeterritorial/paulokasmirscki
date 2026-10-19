@@ -54,7 +54,7 @@ export const responderPedePlano = (tipo) => tipo === "procuro";
 
 // nome e preço do plano (ajuste quando decidirem: o resto do site lê daqui)
 export const PLANO = {
-  nome: "Plano Ecossistema",
+  nome: "Plano Ecossistema PK",
   preco: "", // ex.: "R$ 97/mês" — vazio mostra "condições com o Paulo"
   beneficios: [
     "Responder a quem procura fornecedor ou serviço",

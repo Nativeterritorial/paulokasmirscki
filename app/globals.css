@@ -8415,3 +8415,88 @@ body:has(.vt-theme) {
   font-size: 0.82rem;
   color: #bfffe3;
 }
+
+/* Mural: destaque do plano e botão de publicar */
+.mur-plano-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 22px 12px 14px;
+  border: 0;
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: left;
+  color: #3d0a26;
+  font: 800 1rem "Sora", "Space Grotesk", sans-serif;
+  background: linear-gradient(110deg, #ffd27a 0%, #ffb6dc 45%, #ff8fc8 100%);
+  box-shadow: 0 10px 30px rgba(255, 143, 200, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  animation: mur-brilho 3.2s ease-in-out infinite;
+}
+.mur-plano-btn:hover {
+  background: linear-gradient(110deg, #ffd27a 0%, #ffb6dc 45%, #ff8fc8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(255, 143, 200, 0.5);
+}
+.mur-plano-btn small {
+  display: block;
+  font: 600 0.68rem "Inter", sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 2px;
+}
+.mur-plano-star {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: #3d0a26;
+  color: #ffd27a;
+  font-size: 1.2rem;
+  flex: none;
+}
+@keyframes mur-brilho {
+  50% {
+    box-shadow: 0 10px 40px rgba(255, 210, 122, 0.55);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mur-plano-btn {
+    animation: none;
+  }
+}
+.mur-plano {
+  background: rgba(255, 210, 122, 0.12);
+  border-color: #ffd27a !important;
+  color: #ffd27a !important;
+  font-weight: 700;
+}
+.mur-novo {
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 26px;
+  cursor: pointer;
+  font: 800 1rem "Sora", "Space Grotesk", sans-serif;
+  color: #3d0a26;
+  background: linear-gradient(100deg, #ffc2e2, #ff8fc8);
+  box-shadow: 0 8px 24px rgba(255, 143, 200, 0.3);
+  transition: transform 0.15s ease;
+}
+.mur-novo:hover {
+  transform: translateY(-2px);
+}
+.mur-novo.on {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  box-shadow: none;
+}
+@media (max-width: 720px) {
+  .mur-novo {
+    width: 100%;
+  }
+  .mur-plano-btn {
+    width: 100%;
+  }
+}

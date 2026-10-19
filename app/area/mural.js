@@ -274,15 +274,20 @@ export default function MyMural({ code, member }) {
           <div className="kick">Mural de Oportunidades</div>
           <h2>Quem precisa encontra quem faz</h2>
           <p>
-            Publique o que você procura, ofereça condições para a rede e
-            divulgue vagas de emprego. Cada publicação fica {MURAL_DIAS} dias no ar.
+            Publique o que você procura, ofereça condições para a rede,
+            divulgue vagas de emprego e recomende quem é de confiança. Cada
+            publicação fica {MURAL_DIAS} dias no ar.
           </p>
         </div>
         {data.plano ? (
           <span className="sol-count mur-plano">✓ {PLANO.nome}</span>
         ) : (
-          <button type="button" className="sol-count mur-plano-btn" onClick={() => pedirPlano(null)}>
-            Conhecer o {PLANO.nome}
+          <button type="button" className="mur-plano-btn" onClick={() => pedirPlano(null)}>
+            <span className="mur-plano-star" aria-hidden="true">★</span>
+            <span>
+              <small>Feche negócios no Mural</small>
+              Conhecer o {PLANO.nome}
+            </span>
           </button>
         )}
       </div>
@@ -301,8 +306,8 @@ export default function MyMural({ code, member }) {
           ))}
         </div>
         {data.conta ? (
-          <button type="button" className="chip chip-add mur-novo" onClick={() => setAberto((v) => !v)}>
-            {aberto ? "Fechar" : "+ Publicar no Mural"}
+          <button type="button" className={`mur-novo${aberto ? " on" : ""}`} onClick={() => setAberto((v) => !v)}>
+            {aberto ? "✕ Fechar" : "+ Publicar no Mural"}
           </button>
         ) : (
           <span className="mur-aviso">Entre com a sua conta para publicar.</span>

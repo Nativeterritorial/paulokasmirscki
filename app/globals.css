@@ -8752,3 +8752,28 @@ body:has(.vt-theme) {
   border-color: #ffd27a;
   color: #ffd27a;
 }
+
+.plano-mes {
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 0.75;
+  margin-left: 2px;
+}
+.plano-sub {
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+.plano-box .join-checks {
+  margin-bottom: 16px;
+}
+.plano-premium-link {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.plano-premium-link a {
+  color: #ffd27a;
+  font-weight: 600;
+}

@@ -10,6 +10,7 @@ import {
   pedeAprovacao,
   PLANO,
   PLANOS,
+  EXTRAS_PREMIUM,
 } from "../parcerias/mural";
 import { useAbrir } from "./abrir";
 
@@ -48,42 +49,82 @@ const call = async (code, payload) => {
 };
 
 // convite para o Plano Ecossistema (liberação manual pelo Paulo, por enquanto)
-// convite para o plano: no Mural quem resolve é o Básico (vagas, ofertas,
-// responder); o Premium aparece só como link (é para o Paulo ajudar a vender)
+// convite para o plano: Básico (o que resolve no Mural) e, ao lado, o Premium
+// para comparar preço e diferença (é o plano em que o Paulo ajuda a vender)
 function PlanoModal({ motivo, member, onClose }) {
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
-  const B = PLANOS.basico;
-  const msg = `Olá Paulo! ${member?.nome ? `Aqui é ${member.nome}. ` : ""}Quero assinar o plano ${B.nome} (${B.preco}/mês) do Ecossistema PK.`;
+  const quem = member?.nome ? `Aqui é ${member.nome}. ` : "";
+  const link = (id) =>
+    `${WHATSAPP}?text=${encodeURIComponent(
+      `Olá Paulo! ${quem}Quero assinar o plano ${PLANOS[id].nome} (${PLANOS[id].preco}/mês) do Ecossistema PK.`
+    )}`;
+  const P = PLANOS.premium;
   return (
     <div className="chave-overlay" onClick={onClose}>
-      <div className="chave-box plano-box" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
+      <div className="chave-box plano-box plano-duplo" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="chave-x" aria-label="Fechar" onClick={onClose}>
           ✕
         </button>
-        <div className="kick">Plano {B.nome}</div>
-        <h3>
-          {B.preco}
-          <small className="plano-mes">/mês</small>
-        </h3>
-        {motivo && <p className="chave-lead">{motivo}</p>}
-        <p className="plano-sub">{B.sub}</p>
-        <ul className="join-checks">
-          {B.beneficios.map((b) => (
-            <li key={b}>✓ {b}</li>
-          ))}
-        </ul>
-        <a className="btn btn-primary join-cta" href={`${WHATSAPP}?text=${encodeURIComponent(msg)}`} target="_blank" rel="noopener noreferrer">
-          Quero o {B.nome}
-        </a>
-        <p className="plano-nota">Depois do pagamento, o Paulo libera o plano na sua conta.</p>
-        <p className="plano-premium-link">
-          Tem uma empresa e quer que o Paulo ajude a vender?{" "}
+        <div className="kick">Planos do Ecossistema PK</div>
+        {motivo && <p className="chave-lead plano-motivo">{motivo}</p>}
+        <div className="plano-cols">
+          <section className="plano-col basico">
+            <div className="plano-col-tag">Para o Mural</div>
+            <h3>{PLANOS.basico.nome}</h3>
+            <div className="plano-col-preco">
+              {PLANOS.basico.preco}
+              <small>/mês</small>
+            </div>
+            <p className="plano-sub">{PLANOS.basico.sub}</p>
+            <ul className="join-checks">
+              {PLANOS.basico.beneficios.map((b) => (
+                <li key={b}>✓ {b}</li>
+              ))}
+            </ul>
+            <a className="btn btn-primary join-cta" href={link("basico")} target="_blank" rel="noopener noreferrer">
+              Quero o {PLANOS.basico.nome}
+            </a>
+          </section>
+          <section className="plano-col premium">
+            <div className="plano-col-tag">★ Para vender mais</div>
+            <h3>{P.nome}</h3>
+            <div className="plano-col-preco">
+              {P.preco}
+              <small>/mês</small>
+            </div>
+            <p className="plano-sub">{P.sub}</p>
+            <ul className="join-checks">
+              {P.beneficios.slice(0, -1).map((b) => (
+                <li key={b}>✓ {b}</li>
+              ))}
+            </ul>
+            <div className="plano-extras">
+              <span>Extras com o Paulo:</span>
+              {EXTRAS_PREMIUM.map((e) => (
+                <span className="plano-extra" key={e.id}>
+                  + {e.nome}
+                </span>
+              ))}
+            </div>
+            <a className="mur-plano-btn plano-col-btn" href={link("premium")} target="_blank" rel="noopener noreferrer">
+              <span className="mur-plano-star" aria-hidden="true">
+                ★
+              </span>
+              <span>
+                <small>O Paulo ajuda a vender</small>
+                Quero o {P.nome}
+              </span>
+            </a>
+          </section>
+        </div>
+        <p className="plano-nota">
+          Depois do pagamento, o Paulo libera o plano na sua conta.{" "}
           <a href="/ecossistema#planos" target="_blank" rel="noopener noreferrer">
-            Conheça o {PLANOS.premium.nome} →
+            Ver todos os detalhes →
           </a>
         </p>
       </div>

@@ -8777,3 +8777,98 @@ body:has(.vt-theme) {
   color: #ffd27a;
   font-weight: 600;
 }
+
+/* convite do plano: Básico e Premium lado a lado */
+.chave-box.plano-duplo {
+  max-width: 880px;
+  width: calc(100vw - 32px);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+.plano-motivo {
+  margin-bottom: 14px;
+}
+.plano-cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 720px) {
+  .plano-cols {
+    grid-template-columns: 1fr;
+  }
+}
+.plano-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+}
+.plano-col.basico {
+  border-color: rgba(111, 255, 191, 0.55);
+}
+.plano-col.premium {
+  border: 2px solid #ffd27a;
+  background: linear-gradient(160deg, rgba(255, 210, 122, 0.14), rgba(255, 143, 200, 0.1) 60%, rgba(255, 255, 255, 0.03));
+  box-shadow: 0 14px 40px rgba(255, 143, 200, 0.18);
+}
+.plano-col h3 {
+  font: 800 1.35rem "Sora", "Space Grotesk", sans-serif;
+}
+.plano-col-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.plano-col.basico .plano-col-tag {
+  color: #6fffbf;
+}
+.plano-col.premium .plano-col-tag {
+  color: #ffd27a;
+}
+.plano-col-preco {
+  font: 800 2rem "Sora", "Space Grotesk", sans-serif;
+  letter-spacing: -0.02em;
+}
+.plano-col-preco small {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  margin-left: 2px;
+}
+.plano-col .join-checks {
+  flex: 1;
+  margin-bottom: 10px;
+}
+.plano-col.basico .btn-primary {
+  color: #06304a;
+  background: #6fffbf;
+  border-color: #6fffbf;
+}
+.plano-extras {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.plano-extra {
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 210, 122, 0.5);
+  color: #ffe2a8;
+}
+.plano-col-btn {
+  align-self: stretch;
+  justify-content: center;
+  text-decoration: none;
+}
+.plano-duplo .plano-nota a {
+  color: #ffd27a;
+  font-weight: 600;
+}

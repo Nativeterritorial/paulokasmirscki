@@ -1440,4 +1440,74 @@ export const COMPANIES = [
     link: "https://www.instagram.com/alumivar_esquadrias/",
     linkLabel: "@alumivar_esquadrias",
   },
+  {
+    id: "rosalentintas",
+    nome: "Rosalen Tintas",
+    segmento: "Tintas & Equipamentos de Pintura",
+    descricao:
+      "Grupo fundado em 2009 em Nova Bassano, com indústria em Veranópolis (BR 470, km 109) — tintas demarcatórias, moveleiras, industriais, prediais e solventes, equipamentos de pintura e reformas. Fone (54) 2123-1959.",
+    atende: ["Imóveis & Construção", "Agro & Indústria", "Comércio & Varejo"],
+    link: "https://rosalentintas.com.br/",
+    linkLabel: "rosalentintas.com.br",
+  },
+  {
+    id: "sofiamazzarollo",
+    nome: "Sofia Mazzarollo Eventos",
+    segmento: "Assessoria de Eventos",
+    descricao:
+      "Relações-públicas de Veranópolis (CONRERP 4163-RS) com assessoria completa para eventos na Serra Gaúcha — casamentos, aniversários e eventos corporativos.",
+    atende: ["Turismo & Hotelaria", "Gastronomia", "Negócios & Empresas"],
+    link: "https://www.instagram.com/sofiamazzarolloeventos/",
+    linkLabel: "@sofiamazzarolloeventos",
+  },
+  {
+    id: "siviero",
+    nome: "Urbanizadora Siviero",
+    segmento: "Urbanizadora & Loteamentos",
+    descricao:
+      "Há mais de 45 anos em Veranópolis (Av. Pinheiro Machado, 710) projetando paisagens urbanas e realizando sonhos — loteamentos com novas formas de morar e trabalhar.",
+    atende: ["Imóveis & Construção", "Finanças & Investimentos"],
+    link: "https://www.sivierourbanizadora.com.br/",
+    linkLabel: "sivierourbanizadora.com.br",
+  },
+  {
+    id: "digitalway",
+    nome: "DigitalWay",
+    segmento: "Tecnologia para Educação",
+    descricao:
+      "Em Veranópolis, tecnologia para o ensino — telas interativas e estúdios completos para aulas on-line, com venda, locação, sistema próprio e acompanhamento da implantação.",
+    atende: ["Tecnologia & IA", "Educação & Capacitação", "Negócios & Empresas"],
+    link: "https://www.digitalw.com.br/",
+    linkLabel: "digitalw.com.br",
+  },
+  {
+    id: "lupisport",
+    nome: "Lupisport",
+    segmento: "Confecção Esportiva",
+    descricao:
+      "Em Veranópolis, apaixonados por confecção esportiva desde 1988 — uniformes e roupas para o esporte.",
+    atende: ["Moda & Vestuário", "Esporte & Lazer"],
+    link: "https://www.instagram.com/lupisportbrasil/",
+    linkLabel: "@lupisportbrasil",
+  },
+  {
+    id: "criare",
+    nome: "Criare Comunicação Visual",
+    segmento: "Comunicação Visual",
+    descricao:
+      "Comunicação visual em Veranópolis para a sua marca. WhatsApp (54) 98407-4538 e atendimento@criarevisual.com.br.",
+    atende: ["Marketing & Digital", "Mídia & Comunicação", "Negócios & Empresas"],
+    link: "https://www.instagram.com/criarecomunicacaovisual/",
+    linkLabel: "@criarecomunicacaovisual",
+  },
+  {
+    id: "registroveranopolis",
+    nome: "Registro Civil e de Imóveis de Veranópolis",
+    segmento: "Cartório — Registro Civil e de Imóveis",
+    descricao:
+      "Há mais de um século prestando serviços à sociedade em Veranópolis (Rua Benjamin Constant, 105, sala 101) — registro civil e registro de imóveis, com o oficial Gerson Tadeu Astolfi Vivan.",
+    atende: ["Jurídico", "Imóveis & Construção"],
+    link: "https://www.instagram.com/registroveranopolis/",
+    linkLabel: "@registroveranopolis",
+  },
 ];

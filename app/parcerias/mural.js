@@ -63,7 +63,7 @@ export const PLANOS = {
     sub: "Para entrar na rede e resolver o que você precisa.",
     beneficios: [
       "Concierge de IA e Monte meu time",
-      "Diretório da rede, com Chave PK",
+      "Diretório da rede (Chave PK avulsa, valor com o Paulo)",
       "Publicar o que você procura no Mural",
       "Recomendar profissionais de confiança",
       "Pedir obra, projeto, gestão e venda de imóvel",
@@ -75,6 +75,7 @@ export const PLANOS = {
     sub: "Para quem quer fazer negócio dentro da rede.",
     beneficios: [
       "Tudo do plano Grátis",
+      "2 Chaves PK por mês: o Paulo apresenta você ao dono da empresa",
       "Publicar vagas de emprego (também na página pública /vagas)",
       "Indicar negócios e receber bonificação",
       "Responder a quem procura fornecedor ou serviço",
@@ -88,6 +89,7 @@ export const PLANOS = {
     sub: "Para empresas que querem aparecer e vender mais.",
     beneficios: [
       "Tudo do plano Básico",
+      "Chaves PK sem limite, com prioridade na análise",
       "Topo da sua categoria no diretório, com selo Premium",
       "Prioridade quando o Paulo monta os times do concierge",
       "Divulgação da empresa no Instagram do Paulo",
@@ -129,5 +131,19 @@ export const EXTRAS_PREMIUM = [
   },
 ];
 export const PLANO_NIVEIS = ["basico", "premium"];
+
+// Chave PK por plano: quantas por mês (Premium sem limite). Sem plano, ou
+// passando do limite, a Chave é "avulsa": o Paulo analisa e passa o valor.
+export const CHAVES_POR_MES = { basico: 2, premium: Infinity };
+export const inicioDoMes = (agora = Date.now()) => {
+  const d = new Date(agora);
+  return new Date(d.getFullYear(), d.getMonth(), 1).getTime();
+};
+// quantas Chaves a pessoa ainda tem neste mês (null = sem plano)
+export const chavesRestantes = (plano, usadasNoMes) => {
+  const lim = CHAVES_POR_MES[plano];
+  if (!lim) return null;
+  return lim === Infinity ? Infinity : Math.max(0, lim - usadasNoMes);
+};
 // compatível com o que já existia: o plano pago "de entrada" é o Básico
 export const PLANO = { ...PLANOS.basico, nome: "Plano Básico" };

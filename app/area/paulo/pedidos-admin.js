@@ -16,6 +16,7 @@ const RESPOSTAS_PRONTAS = [
   "Recebi o seu pedido! Vou analisar e te retorno por aqui.",
   "Vou te chamar no WhatsApp para combinarmos os detalhes.",
   "Apresentação feita! Já passei o seu contato para a empresa.",
+  "O valor da sua Chave PK é R$ ___. Posso seguir com a apresentação?",
 ];
 
 // conversa com o cliente, dentro do cartão do pedido
@@ -319,6 +320,17 @@ export default function PedidosAdmin({ code, tipo, pedidos, members = [], compan
                     <div className="lead-nm">
                       {p.titulo}
                       <span className="su-emp"> · {p.nome}</span>
+                      {tipo === "chave" && (
+                        <span className={`chave-tag ${p.avulsa ? "avulsa" : p.plano || ""}`}>
+                          {p.avulsa
+                            ? p.plano
+                              ? "Avulsa (passou do limite) — passe o valor"
+                              : "Avulsa, sem plano — passe o valor"
+                            : p.plano === "premium"
+                            ? "⭐ Premium — prioridade"
+                            : "★ Básico — incluída no plano"}
+                        </span>
+                      )}
                     </div>
                     <div className="lead-ct">
                       {fmt(p.t)}

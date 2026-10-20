@@ -1221,9 +1221,34 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="insta-left">
-                <div className="name serif">Acompanhe no Instagram</div>
-                <div className="handle">@paulokasmirscki</div>
+              <div className="insta-perfil">
+                <span className="insta-anel" aria-hidden="true">
+                  <span className="insta-foto" />
+                </span>
+                <div className="insta-left">
+                  <div className="insta-kick">Acompanhe no Instagram</div>
+                  <div className="name serif">
+                    Paulo Kasmirscki
+                    {/* selo do Ecossistema PK (não é o verificado do Instagram) */}
+                    <svg className="insta-selo" viewBox="0 0 24 24" aria-label="Conector oficial do Ecossistema PK" role="img">
+                      <title>Conector oficial do Ecossistema PK</title>
+                      <defs>
+                        <linearGradient id="seloPk" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0" stopColor="#6fffbf" />
+                          <stop offset="0.5" stopColor="#7cc4ff" />
+                          <stop offset="1" stopColor="#8b5cf6" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                        fill="url(#seloPk)"
+                        d="M12 1.5l2.4 1.9 3-.3 1.1 2.8 2.8 1.1-.3 3 1.9 2.4-1.9 2.4.3 3-2.8 1.1-1.1 2.8-3-.3L12 22.5l-2.4-1.9-3 .3-1.1-2.8-2.8-1.1.3-3L1.1 12 3 9.6l-.3-3 2.8-1.1L6.6 2.7l3 .3z"
+                      />
+                      <path d="M7.6 12.3l3 3 5.8-6.1" fill="none" stroke="#0b1440" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                  <div className="handle">@paulokasmirscki</div>
+                  <p className="insta-bio">Bastidores da rede, novas empresas e oportunidades do Ecossistema PK.</p>
+                </div>
               </div>
               <span className="btn insta-btn">
                 <svg

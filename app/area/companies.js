@@ -1810,4 +1810,59 @@ export const COMPANIES = [
     link: "https://www.voenery.com.br/",
     linkLabel: "voenery.com.br",
   },
+  {
+    id: "dhunas",
+    cidade: "Passo de Torres",
+    nome: "Dhunas Marine Resort",
+    segmento: "Condomínio Náutico",
+    descricao:
+      "O primeiro condomínio náutico às margens do Rio Mampituba, em Passo de Torres (SC): exclusividade, marina privativa e localização entre dunas naturais.",
+    atende: ["Imóveis & Construção", "Turismo & Hotelaria", "Finanças & Investimentos"],
+    link: "https://www.instagram.com/dhunasoficial/",
+    linkLabel: "@dhunasoficial",
+  },
+  {
+    id: "psj",
+    cidade: "Pelotas",
+    nome: "PSJ",
+    segmento: "Gastronomia, Lazer & Eventos",
+    descricao:
+      "Fundado em 1967 como posto de combustíveis, desde 2021 é um espaço 100% de gastronomia, lazer e convivência no Centro de Pelotas (Rua Félix da Cunha com General Teles): massas, pizzas, cervejas artesanais, drinks e lanches, shows ao vivo e transmissões esportivas.",
+    atende: ["Gastronomia", "Turismo & Hotelaria", "Esporte & Lazer"],
+    link: "https://www.instagram.com/psj.oficial/",
+    linkLabel: "@psj.oficial",
+  },
+  {
+    id: "dudagarbi",
+    cidade: "Porto Alegre",
+    nome: "Duda Garbi",
+    segmento: "Comunicador & Apresentador",
+    descricao:
+      "Comunicador e apresentador de Porto Alegre que entrevista fazendo carne crua: 5 anos do \"Um Assado para…\" e canal com mais de 650 mil inscritos e 155 milhões de visualizações.",
+    atende: ["Mídia & Comunicação", "Marketing & Digital", "Gastronomia"],
+    link: "https://www.instagram.com/dudagarbi/",
+    linkLabel: "@dudagarbi",
+  },
+  {
+    id: "roncato",
+    cidade: ["Veranópolis", "Canela", "Porto Alegre"],
+    nome: "Grupo Roncato",
+    segmento: "Construtora & Incorporadora",
+    descricao:
+      "Empresa familiar da construção civil com matriz em Veranópolis: imóveis únicos e de alto padrão em Veranópolis (Gioia), Canela e Porto Alegre (CH421).",
+    atende: ["Imóveis & Construção", "Finanças & Investimentos"],
+    link: "https://gruporoncato.com/",
+    linkLabel: "gruporoncato.com",
+  },
+  {
+    id: "flaviohenrique",
+    cidade: "Veranópolis",
+    nome: "Flávio Henrique Daskoski",
+    segmento: "Barbeiro & Cabeleireiro",
+    descricao:
+      "Barbeiro e cabeleireiro em Veranópolis, também com gestão em salão de beleza — agendamento pelo Instagram.",
+    atende: ["Estética & Beleza", "Serviços"],
+    link: "https://www.instagram.com/flavio_henrique23/",
+    linkLabel: "@flavio_henrique23",
+  },
 ];

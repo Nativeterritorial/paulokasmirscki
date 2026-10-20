@@ -1061,42 +1061,57 @@ export default function Home() {
                   05 <span>/ A Plataforma</span>
                 </div>
                 <h2 style={{ marginTop: "16px" }}>
-                  Uma plataforma <em>exclusiva</em> para a rede
+                  A plataforma do{" "}
+                  <em className="nowrap">
+                    Ecossistema <span className="pk-selo">PK</span>
+                  </em>
                 </h2>
                 <p className="plat-lead">
-                  Quem faz parte ganha acesso à área de membros — onde um
-                  assistente de IA conecta você às empresas certas do
-                  ecossistema, em segundos.
+                  Na área de membros você pede, encontra e fecha negócio dentro
+                  da rede: a IA agiliza e o Paulo conduz cada passo.
                 </p>
 
-                <div className="plat-benefits">
+                <div className="plat-benefits plat-grid6">
                   <div className="plat-b">
                     <div className="plat-ic" aria-hidden="true">🤖</div>
                     <div>
                       <h4>Concierge com IA</h4>
-                      <p>
-                        Diga o que precisa em linguagem natural — a IA encontra a
-                        empresa certa da rede.
-                      </p>
+                      <p>Diga o que precisa: a IA mostra o caminho certo dentro da rede.</p>
                     </div>
                   </div>
                   <div className="plat-b">
-                    <div className="plat-ic" aria-hidden="true">🔗</div>
+                    <div className="plat-ic" aria-hidden="true">🧩</div>
                     <div>
-                      <h4>Diretório do ecossistema</h4>
-                      <p>
-                        Todas as empresas num só lugar, com conexão em um clique.
-                      </p>
+                      <h4>Monte meu time</h4>
+                      <p>Para um projeto maior, a IA monta o time e o Paulo conduz.</p>
                     </div>
                   </div>
                   <div className="plat-b">
-                    <div className="plat-ic" aria-hidden="true">🤝</div>
+                    <div className="plat-ic" aria-hidden="true">🔑</div>
                     <div>
-                      <h4>Paulo como ponte</h4>
-                      <p>
-                        Toda conexão é acompanhada por ele, com a confiança da
-                        rede.
-                      </p>
+                      <h4>Chave PK</h4>
+                      <p>O Paulo apresenta você direto a quem decide na empresa.</p>
+                    </div>
+                  </div>
+                  <div className="plat-b">
+                    <div className="plat-ic" aria-hidden="true">📌</div>
+                    <div>
+                      <h4>Mural de Oportunidades</h4>
+                      <p>Procuro, ofereço, vagas e recomendações da rede.</p>
+                    </div>
+                  </div>
+                  <div className="plat-b">
+                    <div className="plat-ic" aria-hidden="true">💰</div>
+                    <div>
+                      <h4>Indicações</h4>
+                      <p>Indique negócios e imóveis e receba bonificação.</p>
+                    </div>
+                  </div>
+                  <div className="plat-b">
+                    <div className="plat-ic" aria-hidden="true">📋</div>
+                    <div>
+                      <h4>Tudo acompanhado</h4>
+                      <p>Pedidos e conversas com o Paulo num só lugar.</p>
                     </div>
                   </div>
                 </div>
@@ -1114,24 +1129,38 @@ export default function Home() {
               {/* Prévia do painel */}
               <div className="plat-preview fade-up" aria-hidden="true">
                 <div className="pp-bar">
-                  <span className="pp-dot" /> Concierge do Ecossistema · IA
+                  <span className="pp-dot" /> Concierge do Ecossistema PK · IA
                 </div>
                 <div className="pp-chat">
-                  <div className="pp-bubble pp-me">
-                    preciso de um site e marketing pra minha loja
-                  </div>
+                  <div className="pp-bubble pp-me">quero abrir uma cafeteria</div>
                   <div className="pp-bubble pp-bot">
-                    A <b>Visara Digital</b> é ideal pro seu caso! 👗 Faz sites e
-                    marketing pra negócios locais. Quer que eu te conecte? O
-                    Paulo faz a ponte. 🤝
+                    Montei o seu <b>time</b> para abrir a cafeteria ☕ Marque o
+                    que você precisa, que o Paulo conduz.
                   </div>
                 </div>
-                <div className="pp-firm">
-                  <div>
-                    <div className="pp-firm-nm">Visara Digital</div>
-                    <div className="pp-firm-sg">Marketing &amp; Digital</div>
+                <div className="pp-time">
+                  <div className="pp-time-tt">🧩 Time · Abrir a cafeteria</div>
+                  <div className="pp-svc on">
+                    <span className="pp-check">✓</span>
+                    <span className="pp-svc-nm">Contabilidade e abertura</span>
+                    <span className="pp-svc-or">Parceiros na rede</span>
                   </div>
-                  <span className="pp-conn">Conectar</span>
+                  <div className="pp-svc on">
+                    <span className="pp-check">✓</span>
+                    <span className="pp-svc-nm">Projeto e reforma do ponto</span>
+                    <span className="pp-svc-or">Parceiros na rede</span>
+                  </div>
+                  <div className="pp-svc on">
+                    <span className="pp-check">✓</span>
+                    <span className="pp-svc-nm">Equipamentos de café</span>
+                    <span className="pp-svc-or">O Paulo busca para você</span>
+                  </div>
+                  <div className="pp-svc">
+                    <span className="pp-check"></span>
+                    <span className="pp-svc-nm">Marketing e redes sociais</span>
+                    <span className="pp-svc-or">Parceiros na rede</span>
+                  </div>
+                  <span className="pp-pedir">Pedir meu time →</span>
                 </div>
               </div>
             </div>

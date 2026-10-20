@@ -9069,3 +9069,20 @@ body:has(.vt-theme) {
 .rede-valores { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; padding: 0; }
 .rede-valores li { font-size: .9rem; color: #eaf0ff; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(124,196,255,.3); background: rgba(11,20,64,.45); }
 @media (max-width: 480px) { .section-head h2 .nowrap { white-space: normal; } }
+
+/* 05 / A Plataforma: 6 recursos em grade e prévia do Monte meu time */
+.plat-grid6 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 22px; }
+.plat-grid6 .plat-b .plat-ic { width: 42px; height: 42px; font-size: 1.15rem; }
+.plat-grid6 .plat-b h4 { font-size: 1rem; }
+.plat-grid6 .plat-b p { font-size: .9rem; line-height: 1.45; }
+@media (max-width: 560px) { .plat-grid6 { grid-template-columns: 1fr; } }
+.pp-time { border-radius: 14px; padding: 14px; background: rgba(11, 20, 64, .55); border: 1px solid rgba(124, 196, 255, .28); display: flex; flex-direction: column; gap: 8px; }
+.pp-time-tt { font-weight: 700; font-size: .95rem; margin-bottom: 2px; }
+.pp-svc { display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; background: rgba(255, 255, 255, .04); font-size: .86rem; opacity: .6; }
+.pp-svc.on { opacity: 1; background: rgba(111, 255, 191, .07); }
+.pp-check { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid rgba(255, 255, 255, .4); display: grid; place-items: center; font-size: .72rem; font-weight: 800; color: #06304a; }
+.pp-svc.on .pp-check { background: #6fffbf; border-color: #6fffbf; }
+.pp-svc-or { font-size: .72rem; color: #9fd0ff; white-space: nowrap; }
+.pp-pedir { align-self: flex-end; margin-top: 4px; font-size: .78rem; font-weight: 700; color: #06304a; background: linear-gradient(120deg, #6fffbf, #46d6ff); padding: 9px 16px; border-radius: 999px; }
+@media (max-width: 420px) { .pp-svc { grid-template-columns: 20px 1fr; } .pp-svc-or { grid-column: 2; } }
+#plataforma h2 em { font-style: normal; }

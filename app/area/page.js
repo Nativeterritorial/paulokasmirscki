@@ -300,6 +300,12 @@ export default function Area() {
       // restaura o histórico da conversa
       const chat = JSON.parse(localStorage.getItem("area_chat") || "null");
       if (Array.isArray(chat) && chat.length) setMessages(chat);
+      // veio de um atalho da página inicial: a pergunta já fica escrita
+      const pergunta = new URLSearchParams(window.location.search).get("pergunta");
+      if (pergunta) {
+        setInput(pergunta.slice(0, 200));
+        window.history.replaceState({}, "", "/area" + window.location.hash);
+      }
     } catch (e) {}
   }, []);
 

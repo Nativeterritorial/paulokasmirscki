@@ -705,7 +705,9 @@ export default function Home() {
         <section className="hero">
           <div className="container hero-inner">
             <div className="reveal">
-              <div className="eyebrow">O conector do ecossistema</div>
+              <div className="eyebrow">
+                O conector do <span className="marca-pk">Ecossistema <span className="pk-selo">PK</span></span>
+              </div>
               <h1>
                 <span className="w">Conectando</span>{" "}
                 <span className="w">
@@ -725,7 +727,7 @@ export default function Home() {
                 <a className="btn btn-primary" href="#faca-parte">
                   Quero fazer parte
                 </a>
-                <a className="btn btn-outline" href="#rede">
+                <a className="btn btn-outline" href="/ecossistema">
                   Conhecer a rede
                 </a>
               </div>
@@ -740,14 +742,12 @@ export default function Home() {
                   <div className="label">Contatos na rede</div>
                 </div>
                 <div className="stat">
-                  <div className="num gold-text">Multi</div>
-                  <div className="label">Segmentos</div>
+                  <div className="num gold-text">24h</div>
+                  <div className="label">Concierge de IA</div>
                 </div>
                 <div className="stat">
-                  <div className="num gold-text" data-count="100" data-suffix="%">
-                    100%
-                  </div>
-                  <div className="label">Foco em soluções</div>
+                  <div className="num gold-text">1</div>
+                  <div className="label">Pessoa conduzindo cada passo</div>
                 </div>
               </div>
             </div>

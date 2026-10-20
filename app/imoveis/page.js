@@ -1,5 +1,5 @@
 import { getVitrine } from "../../lib/store";
-import Vitrine from "./vitrine";
+import ImoveisAbas from "./imoveis-abas";
 
 // a vitrine muda sempre que o Paulo publica um anúncio: monta a cada visita
 export const dynamic = "force-dynamic";
@@ -50,12 +50,12 @@ export default async function Imoveis() {
             Imóveis à <em>venda</em>
           </h1>
           <p className="join-lead">
-            Casas, apartamentos, terrenos e pontos comerciais selecionados. Gostou
+            Lançamentos, loteamentos, casas, apartamentos, terrenos e pontos comerciais selecionados. Gostou
             de algum? Fale comigo e eu conduzo a negociação do começo ao fim.
           </p>
         </div>
 
-        <Vitrine imoveis={imoveis} />
+        <ImoveisAbas imoveis={imoveis} />
 
         <section className="vt-sell">
           <div>

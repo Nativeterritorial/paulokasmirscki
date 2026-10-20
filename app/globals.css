@@ -9533,3 +9533,70 @@ body:has(.vt-theme) {
 }
 @media (prefers-reduced-motion: reduce) { .insta-anel::before { animation: none; } }
 .insta-foto { width: 100%; height: 100%; border-radius: 50%; border: 3px solid #0b1440; background: #3b5bd6 url(/paulo-premium.jpg) 54% 14% / 200% auto no-repeat; }
+
+/* ===== Imóveis: abas por tipo e empreendimentos que o Paulo vende ===== */
+.im-abas { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 34px; }
+.im-abas button {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 16px; border-radius: 999px; cursor: pointer;
+  font: 600 0.92rem var(--sans); color: #eaf0ff;
+  background: #0b1440; border: 1px solid rgba(124, 196, 255, 0.25);
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+.im-abas button:hover { border-color: #6fffbf; transform: translateY(-1px); }
+.im-abas button.on { background: linear-gradient(120deg, #6fffbf, #46d6ff); color: #06304a; border-color: transparent; }
+.im-abas b { font-size: 0.72rem; min-width: 20px; padding: 1px 6px; border-radius: 999px; background: rgba(255, 255, 255, 0.12); text-align: center; }
+.im-abas button.on b { background: rgba(6, 48, 74, 0.15); }
+.emp-sec { margin-bottom: 46px; }
+.emp-head { margin-bottom: 20px; }
+.emp-head h2 { font-family: var(--serif); font-size: clamp(1.7rem, 3vw, 2.3rem); margin: 4px 0 6px; }
+.emp-head h2 em { font-style: normal; color: #6fffbf; }
+.emp-head p { color: var(--muted); margin: 0; }
+.emp-lista { display: flex; flex-direction: column; gap: 22px; }
+.emp-card {
+  display: grid; grid-template-columns: 1.15fr 1fr; gap: 0; overflow: hidden;
+  border-radius: 22px; background: #0b1440; border: 1px solid rgba(124, 196, 255, 0.22);
+  box-shadow: 0 26px 60px rgba(3, 8, 30, 0.4);
+}
+.emp-fotos { position: relative; min-height: 360px; background: #060c2a; }
+.emp-foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.emp-status {
+  position: absolute; top: 14px; left: 14px; padding: 6px 12px; border-radius: 999px;
+  font: 700 0.76rem var(--sans); color: #06304a; background: linear-gradient(120deg, #6fffbf, #46d6ff);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+.emp-thumbs {
+  position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; gap: 6px; overflow-x: auto;
+  padding: 6px; border-radius: 12px; background: rgba(6, 12, 42, 0.55); backdrop-filter: blur(6px);
+}
+.emp-thumbs button { flex: none; width: 58px; height: 40px; padding: 0; border-radius: 7px; overflow: hidden; border: 2px solid transparent; cursor: pointer; opacity: 0.7; background: none; }
+.emp-thumbs button.on { border-color: #6fffbf; opacity: 1; }
+.emp-thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.emp-info { padding: 26px 28px; display: flex; flex-direction: column; }
+.emp-loc { font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: #9fd0ff; }
+.emp-info h3 { font-family: var(--serif); font-size: 1.6rem; margin: 6px 0 2px; color: #fff; }
+.emp-inc { font-size: 0.85rem; color: #9fb4e8; margin-bottom: 12px; }
+.emp-info p { color: #cfdcff; font-size: 0.95rem; line-height: 1.55; margin: 0 0 14px; }
+.emp-destaques { list-style: none; padding: 0; margin: 0 0 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+.emp-destaques li { position: relative; padding-left: 20px; font-size: 0.88rem; color: #eaf0ff; }
+.emp-destaques li::before { content: "✓"; position: absolute; left: 0; color: #6fffbf; font-weight: 800; }
+.emp-corretor {
+  display: flex; align-items: center; gap: 10px; margin-top: auto; padding: 10px 12px; border-radius: 12px;
+  background: rgba(111, 255, 191, 0.07); border: 1px solid rgba(111, 255, 191, 0.3); font-size: 0.84rem; color: #cfdcff;
+}
+.emp-corretor img { width: 26px; height: 26px; }
+.emp-corretor strong { color: #fff; }
+.emp-ctas { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+@media (max-width: 860px) {
+  .emp-card { grid-template-columns: 1fr; }
+  .emp-fotos { min-height: 240px; aspect-ratio: 16 / 10; }
+  .emp-info { padding: 20px; }
+  .emp-destaques { grid-template-columns: 1fr; }
+  .im-abas { flex-wrap: nowrap; overflow-x: auto; margin-left: -4px; padding: 0 4px 6px; }
+  .im-abas button { flex: none; }
+}
+.vt-theme main .emp-ctas .btn-primary, .emp-ctas .btn-primary { background: linear-gradient(120deg, #6fffbf, #46d6ff); color: #06304a; border-color: transparent; }
+.vt-theme main .emp-ctas .btn-outline, .emp-ctas .btn-outline { color: #eaf0ff; border-color: rgba(234, 240, 255, 0.45); background: transparent; }
+.emp-ctas .btn-outline:hover { border-color: #6fffbf; color: #fff; }
+.vt-theme .emp-head h2 em { color: #2563eb; }
+.vt-theme .emp-head .kick { color: #2563eb; }

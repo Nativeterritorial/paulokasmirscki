@@ -29,8 +29,8 @@ const HISTORIAS = [
   },
 ];
 const PASSOS = 4;
-const DUR = [1500, 1400, 1700, 2600]; // ms de cada passo da história
-const PAUSA = 1600; // girando livre entre uma história e outra
+const DUR = [3200, 2800, 3600, 4200]; // ms de cada passo da história
+const PAUSA = 3000; // girando livre entre uma história e outra
 
 const C1 = [110, 214, 255];
 const C2 = [167, 139, 250];

@@ -9332,3 +9332,8 @@ body:has(.vt-theme) {
   .rv-core img { width: 30px; height: 30px; }
   .rv-legenda p { font-size: 0.84rem; padding: 8px 14px; }
 }
+/* valores da rede: os três na mesma linha (no celular voltam a quebrar) */
+.section-head .rede-valores { flex-wrap: nowrap; width: max-content; }
+@media (max-width: 1000px) {
+  .section-head .rede-valores { flex-wrap: wrap; width: auto; }
+}

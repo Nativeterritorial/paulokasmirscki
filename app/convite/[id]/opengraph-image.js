@@ -8,6 +8,17 @@ export const alt = "Convite para o Ecossistema PK";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/jpeg";
 
+// arquivo da pasta public: lê do disco (no computador) ou pelo próprio site
+// (na Vercel a pasta public não vai junto com a função)
+async function arquivo(nome) {
+  try {
+    return await readFile(path.join(process.cwd(), "public", nome));
+  } catch {
+    const r = await fetch(`https://www.paulokasmirscki.com.br/${nome}`);
+    return Buffer.from(await r.arrayBuffer());
+  }
+}
+
 // fonte do Google Fonts (com fallback silencioso)
 async function fonte(familia, peso) {
   try {
@@ -33,11 +44,10 @@ const selo = (fontSize, pad, raio) => ({
 // Prévia do convite: "<Nome> te convidou para o Ecossistema PK"
 export default async function Imagem({ params }) {
   const { id } = await params;
-  const pub = path.join(process.cwd(), "public");
   const [quem, base, logo, sora, inter] = await Promise.all([
     getConvidante(id),
-    readFile(path.join(pub, "og-convite-base.jpg")),
-    readFile(path.join(pub, "logo-mark.svg")),
+    arquivo("og-convite-base.jpg"),
+    arquivo("logo-mark.svg"),
     fonte("Sora", 800),
     fonte("Inter", 600),
   ]);

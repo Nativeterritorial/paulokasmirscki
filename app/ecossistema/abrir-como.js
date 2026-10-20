@@ -8,7 +8,7 @@ export default function AbrirComo() {
   useEffect(() => {
     const abrir = () => {
       const id = decodeURIComponent(window.location.hash.slice(1));
-      const sec = id && document.getElementById(id);
+      const sec = id ? document.getElementById(id) : null;
       const det = sec?.querySelector("details.eco-como");
       if (!det) return;
       det.open = true;

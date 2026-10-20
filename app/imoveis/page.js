@@ -57,6 +57,26 @@ export default async function Imoveis() {
 
         <ImoveisAbas imoveis={imoveis} />
 
+        <section className="vt-sell vt-indique">
+          <div>
+            <div className="kick">💰 Indique e ganhe</div>
+            <h2>Conhece alguém procurando ou vendendo imóvel?</h2>
+            <p>
+              Indique para mim: eu conduzo a negociação como corretor e você
+              recebe uma bonificação quando o negócio fechar. Você só apresenta;
+              o resto é comigo.
+            </p>
+          </div>
+          <div className="vt-sell-ctas">
+            <a className="btn btn-primary" href="/ecossistema#indicar">
+              Como funciona a indicação
+            </a>
+            <a className="btn btn-outline" href="/area#indicacoes">
+              Indicar um imóvel
+            </a>
+          </div>
+        </section>
+
         <section className="vt-sell">
           <div>
             <div className="kick">Quer vender o seu imóvel?</div>

@@ -2,6 +2,7 @@ import SignupForm from "./signup-form";
 import { PROJECT_STAGES, OBRA_STAGES, stageNum } from "../parcerias/project-stages";
 import { MURAL_DIAS } from "../parcerias/mural";
 import Planos from "./planos";
+import AbrirComo from "./abrir-como";
 
 // Página única do Ecossistema PK (a antiga /parcerias redireciona para cá):
 // o que é, o que dá pra fazer (cada serviço leva à aba certa da Área de
@@ -138,10 +139,11 @@ const SERVICOS = [
     cls: "svc-ind",
     aba: "indicacoes",
     ic: ["M3 11l9-7 9 7", "M5 10v10h14V10", "M10 20v-6h4v6"],
-    kick: "Indique um negócio",
-    t: "Indique e receba uma bonificação",
-    d: "Conhece alguém que quer comprar, vender ou alugar um imóvel? Você apresenta, o Paulo conduz o negócio como corretor e você recebe quando ele fecha.",
-    btn: "Indicar um negócio",
+    kick: "Indique um imóvel",
+    t: "Indique um imóvel e ganhe bonificação",
+    d: "Conhece alguém que quer comprar, vender ou alugar um imóvel? Você indica, eu conduzo a negociação como corretor e você recebe a sua bonificação quando o negócio fechar.",
+    btn: "Indicar um imóvel",
+    link: ["/imoveis", "Ver os imóveis à venda →"],
     como: (
       <>
         <Etapas itens={PASSOS_INDICACAO} />
@@ -322,6 +324,7 @@ export default function Ecossistema() {
             </p>
           </div>
 
+          <AbrirComo />
           <div className="eco-svcs">
             {SERVICOS.map((s) => (
               <section className={`eco-svc svc ${s.cls}`} id={s.id} key={s.id}>

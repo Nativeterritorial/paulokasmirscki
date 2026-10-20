@@ -49,6 +49,9 @@ function Empreendimento({ e }) {
             Venda com <strong>Paulo Kasmirscki</strong> · corretor autorizado · CRECI-RS 77988
           </span>
         </div>
+        <a className="emp-indique" href="/ecossistema#indicar">
+          💰 Conhece alguém interessado? <strong>Indique e ganhe bonificação →</strong>
+        </a>
         <div className="emp-ctas">
           <a
             className="btn btn-primary"

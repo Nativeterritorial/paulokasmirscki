@@ -9600,3 +9600,14 @@ body:has(.vt-theme) {
 .emp-ctas .btn-outline:hover { border-color: #6fffbf; color: #fff; }
 .vt-theme .emp-head h2 em { color: #2563eb; }
 .vt-theme .emp-head .kick { color: #2563eb; }
+
+/* imóveis: atalho para entender a indicação */
+.vt-indique { margin-bottom: 18px; background: linear-gradient(120deg, #0b1440, #12318f) !important; color: #eaf0ff; }
+.vt-theme .vt-indique h2 { color: #fff; }
+.vt-theme .vt-indique p { color: #cfdcff; }
+.vt-indique .kick { color: #6fffbf; }
+.vt-theme main .vt-indique .btn-primary { background: linear-gradient(120deg, #6fffbf, #46d6ff); color: #06304a; border-color: transparent; }
+.vt-theme main .vt-indique .btn-outline { color: #eaf0ff; border-color: rgba(234, 240, 255, 0.45); background: transparent; }
+.emp-indique { display: block; margin-top: 10px; font-size: 0.84rem; color: #cfdcff; text-decoration: none; }
+.emp-indique strong { color: #6fffbf; }
+.emp-indique:hover strong { text-decoration: underline; }

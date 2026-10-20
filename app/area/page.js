@@ -129,7 +129,7 @@ function AreaTabs({ aba, member, naoLidas, mobile }) {
     ["inicio", "svc-ia", "Início"],
     ["solicitacoes", "svc-sol", "Solicitações"],
     ["mural", "svc-mur", "Mural"],
-    ["indicacoes", "svc-ind", member ? "Minhas indicações" : "Indicar negócio"],
+    ["indicacoes", "svc-ind", member ? "Minhas indicações" : "Indicar imóvel"],
     ["vender", "svc-imo", "Vender imóvel"],
     ["obra", "svc-obra", "Minha obra"],
     ["projeto", "svc-proj", "Meu projeto"],

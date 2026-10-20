@@ -77,7 +77,7 @@ export const PLANOS = {
       "Tudo do plano Grátis",
       "2 Chaves PK por mês: o Paulo apresenta você ao dono da empresa",
       "Publicar vagas de emprego (também na página pública /vagas)",
-      "Indicar negócios e receber bonificação",
+      "Indicar imóveis e receber bonificação",
       "Responder a quem procura fornecedor ou serviço",
       "Publicar ofertas e condições para a rede",
       "Ver quem se interessou e falar direto",

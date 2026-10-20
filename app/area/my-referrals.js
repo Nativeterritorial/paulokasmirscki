@@ -80,12 +80,12 @@ export default function MyReferrals({ code, member }) {
           <h2>
             {member
               ? "Acompanhe os negócios que você indicou"
-              : "Indique um negócio imobiliário"}
+              : "Indique um imóvel e ganhe bonificação"}
           </h2>
           <p>
             Conhece alguém que quer comprar, vender ou alugar um imóvel? Você
-            indica, o Paulo conduz o negócio e você recebe uma bonificação
-            sobre a comissão quando ele fecha.
+            indica, o Paulo conduz a negociação como corretor e você recebe uma
+            bonificação sobre a comissão quando o negócio fechar.
           </p>
         </div>
         <button

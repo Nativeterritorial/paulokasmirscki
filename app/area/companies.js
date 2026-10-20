@@ -133,7 +133,7 @@ export const COMPANIES = [
   },
   {
     id: "mbx",
-    cidade: ["Porto Alegre","São Paulo","Miami","Dubai","Angola"],
+    cidade: ["Porto Alegre", "São Paulo", "Santa Catarina", "Miami", "Nova York", "Dubai", "Luanda", "China", "Portugal", "Inglaterra"],
     nome: "MBX Global Services",
     segmento: "Logística & Comércio Exterior",
     descricao:
@@ -1395,6 +1395,7 @@ export const COMPANIES = [
   },
   {
     id: "riocomplex",
+    cidade: "Porto Alegre",
     nome: "Rio Complex Beach Sports",
     segmento: "Esporte & Lazer — Beach Sports",
     descricao:
@@ -1742,5 +1743,71 @@ export const COMPANIES = [
     atende: ["Indústria & Móveis", "Comércio & Varejo", "Esporte & Lazer"],
     link: "https://www.nauticasolucoes.com.br/",
     linkLabel: "nauticasolucoes.com.br",
+  },
+  {
+    id: "vistadovale",
+    cidade: "Veranópolis",
+    nome: "Vista do Vale",
+    segmento: "Loteamento",
+    descricao:
+      "Loteamento premium em Veranópolis, na Rua Getúlio Vargas, da Imobiliária Favero: 100% regularizado, infraestrutura completa, altitude elevada e vista para Bento Gonçalves e Caxias do Sul.",
+    atende: ["Imóveis & Construção", "Finanças & Investimentos"],
+    link: "https://vistadovaleveranopolis.com.br/",
+    linkLabel: "vistadovaleveranopolis.com.br",
+  },
+  {
+    id: "margusca",
+    cidade: "Veranópolis",
+    nome: "Margusca",
+    segmento: "Mochilas, Bolsas & Brindes",
+    descricao:
+      "Indústria de artefatos de tecido em Veranópolis: mochilas, bolsas para notebook, bolsas térmicas, sacolas e malas de viagem, também sob medida para empresas. Fone (54) 3441-4488.",
+    atende: ["Moda & Vestuário", "Negócios & Empresas", "Indústria & Móveis"],
+    link: "https://www.margusca.com.br/",
+    linkLabel: "margusca.com.br",
+  },
+  {
+    id: "mascaron",
+    cidade: "Vila Flores",
+    nome: "Mascaron Empreendimentos",
+    segmento: "Empreendimentos Imobiliários",
+    descricao:
+      "Empreendimentos imobiliários em Vila Flores, com o Villa di Fastro em obras — informações e vendas pelo Instagram.",
+    atende: ["Imóveis & Construção", "Finanças & Investimentos"],
+    link: "https://www.instagram.com/mascaronempreendimentos/",
+    linkLabel: "@mascaronempreendimentos",
+  },
+  {
+    id: "rdrmetais",
+    cidade: "Veranópolis",
+    nome: "RDR Metais",
+    segmento: "Fundição de Precisão & Usinagem",
+    descricao:
+      "Fabricação e usinagem de peças metálicas complexas por fundição de precisão, com sede em Veranópolis — menos usinagem e solda, mais acabamento e economia.",
+    atende: ["Indústria & Móveis", "Negócios & Empresas"],
+    link: "https://www.rdrmetais.com.br/",
+    linkLabel: "rdrmetais.com.br",
+  },
+  {
+    id: "previlege",
+    cidade: "Veranópolis",
+    nome: "Previlege",
+    segmento: "Móveis de Alto Padrão",
+    descricao:
+      "Artefatos e móveis em madeira de alto padrão, com design exclusivo e madeira certificada — fundada em 2011 em Veranópolis, com coleções assinadas por designers.",
+    atende: ["Indústria & Móveis", "Imóveis & Construção", "Comércio & Varejo"],
+    link: "https://www.previlegemoveis.com.br/",
+    linkLabel: "previlegemoveis.com.br",
+  },
+  {
+    id: "voenery",
+    cidade: "Veranópolis",
+    nome: "Vó Enery Alimentos",
+    segmento: "Alimentos & Comida Caseira",
+    descricao:
+      "Comida de casa feita com amor de vó desde 1992, na Terra da Longevidade: pratos prontos práticos, lojas e sistema de franquias.",
+    atende: ["Gastronomia", "Comércio & Varejo", "Negócios & Empresas"],
+    link: "https://www.voenery.com.br/",
+    linkLabel: "voenery.com.br",
   },
 ];

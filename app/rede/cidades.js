@@ -29,7 +29,12 @@ export const CIDADES = {
   "São Paulo": [-23.5505, -46.6333],
   "Miami": [25.7617, -80.1918],
   "Dubai": [25.2048, 55.2708],
-  "Angola": [-8.839, 13.2894],
+  "Luanda": [-8.839, 13.2894],
+  "Santa Catarina": [-27.5954, -48.548],
+  "Nova York": [40.7128, -74.006],
+  "China": [31.2304, 121.4737],
+  "Portugal": [38.7223, -9.1393],
+  "Inglaterra": [51.5072, -0.1276],
 };
 export const BASE = "Veranópolis";
 

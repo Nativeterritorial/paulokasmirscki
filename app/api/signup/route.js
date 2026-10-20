@@ -43,7 +43,7 @@ export async function POST(req) {
     whatsapp,
   });
 
-  const r = await selfSignupMember({ nome, whatsapp, senha });
+  const r = await selfSignupMember({ nome, whatsapp, senha, convite: body.convite });
   if (r.token) return NextResponse.json({ ok: true, token: r.token });
   if (r.exists) return NextResponse.json({ ok: true, exists: true });
   // se não deu pra criar o acesso agora, o cadastro chegou ao Paulo mesmo assim

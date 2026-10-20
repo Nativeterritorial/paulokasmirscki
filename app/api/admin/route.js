@@ -211,8 +211,12 @@ export async function POST(req) {
   }));
 
   // membros, já com o link pessoal pronto pra copiar/enviar
-  const members = (await getMembers()).map((m) => ({
+  const todos = await getMembers();
+  const nomeDe = { paulo: "você (/convite/paulo)", ...Object.fromEntries(todos.map((m) => [m.id, m.nome])) };
+  const members = todos.map((m) => ({
     id: m.id,
+    convidadoPor: m.convidadoPor ? nomeDe[m.convidadoPor] || "membro removido" : "",
+    convidou: todos.filter((x) => x.convidadoPor === m.id).length,
     nome: m.nome,
     whatsapp: m.whatsapp,
     t: m.t,

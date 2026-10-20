@@ -7550,7 +7550,7 @@ body:has(.vt-theme) {
 }
 
 /* Faça parte: título em destaque (Sora extra-negrito) */
-.cta h2.fp-title {
+.cta :is(h1, h2).fp-title {
   font-family: "Sora", "Space Grotesk", sans-serif;
   font-weight: 800;
   font-size: clamp(2.6rem, 6vw, 4.8rem);
@@ -7559,7 +7559,7 @@ body:has(.vt-theme) {
   max-width: 980px;
   text-shadow: 0 6px 40px rgba(8, 20, 70, 0.35);
 }
-.cta h2.fp-title em {
+.cta :is(h1, h2).fp-title em {
   font-style: normal;
   color: #bcd6ff;
 }
@@ -8977,16 +8977,16 @@ body:has(.vt-theme) {
 }
 
 /* Faça parte: "Entre para o" em cima e "Ecossistema PK" inteiro embaixo */
-.cta h2.fp-title em {
+.cta :is(h1, h2).fp-title em {
   display: block;
 }
 @media (min-width: 640px) {
-  .cta h2.fp-title em {
+  .cta :is(h1, h2).fp-title em {
     white-space: nowrap;
   }
 }
 /* "Ecossistema PK" nunca quebra: no celular a fonte se ajusta à largura */
-.cta h2.fp-title em {
+.cta :is(h1, h2).fp-title em {
   white-space: nowrap;
   font-size: min(1em, calc((100vw - 64px) / 8));
 }
@@ -9015,7 +9015,7 @@ body:has(.vt-theme) {
   padding: 0.12em 0.4em;
 }
 /* "Ecossistema PK" com o selo continua cabendo no celular */
-.cta h2.fp-title em {
+.cta :is(h1, h2).fp-title em {
   font-size: min(1em, calc((100vw - 64px) / 8.7));
 }
 
@@ -9409,3 +9409,60 @@ body:has(.vt-theme) {
 .mr-tiles { filter: invert(1) hue-rotate(195deg) brightness(0.78) contrast(0.92) saturate(0.55); }
 .mr-mapa .leaflet-control-attribution { background: rgba(6, 12, 42, 0.7); color: #9fb4e8; }
 .mr-mapa .leaflet-control-attribution a { color: #cfe0ff; }
+
+/* ===== Convite personalizado (área de membros e /convite/<id>) ===== */
+.convite-card {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 20px 28px;
+  align-items: center;
+  margin: 0 auto 22px;
+  max-width: 1080px;
+  padding: 22px 24px;
+  border-radius: 20px;
+  background: radial-gradient(ellipse at 90% 0%, rgba(111, 255, 191, 0.14), transparent 60%), #0b1440;
+  border: 1px solid rgba(111, 255, 191, 0.35);
+  box-shadow: 0 18px 44px rgba(3, 8, 30, 0.35);
+}
+.convite-kick { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: #6fffbf; margin-bottom: 6px; }
+.convite-card h3 { font-size: 1.3rem; margin: 0 0 8px; color: #fff; }
+.convite-card p { margin: 0; color: #cfdcff; font-size: 0.92rem; line-height: 1.5; }
+.convite-card p strong { color: #fff; }
+.convite-conta { margin-top: 10px !important; color: #bfffe3 !important; }
+.convite-acoes { display: flex; flex-direction: column; gap: 10px; }
+.convite-link {
+  display: block;
+  padding: 11px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px dashed rgba(124, 196, 255, 0.4);
+  color: #eaf0ff;
+  font-size: 0.86rem;
+  word-break: break-all;
+}
+.convite-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.convite-wa, .convite-copiar {
+  flex: 1;
+  min-width: 140px;
+  text-align: center;
+  padding: 11px 16px;
+  border-radius: 999px;
+  font: 700 0.9rem var(--sans);
+  cursor: pointer;
+  text-decoration: none;
+}
+.convite-wa { background: linear-gradient(120deg, #6fffbf, #46d6ff); color: #06304a; border: 0; }
+.convite-copiar { background: transparent; color: #eaf0ff; border: 1px solid rgba(124, 196, 255, 0.45); }
+@media (max-width: 760px) { .convite-card { grid-template-columns: 1fr; padding: 18px; } }
+
+/* página do convite */
+.convite-hero { position: relative; overflow: hidden; padding: 70px 0 90px; min-height: 100vh; }
+.convite-hero > .container { position: relative; z-index: 1; }
+.convite-nome { background: linear-gradient(100deg, #6fffbf, #46d6ff); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+.convite-valores { justify-content: center; margin: 22px auto 0; max-width: 760px; }
+.convite-hero .fp-title { margin: 0 auto 28px; line-height: 1.12; }
+.convite-hero .fp-title em { margin-top: 6px; }
+.convite-hero .fp-sub { max-width: 640px; margin: 0 auto; }
+@media (max-width: 600px) { .convite-hero .fp-title { font-size: 2.1rem; } }
+.admin-convite { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin: 12px 0 16px; padding: 12px 16px; border-radius: 14px; border: 1px solid rgba(111, 255, 191, 0.4); background: rgba(111, 255, 191, 0.06); font-size: 0.9rem; }
+.admin-convite span { color: var(--muted); }

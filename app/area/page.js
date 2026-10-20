@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { COMPANIES } from "./companies";
 import InstallApp from "./install-app";
 import MyReferrals from "./my-referrals";
+import ConviteCard from "./convite-card";
 import MyProjects from "./my-projects";
 import MyGestao from "./my-gestao";
 import MyImoveis from "./my-imoveis";
@@ -753,6 +754,7 @@ export default function Area() {
         <MyMural code={code} member={member} />
       </div>
       <div className="area-aba" hidden={aba !== "indicacoes"}>
+        <ConviteCard code={code} member={member} />
         <MyReferrals code={code} member={member} />
       </div>
       <div className="area-aba" hidden={aba !== "vender"}>

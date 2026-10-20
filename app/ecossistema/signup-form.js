@@ -23,6 +23,16 @@ const DESTINO = {
   indicacoes: "#indicacoes",
 };
 
+function lerConvite() {
+  try {
+    const c = JSON.parse(localStorage.getItem("pk_convite") || "null");
+    // o convite vale por 30 dias
+    return c && Date.now() - c.t < 30 * 864e5 ? c.id : "";
+  } catch (e) {
+    return "";
+  }
+}
+
 export default function SignupForm() {
   const [f, setF] = useState(EMPTY);
   const [sending, setSending] = useState(false);
@@ -47,7 +57,8 @@ export default function SignupForm() {
       const r = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(f),
+        // veio pelo convite de um membro (guardado em /convite/<id>)
+        body: JSON.stringify({ ...f, convite: lerConvite() }),
       });
       const d = await r.json();
       if (d.ok && d.token) {

@@ -1267,6 +1267,31 @@ export default function PauloAdmin() {
                   + Adicionar membro
                 </button>
               </form>
+              {(() => {
+                const link = "https://www.paulokasmirscki.com.br/convite/paulo";
+                const trouxe = members.filter((m) => m.convidadoPor === "você (/convite/paulo)").length;
+                const msg = `Olá! Quero te convidar para o Ecossistema PK, a minha rede de empresas de confiança. O cadastro é grátis: ${link}`;
+                return (
+                  <div className="admin-convite">
+                    <div>
+                      <strong>🔗 Seu convite:</strong> paulokasmirscki.com.br/convite/paulo
+                      <span>
+                        {" "}
+                        · aparece no WhatsApp como “Paulo te convidou para o Ecossistema PK”
+                        {trouxe ? ` · 🙌 trouxe ${trouxe} ${trouxe === 1 ? "pessoa" : "pessoas"}` : ""}
+                      </span>
+                    </div>
+                    <div className="lead-actions">
+                      <a className="firm-conn" href={`https://wa.me/?text=${encodeURIComponent(msg)}`} target="_blank" rel="noopener noreferrer">
+                        Enviar no WhatsApp
+                      </a>
+                      <button type="button" className="chip" onClick={() => navigator.clipboard?.writeText(link)}>
+                        Copiar link
+                      </button>
+                    </div>
+                  </div>
+                );
+              })()}
               {!members.length ? (
                 <p className="admin-empty">
                   Nenhum membro com link pessoal ainda. Quem entra pelo código
@@ -1295,6 +1320,8 @@ export default function PauloAdmin() {
                                 {m.whatsapp ? ` · ${m.whatsapp}` : ""}
                                 {m.temSenha ? " · 🔑 com senha" : " · sem senha (entra pelo link)"}
                                 {m.plano === "premium" ? " · ⭐ Premium" : m.plano ? " · ★ Básico" : ""}
+                                {m.convidadoPor ? ` · 🔗 convidado por ${m.convidadoPor}` : ""}
+                                {m.convidou ? ` · 🙌 trouxe ${m.convidou} ${m.convidou === 1 ? "pessoa" : "pessoas"}` : ""}
                               </div>
                             </div>
                             <div className="lead-actions">

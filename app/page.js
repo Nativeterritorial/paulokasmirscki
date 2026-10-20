@@ -6,7 +6,6 @@ import { SegIcon } from "./segment-icons";
 import SignupForm from "./ecossistema/signup-form";
 import BrandsCarousel from "./brands-carousel";
 import MobileMenu from "./mobile-menu";
-import RedePontes from "./rede-pontes";
 import NetworkBG from "./network-bg";
 
 const WHATSAPP = "https://wa.me/5554996505799";
@@ -1244,9 +1243,6 @@ export default function Home() {
             </a>
           </div>
         </section>
-
-        {/* Do contato ao negócio: as três pontes do ecossistema */}
-        <RedePontes />
 
         {/* Faça parte: cadastro com acesso imediato */}
         <section id="faca-parte" className="cta">

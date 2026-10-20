@@ -927,12 +927,21 @@ export default function Home() {
                 02 <span>/ A Rede</span>
               </div>
               <h2>
-                Marcas que já fazem parte do <em>ecossistema</em>
+                Marcas que já fazem parte do{" "}
+                <em className="nowrap">
+                  Ecossistema <span className="pk-selo">PK</span>
+                </em>
               </h2>
               <p>
-                Empresas de pessoas da rede do Paulo — conectadas para crescer
-                juntas. Ele é a ponte entre elas.
+                Empresas e profissionais de confiança, de vários segmentos,
+                conectados para crescer juntos. O Paulo é a ponte: apresenta,
+                conduz e acompanha cada conexão.
               </p>
+              <ul className="rede-valores">
+                <li>🤝 Apresentadas pelo Paulo</li>
+                <li>🔑 Contato direto com quem decide</li>
+                <li>📈 Negócios gerados dentro da rede</li>
+              </ul>
             </div>
 
             <BrandsCarousel brands={BRANDS} />

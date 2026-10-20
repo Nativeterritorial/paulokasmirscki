@@ -6,17 +6,20 @@ export const metadata = {
   title: "Paulo Kasmirscki — Conectando pessoas e gerando negócios",
   description:
     "Paulo Kasmirscki conecta pessoas e gera negócios. Networking estratégico, parcerias e oportunidades que transformam relações em resultados.",
+  // o que aparece ao compartilhar o link (WhatsApp, Instagram, LinkedIn...)
   openGraph: {
-    title: "Paulo Kasmirscki — Conectando pessoas e gerando negócios",
+    title: "Ecossistema PK · Seus contatos viram negócios",
     description:
-      "Networking estratégico, parcerias e oportunidades que transformam relações em resultados.",
+      "Empresas de confiança, IA e o Paulo conduzindo cada conexão. Cadastro grátis em 1 minuto.",
+    siteName: "Paulo Kasmirscki",
+    locale: "pt_BR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Paulo Kasmirscki — Conectando pessoas e gerando negócios",
+    title: "Ecossistema PK · Seus contatos viram negócios",
     description:
-      "Networking estratégico, parcerias e oportunidades que transformam relações em resultados.",
+      "Empresas de confiança, IA e o Paulo conduzindo cada conexão. Cadastro grátis em 1 minuto.",
   },
 };
 

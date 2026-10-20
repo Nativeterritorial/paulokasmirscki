@@ -9136,3 +9136,30 @@ body:has(.vt-theme) {
     mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.55) 40%, rgba(0,0,0,.55) 100%);
   }
 }
+
+/* hub de segmentos: malha de pontos interligando os mercados */
+.hub2-net {
+  border-radius: 50%;
+  opacity: 0.8;
+  -webkit-mask-image: radial-gradient(circle, #000 35%, transparent 70%);
+  mask-image: radial-gradient(circle, #000 35%, transparent 70%);
+}
+.hub2-mesh path {
+  fill: none;
+  stroke: url(#hubmesh);
+  stroke-width: 0.22;
+  opacity: 0.55;
+  transition: opacity 0.35s ease, stroke 0.35s ease, stroke-width 0.35s ease;
+}
+.hub2-mesh path.cross { opacity: 0.22; stroke-dasharray: 0.6 1.2; }
+.hub2-mesh path.on { stroke: #6fffbf; stroke-width: 0.4; opacity: 0.95; }
+.hub2-dots circle { fill: #bfe9ff; }
+.hub2-dots circle.glow { fill: rgba(110, 214, 255, 0.22); }
+.hub2-dots g { animation: hub2twinkle 3.2s ease-in-out infinite; }
+@keyframes hub2twinkle { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+.hub2-sig circle { fill: #dcfff0; }
+.hub2-sig circle.glow { fill: rgba(111, 255, 191, 0.3); }
+@media (prefers-reduced-motion: reduce) {
+  .hub2-sig { display: none; }
+  .hub2-dots g { animation: none; }
+}

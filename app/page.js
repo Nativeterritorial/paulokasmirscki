@@ -1,7 +1,7 @@
 import Effects from "./effects";
 import CookieBanner from "./cookie";
 import HeroAI from "./hero-ai";
-import SegmentHub from "./segment-hub";
+import RedeViva from "./rede-viva";
 import { SegIcon } from "./segment-icons";
 import SignupForm from "./ecossistema/signup-form";
 import BrandsCarousel from "./brands-carousel";
@@ -995,7 +995,10 @@ export default function Home() {
             </div>
 
             {/* Hub de segmentos (feixes de conexão) */}
-            <SegmentHub nodes={HUB_NODES} />
+            <RedeViva
+              nodes={HUB_NODES}
+              links={Object.fromEntries(HUB_NODES.map((n) => [n.label, segLink(n.label)]))}
+            />
 
             {/* Grade com todos os segmentos: cada um abre o concierge */}
             <p className="seg-dica">

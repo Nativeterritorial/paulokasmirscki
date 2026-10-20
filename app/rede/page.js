@@ -1,4 +1,6 @@
 import { COMPANIES } from "../area/companies";
+import { porCidade } from "./cidades";
+import MapaRede from "./mapa-rede";
 
 export const metadata = {
   title: "A Rede — Paulo Kasmirscki",
@@ -36,6 +38,14 @@ export default function Rede() {
             outros.
           </p>
         </div>
+
+        <section id="mapa" className="mr-sec">
+          <div className="eyebrow">Mapa da rede</div>
+          <h2>
+            Onde a rede <em>está</em>
+          </h2>
+          <MapaRede grupos={porCidade(COMPANIES)} />
+        </section>
 
         <div className="rede-grid">
           {COMPANIES.map((c) => (

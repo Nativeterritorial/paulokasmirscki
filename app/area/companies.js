@@ -2,6 +2,7 @@
 export const COMPANIES = [
   {
     id: "native",
+    cidade: "Veranópolis",
     nome: "NATIVE",
     segmento: "Inteligência Territorial",
     descricao:
@@ -17,6 +18,7 @@ export const COMPANIES = [
   },
   {
     id: "visara",
+    cidade: "Veranópolis",
     nome: "Visara Digital",
     segmento: "Marketing & Digital",
     descricao:
@@ -32,6 +34,7 @@ export const COMPANIES = [
   },
   {
     id: "pk",
+    cidade: "Veranópolis",
     nome: "PK Corretor de Imóveis",
     segmento: "Imóveis",
     descricao:
@@ -42,6 +45,7 @@ export const COMPANIES = [
   },
   {
     id: "pulse",
+    cidade: "Veranópolis",
     nome: "Pulse Jiu-Jitsu",
     segmento: "Esporte & Lazer",
     descricao:
@@ -52,6 +56,7 @@ export const COMPANIES = [
   },
   {
     id: "exatus",
+    cidade: "Marau",
     nome: "Exatus Gene",
     segmento: "Saúde & Genética",
     descricao:
@@ -62,6 +67,7 @@ export const COMPANIES = [
   },
   {
     id: "bigwolf",
+    cidade: "Flores da Cunha",
     nome: "Big Wolf",
     segmento: "Moda & Vestuário",
     descricao:
@@ -72,6 +78,7 @@ export const COMPANIES = [
   },
   {
     id: "agetra",
+    cidade: "Nova Prata",
     nome: "Agetra Gráfica",
     segmento: "Gráfica & Impressão",
     descricao:
@@ -82,6 +89,7 @@ export const COMPANIES = [
   },
   {
     id: "gilioli",
+    cidade: "Veranópolis",
     nome: "Gilioli Organizações Contábeis",
     segmento: "Contabilidade",
     descricao:
@@ -92,6 +100,7 @@ export const COMPANIES = [
   },
   {
     id: "mutalys",
+    cidade: "Veranópolis",
     nome: "Mutalys",
     segmento: "Gestão & Consultoria",
     descricao:
@@ -102,6 +111,7 @@ export const COMPANIES = [
   },
   {
     id: "ordeclean",
+    cidade: "Paraí",
     nome: "Ordeclean",
     segmento: "Agro & Pecuária",
     descricao:
@@ -112,6 +122,7 @@ export const COMPANIES = [
   },
   {
     id: "rbs",
+    cidade: "Porto Alegre",
     nome: "Grupo RBS",
     segmento: "Mídia & Comunicação",
     descricao:
@@ -122,6 +133,7 @@ export const COMPANIES = [
   },
   {
     id: "mbx",
+    cidade: ["Porto Alegre","São Paulo","Miami","Dubai","Angola"],
     nome: "MBX Global Services",
     segmento: "Logística & Comércio Exterior",
     descricao:
@@ -132,6 +144,7 @@ export const COMPANIES = [
   },
   {
     id: "gazzana",
+    cidade: "Veranópolis",
     nome: "Gazzana & Maragno",
     segmento: "Jurídico",
     descricao:
@@ -142,6 +155,7 @@ export const COMPANIES = [
   },
   {
     id: "serafin",
+    cidade: "Veranópolis",
     nome: "Serafin Suplementos",
     segmento: "Saúde & Suplementos",
     descricao:
@@ -152,6 +166,7 @@ export const COMPANIES = [
   },
   {
     id: "alsus",
+    cidade: "Caxias do Sul",
     nome: "Grupo ALSUS",
     segmento: "Construção & Infraestrutura",
     descricao:
@@ -162,6 +177,7 @@ export const COMPANIES = [
   },
   {
     id: "abraaofrainer",
+    cidade: "Veranópolis",
     nome: "Abraão Frainer Filmes",
     segmento: "Fotografia & Filmagem",
     descricao:
@@ -192,6 +208,7 @@ export const COMPANIES = [
   },
   {
     id: "vervue",
+    cidade: "Nova Prata",
     nome: "Ótica VerVue",
     segmento: "Ótica",
     descricao:
@@ -222,6 +239,7 @@ export const COMPANIES = [
   },
   {
     id: "prg",
+    cidade: "Gramado",
     nome: "Construtora PRG",
     segmento: "Construção & Incorporação",
     descricao:
@@ -252,6 +270,7 @@ export const COMPANIES = [
   },
   {
     id: "farinvest",
+    cidade: "Veranópolis",
     nome: "Farinvest Consórcios",
     segmento: "Consórcios & Investimentos",
     descricao:
@@ -262,6 +281,7 @@ export const COMPANIES = [
   },
   {
     id: "sebilar",
+    cidade: ["Veranópolis","Nova Prata"],
     nome: "Sebilar",
     segmento: "Sistemas de Segurança",
     descricao:
@@ -272,6 +292,7 @@ export const COMPANIES = [
   },
   {
     id: "vsm",
+    cidade: "Veranópolis",
     nome: "VSM",
     segmento: "Componentes para Vidro Temperado",
     descricao:
@@ -312,6 +333,7 @@ export const COMPANIES = [
   },
   {
     id: "rometal",
+    cidade: "Veranópolis",
     nome: "Rometal",
     segmento: "Sistemas & Acessórios para Móveis",
     descricao:
@@ -322,6 +344,7 @@ export const COMPANIES = [
   },
   {
     id: "ipacol",
+    cidade: "Veranópolis",
     nome: "Ipacol Máquinas Agrícolas",
     segmento: "Máquinas Agrícolas",
     descricao:
@@ -352,6 +375,7 @@ export const COMPANIES = [
   },
   {
     id: "dubom",
+    cidade: "Cotiporã",
     nome: "Dubom Fertilizantes",
     segmento: "Fertilizantes & Adubos Orgânicos",
     descricao:
@@ -362,6 +386,7 @@ export const COMPANIES = [
   },
   {
     id: "floriculturaalma",
+    cidade: "Veranópolis",
     nome: "Floricultura Alma",
     segmento: "Floricultura",
     descricao:
@@ -392,6 +417,7 @@ export const COMPANIES = [
   },
   {
     id: "145cafe",
+    cidade: "Veranópolis",
     nome: "145 Café",
     segmento: "Cafeteria",
     descricao:
@@ -412,6 +438,7 @@ export const COMPANIES = [
   },
   {
     id: "mga",
+    cidade: "Veranópolis",
     nome: "MGA Válvulas Industriais",
     segmento: "Válvulas Industriais",
     descricao:
@@ -432,6 +459,7 @@ export const COMPANIES = [
   },
   {
     id: "amparo",
+    cidade: "Caxias do Sul",
     nome: "Amparo Corretora de Seguros",
     segmento: "Seguros",
     descricao:
@@ -452,6 +480,7 @@ export const COMPANIES = [
   },
   {
     id: "coexistir",
+    cidade: "Veranópolis",
     nome: "Coexistir",
     segmento: "Desenvolvimento de Pessoas & Negócios",
     descricao:
@@ -512,6 +541,7 @@ export const COMPANIES = [
   },
   {
     id: "encanadorlocatelli",
+    cidade: ["Bento Gonçalves","Veranópolis"],
     nome: "Casa do Encanador Locatelli",
     segmento: "Materiais Hidráulicos & Aquecedores",
     descricao:
@@ -662,6 +692,7 @@ export const COMPANIES = [
   },
   {
     id: "flytourserra",
+    cidade: ["Veranópolis","Nova Prata"],
     nome: "Flytour Serra Gaúcha",
     segmento: "Turismo & Viagens",
     descricao:
@@ -692,6 +723,7 @@ export const COMPANIES = [
   },
   {
     id: "dezfutebol",
+    cidade: "Rio de Janeiro",
     nome: "Dez Futebol e Clube",
     segmento: "Esporte & Lazer — Clube",
     descricao:
@@ -752,6 +784,7 @@ export const COMPANIES = [
   },
   {
     id: "verasol",
+    cidade: "Veranópolis",
     nome: "Verasol Energia Solar",
     segmento: "Energia Solar",
     descricao:

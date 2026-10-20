@@ -976,6 +976,7 @@ export default function Home() {
 
             <p className="brands-note">
               <a href="/rede" style={{ color: "var(--gold-2)" }}>Ver todas as empresas →</a>
+              {"  ·  "}<a href="/rede#mapa" style={{ color: "var(--gold-2)" }}>Ver no mapa 🗺️</a>
               {"  ·  "}E a sua marca? <a href="/ecossistema#faca-parte" style={{ color: "var(--gold-2)" }}>Faça parte da rede →</a>
             </p>
           </div>

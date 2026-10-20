@@ -125,8 +125,8 @@ const SERVICOS = [
       <Lista
         itens={[
           "Procuro: publique o fornecedor, serviço ou profissional que você precisa. As empresas da rede respondem.",
-          "Ofereço: condições especiais, capacidade disponível e parcerias para a rede (Plano Ecossistema PK).",
-          "Vagas de emprego: publique a vaga e receba candidatos, que também chegam pela página pública /vagas (Plano Ecossistema PK).",
+          "Ofereço: condições especiais, capacidade disponível e parcerias para a rede (plano Básico).",
+          "Vagas de emprego: publique a vaga e receba candidatos, que também chegam pela página pública /vagas (plano Básico).",
           "Recomendo: indique um profissional ou empresa de confiança. Passa pela aprovação do Paulo.",
           `Cada publicação fica ${MURAL_DIAS} dias no ar.`,
         ]}
@@ -276,7 +276,9 @@ export default function Ecossistema() {
       <main className="container join-wrap">
         {/* o que é */}
         <div className="join-hero eco-hero">
-          <div className="eyebrow">Ecossistema PK · Conector de Negócios</div>
+          <div className="eyebrow eco-marca">
+            <span className="marca-pk">Ecossistema <span className="pk-selo">PK</span></span> · Conector de Negócios
+          </div>
           <h1 className="mdl-title eco-title">
             Um só lugar para <em>conectar e resolver</em>
           </h1>
@@ -376,7 +378,7 @@ export default function Ecossistema() {
           <div className="mdl-head">
             <div className="kick">Faça parte</div>
             <h2 className="mdl-title">
-              Entre para o <em>Ecossistema</em>
+              Entre para o <em>Ecossistema <span className="pk-selo">PK</span></em>
             </h2>
             <p>
               Uma rede de empresas e pessoas que se indicam, se conectam e

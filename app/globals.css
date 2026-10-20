@@ -8990,3 +8990,31 @@ body:has(.vt-theme) {
   white-space: nowrap;
   font-size: min(1em, calc((100vw - 64px) / 8));
 }
+
+/* Assinatura "Ecossistema [PK]": o PK num selo com as cores do ícone */
+.pk-selo {
+  display: inline-block;
+  font-style: normal;
+  font-weight: 800;
+  color: #0b1440;
+  -webkit-text-fill-color: #0b1440;
+  background: linear-gradient(100deg, #7cc4ff, #8b5cf6);
+  padding: 0.02em 0.22em 0.04em;
+  border-radius: 0.22em;
+  line-height: 1;
+  margin-left: 0.04em;
+  letter-spacing: -0.01em;
+  vertical-align: 0.04em;
+}
+.eco-marca .marca-pk {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.eco-marca .pk-selo {
+  letter-spacing: 0.04em;
+  padding: 0.12em 0.4em;
+}
+/* "Ecossistema PK" com o selo continua cabendo no celular */
+.cta h2.fp-title em {
+  font-size: min(1em, calc((100vw - 64px) / 8.7));
+}

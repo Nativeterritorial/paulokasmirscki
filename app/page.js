@@ -1174,7 +1174,7 @@ export default function Home() {
           <div className="container">
             <div className="eyebrow">Faça parte</div>
             <h2 className="fp-title">
-              Entre para o <em>Ecossistema PK</em>
+              Entre para o <em>Ecossistema <span className="pk-selo">PK</span></em>
             </h2>
             <p>
               Uma rede de empresas e profissionais de confiança, com uma pessoa

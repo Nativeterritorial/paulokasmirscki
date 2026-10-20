@@ -39,7 +39,7 @@ export default async function Vagas() {
         <div className="join-hero">
           <div className="eyebrow">Vagas da rede</div>
           <h1 className="mdl-title">
-            Trabalhe nas empresas do <em>Ecossistema PK</em>
+            Trabalhe nas empresas do <em>Ecossistema <span className="pk-selo">PK</span></em>
           </h1>
           <p className="join-lead">
             Vagas abertas nas empresas da rede em Veranópolis e região. Escolha

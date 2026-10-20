@@ -9611,3 +9611,42 @@ body:has(.vt-theme) {
 .emp-indique { display: block; margin-top: 10px; font-size: 0.84rem; color: #cfdcff; text-decoration: none; }
 .emp-indique strong { color: #6fffbf; }
 .emp-indique:hover strong { text-decoration: underline; }
+
+/* ===== /ecossistema: "O que é o Ecossistema PK" ===== */
+.eco-oque { margin: 10px 0 64px; }
+.eco-oque-head { max-width: 820px; margin-bottom: 28px; }
+.eco-oque-head .kick { color: #6fffbf; }
+.eco-oque-head h2 em { font-style: normal; color: #6fffbf; }
+.eco-oque-head p { color: #dbe6ff; font-size: 1.12rem; line-height: 1.65; margin-top: 12px; }
+.eco-como-fluxo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; position: relative; margin-bottom: 22px; }
+.eco-passo {
+  position: relative; padding: 24px 22px; border-radius: 20px;
+  background: #0b1440; border: 1px solid rgba(124, 196, 255, 0.22); box-shadow: 0 20px 48px rgba(3, 8, 30, 0.35);
+}
+.eco-passo:not(:last-child)::after {
+  content: "→"; position: absolute; right: -16px; top: 50%; transform: translateY(-50%);
+  width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; z-index: 2;
+  background: linear-gradient(120deg, #6fffbf, #46d6ff); color: #06304a; font-weight: 800;
+}
+.eco-passo-n {
+  width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 12px;
+  font: 800 1.05rem var(--serif); color: #0b1440; background: linear-gradient(100deg, #7cc4ff, #8b5cf6);
+}
+.eco-passo h3 { font-family: var(--serif); font-size: 1.25rem; color: #fff; margin: 0 0 6px; }
+.eco-passo p { color: #cfdcff; font-size: 0.94rem; line-height: 1.55; margin: 0; }
+.eco-oque-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.eco-box { padding: 22px 24px; border-radius: 20px; background: rgba(11, 20, 64, 0.72); border: 1px solid rgba(124, 196, 255, 0.18); }
+.eco-box h3 { font-family: var(--serif); font-size: 1.15rem; color: #fff; margin: 0 0 14px; }
+.eco-quem, .eco-dif { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 11px; }
+.eco-quem li { display: flex; gap: 12px; align-items: flex-start; color: #cfdcff; font-size: 0.94rem; }
+.eco-quem li > span { font-size: 1.25rem; line-height: 1.2; }
+.eco-quem strong { color: #fff; }
+.eco-dif li { position: relative; padding-left: 26px; color: #eaf0ff; font-size: 0.95rem; }
+.eco-dif li::before { content: "✓"; position: absolute; left: 0; top: -1px; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font-size: 0.7rem; font-weight: 800; color: #06304a; background: #6fffbf; }
+.eco-todos { margin: 20px 0 0; padding: 14px 18px; border-radius: 14px; text-align: center; color: #eaf0ff; background: rgba(111, 255, 191, 0.08); border: 1px solid rgba(111, 255, 191, 0.3); }
+.eco-todos strong { color: #6fffbf; }
+@media (max-width: 860px) {
+  .eco-como-fluxo, .eco-oque-duo { grid-template-columns: 1fr; }
+  .eco-passo:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -16px; transform: translateX(50%); }
+}
+.eco-oque-head .kick { font-size: 0.95rem; letter-spacing: 0.14em; }

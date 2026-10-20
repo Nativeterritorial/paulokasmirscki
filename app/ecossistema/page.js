@@ -22,19 +22,24 @@ export const metadata = {
   alternates: { canonical: "/ecossistema" },
 };
 
-const PILARES = [
-  [
-    "Conexões estratégicas",
-    "Aproximo as pessoas certas no momento certo, unindo profissionais, empresas e clientes com interesses complementares.",
-  ],
-  [
-    "Soluções sob medida",
-    "Entendo a necessidade de cada um e encontro, dentro da rede, quem tem exatamente a solução que aquele cliente precisa.",
-  ],
-  [
-    "Negócios que crescem",
-    "Cada nova conexão fortalece o ecossistema, gerando indicações, parcerias e oportunidades que se multiplicam.",
-  ],
+// "O que é o Ecossistema": como funciona, quem participa e o diferencial
+const COMO = [
+  ["Você entra", "Cadastro grátis em 1 minuto e acesso na hora à Área de Membros."],
+  ["Diz o que precisa", "Pelo concierge de IA, pelo Mural ou falando comigo: um serviço, um fornecedor ou um time inteiro."],
+  ["A rede resolve", "Eu conecto você a quem decide nas empresas certas e acompanho até o negócio acontecer."],
+];
+const QUEM = [
+  ["🏢", "Empresas", "que querem novos clientes e parceiros"],
+  ["👩‍💼", "Profissionais liberais", "que vivem de indicação e confiança"],
+  ["🙋", "Clientes", "que precisam de alguém bom para resolver"],
+  ["💰", "Investidores", "atrás de imóveis e boas oportunidades"],
+];
+const DIFERENCIAL = [
+  "Empresas de confiança, apresentadas por mim",
+  "Uma pessoa conduzindo cada conexão, do começo ao fim",
+  "IA para achar o caminho certo em segundos",
+  "Quem indica imóvel ganha bonificação",
+  "Entrar é grátis",
 ];
 
 const svgIc = (paths) => (
@@ -299,17 +304,58 @@ export default function Ecossistema() {
           </div>
         </div>
 
-        <div className="flip eco-page-block">
-          <div className="eco-grid">
-            {PILARES.map(([t, d], i) => (
-              <article className="eco-card" key={t}>
-                <div className="num">{String(i + 1).padStart(2, "0")}</div>
+        {/* o que é o Ecossistema */}
+        <section className="eco-oque" id="o-que-e">
+          <div className="eco-oque-head">
+            <div className="kick">O que é o Ecossistema PK</div>
+            <p>
+              O Ecossistema PK é a rede de empresas, profissionais e clientes
+              que eu, Paulo Kasmirscki, conecto e acompanho pessoalmente. Funciona
+              como uma comunidade de confiança: quem entra encontra os parceiros
+              certos para o que precisa, faz novos negócios e ganha quando ajuda
+              a rede a crescer.
+            </p>
+          </div>
+
+          <div className="eco-como-fluxo">
+            {COMO.map(([t, d], i) => (
+              <div className="eco-passo" key={t}>
+                <div className="eco-passo-n">{i + 1}</div>
                 <h3>{t}</h3>
                 <p>{d}</p>
-              </article>
+              </div>
             ))}
           </div>
-        </div>
+
+          <div className="eco-oque-duo">
+            <div className="eco-box">
+              <h3>Quem faz parte</h3>
+              <ul className="eco-quem">
+                {QUEM.map(([ic, t, d]) => (
+                  <li key={t}>
+                    <span aria-hidden="true">{ic}</span>
+                    <div>
+                      <strong>{t}</strong> {d}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="eco-box">
+              <h3>Por que é diferente</h3>
+              <ul className="eco-dif">
+                {DIFERENCIAL.map((t) => (
+                  <li key={t}>{t}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <p className="eco-todos">
+            🤝 <strong>Todo mundo ganha:</strong> quem precisa encontra solução,
+            quem oferece encontra clientes e quem indica é recompensado.
+          </p>
+        </section>
 
         {/* o que você faz no ecossistema */}
         <section className="mdl-sec" id="servicos">

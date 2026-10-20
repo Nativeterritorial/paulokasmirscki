@@ -8975,3 +8975,18 @@ body:has(.vt-theme) {
     text-align: left;
   }
 }
+
+/* Faça parte: "Entre para o" em cima e "Ecossistema PK" inteiro embaixo */
+.cta h2.fp-title em {
+  display: block;
+}
+@media (min-width: 640px) {
+  .cta h2.fp-title em {
+    white-space: nowrap;
+  }
+}
+/* "Ecossistema PK" nunca quebra: no celular a fonte se ajusta à largura */
+.cta h2.fp-title em {
+  white-space: nowrap;
+  font-size: min(1em, calc((100vw - 64px) / 8));
+}

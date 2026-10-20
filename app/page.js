@@ -834,11 +834,11 @@ export default function Home() {
             <div className="about-grid fade-up">
               <div className="about-text">
                 <p>
-                  Paulo Kasmirscki destaca-se por sua{" "}
+                  <strong>Paulo Kasmirscki</strong> destaca-se por sua{" "}
                   <strong>comunicação magnética e cordialidade genuína</strong>.
                   Com uma facilidade rara de acolher as pessoas através da
-                  gentileza e do respeito, ele cria ambientes de total confiança
-                  onde as conversas fluem naturalmente — abrindo caminhos
+                  gentileza e do respeito, ele cria ambientes de total{" "}
+                  <strong>confiança</strong> onde as conversas fluem naturalmente — abrindo caminhos
                   sólidos para grandes negócios.
                 </p>
                 <p>

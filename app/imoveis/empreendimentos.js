@@ -2,6 +2,7 @@
 // autorizado. Fotos em /public/empreendimentos (por enquanto as dos sites
 // oficiais; trocar pelas do material das incorporadoras quando chegar).
 // categoria: terrenos | casas | apartamentos | pavilhoes | comercial | rural
+// (uma ou uma lista, quando o empreendimento aparece em mais de uma aba)
 
 export const CATEGORIAS = [
   { id: "", label: "Todos", icon: "✨" },
@@ -25,7 +26,29 @@ export const categoriaDoTipo = (tipo) =>
     "Área rural": "rural",
   })[tipo] || "outros";
 
+export const naCategoria = (e, cat) => !cat || [].concat(e.categoria).includes(cat);
+
 export const EMPREENDIMENTOS = [
+  {
+    id: "dhunas",
+    nome: "Dhunas Marine Resort",
+    incorporadora: "Dwell Construções e Incorporações · Alsus Urbanizadora",
+    cidade: "Passo de Torres (SC)",
+    categoria: ["terrenos", "casas"],
+    tipo: "Condomínio náutico",
+    status: "Lançamento",
+    resumo:
+      "O primeiro condomínio náutico às margens do Rio Mampituba, em Passo de Torres, ao lado de Torres: a conexão entre o rio, o mar, as dunas e a cidade. Casas Brise, Wave e Sand em 6 projetos personalizáveis.",
+    destaques: [
+      "Mais de 108.000 m² de área total",
+      "Marina privativa e píer",
+      "Praia de areia, piscinas e lounge",
+      "Casas de 171 a 365 m², de 3 a 5 suítes",
+    ],
+    fotos: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => `/empreendimentos/dhunas-${n}.jpg`),
+    site: "https://www.instagram.com/dhunasoficial/",
+    siteLabel: "Instagram oficial ↗",
+  },
   {
     id: "jardim-europa",
     nome: "Jardim Europa Residences",

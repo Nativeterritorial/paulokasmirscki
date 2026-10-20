@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CATEGORIAS, EMPREENDIMENTOS, categoriaDoTipo } from "./empreendimentos";
+import { CATEGORIAS, EMPREENDIMENTOS, categoriaDoTipo, naCategoria } from "./empreendimentos";
 import Vitrine from "./vitrine";
 
 const WHATSAPP = "https://wa.me/5554996505799";
@@ -59,7 +59,7 @@ function Empreendimento({ e }) {
             Quero saber mais
           </a>
           <a className="btn btn-outline" href={e.site} target="_blank" rel="noopener noreferrer">
-            Site oficial ↗
+            {e.siteLabel || "Site oficial ↗"}
           </a>
         </div>
       </div>
@@ -87,10 +87,10 @@ export default function ImoveisAbas({ imoveis }) {
     window.history.replaceState(null, "", id ? `#${id}` : window.location.pathname);
   };
 
-  const emps = EMPREENDIMENTOS.filter((e) => !cat || e.categoria === cat);
+  const emps = EMPREENDIMENTOS.filter((e) => naCategoria(e, cat));
   const avulsos = imoveis.filter((i) => !cat || categoriaDoTipo(i.tipo) === cat);
   const conta = (id) =>
-    EMPREENDIMENTOS.filter((e) => !id || e.categoria === id).length +
+    EMPREENDIMENTOS.filter((e) => naCategoria(e, id)).length +
     imoveis.filter((i) => !id || categoriaDoTipo(i.tipo) === id).length;
 
   return (

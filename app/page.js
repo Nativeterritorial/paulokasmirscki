@@ -1173,33 +1173,33 @@ export default function Home() {
                   <span className="pp-dot" /> Concierge do Ecossistema PK · IA
                 </div>
                 <div className="pp-chat">
-                  <div className="pp-bubble pp-me">quero abrir uma cafeteria</div>
+                  <div className="pp-bubble pp-me">quero construir um pavilhão</div>
                   <div className="pp-bubble pp-bot">
-                    Montei o seu <b>time</b> para abrir a cafeteria ☕ Marque o
-                    que você precisa, que o Paulo conduz.
+                    Montei o seu <b>time</b> para construir o pavilhão 🏗️ Marque
+                    o que você precisa, que o Paulo conduz.
                   </div>
                 </div>
                 <div className="pp-time">
-                  <div className="pp-time-tt">🧩 Time · Abrir a cafeteria</div>
+                  <div className="pp-time-tt">🧩 Time · Construir o pavilhão</div>
                   <div className="pp-svc on">
                     <span className="pp-check">✓</span>
-                    <span className="pp-svc-nm">Contabilidade e abertura</span>
+                    <span className="pp-svc-nm">Projeto e aprovação na prefeitura</span>
                     <span className="pp-svc-or">Parceiros na rede</span>
                   </div>
                   <div className="pp-svc on">
                     <span className="pp-check">✓</span>
-                    <span className="pp-svc-nm">Projeto e reforma do ponto</span>
+                    <span className="pp-svc-nm">Terraplenagem do terreno</span>
                     <span className="pp-svc-or">Parceiros na rede</span>
                   </div>
                   <div className="pp-svc on">
                     <span className="pp-check">✓</span>
-                    <span className="pp-svc-nm">Equipamentos de café</span>
-                    <span className="pp-svc-or">O Paulo busca para você</span>
+                    <span className="pp-svc-nm">Estrutura pré-moldada</span>
+                    <span className="pp-svc-or">Parceiros na rede</span>
                   </div>
                   <div className="pp-svc">
                     <span className="pp-check"></span>
-                    <span className="pp-svc-nm">Marketing e redes sociais</span>
-                    <span className="pp-svc-or">Parceiros na rede</span>
+                    <span className="pp-svc-nm">Financiamento da obra</span>
+                    <span className="pp-svc-or">O Paulo busca para você</span>
                   </div>
                   <span className="pp-pedir">Pedir meu time →</span>
                 </div>

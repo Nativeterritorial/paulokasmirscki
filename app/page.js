@@ -47,6 +47,33 @@ const SEGMENTOS = [
   "Negócios & Empresas",
 ];
 
+// pergunta que cada segmento já deixa escrita no concierge da área
+const SEG_PERGUNTA = {
+  "Imóveis & Construção": "Procuro ajuda com imóveis e construção",
+  Arquitetura: "Procuro um arquiteto de confiança",
+  "Finanças & Investimentos": "Procuro orientação sobre finanças e investimentos",
+  Contabilidade: "Procuro um contador de confiança",
+  Jurídico: "Procuro um advogado de confiança",
+  "Tecnologia & IA": "Procuro uma empresa de tecnologia e IA",
+  "Marketing & Digital": "Procuro uma empresa de marketing digital",
+  "Mídia & Comunicação": "Procuro mídia e comunicação para divulgar meu negócio",
+  "Saúde & Bem-estar": "Procuro um profissional de saúde e bem-estar",
+  "Estética & Beleza": "Procuro estética e beleza",
+  Gastronomia: "Procuro um restaurante ou serviço de gastronomia",
+  "Turismo & Hotelaria": "Procuro turismo e hospedagem",
+  "Esporte & Lazer": "Procuro esporte e lazer",
+  "Comércio & Varejo": "Procuro uma loja na rede",
+  "Moda & Vestuário": "Procuro moda e vestuário",
+  Serviços: "Procuro um prestador de serviço de confiança",
+  "Transporte & Logística": "Procuro transporte e logística",
+  "Agro & Pecuária": "Procuro fornecedores para o agro",
+  "Indústria & Móveis": "Procuro uma indústria ou fábrica de móveis",
+  "Sustentabilidade & Meio Ambiente": "Procuro uma solução ambiental para o meu negócio",
+  "Negócios & Empresas": "Procuro parceiros de negócio na rede",
+};
+const segLink = (seg) =>
+  `/area?pergunta=${encodeURIComponent(SEG_PERGUNTA[seg] || `Procuro ${seg} na rede`)}`;
+
 // posições dos nós em volta do centro (50,50), raio 40 — 10 segmentos em destaque,
 // um a cada 36° (nomes curtos nas pontas esquerda/direita pra não cortar)
 const HUB_NODES = [
@@ -971,16 +998,29 @@ export default function Home() {
             {/* Hub de segmentos (feixes de conexão) */}
             <SegmentHub nodes={HUB_NODES} />
 
-            {/* Grade com todos os segmentos */}
+            {/* Grade com todos os segmentos: cada um abre o concierge */}
+            <p className="seg-dica">
+              Toque num segmento e a <strong>IA da rede</strong> mostra o caminho.
+            </p>
             <div className="seg-grid fade-up">
-              {SEGMENTOS.map((seg) => (
-                <span className="seg-tag has-ico" key={seg}>
+              {SEGMENTOS.map((seg, i) => (
+                <a className="seg-tag has-ico" key={seg} href={segLink(seg)} style={{ "--i": i }}>
                   <span className="ico">
                     <SegIcon label={seg} size={14} />
                   </span>
                   {seg}
-                </span>
+                  <span className="seg-seta" aria-hidden="true">→</span>
+                </a>
               ))}
+              <a
+                className="seg-tag seg-outro"
+                href={`${WHATSAPP}?text=${encodeURIComponent("Olá Paulo! Não achei o meu segmento no site. Procuro uma conexão em: ")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ "--i": SEGMENTOS.length }}
+              >
+                ➕ Não achou o seu? Fale com o Paulo
+              </a>
             </div>
 
           </div>

@@ -13,7 +13,7 @@ const EXAMPLES = [
 
 // atalhos: entram na área com a pergunta já escrita
 const ATALHOS = [
-  { label: "🔌 eletricista", q: "Preciso de um eletricista" },
+  { label: "🏡 imóveis", q: "Quero comprar ou vender um imóvel" },
   { label: "🏪 abrir uma loja", q: "Quero abrir uma loja" },
   { label: "💼 vagas", q: "Estou contratando, quero divulgar uma vaga" },
 ];

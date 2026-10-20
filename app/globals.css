@@ -9086,3 +9086,11 @@ body:has(.vt-theme) {
 .pp-pedir { align-self: flex-end; margin-top: 4px; font-size: .78rem; font-weight: 700; color: #06304a; background: linear-gradient(120deg, #6fffbf, #46d6ff); padding: 9px 16px; border-radius: 999px; }
 @media (max-width: 420px) { .pp-svc { grid-template-columns: 20px 1fr; } .pp-svc-or { grid-column: 2; } }
 #plataforma h2 em { font-style: normal; }
+/* depoimentos: cartões azul-marinho, no mesmo tom da faixa de palavras */
+.testimonial {
+  background: #0b1440;
+  border-color: rgba(124, 196, 255, 0.25);
+  box-shadow: 0 20px 50px rgba(3, 8, 30, 0.35);
+}
+.testimonial .mark { color: #7cc4ff; }
+.testimonial .author { border-top-color: rgba(124, 196, 255, 0.2); }

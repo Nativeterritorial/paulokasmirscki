@@ -771,7 +771,7 @@ export default function Home() {
                     </textPath>
                   </text>
                 </svg>
-                <span className="seal-center" aria-hidden="true" />
+                <img className="seal-logo" src="/logo-mark.svg" alt="" aria-hidden="true" />
               </a>
               <div className="hero-photo-frame">
                 <img

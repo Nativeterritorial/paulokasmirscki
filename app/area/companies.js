@@ -1680,4 +1680,34 @@ export const COMPANIES = [
     link: "https://www.instagram.com/verauto_veranopolis/",
     linkLabel: "@verauto_veranopolis",
   },
+  {
+    id: "zafrasul",
+    nome: "Zafra Sul Uniformes",
+    segmento: "Uniformes Profissionais",
+    descricao:
+      "Uniformes profissionais em Guaporé, na Av. Silvio Sanson 908, sala 301. Fones (54) 3443-1978 e (54) 3443-4756.",
+    atende: ["Moda & Vestuário", "Negócios & Empresas", "Indústria & Móveis"],
+    link: "https://www.instagram.com/zafrasul/",
+    linkLabel: "@zafrasul",
+  },
+  {
+    id: "reginacoeli",
+    nome: "Colégio Regina Coeli",
+    segmento: "Educação & Ensino",
+    descricao:
+      "Educação de excelência em Veranópolis há 78 anos formando gerações, da Educação Infantil ao Ensino Médio.",
+    atende: ["Educação & Capacitação", "Serviços"],
+    link: "https://www.instagram.com/soureginacoeli/",
+    linkLabel: "@soureginacoeli",
+  },
+  {
+    id: "siganautica",
+    nome: "Siga Soluções Náuticas",
+    segmento: "Churrasqueiras & Acessórios Náuticos",
+    descricao:
+      "Churrasqueiras náuticas em inox, mesas e acessórios de banheiro para barcos, com loja online. Em Dois Lajeados, RS 129, km 109 — fone (54) 98151-7958.",
+    atende: ["Indústria & Móveis", "Comércio & Varejo", "Esporte & Lazer"],
+    link: "https://www.nauticasolucoes.com.br/",
+    linkLabel: "nauticasolucoes.com.br",
+  },
 ];

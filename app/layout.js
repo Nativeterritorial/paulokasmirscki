@@ -72,7 +72,7 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Michroma&family=Sora:wght@700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" type="image/svg+xml" href="/logo-mark.svg" />
+        <link rel="icon" type="image/svg+xml" href="/app-icon.svg" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body>{children}</body>

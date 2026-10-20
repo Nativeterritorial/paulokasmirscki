@@ -1,0 +1,27 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ecossistema PK">
+  <defs>
+    <linearGradient id="pkapp" gradientUnits="userSpaceOnUse" x1="4" y1="4" x2="116" y2="116">
+      <stop offset="0" stop-color="#7cc4ff"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="112" height="112" rx="28" fill="url(#pkapp)"/>
+  <g stroke="#fff" stroke-width="4.5" stroke-linecap="round" opacity="0.9">
+    <line x1="60" y1="60" x2="94" y2="60"/>
+    <line x1="60" y1="60" x2="77" y2="89.4"/>
+    <line x1="60" y1="60" x2="43" y2="89.4"/>
+    <line x1="60" y1="60" x2="26" y2="60"/>
+    <line x1="60" y1="60" x2="43" y2="30.6"/>
+    <line x1="60" y1="60" x2="77" y2="30.6"/>
+  </g>
+  <g fill="#fff">
+    <circle cx="94" cy="60" r="7"/>
+    <circle cx="77" cy="89.4" r="7"/>
+    <circle cx="43" cy="89.4" r="7"/>
+    <circle cx="26" cy="60" r="7"/>
+    <circle cx="43" cy="30.6" r="7"/>
+    <circle cx="77" cy="30.6" r="7"/>
+  </g>
+  <circle cx="60" cy="60" r="13" fill="#fff"/>
+  <circle cx="60" cy="60" r="6" fill="#5a52f0"/>
+</svg>

@@ -7,6 +7,7 @@ import SignupForm from "./ecossistema/signup-form";
 import BrandsCarousel from "./brands-carousel";
 import MobileMenu from "./mobile-menu";
 import RedePontes from "./rede-pontes";
+import NetworkBG from "./network-bg";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const INSTAGRAM = "https://instagram.com/paulokasmirscki";
@@ -703,6 +704,7 @@ export default function Home() {
       <main id="top">
         {/* Hero */}
         <section className="hero">
+          <NetworkBG className="net-hero" />
           <div className="container hero-inner">
             <div className="reveal">
               <div className="eyebrow">
@@ -1209,6 +1211,7 @@ export default function Home() {
         {/* Faça parte: cadastro com acesso imediato */}
         <section id="faca-parte" className="cta">
           <GhostMarquee word="Conecte" />
+          <NetworkBG className="net-cta" densidade={0.7} />
           <div className="container">
             <div className="eyebrow">Faça parte</div>
             <h2 className="fp-title">

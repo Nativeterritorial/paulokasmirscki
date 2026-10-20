@@ -2816,7 +2816,7 @@ body:has(.area-login) {
   border-top-right-radius: 4px;
 }
 .bubble.typing {
-  opacity: 0.7;
+  opacity: 0.85;
   font-style: italic;
 }
 .msg-block {
@@ -3080,7 +3080,7 @@ body:has(.area-login) {
   inset: 0 0 auto 0;
   height: 2px;
   background: linear-gradient(90deg, #5b9bff, var(--gold-2));
-  opacity: 0.7;
+  opacity: 0.85;
 }
 .admin-ic {
   font-size: 1.2rem;
@@ -4025,7 +4025,7 @@ body:has(.area-login) {
   margin-top: 12px;
   font-size: 0.72rem;
   color: var(--muted);
-  opacity: 0.7;
+  opacity: 0.85;
 }
 @media (max-width: 760px) {
   .netmap-card {
@@ -9107,4 +9107,32 @@ body:has(.vt-theme) {
 .fp-form .signup-form input:focus {
   border-color: #7cc4ff;
   background: rgba(255, 255, 255, 0.11);
+}
+/* rede animada (fundo do topo e do cadastro) */
+.net-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+/* no topo: mais forte nas laterais, mais suave atrás do texto */
+.net-hero {
+  -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,.7) 0%, rgba(0,0,0,.5) 30%, #000 60%);
+  mask-image: linear-gradient(90deg, rgba(0,0,0,.7) 0%, rgba(0,0,0,.5) 30%, #000 60%);
+}
+/* no cadastro: mais discreta, some no centro (atrás do formulário) */
+.net-cta {
+  opacity: 0.85;
+  -webkit-mask-image: radial-gradient(ellipse 45% 55% at 50% 55%, rgba(0,0,0,.15), #000 85%);
+  mask-image: radial-gradient(ellipse 45% 55% at 50% 55%, rgba(0,0,0,.15), #000 85%);
+}
+#faca-parte { position: relative; overflow: hidden; }
+#faca-parte > .container { position: relative; z-index: 1; }
+@media (max-width: 900px) {
+  .net-hero {
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.55) 40%, rgba(0,0,0,.55) 100%);
+    mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.55) 40%, rgba(0,0,0,.55) 100%);
+  }
 }

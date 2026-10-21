@@ -161,7 +161,7 @@ export default function Area() {
     {
       role: "assistant",
       content:
-        "Olá! 👋 Sou o concierge do ecossistema. Me conte o que você precisa — ex.: \"preciso de uma empresa pra fazer meu site\" — que eu encontro a pessoa certa na rede.",
+        "Olá! 👋 Sou o concierge do Ecossistema PK. Me conte o que você precisa — um serviço, um imóvel, uma obra ou um time para o seu projeto — que eu mostro o caminho na rede e o Paulo conduz a conexão.",
     },
   ];
   const [messages, setMessages] = useState(GREETING);
@@ -176,6 +176,8 @@ export default function Area() {
     const t = setTimeout(() => {
       const h = document.querySelector(".area-top")?.offsetHeight;
       if (h) document.documentElement.style.setProperty("--area-top-h", h + "px");
+      const faixa = document.querySelector(".area-tabs-m")?.offsetHeight || 0;
+      if (h) document.documentElement.style.setProperty("--area-chrome-h", h + faixa + "px");
     }, 50);
     return () => clearTimeout(t);
   }, [authed]);
@@ -207,6 +209,8 @@ export default function Area() {
     const medirTopo = () => {
       const h = document.querySelector(".area-top")?.offsetHeight;
       if (h) document.documentElement.style.setProperty("--area-top-h", h + "px");
+      const faixa = document.querySelector(".area-tabs-m")?.offsetHeight || 0;
+      if (h) document.documentElement.style.setProperty("--area-chrome-h", h + faixa + "px");
     };
     medirTopo();
     const t = setTimeout(medirTopo, 600);
@@ -587,7 +591,7 @@ export default function Area() {
                 <button
                   key={s}
                   type="button"
-                  className="chip ia-chip"
+                  className={`chip ia-chip${s.includes("site") ? " so-pc" : ""}`}
                   onClick={() => send(s)}
                   disabled={sending}
                 >

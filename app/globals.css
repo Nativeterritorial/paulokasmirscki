@@ -9650,3 +9650,13 @@ body:has(.vt-theme) {
   .eco-passo:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -16px; transform: translateX(50%); }
 }
 .eco-oque-head .kick { font-size: 0.95rem; letter-spacing: 0.14em; }
+
+/* área: o chat cabe na tela (desconta topo + faixa de abas), caixa de digitar sempre visível */
+.area-panel { height: calc(100vh - var(--area-chrome-h, 140px) - 44px); height: calc(100dvh - var(--area-chrome-h, 140px) - 44px); min-height: 440px; }
+.area-chat-input { padding-bottom: 18px; }
+@media (max-width: 900px) {
+  /* sobra embaixo para a barra flutuante do Safari (iPhone) não cobrir a caixa de digitar */
+  .area-panel { height: calc(100vh - var(--area-chrome-h, 150px) - 84px); height: calc(100dvh - var(--area-chrome-h, 150px) - 84px); min-height: 380px; }
+  .chat-chips .so-pc { display: none; }
+  .area-chat-input { padding-bottom: 14px; }
+}

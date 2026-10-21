@@ -304,7 +304,12 @@ export default function Area() {
       }
       // restaura o histórico da conversa
       const chat = JSON.parse(localStorage.getItem("area_chat") || "null");
-      if (Array.isArray(chat) && chat.length) setMessages(chat);
+      if (Array.isArray(chat) && chat.length) {
+        // conversa salva com a saudação antiga: troca pela atual
+        if (chat[0]?.role === "assistant" && /^Olá! 👋 Sou o concierge do ecossistema./.test(chat[0].content || ""))
+          chat[0] = GREETING[0];
+        setMessages(chat);
+      }
       // veio de um atalho da página inicial: a pergunta já fica escrita
       const pergunta = new URLSearchParams(window.location.search).get("pergunta");
       if (pergunta) {

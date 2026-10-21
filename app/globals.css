@@ -9655,8 +9655,8 @@ body:has(.vt-theme) {
 .area-panel { height: calc(100vh - var(--area-chrome-h, 140px) - 44px); height: calc(100dvh - var(--area-chrome-h, 140px) - 44px); min-height: 440px; }
 .area-chat-input { padding-bottom: 18px; }
 @media (max-width: 900px) {
-  /* sobra embaixo para a barra flutuante do Safari (iPhone) não cobrir a caixa de digitar */
-  .area-panel { height: calc(100vh - var(--area-chrome-h, 150px) - 84px); height: calc(100dvh - var(--area-chrome-h, 150px) - 84px); min-height: 380px; }
+  /* no celular volta a altura de antes (o chat ocupa quase a tela toda) */
+  .area-panel { height: calc(100vh - 95px); height: calc(100dvh - 95px); min-height: 420px; }
   .chat-chips .so-pc { display: none; }
   .area-chat-input { padding-bottom: 14px; }
 }

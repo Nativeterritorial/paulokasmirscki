@@ -756,7 +756,7 @@ export default function Home() {
                   Quero fazer parte
                 </a>
                 <a className="btn btn-outline" href="/ecossistema">
-                  Conhecer a rede
+                  Conhecer o Ecossistema
                 </a>
               </div>
 

@@ -840,6 +840,13 @@ export default function Area() {
             setRaioxOpen(false);
             setChaveFor({ ...c, gratis: !!gratis });
           }}
+          onConcierge={(texto) => {
+            // fecha o Raio-X, volta para o Início e manda a conversa ao concierge
+            setRaioxOpen(false);
+            setAba("inicio");
+            window.history.replaceState(null, "", "#inicio");
+            send(texto);
+          }}
         />
       )}
       {chaveFor && (

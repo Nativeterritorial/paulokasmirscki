@@ -54,7 +54,20 @@ function Empresa({ e, c, gratis, onChave }) {
   );
 }
 
-export default function RaioX({ code, member, companies, raiox, setRaiox, onClose, onChave }) {
+const WHATSAPP = "https://wa.me/5554996505799";
+
+// resumo das respostas, para o concierge e para o WhatsApp do Paulo
+const resumoRespostas = (r = {}) =>
+  [
+    r.faz && `faço: ${r.faz}`,
+    r.oferece && `ofereço: ${r.oferece}`,
+    r.procura && `procuro: ${r.procura}`,
+    r.cliente && `meu cliente ideal: ${r.cliente}`,
+  ]
+    .filter(Boolean)
+    .join("; ");
+
+export default function RaioX({ code, member, companies, raiox, setRaiox, onClose, onChave, onConcierge }) {
   const [refazer, setRefazer] = useState(!raiox);
   const [f, setF] = useState(() => ({ faz: "", oferece: "", procura: "", cliente: "", ...(raiox?.respostas || {}) }));
   const [gerando, setGerando] = useState(false);
@@ -184,6 +197,34 @@ export default function RaioX({ code, member, companies, raiox, setRaiox, onClos
                   <p className="rx-vazio">Ainda não achei parceiros certos na rede. O Paulo vai procurar para você.</p>
                 )}
               </section>
+            </div>
+            <div className="rx-proximo">
+              <div>
+                <strong>E agora?</strong> Converse sobre o seu mapa e descubra por onde começar.
+              </div>
+              <div className="rx-proximo-btns">
+                <button
+                  type="button"
+                  className="rx-concierge"
+                  onClick={() =>
+                    onConcierge(
+                      `Fiz o meu Raio-X do negócio (${resumoRespostas(raiox.respostas)}). Por onde eu começo para aproveitar as conexões da rede?`
+                    )
+                  }
+                >
+                  💬 Conversar com o concierge
+                </button>
+                <a
+                  className="rx-paulo"
+                  href={`${WHATSAPP}?text=${encodeURIComponent(
+                    `Olá Paulo! ${nome ? `Aqui é ${member?.nome}. ` : ""}Fiz o meu Raio-X no Ecossistema PK (${resumoRespostas(raiox.respostas)}). Quero conversar sobre as oportunidades na rede.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  📲 Falar com o Paulo
+                </a>
+              </div>
             </div>
             <div className="rx-rodape">
               <button type="button" className="rx-refazer" onClick={() => setRefazer(true)}>

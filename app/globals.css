@@ -9943,3 +9943,36 @@ body:has(.vt-theme) {
   .rx-abrir { padding: 7px 10px; font-size: 0.74rem; }
 }
 @media (prefers-reduced-motion: reduce) { .rx-radar span { animation: none; } }
+
+/* Raio-X: as colunas são <section> (sem o espaçamento das seções do site) e os próximos passos */
+.rx-cols section { padding: 0; }
+.rx-proximo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: linear-gradient(120deg, rgba(154, 123, 255, 0.16), rgba(91, 155, 255, 0.12));
+  border: 1px solid rgba(154, 123, 255, 0.4);
+  color: #dbe6ff;
+  font-size: 0.95rem;
+}
+.rx-proximo strong { color: #fff; }
+.rx-proximo-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.rx-concierge, .rx-paulo {
+  padding: 11px 18px;
+  border-radius: 999px;
+  font: 700 0.9rem var(--sans);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.rx-concierge { border: 0; color: #fff; background: linear-gradient(135deg, #9a7bff, #5b9bff); box-shadow: 0 10px 24px rgba(91, 80, 220, 0.4); }
+.rx-paulo { color: #06304a; background: linear-gradient(120deg, #6fffbf, #46d6ff); }
+@media (max-width: 720px) {
+  .rx-proximo-btns { width: 100%; }
+  .rx-concierge, .rx-paulo { flex: 1; text-align: center; }
+}

@@ -76,16 +76,18 @@ export default function MyReferrals({ code, member }) {
           </svg>
         </div>
         <div className="svc-txt">
-          <div className="kick">Minhas indicações</div>
-          <h2>
-            {member
-              ? "Acompanhe os negócios que você indicou"
-              : "Indique um imóvel e ganhe bonificação"}
-          </h2>
+          <div className="kick">Indique um imóvel</div>
+          <h2>Indique um imóvel e ganhe bonificação</h2>
           <p>
             Conhece alguém que quer comprar, vender ou alugar um imóvel? Você
-            indica, o Paulo conduz a negociação como corretor e você recebe uma
-            bonificação sobre a comissão quando o negócio fechar.
+            indica, eu conduzo a negociação como corretor e você recebe a sua
+            bonificação quando o negócio fechar.{" "}
+            <a className="vt-link" href="/imoveis">
+              Ver os imóveis à venda →
+            </a>{" "}
+            <a className="vt-link" href="/ecossistema#indicar">
+              Como funciona →
+            </a>
           </p>
         </div>
         <button
@@ -93,7 +95,7 @@ export default function MyReferrals({ code, member }) {
           className="btn btn-primary"
           onClick={() => setOpen((o) => !o)}
         >
-          {open ? "Fechar" : "+ Nova indicação"}
+          {open ? "Fechar" : "Indicar um imóvel"}
         </button>
       </div>
 
@@ -116,8 +118,8 @@ export default function MyReferrals({ code, member }) {
       )}
       {member && !failed && list && !list.length && (
         <p className="area-refs-empty">
-          Você ainda não indicou nenhum negócio. Conhece alguém que quer
-          comprar, vender ou alugar um imóvel? Toque em “Nova indicação”.
+          Você ainda não indicou nenhum imóvel. Conhece alguém que quer
+          comprar, vender ou alugar um imóvel? Toque em “Indicar um imóvel”.
         </p>
       )}
 

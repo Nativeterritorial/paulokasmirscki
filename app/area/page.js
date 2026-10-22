@@ -14,6 +14,7 @@ import { TimeCard, TimeModal, parseTime } from "./time";
 import MySolicitacoes from "./solicitacoes";
 import MyMural from "./mural";
 import MyVantagens from "./vantagens";
+import AreaMenu from "./area-menu";
 import { useNaoLidas } from "./pedidos";
 import { SegIcon } from "../segment-icons";
 import { abrirServico } from "./abrir";
@@ -123,37 +124,6 @@ function formatMsg(text) {
   // quebras de linha
   s = s.replace(/\n/g, "<br/>");
   return s;
-}
-
-// abas no topo (computador) e faixa rolável logo abaixo (celular)
-function AreaTabs({ aba, member, naoLidas, mobile }) {
-  const tabs = [
-    ["inicio", "svc-ia", "Início"],
-    ["solicitacoes", "svc-sol", "Solicitações"],
-    ["mural", "svc-mur", "Mural"],
-    ["vantagens", "svc-van", "Vantagens"],
-    ["vagas", "svc-vag", "Vagas"],
-    ["indicacoes", "svc-ind", member ? "Minhas indicações" : "Indicar imóvel"],
-    ["vender", "svc-imo", "Vender imóvel"],
-    ["obra", "svc-obra", "Minha obra"],
-    ["projeto", "svc-proj", "Meu projeto"],
-    ["gestao", "svc-gest", "Minha gestão"],
-  ];
-  return (
-    <nav className={mobile ? "area-tabs-m" : "area-tabs"} aria-label="Seções da área de membros">
-      {tabs.map(([id, cls, lbl]) => (
-        <a
-          key={id}
-          className={`area-refs-link top-svc ${cls}${aba === id ? " on" : ""}${id === "solicitacoes" && naoLidas.total > 0 ? " area-msgs" : ""}`}
-          href={id === "solicitacoes" && naoLidas.total > 0 ? `#pd-${naoLidas.primeiro}` : `#${id}`}
-          aria-current={aba === id ? "page" : undefined}
-        >
-          {lbl}
-          {id === "solicitacoes" && naoLidas.total > 0 && <span className="area-msgs-n">{naoLidas.total}</span>}
-        </a>
-      ))}
-    </nav>
-  );
 }
 
 export default function Area() {
@@ -513,7 +483,6 @@ export default function Area() {
           <span className="area-badge">Área de Membros</span>
         </a>
         <div className="area-top-actions">
-          <AreaTabs aba={aba} member={member} naoLidas={naoLidas} />
           <InstallApp />
           {member && (
             <span className="area-hello">Olá, <strong>{member.nome.split(" ")[0]}</strong> 👋</span>
@@ -524,8 +493,16 @@ export default function Area() {
         </div>
       </header>
 
-      <AreaTabs aba={aba} member={member} naoLidas={naoLidas} mobile />
-
+      <div className="area-body">
+      <AreaMenu
+        aba={aba}
+        member={member}
+        naoLidas={naoLidas}
+        raiox={raiox}
+        onRaiox={() => setRaioxOpen(true)}
+        onSair={logout}
+      />
+      <main className="area-main">
       <SenhaAviso
         code={code}
         member={member}
@@ -547,9 +524,6 @@ export default function Area() {
               <div className="kick ia-kick">Concierge de IA · Online</div>
               <h2 style={{ fontSize: "1.35rem" }}>Como posso te conectar hoje?</h2>
             </div>
-            <button type="button" className="rx-abrir" onClick={() => setRaioxOpen(true)}>
-              🔍 {raiox ? "Meu Raio-X" : "Raio-X do seu negócio"}
-            </button>
           </div>
           <div className="area-chat" ref={chatRef}>
             {messages.map((m, i) => {
@@ -822,6 +796,8 @@ export default function Area() {
       </div>
       <div className="area-aba" hidden={aba !== "gestao"}>
         <MyGestao code={code} member={member} />
+      </div>
+      </main>
       </div>
 
       {timeFor && (

@@ -9825,3 +9825,8 @@ body:has(.vt-theme) {
   --svc-ink: #3d2a06;
   --svc-soft: rgba(255, 210, 122, 0.16);
 }
+
+/* diretório da área: alternar entre nichos e categorias */
+.dir-modo { display: flex; gap: 6px; margin-top: 12px; padding: 4px; border-radius: 999px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border); }
+.dir-modo button { flex: 1; padding: 8px 10px; border-radius: 999px; border: 0; background: transparent; color: var(--muted); font: 600 0.82rem var(--sans); cursor: pointer; transition: background 0.2s ease, color 0.2s ease; }
+.dir-modo button.on { background: linear-gradient(120deg, #6fffbf, #46d6ff); color: #06304a; }

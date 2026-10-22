@@ -169,6 +169,8 @@ export default function Area() {
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [openSeg, setOpenSeg] = useState(null);
+  // diretório: por nicho (o segmento de cada empresa) ou por categoria larga
+  const [modoDir, setModoDir] = useState("nicho");
   const [aba, setAba] = useState("inicio");
 
   // depois de entrar, mede a altura do topo para a faixa de abas grudar embaixo dele
@@ -670,6 +672,24 @@ export default function Area() {
                 onChange={(e) => setBusca(e.target.value)}
               />
             </label>
+            <div className="dir-modo" role="tablist" aria-label="Organizar empresas">
+              {[
+                ["nicho", "Por nicho"],
+                ["categoria", "Por categoria"],
+              ].map(([id, lbl]) => (
+                <button
+                  key={id}
+                  type="button"
+                  className={modoDir === id ? "on" : undefined}
+                  onClick={() => {
+                    setModoDir(id);
+                    setOpenSeg(null);
+                  }}
+                >
+                  {lbl}
+                </button>
+              ))}
+            </div>
           </div>
           <div className="area-firms">
             {norm(busca) &&
@@ -702,7 +722,7 @@ export default function Area() {
               })()}
             {!norm(busca) && Object.entries(
               companies.reduce((acc, c) => {
-                const cat = segInfo(c.segmento).icon;
+                const cat = modoDir === "nicho" ? c.segmento : segInfo(c.segmento).icon;
                 (acc[cat] = acc[cat] || []).push(c);
                 return acc;
               }, {})
@@ -726,7 +746,7 @@ export default function Area() {
                       style={{ "--seg": segInfo(firms[0].segmento).cor }}
                       aria-hidden="true"
                     >
-                      <SegIcon label={segmento} size={15} />
+                      <SegIcon label={segInfo(firms[0].segmento).icon} size={15} />
                     </span>
                     <span className="seg-nm">{segmento}</span>
                     <span className="firm-group-meta">

@@ -281,39 +281,19 @@ export default function Ecossistema() {
       </header>
 
       <main className="container join-wrap">
-        {/* o que é */}
-        <div className="join-hero eco-hero">
-          <div className="eyebrow eco-marca">
-            <span className="marca-pk">Ecossistema <span className="pk-selo">PK</span></span> · Conector de Negócios
-          </div>
-          <h1 className="mdl-title eco-title">
-            Um só lugar para <em>conectar e resolver</em>
-          </h1>
-          <p className="join-lead">
-            Pessoas e marcas de segmentos diferentes, integradas numa rede que
-            gera oportunidade para todos os lados. Você traz o objetivo; a rede
-            e o Paulo conectam as pessoas e conduzem o caminho.
-          </p>
-          <div className="eco-hero-ctas">
-            <a className="btn btn-primary" href="#cadastro">
-              Quero fazer parte
-            </a>
-            <a className="btn btn-outline" href="#servicos">
-              O que dá para fazer
-            </a>
-          </div>
-        </div>
-
-        {/* o que é o Ecossistema */}
-        <section className="eco-oque" id="o-que-e">
+        {/* o que é o Ecossistema: abre a página */}
+        <section className="eco-oque eco-oque-topo" id="o-que-e">
           <div className="eco-oque-head">
-            <h2 className="eco-oque-tit">
+            <div className="eyebrow eco-marca">
+              <span className="marca-pk">Ecossistema <span className="pk-selo">PK</span></span> · Conector de Negócios
+            </div>
+            <h1 className="eco-oque-tit">
               O que é o{" "}
               <em className="nowrap">
                 Ecossistema <span className="pk-selo">PK</span>
               </em>
               ?
-            </h2>
+            </h1>
             <p>
               O Ecossistema PK é a rede de empresas, profissionais e clientes
               que eu, Paulo Kasmirscki, conecto e acompanho pessoalmente. Funciona
@@ -321,6 +301,14 @@ export default function Ecossistema() {
               certos para o que precisa, faz novos negócios e ganha quando ajuda
               a rede a crescer.
             </p>
+            <div className="eco-hero-ctas">
+              <a className="btn btn-primary" href="#cadastro">
+                Quero fazer parte
+              </a>
+              <a className="btn btn-outline" href="#servicos">
+                O que dá para fazer
+              </a>
+            </div>
           </div>
 
           <div className="eco-como-fluxo">
@@ -367,12 +355,14 @@ export default function Ecossistema() {
         <section className="mdl-sec" id="servicos">
           <div className="mdl-head">
             <div className="kick">Dentro do Ecossistema</div>
-            <h2 className="mdl-title">
-              O que você <em>faz</em> por aqui
+            <h2 className="mdl-title eco-title">
+              Um só lugar para <em>conectar e resolver</em>
             </h2>
             <p>
-              Tudo acontece na Área de Membros. Escolha o que você precisa: se
-              ainda não tem acesso, o cadastro é rápido e você já entra.
+              Pessoas e marcas de segmentos diferentes, numa rede que gera
+              oportunidade para todos os lados. Você traz o objetivo; a rede e o
+              Paulo conectam as pessoas e conduzem o caminho. Escolha o que você
+              precisa: tudo acontece na Área de Membros, e o cadastro é rápido.
             </p>
           </div>
 

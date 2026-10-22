@@ -9686,3 +9686,10 @@ body:has(.vt-theme) {
   border-radius: 4px;
   background: linear-gradient(90deg, #6fffbf, #46d6ff, #8b5cf6);
 }
+
+/* /ecossistema: a explicação abre a página */
+.eco-oque-topo { margin-top: 26px; }
+.eco-oque-topo .eco-oque-head { margin-bottom: 30px; }
+.eco-oque-topo .eco-marca { margin-bottom: 18px; }
+.eco-oque-topo .eco-oque-tit { font-size: clamp(2.3rem, 5vw, 3.8rem); }
+.eco-oque-topo .eco-hero-ctas { margin-top: 24px; }

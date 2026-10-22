@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 import {
+  getVantagens,
+  saveVantagem,
+  setVantagemStatus,
+  deleteVantagem,
   getStats,
   setLeadDone,
   setDemandDone,
@@ -128,6 +132,16 @@ export async function POST(req) {
   if (body.action === "muralDelete" && body.id) {
     await deleteMuralPost(String(body.id));
   }
+  // Clube de Vantagens: cadastrar/editar, aprovar/pausar, excluir
+  if (body.action === "vantagemSave" && body.vantagem) {
+    await saveVantagem(body.vantagem, { porPaulo: true });
+  }
+  if (body.action === "vantagemStatus" && body.id && body.status) {
+    await setVantagemStatus(String(body.id), String(body.status));
+  }
+  if (body.action === "vantagemDelete" && body.id) {
+    await deleteVantagem(String(body.id));
+  }
   if (body.action === "senhaPedidoDrop" && body.id) {
     await dropSenhaPedido(String(body.id));
   }
@@ -236,12 +250,14 @@ export async function POST(req) {
   const imoveis = await getImoveis();
   const senhaPedidos = await getSenhaPedidos();
   const mural = await getMural();
+  const vantagens = await getVantagens();
 
   return NextResponse.json({
     ok: true,
     senhaPedidos,
     novaSenha,
     mural,
+    vantagens,
     imoveis,
     novoImovel,
     pedidos,

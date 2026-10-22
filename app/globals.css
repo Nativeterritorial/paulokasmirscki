@@ -9976,3 +9976,58 @@ body:has(.vt-theme) {
   .rx-proximo-btns { width: 100%; }
   .rx-concierge, .rx-paulo { flex: 1; text-align: center; }
 }
+
+/* ---------- Clube de Vantagens (área de membros) ---------- */
+.svc-van {
+  --svc: #ff8fc7;
+  --svc-ink: #4a0d2c;
+  --svc-soft: rgba(255, 143, 199, 0.16);
+}
+.van-msg { margin: 14px 0 0; padding: 12px 16px; border-radius: 14px; background: rgba(111, 255, 191, 0.12); border: 1px solid rgba(111, 255, 191, 0.4); color: #c9ffe6; }
+.van-form { margin-top: 16px; padding: 18px; border-radius: 18px; background: #0b1440; border: 1px solid rgba(255, 143, 199, 0.35); }
+.van-form-admin { margin-bottom: 16px; }
+.van-form-lead { margin: 0 0 12px; color: #dbe6ff; }
+.van-aviso, .van-erro { margin: 0 0 12px; color: #ffb4b4; font-size: 0.9rem; }
+.van-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.van-grid label { display: flex; flex-direction: column; gap: 6px; font: 600 0.85rem var(--sans); color: #c9d4f5; }
+.van-grid .van-larga { grid-column: 1 / -1; }
+.van-grid :is(input, select, textarea) {
+  padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05); color: #fff; font: 400 0.95rem var(--sans); resize: vertical;
+}
+.van-grid select option { color: #0b1440; }
+.van-filtros { margin-top: 16px; }
+.van-lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-top: 16px; }
+.van-card {
+  display: flex; flex-direction: column; border-radius: 18px; overflow: hidden;
+  background: #0b1440; border: 1px solid rgba(255, 143, 199, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.van-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(255, 110, 180, 0.18); }
+.van-selo {
+  position: relative; padding: 18px 18px 16px; font: 800 1.35rem "Sora", var(--serif); line-height: 1.2; color: #fff;
+  background: linear-gradient(120deg, #ff6fb5, #9a7bff 60%, #5b9bff);
+}
+.van-selo::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 12px;
+  background: radial-gradient(circle at 6px 6px, #0b1440 5px, transparent 5.5px) 0 0 / 18px 12px repeat-x;
+}
+.van-info { display: flex; flex-direction: column; gap: 6px; padding: 18px; flex: 1; }
+.van-cat { font: 700 0.72rem var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: #ff8fc7; }
+.van-info h3 { margin: 0; font-size: 1.1rem; color: #fff; }
+.van-info p { margin: 0; color: #c9d4f5; font-size: 0.92rem; }
+.van-validade { font-size: 0.82rem; color: #9fb0d9; }
+.van-usar {
+  margin-top: auto; align-self: flex-start; padding: 10px 16px; border: 0; border-radius: 999px; cursor: pointer;
+  font: 700 0.88rem var(--sans); color: #06304a; background: linear-gradient(120deg, #6fffbf, #46d6ff);
+}
+.van-info .van-usar { margin-top: 10px; }
+.van-como { margin-top: 10px; padding: 12px 14px; border-radius: 12px; background: rgba(111, 255, 191, 0.1); border: 1px dashed rgba(111, 255, 191, 0.5); color: #dbffef; font-size: 0.9rem; }
+.van-como a { display: inline-block; margin-top: 8px; color: #6fffbf; font-weight: 700; }
+.van-vazio { margin-top: 18px; padding: 28px 20px; text-align: center; border-radius: 18px; background: #0b1440; border: 1px dashed rgba(255, 143, 199, 0.45); }
+.van-vazio-ic { font-size: 2.4rem; }
+.van-vazio h3 { margin: 8px 0 6px; color: #fff; }
+.van-vazio p { margin: 0 auto; max-width: 480px; color: #c9d4f5; }
+@media (max-width: 640px) {
+  .van-grid { grid-template-columns: 1fr; }
+}

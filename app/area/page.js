@@ -13,6 +13,7 @@ import RaioX, { useRaiox } from "./raiox";
 import { TimeCard, TimeModal, parseTime } from "./time";
 import MySolicitacoes from "./solicitacoes";
 import MyMural from "./mural";
+import MyVantagens from "./vantagens";
 import { useNaoLidas } from "./pedidos";
 import { SegIcon } from "../segment-icons";
 import { abrirServico } from "./abrir";
@@ -37,7 +38,7 @@ const SUGESTOES = [
 ];
 
 // abas da área de membros (o endereço #aba abre direto cada uma)
-const ABAS = ["inicio", "solicitacoes", "mural", "vagas", "indicacoes", "vender", "obra", "projeto", "gestao"];
+const ABAS = ["inicio", "solicitacoes", "mural", "vantagens", "vagas", "indicacoes", "vender", "obra", "projeto", "gestao"];
 const abaDoHash = (h) => {
   const id = String(h || "").replace(/^#/, "");
   if (id.startsWith("pd-")) return "solicitacoes"; // conversa de um pedido
@@ -130,6 +131,7 @@ function AreaTabs({ aba, member, naoLidas, mobile }) {
     ["inicio", "svc-ia", "Início"],
     ["solicitacoes", "svc-sol", "Solicitações"],
     ["mural", "svc-mur", "Mural"],
+    ["vantagens", "svc-van", "Vantagens"],
     ["vagas", "svc-vag", "Vagas"],
     ["indicacoes", "svc-ind", member ? "Minhas indicações" : "Indicar imóvel"],
     ["vender", "svc-imo", "Vender imóvel"],
@@ -798,6 +800,9 @@ export default function Area() {
       </div>
       <div className="area-aba" hidden={aba !== "mural"}>
         <MyMural code={code} member={member} />
+      </div>
+      <div className="area-aba" hidden={aba !== "vantagens"}>
+        <MyVantagens code={code} member={member} companies={companies} />
       </div>
       <div className="area-aba" hidden={aba !== "vagas"}>
         <MyMural code={code} member={member} soVagas />

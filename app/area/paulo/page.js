@@ -5,6 +5,7 @@ import ProjectsAdmin from "./projects-admin";
 import GestaoAdmin from "./gestao-admin";
 import PedidosAdmin from "./pedidos-admin";
 import MuralAdmin from "./mural-admin";
+import VantagensAdmin from "./vantagens-admin";
 import { naoLidas } from "../../parcerias/pedidos";
 import ImoveisAdmin from "./imoveis-admin";
 import {
@@ -45,6 +46,7 @@ export default function PauloAdmin() {
   const [members, setMembers] = useState([]);
   const [senhaPedidos, setSenhaPedidos] = useState([]); // "Esqueci minha senha"
   const [mural, setMural] = useState([]); // Mural de Oportunidades
+  const [vantagens, setVantagens] = useState([]); // Clube de Vantagens
   const [novaSenha, setNovaSenha] = useState(null); // { id, senha } recém-gerada
   const [projects, setProjects] = useState([]);
   const [gestoes, setGestoes] = useState([]);
@@ -93,6 +95,7 @@ export default function PauloAdmin() {
       if (Array.isArray(d.members)) setMembers(d.members);
       if (Array.isArray(d.senhaPedidos)) setSenhaPedidos(d.senhaPedidos);
       if (Array.isArray(d.mural)) setMural(d.mural);
+      if (Array.isArray(d.vantagens)) setVantagens(d.vantagens);
       if (Array.isArray(d.projects)) setProjects(d.projects);
       if (Array.isArray(d.gestoes)) setGestoes(d.gestoes);
       if (Array.isArray(d.pedidos)) setPedidos(d.pedidos);
@@ -284,6 +287,7 @@ export default function PauloAdmin() {
       if (Array.isArray(d.members)) setMembers(d.members);
       if (Array.isArray(d.senhaPedidos)) setSenhaPedidos(d.senhaPedidos);
       if (Array.isArray(d.mural)) setMural(d.mural);
+      if (Array.isArray(d.vantagens)) setVantagens(d.vantagens);
       if (d.novaSenha) setNovaSenha(d.novaSenha);
     } catch (e) {}
   };
@@ -533,6 +537,7 @@ export default function PauloAdmin() {
     if (Array.isArray(d?.members)) setMembers(d.members);
     if (Array.isArray(d?.senhaPedidos)) setSenhaPedidos(d.senhaPedidos);
     if (Array.isArray(d?.mural)) setMural(d.mural);
+    if (Array.isArray(d?.vantagens)) setVantagens(d.vantagens);
   };
 
   // gráfico: eventos por dia nos últimos 14 dias
@@ -628,6 +633,7 @@ export default function PauloAdmin() {
                 ["gest", "Gestão", pedidosNovos("gestao")],
                 // publicações dos últimos 3 dias (só aviso; não pedem ação)
                 ["mur", "Mural", mural.filter((m) => m.status === "analise").length],
+                ["van", "Vantagens", vantagens.filter((v) => v.status === "analise").length],
                 ["mem", "Membros", senhaPedidos.length],
                 ["emp", "Empresas", 0],
                 ["num", "Números", 0],
@@ -1196,6 +1202,15 @@ export default function PauloAdmin() {
               <MuralAdmin
                 code={code}
                 mural={mural}
+                companies={[...fixedCompanies, ...customCompanies]}
+                onData={applyAdminData}
+              />
+            )}
+
+            {tab === "van" && (
+              <VantagensAdmin
+                code={code}
+                vantagens={vantagens}
                 companies={[...fixedCompanies, ...customCompanies]}
                 onData={applyAdminData}
               />

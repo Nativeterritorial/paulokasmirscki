@@ -9753,3 +9753,70 @@ body:has(.vt-theme) {
   border-left: 5px solid rgba(255, 255, 255, 0.92);
   box-shadow: inset 6px 0 14px -8px rgba(255, 255, 255, 0.55), -2px 0 14px rgba(255, 255, 255, 0.18);
 }
+
+/* ===== Botões de destaque (topo, Plataforma, Ecossistema): principal em degradê com brilho, secundário em vidro ===== */
+:is(.hero-actions, .eco-hero-ctas) .btn {
+  position: relative;
+  overflow: hidden;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-size: 1.02rem;
+  font-weight: 700;
+  padding: 16px 30px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+:is(.hero-actions, .eco-hero-ctas) .btn-primary {
+  color: #fff;
+  background: linear-gradient(135deg, #9a7bff, #5b9bff);
+  border-color: transparent;
+  box-shadow: 0 12px 30px rgba(91, 80, 220, 0.45);
+}
+:is(.hero-actions, .eco-hero-ctas) .btn-primary::before {
+  content: "✦";
+  font-size: 1.05em;
+}
+/* brilho que passa de tempos em tempos */
+:is(.hero-actions, .eco-hero-ctas) .btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg);
+  animation: btnBrilho 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes btnBrilho {
+  0%, 60% { left: -60%; }
+  85%, 100% { left: 130%; }
+}
+:is(.hero-actions, .eco-hero-ctas) .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 38px rgba(91, 80, 220, 0.6), 0 0 0 4px rgba(154, 123, 255, 0.18);
+}
+:is(.hero-actions, .eco-hero-ctas) .btn-outline {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+:is(.hero-actions, .eco-hero-ctas) .btn-outline::after {
+  content: "→";
+  transition: transform 0.25s ease;
+}
+:is(.hero-actions, .eco-hero-ctas) .btn-outline:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+:is(.hero-actions, .eco-hero-ctas) .btn-outline:hover::after { transform: translateX(5px); }
+@media (max-width: 560px) {
+  :is(.hero-actions, .eco-hero-ctas) .btn { font-size: 0.95rem; padding: 14px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.hero-actions, .eco-hero-ctas) .btn-primary::after { animation: none; display: none; }
+}

@@ -1333,10 +1333,11 @@ export default function Home() {
                 <img src="/logo-mark.svg" alt="" />
                 <div className="brand-name">Paulo Kasmirscki</div>
               </div>
-              <p>
-                O conector do ecossistema.
-                <br />
-                Conectando pessoas e gerando negócios.
+              <div className="eyebrow eco-marca fc-marca">
+                <span className="marca-pk">Ecossistema <span className="pk-selo">PK</span></span> · Conector de Negócios
+              </div>
+              <p className="fc-slogan">
+                Conectando <em>pessoas</em> e gerando <em>negócios</em>.
               </p>
               <a className="fc-btn fc-member" href="/area">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" /><path d="M4 21a8 8 0 0 1 16 0" /></svg>

@@ -9830,3 +9830,28 @@ body:has(.vt-theme) {
 .dir-modo { display: flex; gap: 6px; margin-top: 12px; padding: 4px; border-radius: 999px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border); }
 .dir-modo button { flex: 1; padding: 8px 10px; border-radius: 999px; border: 0; background: transparent; color: var(--muted); font: 600 0.82rem var(--sans); cursor: pointer; transition: background 0.2s ease, color 0.2s ease; }
 .dir-modo button.on { background: linear-gradient(120deg, #6fffbf, #46d6ff); color: #06304a; }
+/* rodapé: marca do Ecossistema, frase em destaque e botão mais abaixo */
+.fc-brand .fc-marca { margin: 18px 0 14px; font-size: 0.72rem; }
+.fc-brand .fc-marca::before { display: none; }
+.fc-brand .fc-marca .marca-pk { font-weight: 700; letter-spacing: 0.08em; }
+.fc-brand .fc-marca .pk-selo { letter-spacing: 0.04em; padding: 0.12em 0.4em; }
+.fc-slogan {
+  font-family: "Sora", var(--serif);
+  font-weight: 800;
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  line-height: 1.2;
+  color: #fff;
+  margin: 0;
+  max-width: 420px;
+}
+.fc-slogan em {
+  font-style: normal;
+  background: linear-gradient(100deg, #6fffbf, #46d6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.fc-brand .fc-member { margin-top: 30px; }
+.fc-brand .fc-marca { flex-wrap: wrap; row-gap: 4px; }
+.fc-brand .fc-marca .marca-pk { white-space: nowrap; }

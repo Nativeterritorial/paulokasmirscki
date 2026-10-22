@@ -9667,3 +9667,22 @@ body:has(.vt-theme) {
   .area-top .area-install { display: none !important; }
   .area-top .area-hello { font-size: 0.86rem; max-width: 130px; overflow: hidden; text-overflow: ellipsis; }
 }
+.eco-oque-tit {
+  font-family: "Sora", var(--serif);
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0 0 6px;
+}
+.eco-oque-tit em { font-style: normal; color: #6fffbf; }
+.eco-oque-tit::after {
+  content: "";
+  display: block;
+  width: 84px;
+  height: 4px;
+  margin-top: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #6fffbf, #46d6ff, #8b5cf6);
+}

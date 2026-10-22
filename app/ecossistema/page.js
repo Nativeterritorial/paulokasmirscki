@@ -307,7 +307,13 @@ export default function Ecossistema() {
         {/* o que é o Ecossistema */}
         <section className="eco-oque" id="o-que-e">
           <div className="eco-oque-head">
-            <div className="kick">O que é o Ecossistema PK</div>
+            <h2 className="eco-oque-tit">
+              O que é o{" "}
+              <em className="nowrap">
+                Ecossistema <span className="pk-selo">PK</span>
+              </em>
+              ?
+            </h2>
             <p>
               O Ecossistema PK é a rede de empresas, profissionais e clientes
               que eu, Paulo Kasmirscki, conecto e acompanho pessoalmente. Funciona

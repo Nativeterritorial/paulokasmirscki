@@ -10101,3 +10101,19 @@ body:has(.vt-theme) {
   .area-panel { height: calc(100vh - 150px); height: calc(100dvh - 150px - env(safe-area-inset-bottom)); }
 }
 @keyframes am-sobe { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* A Rede: título, descrição e mapa num bloco só (sem o vão entre eles) */
+.rede-page section.rede-topo { padding: 34px 0 0; margin: 0 0 56px; }
+.rede-topo-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px 48px; align-items: end; margin-bottom: 26px; }
+.rede-topo-head h1 { white-space: nowrap; margin: 8px 0 0; font-family: "Sora", var(--serif); font-weight: 800; font-size: clamp(2.2rem, 4.6vw, 3.6rem); line-height: 1.05; }
+.rede-topo-head h1 em { color: #6fffbf; }
+.rede-topo-txt p { margin: 0; color: #dbe6ff; font-size: 1.08rem; line-height: 1.6; }
+.rede-topo-txt strong { color: #fff; }
+.rede-topo-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; padding: 0; }
+.rede-topo-chips li { padding: 7px 14px; border-radius: 999px; font: 600 0.82rem var(--sans); color: #eaf0ff; background: #0b1440; border: 1px solid rgba(111, 255, 191, 0.35); }
+@media (max-width: 860px) {
+  .rede-page section.rede-topo { padding-top: 22px; }
+  .rede-topo-head { grid-template-columns: 1fr; margin-bottom: 18px; }
+  .rede-topo-head h1 { white-space: normal; }
+  .rede-topo-txt p { font-size: 1rem; }
+}

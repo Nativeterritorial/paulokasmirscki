@@ -27,23 +27,29 @@ export default function Rede() {
       </header>
 
       <main className="container rede-wrap">
-        <div className="section-head" style={{ paddingTop: 40 }}>
-          <div className="eyebrow">O ecossistema</div>
-          <h1>
-            As empresas da <em>rede</em>
-          </h1>
-          <p style={{ color: "var(--muted)", maxWidth: 560 }}>
-            Negócios de segmentos diferentes, conectados pelo Paulo — cada um
-            com sua especialidade, todos gerando oportunidade uns para os
-            outros.
-          </p>
-        </div>
-
-        <section id="mapa" className="mr-sec">
-          <div className="eyebrow">Mapa da rede</div>
-          <h2>
-            Onde a rede <em>está</em>
-          </h2>
+        {/* topo e mapa num bloco só */}
+        <section id="mapa" className="mr-sec rede-topo">
+          <div className="rede-topo-head">
+            <div>
+              <div className="eyebrow">O Ecossistema PK</div>
+              <h1>
+                As empresas da <em>rede</em>
+              </h1>
+            </div>
+            <div className="rede-topo-txt">
+              <p>
+                Empresas de confiança, de segmentos diferentes, conectadas
+                pessoalmente pelo Paulo. Aqui você encontra <strong>clientes,
+                parceiros e fornecedores</strong> — e cada negócio gera
+                oportunidade para os outros.
+              </p>
+              <ul className="rede-topo-chips">
+                <li>🤝 Conexão pessoal com quem decide</li>
+                <li>✓ Empresas indicadas e conhecidas</li>
+                <li>📍 Veja no mapa onde a rede está</li>
+              </ul>
+            </div>
+          </div>
           <MapaRede grupos={porCidade(COMPANIES)} />
         </section>
 

@@ -9,6 +9,7 @@ import MyProjects from "./my-projects";
 import MyGestao from "./my-gestao";
 import MyImoveis from "./my-imoveis";
 import { FirmActions, ChaveModal } from "./chave";
+import RaioX, { useRaiox } from "./raiox";
 import { TimeCard, TimeModal, parseTime } from "./time";
 import MySolicitacoes from "./solicitacoes";
 import MyMural from "./mural";
@@ -229,6 +230,18 @@ export default function Area() {
   // empresas combinadas (fixas + cadastradas pelo Paulo); começa com as fixas
   const [companies, setCompanies] = useState(COMPANIES);
   const [chaveFor, setChaveFor] = useState(null); // empresa da Chave PK aberta
+  // Raio-X do negócio (abre sozinho no primeiro acesso de quem ainda não fez)
+  const [raiox, setRaiox] = useRaiox(code, member);
+  const [raioxOpen, setRaioxOpen] = useState(false);
+  useEffect(() => {
+    if (raiox !== null || !member?.id) return;
+    try {
+      if (localStorage.getItem("pk_raiox_visto")) return;
+      localStorage.setItem("pk_raiox_visto", "1");
+    } catch (e) {}
+    const t = setTimeout(() => setRaioxOpen(true), 1200);
+    return () => clearTimeout(t);
+  }, [raiox, member?.id]);
   const [timeFor, setTimeFor] = useState(null); // time do concierge a pedir
   const [chaveVer, setChaveVer] = useState(0); // recarrega "Minhas Chaves PK"
   const naoLidas = useNaoLidas(code, member);
@@ -532,6 +545,9 @@ export default function Area() {
               <div className="kick ia-kick">Concierge de IA · Online</div>
               <h2 style={{ fontSize: "1.35rem" }}>Como posso te conectar hoje?</h2>
             </div>
+            <button type="button" className="rx-abrir" onClick={() => setRaioxOpen(true)}>
+              🔍 {raiox ? "Meu Raio-X" : "Raio-X do seu negócio"}
+            </button>
           </div>
           <div className="area-chat" ref={chatRef}>
             {messages.map((m, i) => {
@@ -812,13 +828,31 @@ export default function Area() {
           onDone={() => setChaveVer((v) => v + 1)}
         />
       )}
+      {raioxOpen && (
+        <RaioX
+          code={code}
+          member={member}
+          companies={companies}
+          raiox={raiox}
+          setRaiox={setRaiox}
+          onClose={() => setRaioxOpen(false)}
+          onChave={(c, gratis) => {
+            setRaioxOpen(false);
+            setChaveFor({ ...c, gratis: !!gratis });
+          }}
+        />
+      )}
       {chaveFor && (
         <ChaveModal
           company={chaveFor}
           code={code}
           member={member}
           onClose={() => setChaveFor(null)}
-          onDone={() => setChaveVer((v) => v + 1)}
+          onDone={() => {
+            setChaveVer((v) => v + 1);
+            // a Chave de boas-vindas foi usada
+            if (chaveFor.gratis) setRaiox((r) => (r ? { ...r, chaveUsada: true } : r));
+          }}
         />
       )}
     </div>

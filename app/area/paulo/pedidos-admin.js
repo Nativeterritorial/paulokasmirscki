@@ -328,6 +328,8 @@ export default function PedidosAdmin({ code, tipo, pedidos, members = [], compan
                               : "Avulsa, sem plano — passe o valor"
                             : p.plano === "premium"
                             ? "⭐ Premium — prioridade"
+                            : p.plano === "boas-vindas"
+                            ? "🎁 Boas-vindas do Raio-X — grátis"
                             : "★ Básico — incluída no plano"}
                         </span>
                       )}

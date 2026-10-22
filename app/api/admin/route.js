@@ -217,6 +217,7 @@ export async function POST(req) {
     id: m.id,
     convidadoPor: m.convidadoPor ? nomeDe[m.convidadoPor] || "membro removido" : "",
     convidou: todos.filter((x) => x.convidadoPor === m.id).length,
+    raiox: m.raiox ? { faz: m.raiox.respostas?.faz || "", oferece: m.raiox.respostas?.oferece || "", procura: m.raiox.respostas?.procura || "", cliente: m.raiox.respostas?.cliente || "" } : null,
     nome: m.nome,
     whatsapp: m.whatsapp,
     t: m.t,

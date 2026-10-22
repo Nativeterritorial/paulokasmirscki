@@ -1323,6 +1323,14 @@ export default function PauloAdmin() {
                                 {m.convidadoPor ? ` · 🔗 convidado por ${m.convidadoPor}` : ""}
                                 {m.convidou ? ` · 🙌 trouxe ${m.convidou} ${m.convidou === 1 ? "pessoa" : "pessoas"}` : ""}
                               </div>
+                              {m.raiox && (
+                                <div className="lead-ct rx-admin">
+                                  🔍 <strong>Raio-X:</strong> {m.raiox.faz}
+                                  {m.raiox.oferece ? ` · oferece: ${m.raiox.oferece}` : ""}
+                                  {m.raiox.procura ? ` · procura: ${m.raiox.procura}` : ""}
+                                  {m.raiox.cliente ? ` · cliente ideal: ${m.raiox.cliente}` : ""}
+                                </div>
+                              )}
                             </div>
                             <div className="lead-actions">
                               {wa && (

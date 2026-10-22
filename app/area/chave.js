@@ -76,7 +76,8 @@ export function ChaveModal({ company, code, member, onClose, onDone }) {
 
   const restantes = usadas === null ? null : chavesRestantes(plano, usadas);
   // escolha aparece para quem não tem plano ou já usou as do mês
-  const precisaEscolher = usadas !== null && !restantes && !avulsaOk;
+  // Chave de boas-vindas (vinda do Raio-X): não pede plano nem cobra
+  const precisaEscolher = usadas !== null && !restantes && !avulsaOk && !company.gratis;
   const quem = member?.nome ? `Aqui é ${member.nome}. ` : "";
   const assinar = (id) =>
     `${WHATSAPP}?text=${encodeURIComponent(
@@ -189,8 +190,10 @@ export function ChaveModal({ company, code, member, onClose, onDone }) {
         )}
 
         {!done && usadas !== null && !precisaEscolher && (
-          <p className={`chave-cota ${restantes ? plano : "avulsa"}`}>
-            {restantes === Infinity
+          <p className={`chave-cota ${company.gratis && !restantes ? "premium" : restantes ? plano : "avulsa"}`}>
+            {company.gratis && !restantes
+              ? "🎁 Chave PK de boas-vindas do seu Raio-X: esta é por nossa conta."
+              : restantes === Infinity
               ? "⭐ Premium: Chaves PK sem limite, com prioridade na análise."
               : restantes
               ? `★ ${PLANOS.basico.nome}: você tem ${restantes} de ${CHAVES_POR_MES.basico} Chaves PK neste mês.`

@@ -53,17 +53,6 @@ export default function Rede() {
           <MapaRede grupos={porCidade(COMPANIES)} />
         </section>
 
-        <div className="rede-grid">
-          {COMPANIES.map((c) => (
-            <a className="rede-card" key={c.id} href={`/rede/${c.id}`}>
-              <div className="rede-sg">{c.segmento}</div>
-              <h2>{c.nome}</h2>
-              <p>{c.descricao}</p>
-              <span className="b-link">Conhecer →</span>
-            </a>
-          ))}
-        </div>
-
         <p className="brands-note">
           E a sua marca?{" "}
           <a href="/#contato" style={{ color: "var(--gold-2)" }}>

@@ -10117,3 +10117,6 @@ body:has(.vt-theme) {
   .rede-topo-head h1 { white-space: normal; }
   .rede-topo-txt p { font-size: 1rem; }
 }
+
+/* A Rede: quem chega por /rede#mapa vê o bloco inteiro (o topo fixo não cobre o título) */
+.rede-page section.rede-topo { scroll-margin-top: 110px; }

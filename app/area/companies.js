@@ -2217,4 +2217,92 @@ export const COMPANIES = [
     link: "https://www.instagram.com/domestrategias/",
     linkLabel: "@domestrategias",
   },
+  {
+    id: "lionsveranopolis",
+    cidade: "Veranópolis",
+    nome: "Lions Clube de Veranópolis",
+    segmento: "Clube de Serviço",
+    descricao:
+      "Clube de serviço em Veranópolis: nós servimos desde 23 de novembro de 1958.",
+    atende: ["Negócios & Empresas", "Serviços"],
+    link: "https://www.instagram.com/lionsclubedeveranopolis/",
+    linkLabel: "@lionsclubedeveranopolis",
+  },
+  {
+    id: "rotaryveranopolis",
+    cidade: "Veranópolis",
+    nome: "Rotary Club Veranópolis",
+    segmento: "Clube de Serviço",
+    descricao:
+      "Rotary Club de Veranópolis, do Distrito 4700 — lema 2026-27 \"Crie Impacto Duradouro\", com a presidente Simone De Carli Bavaresco.",
+    atende: ["Negócios & Empresas", "Serviços"],
+    link: "https://www.instagram.com/rotary_veranopolis/",
+    linkLabel: "@rotary_veranopolis",
+  },
+  {
+    id: "simonetto",
+    cidade: "Veranópolis",
+    nome: "Vinícola Simonetto",
+    segmento: "Vinícola Familiar",
+    descricao:
+      "Vinícola familiar em Veranópolis, com vinhos, espumantes e suco premiados com medalha de ouro — visitação e degustação guiada com agendamento.",
+    atende: ["Gastronomia", "Turismo & Hotelaria"],
+    link: "https://www.instagram.com/vinicolasimonetto/",
+    linkLabel: "@vinicolasimonetto",
+  },
+  {
+    id: "alusivah",
+    cidade: "Veranópolis",
+    nome: "Alusivah Alumínios",
+    segmento: "Esquadrias de Alumínio",
+    descricao:
+      "Esquadrias e janelas de alumínio, fachadas e box, em Veranópolis.",
+    atende: ["Imóveis & Construção", "Indústria & Móveis"],
+    link: "https://www.instagram.com/alusivah/",
+    linkLabel: "@alusivah",
+  },
+  {
+    id: "zeppelin",
+    cidade: "Veranópolis",
+    nome: "Zeppelin Gastro Pub",
+    segmento: "Gastropub — Restaurante & Bar",
+    descricao:
+      "Restaurante e bar em Veranópolis, às sextas e sábados a partir das 18h30: comida, drinks, reservas e delivery.",
+    atende: ["Gastronomia", "Esporte & Lazer"],
+    link: "https://www.instagram.com/zeppelingastropub/",
+    linkLabel: "@zeppelingastropub",
+  },
+  {
+    id: "semfronteiras",
+    cidade: "Nova Prata",
+    nome: "Grupo Sem Fronteiras",
+    segmento: "Música Gaúcha & Bailes",
+    descricao:
+      "Grupo de música gaúcha de Nova Prata desde 2006: fandangos e bailes, com o 1º CD \"Bem Campeiro\" — shows e contratações.",
+    atende: ["Esporte & Lazer", "Turismo & Hotelaria"],
+    link: "https://www.instagram.com/gruposemfronteiras/",
+    linkLabel: "@gruposemfronteiras",
+  },
+  {
+    id: "pablovalim",
+    cidade: "Veranópolis",
+    nome: "Pablo Valim Academia",
+    segmento: "Academia & Treino Personalizado",
+    descricao:
+      "Academia e treinamento personalizado em Veranópolis: treinos sob medida, com atendimento próximo, para uma melhor qualidade de vida.",
+    atende: ["Saúde & Bem-estar", "Esporte & Lazer"],
+    link: "https://www.instagram.com/pablovalimacademia/",
+    linkLabel: "@pablovalimacademia",
+  },
+  {
+    id: "paezcafe",
+    cidade: "Veranópolis",
+    nome: "Paez Café • Bistrô",
+    segmento: "Café & Bistrô",
+    descricao:
+      "Cafés, folhados e bistrô em Veranópolis, com helados argentinos — café de terça a sábado à tarde e bistrô à noite. Fone (54) 99427-8558.",
+    atende: ["Gastronomia"],
+    link: "https://www.instagram.com/paezcafebistro/",
+    linkLabel: "@paezcafebistro",
+  },
 ];

@@ -11,13 +11,6 @@ const EXAMPLES = [
   { q: "quero vender meu imóvel", a: <>O <strong>Paulo cuida da venda</strong>, e quem indica ganha bonificação 🏡</> },
 ];
 
-// atalhos: entram na área com a pergunta já escrita
-const ATALHOS = [
-  { label: "🏡 imóveis", q: "Quero comprar ou vender um imóvel" },
-  { label: "🏪 abrir uma loja", q: "Quero abrir uma loja" },
-  { label: "💼 vagas", q: "Estou contratando, quero divulgar uma vaga" },
-];
-const linkPergunta = (q) => `/area?pergunta=${encodeURIComponent(q)}`;
 
 export default function HeroAI() {
   const [idx, setIdx] = useState(0);
@@ -79,14 +72,6 @@ export default function HeroAI() {
             </span>
           )}
         </div>
-      </div>
-      <div className="hai-atalhos">
-        <span>Experimente:</span>
-        {ATALHOS.map((a) => (
-          <a key={a.q} href={linkPergunta(a.q)}>
-            {a.label}
-          </a>
-        ))}
       </div>
       <a className="hero-ai-cta" href="/area">
         <span className="hai-cta-icon">✦</span>

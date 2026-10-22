@@ -36,7 +36,7 @@ const SUGESTOES = [
 ];
 
 // abas da área de membros (o endereço #aba abre direto cada uma)
-const ABAS = ["inicio", "solicitacoes", "mural", "indicacoes", "vender", "obra", "projeto", "gestao"];
+const ABAS = ["inicio", "solicitacoes", "mural", "vagas", "indicacoes", "vender", "obra", "projeto", "gestao"];
 const abaDoHash = (h) => {
   const id = String(h || "").replace(/^#/, "");
   if (id.startsWith("pd-")) return "solicitacoes"; // conversa de um pedido
@@ -129,6 +129,7 @@ function AreaTabs({ aba, member, naoLidas, mobile }) {
     ["inicio", "svc-ia", "Início"],
     ["solicitacoes", "svc-sol", "Solicitações"],
     ["mural", "svc-mur", "Mural"],
+    ["vagas", "svc-vag", "Vagas"],
     ["indicacoes", "svc-ind", member ? "Minhas indicações" : "Indicar imóvel"],
     ["vender", "svc-imo", "Vender imóvel"],
     ["obra", "svc-obra", "Minha obra"],
@@ -761,6 +762,9 @@ export default function Area() {
       </div>
       <div className="area-aba" hidden={aba !== "mural"}>
         <MyMural code={code} member={member} />
+      </div>
+      <div className="area-aba" hidden={aba !== "vagas"}>
+        <MyMural code={code} member={member} soVagas />
       </div>
       <div className="area-aba" hidden={aba !== "indicacoes"}>
         <ConviteCard code={code} member={member} />

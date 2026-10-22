@@ -218,11 +218,13 @@ function InteresseModal({ post, onEnviar, onClose }) {
   );
 }
 
-export default function MyMural({ code, member }) {
+// soVagas: a aba "Vagas" da área mostra só as vagas de emprego do Mural
+export default function MyMural({ code, member, soVagas = false }) {
+  const VAZIO = soVagas ? { ...EMPTY, tipo: "vaga" } : EMPTY;
   const [data, setData] = useState({ posts: [], meus: [], conta: !!member?.id, plano: !!member?.plano });
-  const [filtro, setFiltro] = useState("todos");
+  const [filtro, setFiltro] = useState(soVagas ? "vaga" : "todos");
   const [aberto, setAberto] = useState(false);
-  const [f, setF] = useState(EMPTY);
+  const [f, setF] = useState(VAZIO);
   const [sending, setSending] = useState(false);
   const [err, setErr] = useState("");
   const [planoMotivo, setPlanoMotivo] = useState(undefined); // undefined = fechado
@@ -272,7 +274,7 @@ export default function MyMural({ code, member }) {
       const d = await r.json();
       if (d.ok) {
         setData(d);
-        setF(EMPTY);
+        setF(VAZIO);
         setAberto(false);
         if (pedeAprovacao(f.tipo)) setAviso("Recomendação enviada! Ela aparece no Mural assim que o Paulo aprovar.");
       } else if (d.code === "plano") pedirPlano(d.error);
@@ -315,7 +317,7 @@ export default function MyMural({ code, member }) {
   const T = MURAL_TIPOS[f.tipo];
 
   return (
-    <section className="area-refs area-projects svc svc-mur" id="mural">
+    <section className={`area-refs area-projects svc ${soVagas ? "svc-vag" : "svc-mur"}`} id={soVagas ? "vagas" : "mural"}>
       <div className="area-refs-head">
         <div className="svc-ic" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -325,13 +327,28 @@ export default function MyMural({ code, member }) {
           </svg>
         </div>
         <div className="svc-txt">
-          <div className="kick">Mural de Oportunidades</div>
-          <h2>Quem precisa encontra quem faz</h2>
-          <p>
-            Publique o que você procura, ofereça condições para a rede,
-            divulgue vagas de emprego e recomende quem é de confiança. Cada
-            publicação fica {MURAL_DIAS} dias no ar.
-          </p>
+          {soVagas ? (
+            <>
+              <div className="kick">Vagas da rede</div>
+              <h2>Trabalhe nas empresas do Ecossistema</h2>
+              <p>
+                Vagas de emprego abertas nas empresas da rede. Viu uma que
+                combina com você ou com alguém que você conhece? Candidate-se
+                por aqui. A sua empresa está contratando? Publique a vaga: ela
+                fica {MURAL_DIAS} dias no ar.
+              </p>
+            </>
+          ) : (
+            <>
+              <div className="kick">Mural de Oportunidades</div>
+              <h2>Quem precisa encontra quem faz</h2>
+              <p>
+                Publique o que você procura, ofereça condições para a rede,
+                divulgue vagas de emprego e recomende quem é de confiança. Cada
+                publicação fica {MURAL_DIAS} dias no ar.
+              </p>
+            </>
+          )}
         </div>
         {data.plano ? (
           <span className="sol-count mur-plano">
@@ -349,7 +366,7 @@ export default function MyMural({ code, member }) {
       </div>
 
       <div className="mur-bar">
-        <div className="mur-filtros" role="tablist" aria-label="Filtrar o mural">
+        <div className="mur-filtros" role="tablist" aria-label="Filtrar o mural" style={soVagas ? { display: "none" } : undefined}>
           {[["todos", "Tudo"], ...Object.entries(MURAL_TIPOS).map(([id, t]) => [id, t.label])].map(([id, lbl]) => (
             <button
               key={id}
@@ -363,7 +380,7 @@ export default function MyMural({ code, member }) {
         </div>
         {data.conta ? (
           <button type="button" className={`mur-novo${aberto ? " on" : ""}`} onClick={() => setAberto((v) => !v)}>
-            {aberto ? "✕ Fechar" : "+ Publicar no Mural"}
+            {aberto ? "✕ Fechar" : soVagas ? "+ Publicar vaga" : "+ Publicar no Mural"}
           </button>
         ) : (
           <span className="mur-aviso">Entre com a sua conta para publicar.</span>
@@ -514,7 +531,9 @@ export default function MyMural({ code, member }) {
 
       {!lista.length ? (
         <p className="area-refs-empty">
-          {data.posts.length
+          {soVagas
+            ? "Nenhuma vaga aberta no momento. A sua empresa está contratando? Publique a primeira vaga da rede!"
+            : data.posts.length
             ? "Nada desse tipo no momento."
             : "O Mural ainda está vazio. Seja o primeiro a publicar o que você procura!"}
         </p>

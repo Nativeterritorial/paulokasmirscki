@@ -132,7 +132,7 @@ const SERVICOS = [
         itens={[
           "Procuro: publique o fornecedor, serviço ou profissional que você precisa. As empresas da rede respondem.",
           "Ofereço: condições especiais, capacidade disponível e parcerias para a rede (plano Básico).",
-          "Vagas de emprego: publique a vaga e receba candidatos, que também chegam pela página pública /vagas (plano Básico).",
+          "Vagas de emprego: publique a vaga na aba Vagas da área de membros e receba candidatos (plano Básico).",
           "Recomendo: indique um profissional ou empresa de confiança. Passa pela aprovação do Paulo.",
           `Cada publicação fica ${MURAL_DIAS} dias no ar.`,
         ]}

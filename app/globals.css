@@ -9820,3 +9820,8 @@ body:has(.vt-theme) {
 @media (prefers-reduced-motion: reduce) {
   :is(.hero-actions, .eco-hero-ctas) .btn-primary::after { animation: none; display: none; }
 }
+.svc-vag {
+  --svc: #ffd27a;
+  --svc-ink: #3d2a06;
+  --svc-soft: rgba(255, 210, 122, 0.16);
+}

@@ -706,7 +706,6 @@ export default function Home() {
             <a href="#rede">A Rede</a>
             <a href="#segmentos">Segmentos</a>
             <a href="/imoveis">Imóveis</a>
-            <a href="/vagas">Vagas</a>
           </nav>
           <div className="nav-actions">
             <a className="nav-login" href="/area" aria-label="Entrar na Área de Membros">
@@ -1413,8 +1412,6 @@ export default function Home() {
               >
                 Visara Digital
               </a>
-              {" · "}
-              <a href="/vagas">Vagas da rede</a>
               {" · "}
               <a className="fc-admin" href="/area/paulo">
                 Painel do Paulo

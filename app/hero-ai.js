@@ -7,7 +7,7 @@ const EXAMPLES = [
   { q: "preciso de um eletricista", a: <>Achei profissionais de confiança na rede. Peça sua <strong>Chave PK</strong> 🔑</> },
   { q: "quero abrir uma loja", a: <>Monto o seu <strong>time</strong>: contador, arquiteto e marketing, com o Paulo conduzindo 🤝</> },
   { q: "vou construir minha casa", a: <>Isso é com o <strong>Do Terreno às Chaves</strong> 🏗️</> },
-  { q: "estou contratando", a: <>Publique a vaga no <strong>Mural</strong>: ela aparece também em /vagas 📌</> },
+  { q: "estou contratando", a: <>Publique a vaga na aba <strong>Vagas</strong> da área de membros 📌</> },
   { q: "quero vender meu imóvel", a: <>O <strong>Paulo cuida da venda</strong>, e quem indica ganha bonificação 🏡</> },
 ];
 

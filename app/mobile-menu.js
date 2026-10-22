@@ -8,7 +8,6 @@ const LINKS = [
   ["#rede", "A Rede"],
   ["#segmentos", "Segmentos"],
   ["/imoveis", "Imóveis"],
-  ["/vagas", "Vagas"],
   ["#contato", "Contato"],
 ];
 

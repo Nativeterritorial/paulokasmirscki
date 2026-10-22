@@ -8345,7 +8345,7 @@ body:has(.vt-theme) {
 .area-tabs-m {
   display: none;
 }
-@media (max-width: 1480px) {
+@media (max-width: 1720px) {
   .area-tabs {
     display: none;
   }
@@ -9659,4 +9659,11 @@ body:has(.vt-theme) {
   .area-panel { height: calc(100vh - 135px); height: calc(100dvh - 135px); min-height: 420px; }
   .chat-chips .so-pc { display: none; }
   .area-chat-input { padding-bottom: 14px; }
+}
+/* área: "Olá, Nome" ao lado do Sair em todas as telas; no celular sem "Instalar app" */
+.area-top .area-hello { display: inline-block !important; font-size: 0.95rem; color: #cfdcff; }
+.area-top .area-hello strong { color: #fff; font-weight: 700; }
+@media (max-width: 900px) {
+  .area-top .area-install { display: none !important; }
+  .area-top .area-hello { font-size: 0.86rem; max-width: 130px; overflow: hidden; text-overflow: ellipsis; }
 }

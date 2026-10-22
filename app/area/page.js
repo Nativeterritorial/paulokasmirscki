@@ -495,11 +495,11 @@ export default function Area() {
           <span className="area-badge">Área de Membros</span>
         </a>
         <div className="area-top-actions">
-          {member && (
-            <span className="area-hello">Olá, {member.nome.split(" ")[0]}</span>
-          )}
           <AreaTabs aba={aba} member={member} naoLidas={naoLidas} />
           <InstallApp />
+          {member && (
+            <span className="area-hello">Olá, <strong>{member.nome.split(" ")[0]}</strong> 👋</span>
+          )}
           <button className="area-logout" onClick={logout}>
             Sair
           </button>

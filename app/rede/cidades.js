@@ -39,6 +39,7 @@ export const CIDADES = {
   "China": [31.2304, 121.4737],
   "Portugal": [38.7223, -9.1393],
   "Inglaterra": [51.5072, -0.1276],
+  "Serafina Corrêa": [-28.7126, -51.9353],
 };
 export const BASE = "Veranópolis";
 

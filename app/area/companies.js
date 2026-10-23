@@ -2618,9 +2618,9 @@ export const COMPANIES = [
     id: "alimentospaladar",
     cidade: "Vila Flores",
     nome: "Alimentos Paladar",
-    segmento: "Indústria de Alimentos",
+    segmento: "Congelados & Massas",
     descricao:
-      "Alimentos Paladar, de Vila Flores.",
+      "Congelados e massas de Vila Flores: capeletis, massas e outros alimentos congelados, com o sabor da tradição italiana da Serra.",
     atende: ["Gastronomia", "Agro & Indústria", "Comércio & Varejo"],
     link: "https://www.instagram.com/alimentospaladar/",
     linkLabel: "@alimentospaladar",
@@ -2631,7 +2631,7 @@ export const COMPANIES = [
     nome: "Zelbra Lanches",
     segmento: "Lancheria",
     descricao:
-      "Lancheria em Veranópolis — o antigo Attolini Lanches.",
+      "Lancheria em Veranópolis — o antigo Attolini Lanches: xis, baurus, batata frita, bifes e muito mais.",
     atende: ["Gastronomia"],
     link: "https://www.instagram.com/zelbralanches/",
     linkLabel: "@zelbralanches",
@@ -2684,9 +2684,9 @@ export const COMPANIES = [
     id: "reacaopneus",
     cidade: "Veranópolis",
     nome: "Reação Pneus",
-    segmento: "Pneus & Serviços Automotivos",
+    segmento: "Borracharia & Pneus",
     descricao:
-      "Loja de pneus em Veranópolis.",
+      "Borracharia e loja de pneus em Veranópolis: conserto, troca e venda de pneus.",
     atende: ["Serviços", "Comércio & Varejo"],
     link: "https://www.instagram.com/reacaopneus/",
     linkLabel: "@reacaopneus",

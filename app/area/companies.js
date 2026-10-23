@@ -2713,4 +2713,92 @@ export const COMPANIES = [
     link: "https://www.santamadrecervejaria.com.br/",
     linkLabel: "santamadrecervejaria.com.br",
   },
+  {
+    id: "dellagiustina",
+    cidade: "Veranópolis",
+    nome: "Della Giustina Imóveis",
+    segmento: "Imobiliária",
+    descricao:
+      "Imobiliária em Veranópolis: casas, apartamentos, terrenos e outros imóveis para quem quer comprar, vender ou investir.",
+    atende: ["Imóveis & Construção"],
+    link: "https://www.instagram.com/dellagiustinaimoveis_/",
+    linkLabel: "@dellagiustinaimoveis_",
+  },
+  {
+    id: "venetto",
+    cidade: "Veranópolis",
+    nome: "Vênetto Imóveis",
+    segmento: "Imobiliária",
+    descricao:
+      "Imobiliária em Veranópolis: casas, apartamentos, terrenos e outros imóveis para quem quer comprar, vender ou investir.",
+    atende: ["Imóveis & Construção"],
+    link: "https://www.instagram.com/venettoimoveis/",
+    linkLabel: "@venettoimoveis",
+  },
+  {
+    id: "edgarcenci",
+    cidade: "Veranópolis",
+    nome: "Edgar Cenci Imóveis",
+    segmento: "Imobiliária",
+    descricao:
+      "Imobiliária em Veranópolis: casas, apartamentos, terrenos e outros imóveis para quem quer comprar, vender ou investir.",
+    atende: ["Imóveis & Construção"],
+    link: "https://www.instagram.com/imobiliariaedgarcencimoveis/",
+    linkLabel: "@imobiliariaedgarcencimoveis",
+  },
+  {
+    id: "festaimoveis",
+    cidade: "Veranópolis",
+    nome: "Festa Imóveis – Lindomar",
+    segmento: "Imobiliária",
+    descricao:
+      "Imobiliária em Veranópolis: casas, apartamentos, terrenos e outros imóveis para quem quer comprar, vender ou investir.",
+    atende: ["Imóveis & Construção"],
+    link: "https://www.instagram.com/festaimoveis/",
+    linkLabel: "@festaimoveis",
+  },
+  {
+    id: "1001imoveis",
+    cidade: "Veranópolis",
+    nome: "1001 Imóveis",
+    segmento: "Imobiliária",
+    descricao:
+      "Imobiliária em Veranópolis: casas, apartamentos, terrenos e outros imóveis para quem quer comprar, vender ou investir.",
+    atende: ["Imóveis & Construção"],
+    link: "https://www.instagram.com/imobiliaria1001imoveis/",
+    linkLabel: "@imobiliaria1001imoveis",
+  },
+  {
+    id: "ouroimobiliaria",
+    cidade: "Veranópolis",
+    nome: "Ouro Imobiliária",
+    segmento: "Imobiliária",
+    descricao:
+      "Imobiliária em Veranópolis: casas, apartamentos, terrenos e outros imóveis para quem quer comprar, vender ou investir.",
+    atende: ["Imóveis & Construção"],
+    link: "https://www.instagram.com/ouroimobiliaria.rs/",
+    linkLabel: "@ouroimobiliaria.rs",
+  },
+  {
+    id: "ghisleni",
+    cidade: ["Gramado", "Canela"],
+    nome: "Imobiliária Ghisleni",
+    segmento: "Imobiliária",
+    descricao:
+      "Imobiliária em Gramado e Canela: casas, apartamentos, terrenos e outros imóveis para quem quer comprar, vender ou investir.",
+    atende: ["Imóveis & Construção"],
+    link: "https://www.instagram.com/imobiliariaghisleni/",
+    linkLabel: "@imobiliariaghisleni",
+  },
+  {
+    id: "faveroimobiliaria",
+    cidade: "Veranópolis",
+    nome: "Favero Imobiliária",
+    segmento: "Imobiliária",
+    descricao:
+      "Imobiliária em Veranópolis: casas, apartamentos, terrenos e outros imóveis para quem quer comprar, vender ou investir.",
+    atende: ["Imóveis & Construção"],
+    link: "https://www.instagram.com/faveroimobiliaria/",
+    linkLabel: "@faveroimobiliaria",
+  },
 ];

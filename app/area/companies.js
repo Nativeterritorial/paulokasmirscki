@@ -2427,4 +2427,70 @@ export const COMPANIES = [
     link: "https://www.instagram.com/metralhastrilheiros/",
     linkLabel: "@metralhastrilheiros",
   },
+  {
+    id: "newage",
+    cidade: "Veranópolis",
+    nome: "New Age – Escola de Idiomas",
+    segmento: "Escola de Idiomas",
+    descricao:
+      "Escola de idiomas em Veranópolis, com cursos para crianças, jovens e adultos.",
+    atende: ["Educação & Capacitação"],
+    link: "https://www.instagram.com/newage.school/",
+    linkLabel: "@newage.school",
+  },
+  {
+    id: "cgcengenharia",
+    cidade: "Veranópolis",
+    nome: "CGC Engenharia e Arquitetura",
+    segmento: "Engenharia & Arquitetura",
+    descricao:
+      "Projetos de engenharia e arquitetura em Veranópolis, do projeto à obra.",
+    atende: ["Imóveis & Construção", "Arquitetura"],
+    link: "https://www.instagram.com/cgc_engenharia_e_arquitetura/",
+    linkLabel: "@cgc_engenharia_e_arquitetura",
+  },
+  {
+    id: "alumiconte",
+    cidade: "Vila Flores",
+    nome: "Alumiconte",
+    segmento: "Componentes de Alumínio",
+    descricao:
+      "Indústria de componentes de alumínio em Vila Flores.",
+    atende: ["Agro & Indústria", "Indústria & Móveis", "Imóveis & Construção"],
+    link: "https://www.instagram.com/alumiconte/",
+    linkLabel: "@alumiconte",
+  },
+  {
+    id: "mascaronrestaurante",
+    cidade: "Vila Flores",
+    nome: "Mascaron Restaurante",
+    segmento: "Restaurante",
+    descricao:
+      "Restaurante em Vila Flores.",
+    atende: ["Gastronomia", "Turismo & Hotelaria"],
+    link: "https://www.instagram.com/mascaronrestaurante/",
+    linkLabel: "@mascaronrestaurante",
+  },
+  {
+    id: "carbonerapneus",
+    cidade: "Veranópolis",
+    nome: "Carbonera Pneus",
+    segmento: "Pneus & Serviços Automotivos",
+    descricao:
+      "Pneus e serviços para o seu veículo em Veranópolis. Fone (54) 99692-1660.",
+    atende: ["Serviços", "Comércio & Varejo"],
+    link: "https://www.instagram.com/carbonerapneus/",
+    linkLabel: "@carbonerapneus",
+  },
+  {
+    id: "dotalian",
+    cidade: "Cotiporã",
+    nome: "Do Talian",
+    segmento: "Fábrica de Pizzas",
+    descricao:
+      "Fábrica de pizzas em Cotiporã.",
+    atende: ["Gastronomia", "Comércio & Varejo"],
+    link: "https://www.instagram.com/do_talian/",
+    linkLabel: "@do_talian",
+  },
 ];

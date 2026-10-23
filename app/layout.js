@@ -40,6 +40,7 @@ const JSON_LD = {
         "Conector de um ecossistema de negócios — une pessoas e marcas de diferentes segmentos, gerando indicações, parcerias e oportunidades.",
       url: "https://www.paulokasmirscki.com.br",
       sameAs: ["https://instagram.com/paulokasmirscki"],
+      image: "https://www.paulokasmirscki.com.br/paulo-premium.jpg",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Veranópolis",
@@ -75,7 +76,11 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Michroma&family=Sora:wght@700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" type="image/svg+xml" href="/app-icon.svg" />
+        {/* ícone do site (aba do navegador e busca do Google: tamanhos múltiplos de 48) */}
+        <link rel="icon" href="/favicon.ico" sizes="48x48" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body>{children}</body>

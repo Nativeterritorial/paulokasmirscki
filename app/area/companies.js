@@ -2614,4 +2614,103 @@ export const COMPANIES = [
     link: "https://www.instagram.com/vvillasconstrutora/",
     linkLabel: "@vvillasconstrutora",
   },
+  {
+    id: "alimentospaladar",
+    cidade: "Vila Flores",
+    nome: "Alimentos Paladar",
+    segmento: "Indústria de Alimentos",
+    descricao:
+      "Alimentos Paladar, de Vila Flores.",
+    atende: ["Gastronomia", "Agro & Indústria", "Comércio & Varejo"],
+    link: "https://www.instagram.com/alimentospaladar/",
+    linkLabel: "@alimentospaladar",
+  },
+  {
+    id: "zelbralanches",
+    cidade: "Veranópolis",
+    nome: "Zelbra Lanches",
+    segmento: "Lancheria",
+    descricao:
+      "Lancheria em Veranópolis — o antigo Attolini Lanches.",
+    atende: ["Gastronomia"],
+    link: "https://www.instagram.com/zelbralanches/",
+    linkLabel: "@zelbralanches",
+  },
+  {
+    id: "hotelcoroados",
+    cidade: "Nova Prata",
+    nome: "Coroados Hotel & Flats",
+    segmento: "Hotel & Flats",
+    descricao:
+      "Hotel e flats em Nova Prata, para hospedagens de lazer e a trabalho.",
+    atende: ["Turismo & Hotelaria"],
+    link: "https://www.instagram.com/hotel_coroados/",
+    linkLabel: "@hotel_coroados",
+  },
+  {
+    id: "veronaparque",
+    cidade: "Veranópolis",
+    nome: "Verona Parque Hotel",
+    segmento: "Hotel",
+    descricao:
+      "Hotel em Veranópolis — um lugar único para quem quer descanso e contato com a natureza.",
+    atende: ["Turismo & Hotelaria", "Esporte & Lazer"],
+    link: "https://www.instagram.com/veronaparquehotel/",
+    linkLabel: "@veronaparquehotel",
+  },
+  {
+    id: "princesadosvales",
+    cidade: "Veranópolis",
+    nome: "Hotel Princesa dos Vales",
+    segmento: "Hotel",
+    descricao:
+      "Hotel em Veranópolis.",
+    atende: ["Turismo & Hotelaria"],
+    link: "https://www.instagram.com/princesadosvales/",
+    linkLabel: "@princesadosvales",
+  },
+  {
+    id: "churrascoestancia",
+    cidade: "Veranópolis",
+    nome: "Casa do Churrasco Estância",
+    segmento: "Churrasco & Frango Assado",
+    descricao:
+      "Venda de churrasco e frango assado, com acompanhamentos, aos finais de semana e feriados em Veranópolis.",
+    atende: ["Gastronomia"],
+    link: "https://www.instagram.com/churrascoestancia/",
+    linkLabel: "@churrascoestancia",
+  },
+  {
+    id: "reacaopneus",
+    cidade: "Veranópolis",
+    nome: "Reação Pneus",
+    segmento: "Pneus & Serviços Automotivos",
+    descricao:
+      "Loja de pneus em Veranópolis.",
+    atende: ["Serviços", "Comércio & Varejo"],
+    link: "https://www.instagram.com/reacaopneus/",
+    linkLabel: "@reacaopneus",
+  },
+  {
+    id: "chapebraz",
+    cidade: "Marialva",
+    nome: "Chapebraz",
+    segmento: "Chapéus & Bonés",
+    descricao:
+      "Desde 1975 fabricando chapéus de alta qualidade, feitos por quem vive o campo e a tradição: chapéus para loja, chapéus e bonés promocionais, com entrega para todo o Brasil. Marialva (PR) · (44) 3232-1210.",
+    atende: ["Moda & Vestuário", "Comércio & Varejo", "Marketing & Digital"],
+    link: "https://www.chapebraz.com.br/",
+    linkLabel: "chapebraz.com.br",
+  },
+  {
+    id: "santamadre",
+    cidade: "Passo Fundo",
+    nome: "Santa Madre Cervejaria",
+    segmento: "Cervejaria & Chopp",
+    descricao:
+      "Cervejaria de Passo Fundo desde 2012, com chopp assinado por mestre cervejeiro de mais de 30 anos de experiência: Pilsen, Red, Weiss, Malzbier, Uva e IPA, Tap Room e barris de 20, 30 e 50 litros para eventos.",
+    atende: ["Gastronomia", "Turismo & Hotelaria", "Comércio & Varejo"],
+    link: "https://www.santamadrecervejaria.com.br/",
+    linkLabel: "santamadrecervejaria.com.br",
+  },
 ];

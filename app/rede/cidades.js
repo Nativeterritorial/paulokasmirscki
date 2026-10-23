@@ -40,6 +40,8 @@ export const CIDADES = {
   "Portugal": [38.7223, -9.1393],
   "Inglaterra": [51.5072, -0.1276],
   "Serafina Corrêa": [-28.7126, -51.9353],
+  "Marialva": [-23.485, -51.7917],
+  "Passo Fundo": [-28.262, -52.4083],
 };
 export const BASE = "Veranópolis";
 

@@ -42,6 +42,7 @@ export const CIDADES = {
   "Serafina Corrêa": [-28.7126, -51.9353],
   "Marialva": [-23.485, -51.7917],
   "Passo Fundo": [-28.262, -52.4083],
+  "Osório": [-29.8867, -50.2697],
 };
 export const BASE = "Veranópolis";
 

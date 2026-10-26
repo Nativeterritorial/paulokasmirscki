@@ -2801,4 +2801,103 @@ export const COMPANIES = [
     link: "https://www.instagram.com/faveroimobiliaria/",
     linkLabel: "@faveroimobiliaria",
   },
+  {
+    id: "esportemais",
+    cidade: "Veranópolis",
+    nome: "Loja Esporte Mais",
+    segmento: "Artigos Esportivos",
+    descricao:
+      "Loja de artigos esportivos em Veranópolis.",
+    atende: ["Esporte & Lazer", "Moda & Vestuário", "Comércio & Varejo"],
+    link: "https://www.instagram.com/lojaesportemais/",
+    linkLabel: "@lojaesportemais",
+  },
+  {
+    id: "bocanhas",
+    cidade: "Veranópolis",
+    nome: "Bocanhas",
+    segmento: "Hamburgueria",
+    descricao:
+      "Hamburgueria em Veranópolis.",
+    atende: ["Gastronomia"],
+    link: "https://www.instagram.com/bocanhasveranopolis/",
+    linkLabel: "@bocanhasveranopolis",
+  },
+  {
+    id: "caderode",
+    cidade: "Flores da Cunha",
+    nome: "Caderode",
+    segmento: "Mobiliário Corporativo",
+    descricao:
+      "Há 30 anos no mobiliário corporativo: cadeiras, móveis, divisórias piso-teto, linhas colaborativas, poltronas, cabines privativas e planejados para empresas.",
+    atende: ["Indústria & Móveis", "Arquitetura", "Negócios & Empresas"],
+    link: "https://caderode.com.br/",
+    linkLabel: "caderode.com.br",
+  },
+  {
+    id: "simrede",
+    cidade: "Flores da Cunha",
+    nome: "SIM Rede de Postos",
+    segmento: "Postos de Combustível & Conveniência",
+    descricao:
+      "A maior rede de postos e lojas de conveniência do Brasil, presente no RS, SC, PR e SP, com produtos e serviços de qualidade para o seu carro.",
+    atende: ["Serviços", "Comércio & Varejo", "Transporte & Logística"],
+    link: "https://www.simrede.com.br/",
+    linkLabel: "simrede.com.br",
+  },
+  {
+    id: "borrussia",
+    cidade: "Osório",
+    nome: "Frigorífico Borrússia",
+    segmento: "Frigorífico — Carnes Suínas",
+    descricao:
+      "Desde 1991, referência em carnes suínas: tradição familiar à mesa, com fábrica moderna em Osório e cortes para forno, churrasqueira e air fryer.",
+    atende: ["Agro & Indústria", "Gastronomia", "Comércio & Varejo"],
+    link: "https://frigorificoborrussia.com.br/",
+    linkLabel: "frigorificoborrussia.com.br",
+  },
+  {
+    id: "randoncorp",
+    cidade: "Caxias do Sul",
+    nome: "Randoncorp",
+    segmento: "Indústria — Mobilidade",
+    descricao:
+      "Multinacional brasileira de Caxias do Sul, presente em mais de 125 países, que desenvolve soluções para o futuro da mobilidade.",
+    atende: ["Agro & Indústria", "Transporte & Logística", "Negócios & Empresas"],
+    link: "https://www.randoncorp.com/pt/",
+    linkLabel: "randoncorp.com",
+  },
+  {
+    id: "florense",
+    cidade: "Flores da Cunha",
+    nome: "Florense",
+    segmento: "Móveis Planejados de Alto Padrão",
+    descricao:
+      "Desde 1953 em Flores da Cunha: cozinhas, armários, closets, estantes, divisórias e móveis corporativos de alto padrão, com rede de lojas e franquias.",
+    atende: ["Indústria & Móveis", "Arquitetura", "Imóveis & Construção"],
+    link: "https://www.florense.com.br/",
+    linkLabel: "florense.com.br",
+  },
+  {
+    id: "parise",
+    cidade: "Veranópolis",
+    nome: "Foto e Livraria Parise",
+    segmento: "Gráfica Digital, Fotos & Papelaria",
+    descricao:
+      "Gráfica digital, revelação de fotos, material escolar, papelaria e material de escritório em Veranópolis, com loja online. Fone (54) 99658-7713.",
+    atende: ["Gráfica & Impressão", "Fotografia & Filmagem", "Comércio & Varejo", "Educação & Capacitação"],
+    link: "https://www.loja.fotoelivrariaparise.com.br/",
+    linkLabel: "fotoelivrariaparise.com.br",
+  },
+  {
+    id: "vipal",
+    cidade: "Nova Prata",
+    nome: "Vipal Borrachas",
+    segmento: "Borrachas & Reforma de Pneus",
+    descricao:
+      "De Nova Prata para o mundo: reforma e reparo de pneus, pneus de carga e de moto, máquinas e linha industrial, com centro de pesquisa e universidade corporativa.",
+    atende: ["Agro & Indústria", "Transporte & Logística", "Serviços"],
+    link: "https://www.vipal.com/br",
+    linkLabel: "vipal.com",
+  },
 ];

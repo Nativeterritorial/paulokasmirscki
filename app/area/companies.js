@@ -2807,7 +2807,7 @@ export const COMPANIES = [
     nome: "Loja Esporte Mais",
     segmento: "Artigos Esportivos",
     descricao:
-      "Loja de artigos esportivos em Veranópolis.",
+      "Loja de artigos esportivos em Veranópolis: tênis, bolas e acessórios para o seu esporte.",
     atende: ["Esporte & Lazer", "Moda & Vestuário", "Comércio & Varejo"],
     link: "https://www.instagram.com/lojaesportemais/",
     linkLabel: "@lojaesportemais",
@@ -2816,9 +2816,9 @@ export const COMPANIES = [
     id: "bocanhas",
     cidade: "Veranópolis",
     nome: "Bocanhas",
-    segmento: "Hamburgueria",
+    segmento: "Lancheria",
     descricao:
-      "Hamburgueria em Veranópolis.",
+      "Lancheria em Veranópolis: xis, baurus, à la minutas e muito mais.",
     atende: ["Gastronomia"],
     link: "https://www.instagram.com/bocanhasveranopolis/",
     linkLabel: "@bocanhasveranopolis",

@@ -42,7 +42,9 @@ export function parsePreco(txt) {
 }
 
 // código curto mostrado para o cliente ("IMV-3F9K")
-export const imovelCodigo = (im) => "IMV-" + String(im?.id || "").slice(-5).toUpperCase();
+// código do imóvel: PK-1001 (fixos do site) · PK-2001 em diante (anúncios do
+// painel, em sequência). Anúncios antigos sem número mantêm o código pelo id.
+export const imovelCodigo = (im) => im?.codigo || "IMV-" + String(im?.id || "").slice(-5).toUpperCase();
 
 // "Casa · 3 quartos · 180 m²"
 export const imovelResumo = (im) =>

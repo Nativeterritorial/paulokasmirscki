@@ -31,6 +31,7 @@ export const naCategoria = (e, cat) => !cat || [].concat(e.categoria).includes(c
 export const EMPREENDIMENTOS = [
   {
     id: "dhunas",
+    codigo: "PK-1002",
     nome: "Dhunas Marine Resort",
     incorporadora: "Dwell Construções e Incorporações · Alsus Urbanizadora",
     cidade: "Passo de Torres (SC)",
@@ -51,6 +52,7 @@ export const EMPREENDIMENTOS = [
   },
   {
     id: "jardim-europa",
+    codigo: "PK-1003",
     nome: "Jardim Europa Residences",
     incorporadora: "Grupo Roncato",
     cidade: "Veranópolis",
@@ -65,6 +67,7 @@ export const EMPREENDIMENTOS = [
   },
   {
     id: "vista-do-vale",
+    codigo: "PK-1004",
     nome: "Vista do Vale",
     incorporadora: "Imobiliária Favero",
     cidade: "Veranópolis",
@@ -79,6 +82,7 @@ export const EMPREENDIMENTOS = [
   },
   {
     id: "florescer",
+    codigo: "PK-1005",
     nome: "Florescer Parque Residencial",
     incorporadora: "Florescer Negócios Imobiliários",
     cidade: "Vila Flores",
@@ -90,5 +94,34 @@ export const EMPREENDIMENTOS = [
     destaques: ["Lotes com testada mínima de 14 m", "Ruas asfaltadas e vias largas", "Infraestrutura completa instalada", "Áreas residenciais e mistas"],
     fotos: [1, 2, 3].map((n) => `/empreendimentos/florescer-${n}.jpg`),
     site: "https://florescerparqueresidencial.com.br/",
+  },
+];
+
+// Imóveis prontos à venda (casas, apartamentos...) que o Paulo vende em
+// parceria com outras imobiliárias (o nome da parceira não aparece no site).
+// Fotos em /public/imoveis. Código: PK-1001, PK-1002... (o próximo livre)
+export const IMOVEIS = [
+  {
+    id: "casa-femaca",
+    codigo: "PK-1001",
+    nome: "Casa de alto padrão no Bairro Femaçã",
+    parceiro: "Venda em parceria",
+    cidade: "Veranópolis",
+    categoria: "casas",
+    tipo: "Casa",
+    status: "À venda",
+    preco: "R$ 2.800.000",
+    precoNota: "Aceita imóvel de menor valor na negociação",
+    resumo:
+      "Casa completa, sofisticada e planejada, de esquina, com vista livre e exuberante. Construída sobre 2 terrenos (750 m²), com 377,19 m² de área construída, piscina aquecida, quiosque com churrasqueira e energia solar. Vendida porteira fechada.",
+    destaques: [
+      "377,19 m² construídos em 750 m² de terreno",
+      "4 dormitórios, 1 suíte master com closet e hidromassagem",
+      "Piscina aquecida e quiosque com churrasqueira",
+      "Garagem para 2 carros + 3 vagas no pátio",
+      "Placas solares e aquecimento solar com apoio a gás",
+      "Aberturas em PVC, vidros duplos e câmeras",
+    ],
+    fotos: Array.from({ length: 20 }, (_, i) => `/imoveis/casa-femaca-${i + 1}.jpg`),
   },
 ];

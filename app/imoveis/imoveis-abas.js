@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CATEGORIAS, EMPREENDIMENTOS, categoriaDoTipo, naCategoria } from "./empreendimentos";
+import { CATEGORIAS, EMPREENDIMENTOS, IMOVEIS, categoriaDoTipo, naCategoria } from "./empreendimentos";
 import Vitrine from "./vitrine";
 
 const WHATSAPP = "https://wa.me/5554996505799";
@@ -15,6 +15,7 @@ function Empreendimento({ e }) {
       <div className="emp-fotos">
         <img src={e.fotos[foto]} alt={`${e.nome} — foto ${foto + 1}`} className="emp-foto" />
         <span className="emp-status">{e.status}</span>
+        {e.codigo && <span className="emp-codigo">Cód. {e.codigo}</span>}
         {e.fotos.length > 1 && (
           <div className="emp-thumbs">
             {e.fotos.map((f, i) => (
@@ -36,7 +37,14 @@ function Empreendimento({ e }) {
           {e.tipo} · {e.cidade}
         </div>
         <h3>{e.nome}</h3>
-        <div className="emp-inc">por {e.incorporadora}</div>
+        {e.incorporadora && <div className="emp-inc">por {e.incorporadora}</div>}
+        {e.parceiro && <div className="emp-inc">{e.parceiro}</div>}
+        {e.preco && (
+          <div className="emp-preco">
+            <strong>{e.preco}</strong>
+            {e.precoNota && <span>{e.precoNota}</span>}
+          </div>
+        )}
         <p>{e.resumo}</p>
         <ul className="emp-destaques">
           {e.destaques.map((d) => (
@@ -55,15 +63,21 @@ function Empreendimento({ e }) {
         <div className="emp-ctas">
           <a
             className="btn btn-primary"
-            href={wa(`Olá Paulo! Tenho interesse no ${e.nome}, em ${e.cidade}. Pode me passar valores e condições?`)}
+            href={wa(
+              e.preco
+                ? `Olá Paulo! Tenho interesse no imóvel ${e.codigo} — "${e.nome}", em ${e.cidade}. Pode me passar mais informações e agendar uma visita?`
+                : `Olá Paulo! Tenho interesse no ${e.nome} (${e.codigo}), em ${e.cidade}. Pode me passar valores e condições?`
+            )}
             target="_blank"
             rel="noopener noreferrer"
           >
             Quero saber mais
           </a>
-          <a className="btn btn-outline" href={e.site} target="_blank" rel="noopener noreferrer">
-            {e.siteLabel || "Site oficial ↗"}
-          </a>
+          {e.site && (
+            <a className="btn btn-outline" href={e.site} target="_blank" rel="noopener noreferrer">
+              {e.siteLabel || "Site oficial ↗"}
+            </a>
+          )}
         </div>
       </div>
     </article>
@@ -91,9 +105,11 @@ export default function ImoveisAbas({ imoveis }) {
   };
 
   const emps = EMPREENDIMENTOS.filter((e) => naCategoria(e, cat));
+  const prontos = IMOVEIS.filter((e) => naCategoria(e, cat));
   const avulsos = imoveis.filter((i) => !cat || categoriaDoTipo(i.tipo) === cat);
   const conta = (id) =>
     EMPREENDIMENTOS.filter((e) => naCategoria(e, id)).length +
+    IMOVEIS.filter((e) => naCategoria(e, id)).length +
     imoveis.filter((i) => !id || categoriaDoTipo(i.tipo) === id).length;
 
   return (
@@ -112,6 +128,23 @@ export default function ImoveisAbas({ imoveis }) {
         ))}
       </nav>
 
+      {prontos.length > 0 && (
+        <section className="emp-sec">
+          <div className="emp-head">
+            <div className="kick">À venda</div>
+            <h2>
+              Imóveis <em>selecionados</em>
+            </h2>
+            <p>Imóveis prontos que eu vendo como corretor: visitas, valores e negociação direto comigo.</p>
+          </div>
+          <div className="emp-lista">
+            {prontos.map((e) => (
+              <Empreendimento e={e} key={e.id} />
+            ))}
+          </div>
+        </section>
+      )}
+
       {emps.length > 0 && (
         <section className="emp-sec">
           <div className="emp-head">
@@ -129,9 +162,9 @@ export default function ImoveisAbas({ imoveis }) {
         </section>
       )}
 
-      {(avulsos.length > 0 || !emps.length || !cat) && (
+      {(avulsos.length > 0 || (!emps.length && !prontos.length) || !cat) && (
         <section className="emp-sec">
-          {emps.length > 0 && (
+          {(emps.length > 0 || prontos.length > 0) && (
             <div className="emp-head">
               <div className="kick">Vitrine</div>
               <h2>

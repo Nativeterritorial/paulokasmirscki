@@ -10120,3 +10120,15 @@ body:has(.vt-theme) {
 
 /* A Rede: quem chega por /rede#mapa vê o bloco inteiro (o topo fixo não cobre o título) */
 .rede-page section.rede-topo { scroll-margin-top: 110px; }
+
+/* Imóveis selecionados: valor em destaque no cartão */
+.emp-preco { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin: 4px 0 12px; }
+.emp-preco strong { font: 800 1.6rem "Sora", var(--serif); background: linear-gradient(120deg, #6fffbf, #46d6ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.emp-preco span { font-size: 0.85rem; color: #c9d4f5; }
+
+/* código do imóvel no cartão (PK-1001...) */
+.emp-codigo {
+  position: absolute; top: 14px; right: 14px; padding: 6px 12px; border-radius: 999px;
+  font: 700 0.74rem var(--sans); letter-spacing: 0.06em; color: #fff;
+  background: rgba(11, 20, 64, 0.82); border: 1px solid rgba(255, 255, 255, 0.35); backdrop-filter: blur(6px);
+}

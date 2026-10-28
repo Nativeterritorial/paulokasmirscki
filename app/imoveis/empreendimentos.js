@@ -28,6 +28,20 @@ export const categoriaDoTipo = (tipo) =>
 
 export const naCategoria = (e, cat) => !cat || [].concat(e.categoria).includes(cat);
 
+// busca sem acento e sem diferença de maiúsculas; o código vale com ou sem
+// traço (PK-1001, pk1001 ou só 1001)
+export const normBusca = (s) =>
+  String(s || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+export const textoDoImovel = (e) => {
+  const t = normBusca(
+    [e.codigo, e.nome, e.titulo, e.tipo, e.status, e.cidade, e.bairro, e.resumo, e.descricao, e.palavras, ...(e.destaques || [])].join(" ")
+  );
+  return t + " " + t.replace(/[^a-z0-9]/g, "");
+};
+
 export const EMPREENDIMENTOS = [
   {
     id: "dhunas",
@@ -37,6 +51,8 @@ export const EMPREENDIMENTOS = [
     cidade: "Passo de Torres (SC)",
     categoria: ["terrenos", "casas"],
     tipo: "Condomínio náutico",
+    quartos: 3,
+    palavras: "praia litoral marina náutico",
     status: "Lançamento",
     resumo:
       "O primeiro condomínio náutico às margens do Rio Mampituba, em Passo de Torres, ao lado de Torres: a conexão entre o rio, o mar, as dunas e a cidade. Casas Brise, Wave e Sand em 6 projetos personalizáveis.",
@@ -111,6 +127,10 @@ export const IMOVEIS = [
     tipo: "Casa",
     status: "À venda",
     preco: "R$ 2.800.000",
+    valor: 2800000,
+    quartos: 4,
+    bairro: "Femaçã",
+    palavras: "permuta troca aceita imóvel piscina esquina suíte",
     precoNota: "Aceita imóvel de menor valor na negociação",
     resumo:
       "Casa completa, sofisticada e planejada, de esquina, com vista livre e exuberante. Construída sobre 2 terrenos (750 m²), com 377,19 m² de área construída, piscina aquecida, quiosque com churrasqueira e energia solar. Vendida porteira fechada.",

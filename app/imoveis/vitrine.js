@@ -18,7 +18,7 @@ const norm = (s) =>
     .replace(/[̀-ͯ]/g, "");
 
 // Lista pública com filtros (tipo, cidade, quartos, valor e busca livre)
-export default function Vitrine({ imoveis }) {
+export default function Vitrine({ imoveis, semFiltros = false }) {
   const [tipo, setTipo] = useState("");
   const [cidade, setCidade] = useState("");
   const [quartos, setQuartos] = useState(0);
@@ -73,6 +73,7 @@ export default function Vitrine({ imoveis }) {
 
   return (
     <>
+      {!semFiltros && (
       <div className="vt-filters">
         <label className="vt-search">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -120,6 +121,9 @@ export default function Vitrine({ imoveis }) {
         </select>
       </div>
 
+      )}
+
+      {!semFiltros && (
       <div className="vt-count">
         {lista.length} {lista.length === 1 ? "imóvel" : "imóveis"}
         {filtrando ? (
@@ -128,6 +132,7 @@ export default function Vitrine({ imoveis }) {
           </button>
         ) : null}
       </div>
+      )}
 
       {!lista.length ? (
         <div className="vt-empty">

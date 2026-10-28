@@ -10132,3 +10132,56 @@ body:has(.vt-theme) {
   font: 700 0.74rem var(--sans); letter-spacing: 0.06em; color: #fff;
   background: rgba(11, 20, 64, 0.82); border: 1px solid rgba(255, 255, 255, 0.35); backdrop-filter: blur(6px);
 }
+
+/* ---------- Imóveis: buscador (busca por código/texto, abas, filtros e atalhos) ---------- */
+.vt-theme section.emp-sec { padding: 0; }
+.ib-painel {
+  position: sticky; top: 84px; z-index: 30; margin: 6px 0 34px; padding: 18px 20px 14px; border-radius: 22px;
+  background: linear-gradient(135deg, #0b1440 0%, #10257a 100%); border: 1px solid rgba(124, 196, 255, 0.3);
+  box-shadow: 0 24px 60px rgba(8, 16, 60, 0.28);
+}
+.ib-busca { position: relative; display: flex; align-items: center; }
+.ib-busca svg { position: absolute; left: 20px; width: 22px; height: 22px; fill: #6fffbf; pointer-events: none; }
+.ib-busca input {
+  width: 100%; height: 60px; padding: 0 52px 0 56px; border-radius: 999px; border: 2px solid rgba(111, 255, 191, 0.45);
+  background: rgba(255, 255, 255, 0.07); color: #fff; font: 500 1.08rem var(--sans); outline: none; transition: border-color .2s ease, background .2s ease;
+}
+.ib-busca input::placeholder { color: #9fb0d9; }
+.ib-busca input:focus { border-color: #6fffbf; background: rgba(255, 255, 255, 0.12); box-shadow: 0 0 0 4px rgba(111, 255, 191, 0.15); }
+.ib-x { position: absolute; right: 14px; width: 32px; height: 32px; border-radius: 50%; border: 0; cursor: pointer; background: rgba(255, 255, 255, 0.14); color: #fff; font-size: 0.85rem; }
+.ib-abas { margin: 14px 0 12px; }
+.ib-abas button { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.18); }
+.ib-abas button.vazio { opacity: 0.45; }
+.ib-filtros { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.ib-filtros select {
+  height: 40px; padding: 0 12px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08); color: #eaf0ff; font: 600 0.86rem var(--sans); cursor: pointer;
+}
+.ib-filtros select option { color: #0b1440; }
+.ib-atalhos { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
+.ib-atalhos button {
+  padding: 8px 12px; border-radius: 999px; cursor: pointer; font: 600 0.8rem var(--sans); color: #dbe6ff;
+  background: transparent; border: 1px dashed rgba(124, 196, 255, 0.45); transition: all .2s ease;
+}
+.ib-atalhos button:hover { border-style: solid; border-color: #6fffbf; color: #fff; }
+.ib-atalhos button.on { background: rgba(111, 255, 191, 0.18); border: 1px solid #6fffbf; color: #fff; }
+.ib-resumo { display: flex; align-items: center; gap: 14px; margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem; color: #c9d4f5; }
+.ib-resumo strong { color: #6fffbf; font-size: 1.05rem; }
+.ib-resumo button { border: 0; background: none; color: #9fd0ff; font: 600 0.85rem var(--sans); cursor: pointer; text-decoration: underline; }
+.ib-nada { margin: 0 0 40px; padding: 34px 24px; text-align: center; border-radius: 22px; background: #0b1440; color: #dbe6ff; border: 1px dashed rgba(111, 255, 191, 0.5); }
+.ib-nada-ic { font-size: 2.6rem; }
+.ib-nada h3 { margin: 8px 0 6px; color: #fff; font: 700 1.35rem var(--sans); }
+.ib-nada p { max-width: 520px; margin: 0 auto 16px; color: #c9d4f5; }
+.ib-nada-ctas { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.vt-theme .ib-nada .btn-primary { background: linear-gradient(120deg, #6fffbf, #46d6ff); color: #06304a; border-color: transparent; }
+.vt-theme .ib-nada .btn-outline { color: #eaf0ff; border-color: rgba(234, 240, 255, 0.45); background: transparent; }
+.emp-card { scroll-margin-top: 330px; }
+@media (max-width: 900px) {
+  .ib-painel { position: static; padding: 14px; }
+  .ib-busca input { height: 52px; font-size: 0.95rem; padding-left: 48px; }
+  .ib-busca svg { left: 16px; }
+  .ib-atalhos { margin-left: 0; flex-wrap: nowrap; overflow-x: auto; width: 100%; padding-bottom: 4px; }
+  .ib-atalhos button { flex: none; }
+  .ib-filtros select { flex: 1; min-width: 0; }
+  .emp-card { scroll-margin-top: 90px; }
+}

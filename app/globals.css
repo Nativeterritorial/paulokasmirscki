@@ -10185,3 +10185,30 @@ body:has(.vt-theme) {
   .ib-filtros select { flex: 1; min-width: 0; }
   .emp-card { scroll-margin-top: 90px; }
 }
+
+/* Imóveis: o painel do buscador não gruda mais; ao rolar para cima aparece
+   uma barra fina (busca + contagem + Filtros) e some ao descer */
+.ib-painel { position: relative; top: auto; }
+.ib-mini {
+  position: fixed; left: 0; right: 0; z-index: 40; padding: 8px 16px;
+  background: rgba(11, 20, 64, 0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(124, 196, 255, 0.25);
+  box-shadow: 0 10px 30px rgba(3, 8, 30, 0.3);
+  transform: translateY(-140%); opacity: 0; pointer-events: none; transition: transform .25s ease, opacity .25s ease;
+}
+.ib-mini.on { transform: none; opacity: 1; pointer-events: auto; }
+.ib-mini-in { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+.ib-busca-mini { flex: 1; }
+.ib-busca-mini input { height: 42px; font-size: 0.95rem; padding-left: 46px; border-width: 1.5px; }
+.ib-busca-mini svg { left: 16px; width: 18px; height: 18px; }
+.ib-mini-n { color: #c9d4f5; font-size: 0.86rem; white-space: nowrap; }
+.ib-mini-n strong { color: #6fffbf; }
+.ib-mini-btn {
+  padding: 10px 16px; border-radius: 999px; border: 0; cursor: pointer; white-space: nowrap;
+  font: 700 0.85rem var(--sans); color: #06304a; background: linear-gradient(120deg, #6fffbf, #46d6ff);
+}
+.emp-card { scroll-margin-top: 110px; }
+@media (max-width: 640px) {
+  .ib-mini { padding: 8px 10px; }
+  .ib-mini-n { display: none; }
+  .ib-mini-btn { padding: 10px 12px; }
+}

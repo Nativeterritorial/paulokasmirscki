@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { CATEGORIAS, EMPREENDIMENTOS, IMOVEIS, categoriaDoTipo, naCategoria, normBusca, textoDoImovel } from "./empreendimentos";
 import Vitrine from "./vitrine";
 
@@ -110,6 +110,30 @@ export default function ImoveisAbas({ imoveis }) {
   const [cidade, setCidade] = useState("");
   const [ate, setAte] = useState(0);
   const [quartos, setQuartos] = useState(0);
+  // barra compacta: aparece só quando o painel ficou para trás e a pessoa
+  // rola para cima (descendo, as fotos ficam livres)
+  const painelRef = useRef(null);
+  const [mini, setMini] = useState(false);
+  const [topo, setTopo] = useState(84);
+  useEffect(() => {
+    let ultimo = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      const hdr = document.querySelector(".site-header")?.offsetHeight || 84;
+      setTopo(hdr);
+      const passou = (painelRef.current?.getBoundingClientRect().bottom || 0) < hdr;
+      if (!passou) setMini(false);
+      else if (y < ultimo - 6) setMini(true);
+      else if (y > ultimo + 6) setMini(false);
+      ultimo = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  const abrirPainel = () => {
+    setMini(false);
+    painelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   // a aba acompanha o endereço (#terrenos, #casas...) para dar para compartilhar
   useEffect(() => {
@@ -173,7 +197,31 @@ export default function ImoveisAbas({ imoveis }) {
 
   return (
     <>
-      <div className="ib-painel">
+      <div className={`ib-mini${mini ? " on" : ""}`} style={{ top: topo }} aria-hidden={!mini}>
+        <div className="ib-mini-in">
+          <label className="ib-busca ib-busca-mini">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.5 3a7.5 7.5 0 015.9 12.1l4.2 4.2-1.4 1.4-4.2-4.2A7.5 7.5 0 1110.5 3zm0 2a5.5 5.5 0 100 11 5.5 5.5 0 000-11z" />
+            </svg>
+            <input
+              value={busca}
+              onChange={(ev) => setBusca(ev.target.value)}
+              placeholder="Buscar imóvel ou código…"
+              aria-label="Buscar imóvel"
+              tabIndex={mini ? 0 : -1}
+            />
+          </label>
+          <span className="ib-mini-n">
+            <strong>{achados.length}</strong> {achados.length === 1 ? "imóvel" : "imóveis"}
+            {cat ? ` · ${CATEGORIAS.find((c) => c.id === cat)?.label}` : ""}
+          </span>
+          <button type="button" className="ib-mini-btn" onClick={abrirPainel} tabIndex={mini ? 0 : -1}>
+            ⚙️ Filtros
+          </button>
+        </div>
+      </div>
+
+      <div className="ib-painel" ref={painelRef}>
         <div className="ib-topo">
           <label className="ib-busca">
             <svg viewBox="0 0 24 24" aria-hidden="true">

@@ -108,7 +108,7 @@ export const EMPREENDIMENTOS = [
     resumo:
       "Parque residencial planejado numa região alta de Vila Flores, com horizonte amplo do nascer ao pôr do sol, a 600 m do complexo Vila Capuchinhos e com acesso rápido à BR-470.",
     destaques: ["Lotes com testada mínima de 14 m", "Ruas asfaltadas e vias largas", "Infraestrutura completa instalada", "Áreas residenciais e mistas"],
-    fotos: [1, 2, 3].map((n) => `/empreendimentos/florescer-${n}.jpg`),
+    fotos: Array.from({ length: 14 }, (_, i) => `/empreendimentos/florescer-${i + 1}.jpg`),
     site: "https://florescerparqueresidencial.com.br/",
   },
 ];

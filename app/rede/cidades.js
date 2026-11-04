@@ -43,6 +43,8 @@ export const CIDADES = {
   "Marialva": [-23.485, -51.7917],
   "Passo Fundo": [-28.262, -52.4083],
   "Osório": [-29.8867, -50.2697],
+  "Sales Oliveira": [-20.7697, -47.8381],
+  "Indaiatuba": [-23.0903, -47.2181],
 };
 export const BASE = "Veranópolis";
 

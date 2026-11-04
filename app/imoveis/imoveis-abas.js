@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { CATEGORIAS, EMPREENDIMENTOS, IMOVEIS, categoriaDoTipo, naCategoria, normBusca, textoDoImovel } from "./empreendimentos";
+import { CATEGORIAS, EMPREENDIMENTOS, IMOVEIS, categoriaDoTipo, naCategoria, normBusca, textoDoImovel, urlDoImovel } from "./empreendimentos";
 import Vitrine from "./vitrine";
 
 const WHATSAPP = "https://wa.me/5554996505799";
@@ -36,7 +36,9 @@ function Empreendimento({ e }) {
         <div className="emp-loc">
           {e.tipo} · {e.cidade}
         </div>
-        <h3>{e.nome}</h3>
+        <h3>
+          <a href={urlDoImovel(e)}>{e.nome}</a>
+        </h3>
         {e.incorporadora && <div className="emp-inc">por {e.incorporadora}</div>}
         {e.parceiro && <div className="emp-inc">{e.parceiro}</div>}
         {e.preco && (
@@ -72,6 +74,9 @@ function Empreendimento({ e }) {
             rel="noopener noreferrer"
           >
             Quero saber mais
+          </a>
+          <a className="btn btn-outline" href={urlDoImovel(e)}>
+            Ver página do imóvel
           </a>
           {e.site && (
             <a className="btn btn-outline" href={e.site} target="_blank" rel="noopener noreferrer">

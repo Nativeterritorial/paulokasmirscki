@@ -10212,3 +10212,16 @@ body:has(.vt-theme) {
   .ib-mini-n { display: none; }
   .ib-mini-btn { padding: 10px 12px; }
 }
+
+/* Página de cada imóvel fixo (/imoveis/pk-1001): nota do valor, parceria e destaques */
+.vt-info .emp-inc { margin: -4px 0 4px; color: var(--muted); }
+.vt-nota { margin: -6px 0 4px; font-size: 0.88rem; color: var(--muted); }
+.vt-desc .emp-destaques { margin-top: 16px; }
+.vt-desc .emp-destaques li { color: var(--ink, #1c2340); }
+.vt-desc .emp-destaques li::before { color: #0f9d6b; }
+.emp-info h3 a { color: inherit; text-decoration: none; }
+.emp-info h3 a:hover { text-decoration: underline; text-underline-offset: 4px; }
+/* a galeria não estica a coluna quando há muitas miniaturas, e a foto
+   aparece inteira (fotos em pé não são cortadas) */
+.vt-detail > * { min-width: 0; }
+.vt-gal-main img { object-fit: contain; }

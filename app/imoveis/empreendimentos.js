@@ -145,3 +145,13 @@ export const IMOVEIS = [
     fotos: Array.from({ length: 20 }, (_, i) => `/imoveis/casa-femaca-${i + 1}.jpg`),
   },
 ];
+
+// endereço da página de cada imóvel: /imoveis/pk-1001 (pelo código; os
+// anúncios antigos sem código usam o id)
+export const urlDoImovel = (e) => `/imoveis/${String(e.codigo || e.id).toLowerCase()}`;
+
+// imóvel fixo (empreendimento ou imóvel selecionado) pelo endereço da página
+export const fixoPorEndereco = (param) => {
+  const k = String(param || "").toLowerCase();
+  return [...IMOVEIS, ...EMPREENDIMENTOS].find((e) => e.codigo?.toLowerCase() === k || e.id === k) || null;
+};

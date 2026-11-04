@@ -1,7 +1,23 @@
 import { COMPANIES } from "./area/companies";
+import { EMPREENDIMENTOS, IMOVEIS, urlDoImovel } from "./imoveis/empreendimentos";
+import { getVitrine } from "../lib/store";
 
-export default function sitemap() {
+// refeito a cada hora, para incluir os anúncios novos do painel
+export const revalidate = 3600;
+
+export default async function sitemap() {
   const base = "https://www.paulokasmirscki.com.br";
+  // página de cada imóvel: os fixos do site e os anúncios do painel
+  let vitrine = [];
+  try {
+    vitrine = await getVitrine();
+  } catch (e) {}
+  const imoveis = [...IMOVEIS, ...EMPREENDIMENTOS, ...vitrine].map((e) => ({
+    url: base + urlDoImovel(e),
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
   return [
     {
       url: base,
@@ -27,6 +43,7 @@ export default function sitemap() {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    ...imoveis,
     ...COMPANIES.map((c) => ({
       url: `${base}/rede/${c.id}`,
       lastModified: new Date(),

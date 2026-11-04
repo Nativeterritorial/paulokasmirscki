@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 
+// foto do anúncio do painel (id no banco) ou caminho do site (/imoveis/...)
+const urlFoto = (f) => (String(f).startsWith("/") ? f : `/api/foto/${f}`);
+
 // Foto grande + miniaturas. Setas no teclado e nos botões trocam a foto.
 export default function Galeria({ fotos, titulo, reservado }) {
   const [i, setI] = useState(0);
@@ -25,7 +28,7 @@ export default function Galeria({ fotos, titulo, reservado }) {
       }}
     >
       <div className="vt-gal-main">
-        <img src={`/api/foto/${fotos[i]}`} alt={`${titulo} — foto ${i + 1} de ${n}`} />
+        <img src={urlFoto(fotos[i])} alt={`${titulo} — foto ${i + 1} de ${n}`} />
         {reservado && <span className="vt-badge">Reservado</span>}
         {n > 1 && (
           <>
@@ -51,7 +54,7 @@ export default function Galeria({ fotos, titulo, reservado }) {
               aria-label={`Ver foto ${k + 1}`}
               onClick={() => setI(k)}
             >
-              <img src={`/api/foto/${f}`} alt="" loading="lazy" />
+              <img src={urlFoto(f)} alt="" loading="lazy" />
             </button>
           ))}
         </div>

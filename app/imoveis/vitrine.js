@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { formatPreco, imovelCodigo } from "./imovel-defs";
+import { urlDoImovel } from "./empreendimentos";
 
 const FAIXAS = [
   [0, "Qualquer valor"],
@@ -144,7 +145,7 @@ export default function Vitrine({ imoveis, semFiltros = false }) {
       ) : (
         <div className="vt-grid">
           {lista.map((i) => (
-            <a className="vt-card" href={`/imoveis/${i.id}`} key={i.id}>
+            <a className="vt-card" href={urlDoImovel(i)} key={i.id}>
               <div className="vt-card-img">
                 {i.fotos?.[0] ? (
                   <img src={`/api/foto/${i.fotos[0]}`} alt={i.titulo} loading="lazy" />

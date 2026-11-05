@@ -15,9 +15,10 @@ export const SEG_MAP = [
   [/comunicação|mídia|gráfica|fotografia/i, "Mídia & Comunicação", "#ff8a8a"],
   [/consórcio|investimento|seguro|finan/i, "Finanças & Investimentos", "#f5c04e"],
   [/arquitet|urbanis|interiores/i, "Arquitetura", "#c9a8ff"],
+  // jurídico antes de imóveis: "Cartório — Registro Civil e de Imóveis" é jurídico
+  [/jurídic|cartório|registro/i, "Jurídico", "#c9a8ff"],
   [/construção|construtora|incorpora|loteamento|urbaniza|esquadria|tinta|engenharia|materiais|hidráulic|imóve|territorial/i, "Imóveis & Construção", "#f5c04e"],
   [/contabil/i, "Contabilidade", "#46d6ff"],
-  [/jurídic|cartório|registro/i, "Jurídico", "#c9a8ff"],
   [/marketing/i, "Marketing & Digital", "#b88cff"],
   [/informática|internet|telecom|sistemas|tecnologia|eletrônic|apple/i, "Tecnologia & IA", "#46d6ff"],
   [/educação|ensino|escola/i, "Educação", "#5b9bff"],
@@ -72,9 +73,10 @@ export const slugify = (s) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-// página de cidade só com empresas suficientes (evita página quase vazia)
+// página de cidade só com empresas suficientes (evita página quase vazia);
+// toda categoria com ao menos 1 empresa tem página (os segmentos do início levam a ela)
 const MIN_CIDADE = 3;
-const MIN_CATEGORIA = 2;
+const MIN_CATEGORIA = 1;
 
 const categoriaDe = (c) => segInfo(c.segmento).icon;
 

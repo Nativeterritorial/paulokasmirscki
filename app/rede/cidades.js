@@ -45,6 +45,7 @@ export const CIDADES = {
   "Osório": [-29.8867, -50.2697],
   "Sales Oliveira": [-20.7697, -47.8381],
   "Indaiatuba": [-23.0903, -47.2181],
+  "Brasília": [-15.7939, -47.8828],
 };
 export const BASE = "Veranópolis";
 

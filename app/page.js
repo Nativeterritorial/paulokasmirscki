@@ -3,6 +3,7 @@ import CookieBanner from "./cookie";
 import HeroAI from "./hero-ai";
 import RedeViva from "./rede-viva";
 import { SegIcon } from "./segment-icons";
+import { categoriasComPagina } from "./rede/categorias";
 import SignupForm from "./ecossistema/signup-form";
 import BrandsCarousel from "./brands-carousel";
 import MobileMenu from "./mobile-menu";
@@ -70,8 +71,12 @@ const SEG_PERGUNTA = {
   "Sustentabilidade & Meio Ambiente": "Procuro uma solução ambiental para o meu negócio",
   "Negócios & Empresas": "Procuro parceiros de negócio na rede",
 };
+// segmento -> página pública da categoria (/empresas/gastronomia); quem ainda
+// não tem página (poucas empresas) abre o WhatsApp do Paulo com o pedido pronto
+const PAGINAS_CAT = Object.fromEntries(categoriasComPagina().map((c) => [c.nome, `/empresas/${c.slug}`]));
 const segLink = (seg) =>
-  `/area?pergunta=${encodeURIComponent(SEG_PERGUNTA[seg] || `Procuro ${seg} na rede`)}`;
+  PAGINAS_CAT[seg] ||
+  `https://wa.me/5554996505799?text=${encodeURIComponent(`Olá Paulo! ${SEG_PERGUNTA[seg] || `Procuro ${seg} na rede`}.`)}`;
 
 // posições dos nós em volta do centro (50,50), raio 40 — 10 segmentos em destaque,
 // um a cada 36° (nomes curtos nas pontas esquerda/direita pra não cortar)
@@ -1001,9 +1006,9 @@ export default function Home() {
               links={Object.fromEntries(HUB_NODES.map((n) => [n.label, segLink(n.label)]))}
             />
 
-            {/* Grade com todos os segmentos: cada um abre o concierge */}
+            {/* Grade com todos os segmentos: cada um abre a página da categoria */}
             <p className="seg-dica">
-              Toque num segmento e a <strong>IA da rede</strong> mostra o caminho.
+              Toque num segmento e veja as <strong>empresas da rede</strong>.
             </p>
             <div className="seg-grid fade-up">
               {SEGMENTOS.map((seg, i) => (

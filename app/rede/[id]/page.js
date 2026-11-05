@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { COMPANIES } from "../../area/companies";
+import { paginasDaEmpresa } from "../categorias";
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
@@ -73,6 +74,7 @@ export default async function Empresa({ params }) {
   if (!c) notFound();
 
   const externo = !c.link.includes("wa.me");
+  const paginas = paginasDaEmpresa(c);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -173,6 +175,21 @@ export default async function Empresa({ params }) {
             </div>
           </aside>
         </div>
+
+        {paginas && (
+          <section className="cat-outras">
+            <h2>Veja também</h2>
+            <div className="cat-chips">
+              {paginas.cidade && (
+                <a href={`/empresas/${paginas.categoria.slug}/${paginas.cidade.slug}`}>
+                  📍 {paginas.categoria.nome} em {paginas.cidade.nome}
+                </a>
+              )}
+              <a href={`/empresas/${paginas.categoria.slug}`}>{paginas.categoria.nome}: todas as empresas</a>
+              <a href="/empresas">Todas as categorias</a>
+            </div>
+          </section>
+        )}
       </main>
     </div>
   );

@@ -1,5 +1,6 @@
 import { COMPANIES } from "../area/companies";
 import { porCidade } from "./cidades";
+import { categoriasComPagina } from "./categorias";
 import MapaRede from "./mapa-rede";
 
 export const metadata = {
@@ -55,6 +56,17 @@ export default function Rede() {
             </div>
           </div>
           <MapaRede grupos={porCidade(COMPANIES)} />
+        </section>
+
+        <section className="cat-outras rede-cats">
+          <h2>Encontre por categoria</h2>
+          <div className="cat-chips">
+            {categoriasComPagina().map((c) => (
+              <a key={c.slug} href={`/empresas/${c.slug}`}>
+                {c.nome}
+              </a>
+            ))}
+          </div>
         </section>
 
         <p className="brands-note">

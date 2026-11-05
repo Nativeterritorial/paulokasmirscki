@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { COMPANIES } from "./companies";
+import { segInfo } from "../rede/categorias";
 import InstallApp from "./install-app";
 import MyReferrals from "./my-referrals";
 import ConviteCard from "./convite-card";
@@ -56,37 +57,6 @@ const TIMES = [
   "Vou fazer um evento da empresa",
   "Festa de aniversário do meu filho",
 ];
-
-// segmento de cada empresa -> categoria com ícone (e cor) no diretório
-const SEG_MAP = [
-  // veículos primeiro: "Estética Automotiva" é carro, não salão de beleza
-  [/veículo|automóve|automotiv|concession|motos/i, "Veículos", "#46d6ff"],
-  [/academia|fitness|esporte|esportivo|treinamento|crossfit|bicicleta|bike|música|shows/i, "Esporte & Lazer", "#5b9bff"],
-  [/agro|pecu|fertiliz|agríc|cogumelo|máquina|ferrament/i, "Agro & Pecuária", "#6fffbf"],
-  [/barbearia|estética|beleza/i, "Estética & Beleza", "#ff9bd2"],
-  [/cafeteria|restaurante|lancheria|padaria|gastronomia|pizzaria|gastropub|cervejaria|vinícola|vinho|carnes|empório|frigorífic|pastel/i, "Gastronomia", "#ffb27a"],
-  [/vidro|válvula|(^|[^\p{L}])móve|indústr/iu, "Indústria & Móveis", "#9fb6d9"],
-  [/comunicação|mídia|gráfica|fotografia/i, "Mídia & Comunicação", "#ff8a8a"],
-  [/consórcio|investimento|seguro|finan/i, "Finanças & Investimentos", "#f5c04e"],
-  [/arquitet|urbanis|interiores/i, "Arquitetura", "#c9a8ff"],
-  [/construção|construtora|incorpora|loteamento|urbaniza|esquadria|tinta|engenharia|materiais|hidráulic|imóve|territorial/i, "Imóveis & Construção", "#f5c04e"],
-  [/contabil/i, "Contabilidade", "#46d6ff"],
-  [/jurídic|cartório|registro/i, "Jurídico", "#c9a8ff"],
-  [/marketing/i, "Marketing & Digital", "#b88cff"],
-  [/informática|internet|telecom|sistemas|tecnologia|eletrônic|apple/i, "Tecnologia & IA", "#46d6ff"],
-  [/educação|ensino|escola/i, "Educação", "#5b9bff"],
-  [/logística|transporte/i, "Transporte & Logística", "#9fb6d9"],
-  [/moda|vestuário|confecç|camiseta|boné|uniforme|fardamento|etiqueta|têxt|joalheria|ótica/i, "Moda & Vestuário", "#ff9bd2"],
-  [/saúde|nutri|fisioterap|pilates|odonto|medicina|genética|suplemento/i, "Saúde & Bem-estar", "#6fffbf"],
-  [/hotel|turismo|turíst|pousada|evento|viage|balão|balões/i, "Turismo & Hotelaria", "#ffb27a"],
-  [/floricultura|flores|plantas|mudas|paisag|jardin|solar|energia|elétric/i, "Sustentabilidade & Meio Ambiente", "#6fffbf"],
-  [/mercado|atacado|comércio|varejo|bazar|utilidades|livraria|papelaria|colch/i, "Comércio & Varejo", "#ffb27a"],
-  [/desenvolvimento|gestão|consultoria|público|associação|entidade/i, "Negócios & Empresas", "#c9a8ff"],
-];
-const segInfo = (segmento) => {
-  const hit = SEG_MAP.find(([re]) => re.test(segmento));
-  return hit ? { icon: hit[1], cor: hit[2] } : { icon: "Serviços", cor: "#9fb6d9" };
-};
 
 const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;

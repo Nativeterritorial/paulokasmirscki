@@ -1,6 +1,7 @@
 import { COMPANIES } from "./area/companies";
 import { EMPREENDIMENTOS, IMOVEIS, urlDoImovel } from "./imoveis/empreendimentos";
 import { getVitrine } from "../lib/store";
+import { categoriasComPagina } from "./rede/categorias";
 
 // refeito a cada hora, para incluir os anúncios novos do painel
 export const revalidate = 3600;
@@ -44,6 +45,16 @@ export default async function sitemap() {
       priority: 0.8,
     },
     ...imoveis,
+    { url: `${base}/empresas`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    ...categoriasComPagina().flatMap((c) => [
+      { url: `${base}/empresas/${c.slug}`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+      ...c.cidades.map((cid) => ({
+        url: `${base}/empresas/${c.slug}/${cid.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "weekly",
+        priority: 0.8,
+      })),
+    ]),
     ...COMPANIES.map((c) => ({
       url: `${base}/rede/${c.id}`,
       lastModified: new Date(),

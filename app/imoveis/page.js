@@ -8,7 +8,7 @@ const WHATSAPP = "https://wa.me/5554996505799";
 const wa = (msg) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
 export const metadata = {
-  title: "Imóveis à venda — Paulo Kasmirscki",
+  title: "Imóveis à venda em Veranópolis e região — Paulo Kasmirscki",
   description:
     "Vitrine de imóveis do ecossistema Paulo Kasmirscki: casas, apartamentos, terrenos e pontos comerciais à venda em Veranópolis e região.",
   alternates: { canonical: "/imoveis" },

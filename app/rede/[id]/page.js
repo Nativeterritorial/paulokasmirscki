@@ -60,6 +60,8 @@ export async function generateMetadata({ params }) {
     title: `${c.nome} — ${c.segmento} | Rede Paulo Kasmirscki`,
     description: c.descricao,
     alternates: { canonical: `/rede/${c.id}` },
+    // fora da busca do Google: lá aparecem só as páginas do ecossistema e dos nichos
+    robots: { index: false, follow: true },
     openGraph: {
       title: `${c.nome} — ${c.segmento}`,
       description: c.descricao,

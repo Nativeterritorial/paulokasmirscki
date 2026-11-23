@@ -4,9 +4,9 @@ import { categoriasComPagina } from "./categorias";
 import MapaRede from "./mapa-rede";
 
 export const metadata = {
-  title: "A Rede — Paulo Kasmirscki",
+  title: "A Rede — as empresas do Ecossistema PK",
   description:
-    "As empresas do ecossistema de negócios do Paulo Kasmirscki: imóveis, contabilidade, marketing, saúde, construção e mais — conectadas em Veranópolis e na Serra Gaúcha.",
+    "Empresas de confiança conectadas pelo Ecossistema PK em Veranópolis e na Serra Gaúcha: indicações, parcerias e negócios entre quem faz parte da rede.",
   alternates: { canonical: "/rede" },
 };
 

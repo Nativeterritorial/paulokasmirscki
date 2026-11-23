@@ -1,4 +1,3 @@
-import { COMPANIES } from "./area/companies";
 import { EMPREENDIMENTOS, IMOVEIS, urlDoImovel } from "./imoveis/empreendimentos";
 import { getVitrine } from "../lib/store";
 import { categoriasComPagina } from "./rede/categorias";
@@ -44,6 +43,12 @@ export default async function sitemap() {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: `${base}/vagas`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
     ...imoveis,
     { url: `${base}/empresas`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     ...categoriasComPagina().flatMap((c) => [
@@ -55,11 +60,5 @@ export default async function sitemap() {
         priority: 0.8,
       })),
     ]),
-    ...COMPANIES.map((c) => ({
-      url: `${base}/rede/${c.id}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    })),
   ];
 }

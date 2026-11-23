@@ -16,7 +16,7 @@ const VALIDADE_MESES = 12;
 
 
 export const metadata = {
-  title: "O Ecossistema — Paulo Kasmirscki",
+  title: "O Ecossistema PK — conexões, serviços e oportunidades",
   description:
     "Um só lugar para conectar e resolver: concierge de IA, Mural de Oportunidades, indicações, venda de imóveis, obras do terreno às chaves, abertura de empresas e gestão de negócios.",
   alternates: { canonical: "/ecossistema" },

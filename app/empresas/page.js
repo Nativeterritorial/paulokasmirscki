@@ -2,7 +2,7 @@ import { categoriasComPagina, introDaCategoria } from "../rede/categorias";
 import { Chamada, Moldura, Trilha } from "./pagina";
 
 export const metadata = {
-  title: "Empresas por categoria — Ecossistema PK | Paulo Kasmirscki",
+  title: "Encontre empresas por categoria — Ecossistema PK",
   description:
     "Encontre empresas de confiança em Veranópolis e na Serra Gaúcha por categoria: gastronomia, construção, saúde, beleza, marketing, serviços e mais.",
   alternates: { canonical: "/empresas" },
